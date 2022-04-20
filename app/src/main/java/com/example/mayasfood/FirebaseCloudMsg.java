@@ -5,23 +5,31 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-import android.text.BoringLayout;
 import android.util.Log;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.mayasfood.activity.OTP;
-import com.example.mayasfood.constants.Constants;
-import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FirebaseCloudMsg extends FirebaseMessagingService {
+
+    public static EditText otp1,otp2,otp3,otp4;
+
+    public void setEditTextOtp(EditText editText1, EditText editText2, EditText editText3, EditText editText4){
+        FirebaseCloudMsg.otp1 = editText1;
+        FirebaseCloudMsg.otp2 = editText2;
+        FirebaseCloudMsg.otp3 = editText3;
+        FirebaseCloudMsg.otp4 = editText4;
+    }
 
     @Override
     public void onNewToken(@NonNull String token) {
@@ -48,7 +56,31 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
 
         if (body.contains("OTP")) {
 
-            OTP.getOtpFromMessage(body);
+            Pattern pattern = Pattern.compile("(|^)\\d{4}");
+            Matcher matcher = pattern.matcher(body);
+            if (matcher.find()) {
+                Log.d("Otp", matcher.group(0));
+                String otp = matcher.group(0);
+                //setOtp(matcher.group(0));
+                String sotp1 = otp.substring(0,1);
+                Log.d("o1", sotp1);
+                String sotp2 = otp.substring(1,2);
+                Log.d("o2", sotp2);
+                String sotp3 = otp.substring(2,3);
+                Log.d("o3", sotp3);
+                String sotp4 = otp.substring(3);
+                Log.d("o4", sotp4);
+                otp1.setText(sotp1);
+                otp1.setBackgroundResource(R.drawable.black_back);
+                otp2.setText(sotp2);
+                otp2.setBackgroundResource(R.drawable.black_back);
+                otp3.setText(sotp3);
+                otp3.setBackgroundResource(R.drawable.black_back);
+                otp4.setText(sotp4);
+                otp4.setBackgroundResource(R.drawable.black_back);
+
+                Log.d("Complete", "working");
+            }
         }
 
         NotificationChannel channel = new NotificationChannel(

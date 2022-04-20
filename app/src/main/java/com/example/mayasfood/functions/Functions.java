@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.mayasfood.R;
+import com.example.mayasfood.activity.OTP;
 import com.example.mayasfood.constants.Constants;
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,6 +22,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Functions {
+
+    static OTP otp = new OTP();
 
     public static boolean checkData(String user_name, String user_phone, EditText userName, EditText phoneNum) {
 
@@ -114,7 +117,13 @@ public class Functions {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (!otp1.getText().toString().isEmpty()) {
-                    otp2.requestFocus();
+
+                    otp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            otp2.requestFocus();
+                        }
+                    });
                 }
             }
         });
