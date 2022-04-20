@@ -18,12 +18,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mayasfood.FirebaseCloudMsg;
 import com.example.mayasfood.MainActivity;
 import com.example.mayasfood.R;
 import com.example.mayasfood.constants.Constants;
@@ -58,6 +60,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
+
+        String token = FirebaseCloudMsg.getToken(this);
+        Log.d("mainToken", token);
 
         setUpToolbar();
 

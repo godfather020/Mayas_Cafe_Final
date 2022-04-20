@@ -2,14 +2,22 @@ package com.example.mayasfood.activity;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Telephony;
+import android.telephony.SmsMessage;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +32,8 @@ import com.example.mayasfood.functions.Functions;
 import java.security.PrivateKey;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OTP extends AppCompatActivity {
 
@@ -93,6 +103,8 @@ public class OTP extends AppCompatActivity {
 
             }
         });
+
+        receiveSms();
     }
 
     private void countdownTimer(){
@@ -122,5 +134,42 @@ public class OTP extends AppCompatActivity {
             }
         }.start();
 
+    }
+
+    private void receiveSms() {
+
+        BroadcastReceiver br = new BroadcastReceiver(){
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                SmsMessage[] sms = Telephony.Sms.Intents.getMessagesFromIntent(intent);
+
+                for (int i = 0; i <= sms.length; i++) {
+
+                    if (sms[i] != null) {
+                        //Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
+                        String smsBody = sms[i].getMessageBody();
+                        Log.d("msgBody", smsBody);
+                        getOtpFromMessage(smsBody);
+                        //val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
+                        //Log.d("otp", getOtp)
+                        //setOtp(getOtp)
+                    }
+                }
+            }
+        };
+        registerReceiver(br, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private void getOtpFromMessage(String message) {
+        // This will match any 4 digit number in the message
+        Pattern pattern = Pattern.compile("(|^)\\d{4}");
+        Matcher matcher = pattern.matcher(message);
+        if (matcher.find()) {
+            Log.d("Otp", matcher.group(0));
+            //setOtp(otp = matcher.group(0));
+        }
     }
 }
