@@ -71,13 +71,13 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
                 String sotp4 = otp.substring(3);
                 Log.d("o4", sotp4);
                 otp1.setText(sotp1);
-                otp1.setBackgroundResource(R.drawable.black_back);
+
                 otp2.setText(sotp2);
-                otp2.setBackgroundResource(R.drawable.black_back);
+
                 otp3.setText(sotp3);
-                otp3.setBackgroundResource(R.drawable.black_back);
+
                 otp4.setText(sotp4);
-                otp4.setBackgroundResource(R.drawable.black_back);
+
 
                 Log.d("Complete", "working");
             }
