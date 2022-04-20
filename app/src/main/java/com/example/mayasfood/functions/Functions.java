@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -96,7 +97,7 @@ public class Functions {
         }
     }
 
-    public static void otpTextChange(EditText otp1, EditText otp2){
+    public static void otpTextChange(EditText otp1, EditText otp2, EditText otp3){
 
         otp1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -122,6 +123,14 @@ public class Functions {
                         @Override
                         public void run() {
                             otp2.requestFocus();
+                        }
+                    });
+                }
+                if (otp1.getText().toString().length() < 1){
+                    otp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            otp3.requestFocus();
                         }
                     });
                 }

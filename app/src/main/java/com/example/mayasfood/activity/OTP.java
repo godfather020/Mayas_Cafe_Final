@@ -43,10 +43,10 @@ public class OTP extends AppCompatActivity {
         submit = findViewById(R.id.submit);
         resend = findViewById(R.id.resend);
 
-        Functions.otpTextChange(otp1, otp2);
-        Functions.otpTextChange(otp2, otp3);
-        Functions.otpTextChange(otp3, otp4);
-        Functions.otpTextChange(otp4, otp4);
+        Functions.otpTextChange(otp1, otp2, otp1);
+        Functions.otpTextChange(otp2, otp3, otp1);
+        Functions.otpTextChange(otp3, otp4, otp2);
+        Functions.otpTextChange(otp4, otp4, otp3);
 
         countdownTimer();
 

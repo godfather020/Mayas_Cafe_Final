@@ -18,7 +18,7 @@
         android:allowBackup="true"
         android:icon="@drawable/mayas1024__1_"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/mayas512__1_"
+        android:roundIcon="@drawable/mayas512__1_svg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -71,6 +71,10 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
+
+        <!--<meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/mayas512__1_svg" />-->
 
     </application>
 

@@ -94,7 +94,7 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
                 .setContentTitle(title)
                 .setContentText(body)
                 .setStyle(new Notification.BigTextStyle())
-                .setSmallIcon(R.drawable.mayas512__1_)
+                .setSmallIcon(R.drawable.mayas512__1_svg)
                 .setAutoCancel(true);
         NotificationManagerCompat.from(this).notify(new Random().nextInt(), notification.build());
 
