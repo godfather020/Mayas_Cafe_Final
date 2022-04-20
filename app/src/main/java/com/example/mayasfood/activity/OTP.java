@@ -25,9 +25,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mayasfood.FirebaseCloudMsg;
+import com.example.mayasfood.MsgReceiver;
 import com.example.mayasfood.R;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.functions.Functions;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.security.PrivateKey;
 import java.util.Locale;
@@ -43,11 +46,16 @@ public class OTP extends AppCompatActivity {
     TextView timer, resend_txt;
     ImageButton img_back_otp;
     Button submit, resend;
+    public static final String BROADCAST = "android.provider.Telephony.SMS_RECEIVED";
+
+    MsgReceiver msgReceiver = new MsgReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
+
+        //receiveSms();
 
         otp1 = findViewById(R.id.otp1);
         otp2 = findViewById(R.id.otp2);
@@ -104,7 +112,7 @@ public class OTP extends AppCompatActivity {
             }
         });
 
-        receiveSms();
+
     }
 
     private void countdownTimer(){
@@ -136,40 +144,17 @@ public class OTP extends AppCompatActivity {
 
     }
 
-    private void receiveSms() {
-
-        BroadcastReceiver br = new BroadcastReceiver(){
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                SmsMessage[] sms = Telephony.Sms.Intents.getMessagesFromIntent(intent);
-
-                for (int i = 0; i <= sms.length; i++) {
-
-                    if (sms[i] != null) {
-                        //Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
-                        String smsBody = sms[i].getMessageBody();
-                        Log.d("msgBody", smsBody);
-                        getOtpFromMessage(smsBody);
-                        //val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
-                        //Log.d("otp", getOtp)
-                        //setOtp(getOtp)
-                    }
-                }
-            }
-        };
-        registerReceiver(br, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
-    }
-
     @RequiresApi(Build.VERSION_CODES.N)
-    private void getOtpFromMessage(String message) {
-        // This will match any 4 digit number in the message
-        Pattern pattern = Pattern.compile("(|^)\\d{4}");
-        Matcher matcher = pattern.matcher(message);
-        if (matcher.find()) {
-            Log.d("Otp", matcher.group(0));
-            //setOtp(otp = matcher.group(0));
+    public static void getOtpFromMessage(String msg) {
+
+        if (!msg.isEmpty()){
+            // This will match any 4 digit number in the message
+            Pattern pattern = Pattern.compile("(|^)\\d{4}");
+            Matcher matcher = pattern.matcher(msg);
+            if (matcher.find()) {
+                Log.d("Otp", matcher.group(0));
+                //setOtp(otp = matcher.group(0));
+            }
         }
     }
 }
