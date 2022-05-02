@@ -119,14 +119,14 @@ public class Dashboard_frag extends Fragment {
         String[] Food_op = getResources().getStringArray(R.array.Food_op);
         String[] Food_rate = getResources().getStringArray(R.array.Food_rate);
 
-        for(int i = 0; i<foodName.length; i++) {
-            recycleView_models.add(new RecycleView_Model(foodName[i], Constants.foodImage[i]));
+        for (String s : foodName) {
+            recycleView_models.add(new RecycleView_Model(s));
         }
         for(int i = 0; i<nameFood.length; i++){
-            recycleView_models1.add(new RecycleView_Model(nameFood[i], foodop[i], foodprice[i], Constants.imgFood[i]));
+            recycleView_models1.add(new RecycleView_Model(nameFood[i], foodprice[i], Constants.imgFood[i]));
         }
         for (int i =0; i<NameFood.length; i++){
-            recycleView_models2.add(new RecycleView_Model(NameFood[i], Food_op[i], Food_rate[i], Constants.foodimg[i]));
+            recycleView_models2.add(new RecycleView_Model(NameFood[i], Food_rate[i], Constants.foodimg[i]));
         }
     }
 

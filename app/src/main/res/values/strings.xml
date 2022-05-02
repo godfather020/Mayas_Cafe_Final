@@ -42,7 +42,6 @@
         <item>Sides</item>
         <item>Appetizers</item>
         <item>Lunch &amp; Dinner</item>
-        <item>Pasta</item>
         <item>Soup</item>
     </string-array>
     <string-array name="Food_name">
@@ -56,9 +55,9 @@
         <item>(Cut into rings)</item>
     </string-array>
     <string-array name="Food_price">
-        <item>₹ 250</item>
-        <item>₹ 250</item>
-        <item>₹ 150</item>
+        <item>$12</item>
+        <item>$5</item>
+        <item>$12</item>
     </string-array>
     <string-array name="Name_Food">
         <item>Green Salad</item>
@@ -71,9 +70,9 @@
         <item>(Hot and Sour)</item>
     </string-array>
     <string-array name="Food_rate">
-        <item>₹ 50</item>
-        <item>₹ 50</item>
-        <item>₹ 70</item>
+        <item>$5</item>
+        <item>$15</item>
+        <item>$7</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

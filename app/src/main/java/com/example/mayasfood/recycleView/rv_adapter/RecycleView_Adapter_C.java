@@ -49,7 +49,6 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
         final RecycleView_Model temp = foodModels.get(position);
 
         holder.name.setText(foodModels.get(position).getFoodName());
-        holder.imageView.setImageResource(foodModels.get(position).getFoodImg());
 
         ColorStateList color = holder.cardView.getCardBackgroundColor();
 
@@ -83,13 +82,11 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
         //grabbing the views from rv_column.xml
 
         CardView cardView;
-        ImageView imageView;
         TextView name;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.foodimage);
             name = itemView.findViewById(R.id.foodname);
             cardView = itemView.findViewById(R.id.cat_card);
         }

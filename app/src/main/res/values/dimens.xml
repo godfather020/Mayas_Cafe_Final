@@ -23,4 +23,9 @@
     <dimen name="Dashboard_title">31sp</dimen>
     <dimen name="Dashboard_subtitle">19sp</dimen>
     <dimen name="Dashboard_seeall">15sp</dimen>
+    <dimen name="Food_Category">16sp</dimen>
+    <dimen name="Popular_food_title">15sp</dimen>
+    <dimen name="Popular_food_price">18sp</dimen>
+    <dimen name="Rest_choice_title">15sp</dimen>
+    <dimen name="Rest_choice_price">18sp</dimen>
 </resources>
