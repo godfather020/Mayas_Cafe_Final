@@ -2,6 +2,38 @@
     <string name="app_name">Mayas Food</string>
     <string name="get_start">Get Start</string>
     <string name="no_title"> </string>
+
+    <string name="Splash_title">Maya\'s</string>
+    <string name="Splash_Subtitle">garden &amp; juice Bar</string>
+    <string name="GetStart_Title">Maya\'s</string>
+    <string name="GetStart_SubTitle">garden &amp; juice Bar</string>
+    <string name="GetStart_Heading">Cooking our dishes with love for you</string>
+    <string name="GetStart_ButtonTxt">Get Start</string>
+    <string name="Register_title">Create New \nAccount</string>
+    <string name="Register_Subtitle">Join us and enjoy your food</string>
+    <string name="Register_userName">Enter your fullname</string>
+    <string name="Register_userPhone">Enter your mobile number</string>
+    <string name="Register_ButtonTxt">Sign Up</string>
+    <string name="Register_Skip">Skip</string>
+    <string name="Login_title">Login with \nMobile Number</string>
+    <string name="Login_subTitle">We will send you a confirmation code</string>
+    <string name="Login_EditTxt">Enter your mobile number</string>
+    <string name="Login_button_txt">Sign In</string>
+    <string name="Login_newUser">New User ?</string>
+    <string name="Login_signup">\tSignup</string>
+    <string name="OTP_Title">Enter code \nsent to your Number</string>
+    <string name="OTP_subTitle">We have sent the code verification</string>
+    <string name="OTP_Buttontxt">Submit</string>
+    <string name="OTP_resend">Resend code in</string>
+    <string name="OTP_submit">Submit</string>
+    <string name="OTP_Buttonresend">Resend</string>
+    <string name="Dashboard_title">Hello Ramu Kaka</string>
+    <string name="Dashboard_popular">Popular Food</string>
+    <string name="Dashboard_offers">Best Offers</string>
+    <string name="Dashboard_restchoice">Restaurant Choices</string>
+    <string name="Dashboard_seeAll">See all</string>
+
+
     <string-array name="Food_txt">
         <item>Breakfast</item>
         <item>Porridge</item>

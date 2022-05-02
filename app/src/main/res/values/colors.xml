@@ -7,16 +7,30 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="Splash_title">#FFFFFFFF</color>
-    <color name="Splah_subtitle">#FFFFFFFF</color>
-    <color name="Card_back">#EDF0F5</color>
-    <color name="Screen_Background">#EDF0F5</color>
-    <color name="Main_Heading">#010313</color>
-    <color name="Get_start_subtitle">#B5B5BB</color>
-    <color name="Get_start_title">#696971</color>
-    <color name="subheading_inputField">#696971</color>
-    <color name="Category_title">#5B5D71</color>
-    <color name="Button_gradient1">#010313</color>
-    <color name="Button_gradient2">#9C1E1E29</color>
-    <color name="Button_text">#ffffff</color>
+
+    <color name="Splash_Title">#D5D9FB</color>
+    <color name="Splash_SubTitle">#9FA1BC</color>
+    <color name="GetStart_Title">#363853</color>
+    <color name="GetStart_SubTitle">#9FA1BC</color>
+    <color name="GetStart_Heading">#363853</color>
+    <color name="Button_txt">#FFFFFF</color>
+    <color name="Register_Title">#363853</color>
+    <color name="Register_SubTitle">#989BBD</color>
+    <color name="EditTxt_color">#B6B7C999</color>
+    <color name="Register_skip">#363853</color>
+    <color name="Login_Title">#363853</color>
+    <color name="Login_subTitle">#989BBD</color>
+    <color name="Login_editTxt">#B6B7C999</color>
+    <color name="Login_newUser">#82838B</color>
+    <color name="Login_signUp">#F4511E</color>
+    <color name="OTP_title">#363853</color>
+    <color name="OTP_subtitle">#989BBD</color>
+    <color name="OTP_resend">#9FA1BC</color>
+    <color name="OTP_editTxt">#363853</color>
+    <color name="Screen_BG">#F5F9FE</color>
+    <color name="Dashboard_title">#363853</color>
+    <color name="Dashboard_subtitle">#000000</color>
+    <color name="Dashboard_seeall">#82838B</color>
+
+
 </resources>

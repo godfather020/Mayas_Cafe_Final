@@ -3,12 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:title=""
-        android:id="@+id/notify"
-        android:icon="@drawable/icon_ionic_ios_notifications_outline"
+        android:id="@+id/search"
+        android:icon="@drawable/akar_icons_search"
         app:showAsAction="always"/>
     <item
         android:title=""
-        android:id="@+id/setting"
-        android:icon="@drawable/icon_feather_settings"
+        android:id="@+id/notification"
+        android:icon="@drawable/mi_notification"
+        app:showAsAction="always"/>
+    <item
+        android:title=""
+        android:id="@+id/cart"
+        android:icon="@drawable/cart"
         app:showAsAction="always"/>
 </menu>

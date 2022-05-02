@@ -184,11 +184,14 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.notify){
-            Toast.makeText(getApplicationContext(), "Notifications", Toast.LENGTH_SHORT).show();
+        if (id == R.id.search){
+            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
         }
-        else if (id == R.id.setting){
-            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
+        else if (id == R.id.notification){
+            Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
+        }
+        else if (id == R.id.cart){
+            Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }
         return true;
     }

@@ -19,15 +19,14 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="668dp"
-            android:fontFamily="@font/ntailu"
-            android:text="Maya's"
+            android:layout_marginTop="460dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/Splash_title"
             android:textAlignment="center"
-            android:textColor="@color/Splash_title"
-            android:textSize="53sp"
+            android:textColor="@color/Splash_Title"
+            android:textSize="@dimen/Splash_title"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,16 +34,17 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/ntailu"
-            android:text="garden &amp; juice Bar"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/Splash_Subtitle"
             android:textAlignment="center"
-            android:textColor="@color/Splah_subtitle"
-            android:textSize="31sp"
+            android:textColor="@color/Splash_SubTitle"
+            android:textSize="@dimen/Splash_Subtitle"
+            android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>

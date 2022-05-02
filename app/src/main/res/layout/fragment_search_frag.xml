@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Screen_Background"
+    android:background="@color/Screen_BG"
     android:id="@+id/search_frag"
     tools:context=".fragments.Search_frag">
 
