@@ -1,41 +1,37 @@
 package com.example.mayasfood.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.mayasfood.R;
-import com.example.mayasfood.activity.DashBoard;
-import com.example.mayasfood.activity.singleItem;
+import com.example.mayasfood.ViewPagerAdapter.SliderAdapter;
+import com.example.mayasfood.ViewPagerAdapter.SliderData;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C;
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF;
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC;
-import com.google.android.material.navigation.NavigationView;
+import com.smarteist.autoimageslider.SliderView;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Dashboard_frag extends Fragment {
 
     private boolean isBackPressed = false;
+
+    // images array
+    int[] images = {R.drawable._01_1__1_, R.drawable._02_1, R.drawable.image_2};
+    String url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png";
+    String url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg";
+    String url3 = "https://i.postimg.cc/VNk523np/image-2.png";
    // NavigationView navigationView;
     //DrawerLayout drawerLayout;
    // ImageButton toolbar;
@@ -51,6 +47,40 @@ public class Dashboard_frag extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_dashboard_frag, container, false);
 
+        // Initializing the ViewPager Object
+        ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
+
+        // initializing the slider view.
+        SliderView sliderView = v.findViewById(R.id.slider);
+
+        // adding the urls inside array list
+        //sliderDataArrayList.add(new SliderData(images));
+
+        sliderDataArrayList.add(new SliderData(url1));
+        sliderDataArrayList.add(new SliderData(url2));
+        sliderDataArrayList.add(new SliderData(url3));
+
+        // passing this array list inside our adapter class.
+        SliderAdapter adapter = new SliderAdapter(getContext(), sliderDataArrayList);
+
+        // below method is used to set auto cycle direction in left to
+        // right direction you can change according to requirement.
+        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+
+        // below method is used to
+        // setadapter to sliderview.
+        sliderView.setSliderAdapter(adapter);
+
+        // below method is use to set
+        // scroll time in seconds.
+        sliderView.setScrollTimeInSec(3);
+
+        // to set it scrollable automatically
+        // we use below method.
+        sliderView.setAutoCycle(true);
+
+        // to start autocycle below method is used.
+        sliderView.startAutoCycle();
 
        // drawerLayout = v.findViewById(R.id.drawer_frag);
       //  navigationView = v.findViewById(R.id.nav_view_frag);

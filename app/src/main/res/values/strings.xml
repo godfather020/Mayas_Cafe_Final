@@ -166,4 +166,9 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="home">Home</string>
+    <string name="order">Order</string>
+    <string name="offers">Offers</string>
+    <string name="categories">Categories</string>
+    <string name="notification">Notification</string>
+    <string name="logout">Logout</string>
 </resources>

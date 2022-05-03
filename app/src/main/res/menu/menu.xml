@@ -4,26 +4,26 @@
         <item
             android:id="@+id/homeNav"
             android:title="@string/home"
-            android:icon="@drawable/mdi___home_outline"/>
+            android:icon="@drawable/homemenu"/>
         <item
             android:id="@+id/orderNav"
-            android:title="Order"
-            android:icon="@drawable/mdi___heart_outline"/>
+            android:title="@string/order"
+            android:icon="@drawable/ordermenu"/>
         <item
             android:id="@+id/profileNav"
-            android:title="Profile"
-            android:icon="@drawable/mdi___account_outline"/>
+            android:title="@string/offers"
+            android:icon="@drawable/offersmenu"/>
         <item
             android:id="@+id/categoriesNav"
-            android:title="Categories"
-            android:icon="@drawable/icon_awesome_clipboard_list"/>
+            android:title="@string/categories"
+            android:icon="@drawable/categorymenu"/>
         <item
             android:id="@+id/notificationNav"
-            android:title="Notification"
-            android:icon="@drawable/icon_material_notifications_none"/>
+            android:title="@string/notification"
+            android:icon="@drawable/notificationmenu"/>
         <item
             android:id="@+id/logoutNav"
-            android:title="Logout"
-            android:icon="@drawable/icon_open_account_logout"/>
+            android:title="@string/logout"
+            android:icon="@drawable/logoutmenu"/>
     </group>
 </menu>

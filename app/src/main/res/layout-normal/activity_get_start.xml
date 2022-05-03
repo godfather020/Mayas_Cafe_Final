@@ -31,7 +31,7 @@
         android:textAlignment="center"
         android:textColor="@color/GetStart_SubTitle"
         android:textSize="@dimen/GetStart_SubTitle"
-        android:textStyle="normal"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />

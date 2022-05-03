@@ -1,0 +1,21 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:name="path"
+                android:pathData="M 8.29 1 L 2.36 1 C 1.705 1 1.174 1.529 1.174 2.181 L 1.174 8.083 C 1.174 8.735 1.705 9.264 2.36 9.264 L 8.29 9.264 C 8.945 9.264 9.476 8.735 9.476 8.083 L 9.476 2.181 C 9.476 1.529 8.945 1 8.29 1 Z M 8.29 13.986 L 2.36 13.986 C 1.705 13.986 1.174 14.515 1.174 15.167 L 1.174 21.07 C 1.174 21.722 1.705 22.25 2.36 22.25 L 8.29 22.25 C 8.945 22.25 9.476 21.722 9.476 21.07 L 9.476 15.167 C 9.476 14.515 8.945 13.986 8.29 13.986 Z M 21.335 1 L 15.405 1 C 14.75 1 14.219 1.529 14.219 2.181 L 14.219 8.083 C 14.219 8.735 14.75 9.264 15.405 9.264 L 21.335 9.264 C 21.99 9.264 22.521 8.735 22.521 8.083 L 22.521 2.181 C 22.521 1.529 21.99 1 21.335 1 Z M 21.335 13.986 L 15.405 13.986 C 14.75 13.986 14.219 14.515 14.219 15.167 L 14.219 21.07 C 14.219 21.722 14.75 22.25 15.405 22.25 L 21.335 22.25 C 21.99 22.25 22.521 21.722 22.521 21.07 L 22.521 15.167 C 22.521 14.515 21.99 13.986 21.335 13.986 Z"
+                android:fillColor="#00000000"
+                android:strokeColor="#F4511E"
+                android:strokeWidth="2"
+                android:strokeLineCap="round"
+                android:strokeLineJoin="round"/>
+        </vector>
+    </aapt:attr>
+</animated-vector>

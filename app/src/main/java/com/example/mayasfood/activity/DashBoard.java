@@ -69,10 +69,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Dashboard_frag()).commit();
 
         CurvedBottomNavigationView cbn = findViewById(R.id.chip_nav);
-        CbnMenuItem dashboard = new CbnMenuItem(R.drawable.mdi___view_grid_outline, R.drawable.dashboard_anim, 0);
-        CbnMenuItem search = new CbnMenuItem(R.drawable.icon_feather_search_r, R.drawable.search_anim, 0);
-        CbnMenuItem favorite = new CbnMenuItem(R.drawable.icon_feather_heart_red, R.drawable.avd_anim, 0);
-        CbnMenuItem profile = new CbnMenuItem(R.drawable.icon_feather_user_red, R.drawable.profile_anim,0);
+        CbnMenuItem dashboard = new CbnMenuItem(R.drawable.category, R.drawable.category_anim, 0);
+        CbnMenuItem search = new CbnMenuItem(R.drawable.favorite, R.drawable.favorite_anim1, 0);
+        CbnMenuItem favorite = new CbnMenuItem(R.drawable.carbon_noodle_bowl, R.drawable.orders_anim, 0);
+        CbnMenuItem profile = new CbnMenuItem(R.drawable.tabler_discount_2, R.drawable.discount_anim,0);
         CbnMenuItem[] navigation_items = {dashboard,search,favorite,profile};
         cbn.setMenuItems(navigation_items, 0);
 
