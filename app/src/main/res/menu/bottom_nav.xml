@@ -2,24 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottom_nav_dashboard"
-        android:icon="@drawable/mdi___view_grid_outline"
-        android:title=""/>
+        android:id="@+id/bottom_nav_category"
+        android:icon="@drawable/category"
+        android:title="@string/category_nav"/>
 
     <item
-        android:id="@+id/bottom_nav_search"
-        android:icon="@drawable/icon_feather_search_r"
-        android:title="" />
+        android:id="@+id/bottom_nav_favorie"
+        android:icon="@drawable/favorite"
+        android:title="@string/favorites" />
 
     <item
-        android:id="@+id/bottom_nav_favorite"
-        android:title=""
-        android:icon="@drawable/icon_feather_heart_red"
+        android:id="@+id/bottom_nav_orders"
+        android:title="@string/orders"
+        android:icon="@drawable/carbon_noodle_bowl"
         />
 
     <item
-        android:id="@+id/bottom_nav_profile"
-        android:title=""
-        android:icon="@drawable/icon_feather_user_red"
+        android:id="@+id/bottom_nav_discount"
+        android:title="@string/offers_nav"
+        android:icon="@drawable/tabler_discount_2"
         />
+
+    <item
+        android:id="@+id/invisible"
+        android:visible="false"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        android:title="invisible" />
 </menu>

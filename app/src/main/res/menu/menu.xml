@@ -10,7 +10,7 @@
             android:title="@string/order"
             android:icon="@drawable/ordermenu"/>
         <item
-            android:id="@+id/profileNav"
+            android:id="@+id/offersNav"
             android:title="@string/offers"
             android:icon="@drawable/offersmenu"/>
         <item
@@ -25,5 +25,10 @@
             android:id="@+id/logoutNav"
             android:title="@string/logout"
             android:icon="@drawable/logoutmenu"/>
+        <item
+            android:id="@+id/invisibleNav"
+            android:visible="false"
+            android:icon="@drawable/ic_baseline_favorite_border_24"
+            android:title="invisible" />
     </group>
 </menu>

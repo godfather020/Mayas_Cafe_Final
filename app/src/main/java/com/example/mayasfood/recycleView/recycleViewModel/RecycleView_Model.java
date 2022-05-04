@@ -28,6 +28,11 @@ public class RecycleView_Model {
         this.foodImg = foodImg;
     }
 
+    public RecycleView_Model(String foodName, String foodHeading) {
+        this.foodName = foodName;
+        this.foodHeading = foodHeading;
+    }
+
     public RecycleView_Model(int foodImg) {
         this.foodImg = foodImg;
     }

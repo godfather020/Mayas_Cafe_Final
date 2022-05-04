@@ -112,6 +112,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv2" />
 
                 <TextView
+                    android:id="@+id/see_offers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -119,6 +120,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/Dashboard_seeAll"
                     android:textSize="@dimen/Dashboard_seeall"
+                    android:visibility="visible"
                     android:textColor="@color/Dashboard_seeall"
                     app:layout_constraintTop_toBottomOf="@+id/rv2"
                     app:layout_constraintEnd_toEndOf="parent"

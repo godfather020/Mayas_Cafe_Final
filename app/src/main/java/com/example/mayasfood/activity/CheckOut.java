@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mayasfood.R;
-import com.example.mayasfood.fragments.Dashboard_frag;
+
 
 public class CheckOut extends AppCompatActivity {
 

@@ -74,6 +74,19 @@
         <item>$15</item>
         <item>$7</item>
     </string-array>
+
+    <string-array name="Offer_txt">
+        <item>Looking for a new summer Food? Get 25% off our new Recipe. Place an order before April 25 2022</item>
+        <item>New summer Offer! Get 25% off. 7 Day’s Left</item>
+        <item>Looking for a new summer outfit? Get 50% off our new recipe. Place an order before 1 March</item>
+    </string-array>
+
+    <string-array name="Offer_img">
+        <item>https://i.postimg.cc/VNk523np/image-2.png</item>
+        <item>https://i.postimg.cc/FFMd1CXk/001–1–1.jpg</item>
+        <item>https://i.postimg.cc/2Sq6C4V8/002–1.png</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">
@@ -171,4 +184,8 @@
     <string name="categories">Categories</string>
     <string name="notification">Notification</string>
     <string name="logout">Logout</string>
+    <string name="category_nav">Categories</string>
+    <string name="favorites">Favorites</string>
+    <string name="orders">Orders</string>
+    <string name="offers_nav">Offers</string>
 </resources>
