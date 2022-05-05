@@ -1,3 +1,31 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="Splash_title">60sp</dimen>
+    <dimen name="Splash_Subtitle">27sp</dimen>
+    <dimen name="GetStart_Title">60sp</dimen>
+    <dimen name="GetStart_SubTitle">27sp</dimen>
+    <dimen name="GetStart_Heading">23sp</dimen>
+    <dimen name="GetStart_Button_txt">27sp</dimen>
+    <dimen name="Register_title">33sp</dimen>
+    <dimen name="Register_Subtitle">19sp</dimen>
+    <dimen name="Register_EditTxt">16sp</dimen>
+    <dimen name="Register_ButtonTxt">27sp</dimen>
+    <dimen name="Register_skip">24sp</dimen>
+    <dimen name="Login_title">33sp</dimen>
+    <dimen name="Login_Subtitle">19sp</dimen>
+    <dimen name="Login_EditTxt">16sp</dimen>
+    <dimen name="Login_Buttontxt">27sp</dimen>
+    <dimen name="Login_newUserSignup">16sp</dimen>
+    <dimen name="OTP_title">33sp</dimen>
+    <dimen name="OTP_subTitle">19sp</dimen>
+    <dimen name="OTP_Buttontxt">27sp</dimen>
+    <dimen name="OTP_resend">16sp</dimen>
+    <dimen name="Dashboard_title">31sp</dimen>
+    <dimen name="Dashboard_subtitle">19sp</dimen>
+    <dimen name="Dashboard_seeall">15sp</dimen>
+    <dimen name="Food_Category">16sp</dimen>
+    <dimen name="Popular_food_title">15sp</dimen>
+    <dimen name="Popular_food_price">18sp</dimen>
+    <dimen name="Rest_choice_title">15sp</dimen>
+    <dimen name="Rest_choice_price">18sp</dimen>
 </resources>

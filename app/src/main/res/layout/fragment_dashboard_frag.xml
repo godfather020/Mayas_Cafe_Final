@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/location"
+    android:background="@color/Screen_BG"
     tools:context=".fragments.Dashboard_frag">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,105 +32,30 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="26dp"
-                    android:fontFamily="@font/ntailu"
-                    android:text="Hello"
-                    android:textColor="#696971"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profilepic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="292dp"
-                    android:elevation="8dp"
-                    android:src="@drawable/mask_group_1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.022" />
-
-                <TextView
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:elevation="8dp"
-                    android:fontFamily="@font/ntailu"
-                    android:text="Stranger"
-                    android:textAllCaps="true"
-                    android:textColor="#010313"
-                    android:textSize="26sp"
+                    android:layout_marginTop="26dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Dashboard_title"
+                    android:textColor="@color/Dashboard_title"
+                    android:textSize="@dimen/Dashboard_title"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/sail"
-                    android:text="Search your favorite food"
-                    android:textColor="#B5B5BB"
-                    android:textSize="23sp"
-                    android:textStyle="normal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/user_name" />
-
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/custom_edit_text"
-                    android:drawableRight="@drawable/icon_feather_search_gray"
-                    android:hint="Search Food..."
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:textColor="#C8C1BBBB"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="33dp"
-                    android:layout_height="33dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/editText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/editText"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv1"
-                    android:layout_width="373dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText"
-                    app:layout_constraintVertical_bias="0.029" />
+                    app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -138,13 +63,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/ntailu"
-                    android:text="Popular Food"
-                    android:textColor="#010313"
-                    android:textSize="17sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Dashboard_popular"
+                    android:textColor="@color/Dashboard_subtitle"
+                    android:textSize="@dimen/Dashboard_subtitle"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/rv1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Dashboard_seeAll"
+                    android:textColor="@color/Dashboard_seeall"
+                    android:textSize="@dimen/Dashboard_seeall"
+                    android:drawablePadding="16dp"
+                    app:drawableRightCompat="@drawable/arrow" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv2"
@@ -163,15 +103,64 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/ntailu"
-                    android:text="Best Offer"
-                    android:textColor="#010313"
-                    android:textSize="17sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Dashboard_offers"
+                    android:textColor="@color/Dashboard_subtitle"
+                    android:textSize="@dimen/Dashboard_subtitle"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rv2" />
 
-                <com.google.android.material.imageview.ShapeableImageView
+                <TextView
+                    android:id="@+id/see_offers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Dashboard_seeAll"
+                    android:textSize="@dimen/Dashboard_seeall"
+                    android:visibility="visible"
+                    android:textColor="@color/Dashboard_seeall"
+                    app:layout_constraintTop_toBottomOf="@+id/rv2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:drawablePadding="16dp"
+                    app:drawableRightCompat="@drawable/arrow" />
+
+                <RelativeLayout
+                    android:id="@+id/relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/textView15">
+
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:fitsSystemWindows="true"
+                        android:layout_centerInParent="false"
+                        app:sliderAnimationDuration="600"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderIndicatorAnimationDuration="600"
+                        app:sliderIndicatorEnabled="true"
+                        app:sliderIndicatorGravity="center_horizontal|bottom"
+                        app:sliderIndicatorMargin="15dp"
+                        app:sliderIndicatorOrientation="horizontal"
+                        app:sliderIndicatorPadding="3dp"
+                        app:sliderIndicatorRadius="2dp"
+                        app:sliderIndicatorSelectedColor="#5A5A5A"
+                        app:sliderIndicatorUnselectedColor="#FFF"
+                        app:sliderScrollTimeInSec="1" />
+
+                </RelativeLayout>
+
+                <!--<com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageView"
                     android:layout_width="0dp"
                     android:layout_height="130dp"
@@ -184,7 +173,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView14"
-                    app:shapeAppearanceOverlay="@style/circular" />
+                    app:shapeAppearanceOverlay="@style/circular" />-->
 
                 <TextView
                     android:id="@+id/textView15"
@@ -192,13 +181,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/ntailu"
-                    android:text="Restaurant Choice"
-                    android:textColor="#010313"
-                    android:textSize="17sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Dashboard_restchoice"
+                    android:textColor="@color/Dashboard_subtitle"
+                    android:textSize="@dimen/Dashboard_subtitle"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/relative" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Dashboard_seeAll"
+                    android:textColor="@color/Dashboard_seeall"
+                    android:textSize="@dimen/Dashboard_seeall"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:drawablePadding="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/relative"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:drawableRightCompat="@drawable/arrow" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv3"

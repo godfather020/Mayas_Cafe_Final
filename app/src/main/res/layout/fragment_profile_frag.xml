@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/profile_frag"
-    android:background="@color/Screen_Background"
+    android:background="@color/Screen_BG"
     android:layout_height="match_parent"
-    tools:context=".fragments.Profile_frag">
+    tools:context=".fragments.Orders_frag">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

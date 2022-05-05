@@ -3,6 +3,7 @@ package com.example.mayasfood.functions;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mayasfood.R;
 import com.example.mayasfood.activity.OTP;
@@ -153,6 +158,35 @@ public class Functions {
                 return;
             }
         }
+    }
+
+    public static void loadFragment(
+            FragmentManager fragmentManager,
+            Fragment fragment,
+            int containerId,
+            Boolean shouldRemovePreviousFragments,
+            CharSequence currentTitle,
+            Bundle arg
+    ) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (shouldRemovePreviousFragments) {
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                for (int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                    fragmentManager.popBackStackImmediate();
+                }
+            }
+        } else transaction.addToBackStack(currentTitle.toString());
+        if (arg != null) {
+            Log.d("bundle==", arg.toString());
+            fragment.setArguments(arg);
+        }
+       /* transaction.setCustomAnimations(
+            R.anim.enter_from_right,
+            R.anim.exit_to_left,
+            R.anim.enter_from_left,
+            R.anim.exit_to_right
+        )*/
+        transaction.replace(containerId, fragment, currentTitle.toString()).commit();
     }
 
 }

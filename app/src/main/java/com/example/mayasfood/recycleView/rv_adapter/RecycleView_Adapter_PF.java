@@ -46,7 +46,6 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         holder.name.setText(foodModels2.get(position).getFoodName());
         holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
-        holder.option.setText(foodModels2.get(position).getFoodHeading());
         holder.price.setText(foodModels2.get(position).getFoodPrice());
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -74,14 +73,13 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         //grabbing the views from rv_column.xml
 
         ImageView imageView;
-        TextView name, option, price;
+        TextView name, price;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.imgfood);
             name = itemView.findViewById(R.id.name_food);
-            option = itemView.findViewById(R.id.food_op);
             price = itemView.findViewById(R.id.food_price);
         }
     }

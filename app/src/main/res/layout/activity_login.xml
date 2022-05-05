@@ -9,12 +9,12 @@
 
     <ImageButton
         android:id="@+id/back_img"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="3dp"
         android:backgroundTint="#00FFFFFF"
-        android:src="@drawable/group_6"
+        android:src="@drawable/backarrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,11 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="328dp"
-        android:fontFamily="@font/ntailu"
-        android:text="Login with"
-        android:textColor="@color/Main_Heading"
-        android:textSize="33sp"
+        android:layout_marginTop="280dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Login_title"
+        android:textColor="@color/Login_Title"
+        android:textSize="@dimen/Login_title"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.119"
@@ -35,34 +35,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/ntailu"
-        android:text="Mobile Number"
-        android:textColor="@color/Main_Heading"
-        android:textSize="33sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.177"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/sail"
-        android:text="we will send you a confirmation code"
-        android:textColor="@color/subheading_inputField"
-        android:textSize="22sp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Login_subTitle"
+        android:textColor="@color/Login_subTitle"
+        android:textSize="@dimen/Login_Subtitle"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,25 +59,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:elevation="2dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8">
 
         <EditText
             android:id="@+id/phoneNum"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="53dp"
             android:drawableEnd="@drawable/icon_feather_phone_call"
             android:backgroundTint="#00FFFFFF"
             android:ems="10"
-            android:hint="Enter Mobile Number"
+            android:hint="@string/Login_EditTxt"
             android:inputType="phone"
+            android:fontFamily="@font/montserrat_bold"
             android:maxLength="13"
+            android:textColor="@color/Login_editTxt"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:textSize="@dimen/Login_EditTxt"
             android:padding="5dp"
-            android:textColor="@color/subheading_inputField"
-            android:paddingRight="8dp"
-            android:textSize="18sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +95,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:ccp_defaultNameCode="US"
-            app:ccpDialog_textColor="@color/subheading_inputField"
+            app:ccpDialog_textColor="@color/Login_editTxt"
+            app:ccp_contentColor="@color/Login_editTxt"
             app:ccp_textSize="16sp"
             android:background="@drawable/custom_edit_text"
             app:ccp_autoDetectCountry="true"
@@ -122,49 +110,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="28dp"
         android:background="@drawable/custom_button"
-        android:elevation="8dp"
-        android:fontFamily="@font/mtcorsva"
-        android:padding="12dp"
-        android:text="Sign In"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Login_button_txt"
         android:textAllCaps="false"
-        android:textColor="@color/Button_text"
-        android:textSize="31sp"
+        android:elevation="8dp"
+        android:textColor="@color/Button_txt"
+        android:textSize="@dimen/Login_Buttontxt"
         android:textStyle="normal"
+        android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_txt" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:text="New User?"
-        android:textColor="@color/subheading_inputField"
-        android:layout_marginBottom="16dp"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="SignUp Now"
-        android:textAllCaps="true"
-        android:layout_marginEnd="110dp"
-        android:textColor="@color/Main_Heading"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView9" />
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/Login_newUser"
+            android:textColor="@color/Login_newUser"
+            android:textSize="@dimen/Login_newUserSignup"
+            android:layout_marginStart="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Login_signup"
+            android:gravity="center"
+            android:textColor="@color/Login_signUp"
+            android:textSize="@dimen/Login_newUserSignup"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintStart_toEndOf="@+id/textView9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

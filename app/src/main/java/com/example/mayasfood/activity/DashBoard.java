@@ -6,15 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,35 +22,26 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.mayasfood.FirebaseCloudMsg;
-import com.example.mayasfood.MainActivity;
 import com.example.mayasfood.R;
-import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.fragments.Category_frag;
 import com.example.mayasfood.fragments.Dashboard_frag;
 import com.example.mayasfood.fragments.Favorite_frag;
-import com.example.mayasfood.fragments.Profile_frag;
-import com.example.mayasfood.fragments.Search_frag;
+import com.example.mayasfood.fragments.Offers_frag;
+import com.example.mayasfood.fragments.Orders_frag;
 import com.example.mayasfood.functions.Functions;
-import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C;
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF;
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
-import np.com.susanthapa.curved_bottom_navigation.CbnMenuItem;
-import np.com.susanthapa.curved_bottom_navigation.CurvedBottomNavigationView;
-
-public class DashBoard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class DashBoard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     private boolean isBackPressed = false;
-    Toolbar toolbar_const;
-    NavigationView navigationView;
+    public Toolbar toolbar_const;
+    public NavigationView navigationView;
     DrawerLayout drawerLayout;
     ImageButton close;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    public BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,91 +51,82 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         String token = FirebaseCloudMsg.getToken(this);
         Log.d("mainToken", token);
 
+        drawerLayout = findViewById(R.id.drawer);
+        toolbar_const = findViewById(R.id.toolbar_const);
+
         setUpToolbar();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Dashboard_frag()).commit();
+        Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
 
-        CurvedBottomNavigationView cbn = findViewById(R.id.chip_nav);
-        CbnMenuItem dashboard = new CbnMenuItem(R.drawable.mdi___view_grid_outline, R.drawable.dashboard_anim, 0);
-        CbnMenuItem search = new CbnMenuItem(R.drawable.icon_feather_search_r, R.drawable.search_anim, 0);
-        CbnMenuItem favorite = new CbnMenuItem(R.drawable.icon_feather_heart_red, R.drawable.avd_anim, 0);
-        CbnMenuItem profile = new CbnMenuItem(R.drawable.icon_feather_user_red, R.drawable.profile_anim,0);
-        CbnMenuItem[] navigation_items = {dashboard,search,favorite,profile};
-        cbn.setMenuItems(navigation_items, 0);
+        bottomNavigationView = findViewById(R.id.chip_nav);
 
-        cbn.setOnMenuItemClickListener(new Function2<CbnMenuItem, Integer, Unit>() {
+        bottomNavigationView.setSelectedItemId(R.id.invisible);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public Unit invoke(CbnMenuItem cbnMenuItem, Integer integer) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (cbn.getSelectedIndex()){
+                switch (item.getItemId()){
 
-                    case 0:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Dashboard_frag()).commit();
-                        break;
-                    case 1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Search_frag()).commit();
-                        break;
-                    case 2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Favorite_frag()).commit();
-                        break;
-                    case 3:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Profile_frag()).commit();
-                        break;
+                    case R.id.bottom_nav_category:
+                        navigationView.setCheckedItem(R.id.categoriesNav);
+                        Functions.loadFragment(getSupportFragmentManager(), new Category_frag(),R.id.frag_cont, true, "Category", null);
+                        return true;
+
+                    case R.id.bottom_nav_favorie:
+                        navigationView.setCheckedItem(R.id.invisibleNav);
+                        Functions.loadFragment(getSupportFragmentManager(), new Favorite_frag(),R.id.frag_cont, true, "Favorites", null);
+                        return true;
+
+                    case R.id.bottom_nav_orders:
+                        navigationView.setCheckedItem(R.id.orderNav);
+                        Functions.loadFragment(getSupportFragmentManager(), new Orders_frag(),R.id.frag_cont, true, "Orders", null);
+                        return true;
+
+                    case R.id.bottom_nav_discount:
+                        navigationView.setCheckedItem(R.id.offersNav);
+                        Functions.loadFragment(getSupportFragmentManager(), new Offers_frag(),R.id.frag_cont, true, "Offers", null);
+                        return true;
+
+                    case R.id.invisible:
+                        navigationView.setCheckedItem(R.id.homeNav);
+                        toolbar_const.setTitle("");
+                        Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
+                        return true;
+
                 }
-                return null;
+
+                return false;
             }
         });
 
-
-       /* cbn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (cbn.getSelectedIndex() == 0){
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Dashboard_frag()).commit();
-                }
-                else if (cbn.getSelectedIndex() == 1){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, new Search_frag()).commit();
-
-                }
-            }
-        });*/
-
-
     }
 
-    public void setUpToolbar(){
+    public void setUpToolbar() {
 
-        drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.nav_view);
         navigationView.bringToFront();
         Menu menu = navigationView.getMenu();
-        toolbar_const = findViewById(R.id.toolbar_const);
         setSupportActionBar(toolbar_const);
         navigationView.setNavigationItemSelectedListener(this);
         Functions.setArrow(navigationView);
+
         navigationView.setCheckedItem(R.id.homeNav);
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar_const, R.string.app_name, R.string.app_name);
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.group_8);
-
-        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.group_8);
-            }
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar_const,
+                R.string.app_name,
+                R.string.app_name
+        ){
 
             @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.group_8);
+            public void onDrawerOpened(View drawerView) {
+
+                super.onDrawerOpened(drawerView);
 
                 close = findViewById(R.id.close_frag);
-
                 close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -159,19 +137,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     }
                 });
             }
+        };
 
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.group_8);
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                actionBarDrawerToggle.syncState();
-                getSupportActionBar().setHomeAsUpIndicator(R.drawable.group_8);
-            }
-        });
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar_const.getNavigationIcon().setTint(getResources().getColor(R.color.black));
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
     }
 
     @Override
@@ -184,11 +156,12 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.notify){
-            Toast.makeText(getApplicationContext(), "Notifications", Toast.LENGTH_SHORT).show();
-        }
-        else if (id == R.id.setting){
-            Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
+        if (id == R.id.search) {
+            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.notification) {
+            Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.cart) {
+            Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -196,7 +169,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public void onBackPressed() {
 
-        if(isBackPressed){
+        if (isBackPressed) {
             super.onBackPressed();
             return;
         }
@@ -209,39 +182,98 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             public void run() {
                 isBackPressed = false;
             }
-        },2000);
+        }, 2000);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             //go to home
             case R.id.homeNav:
+                bottomNavigationView.setSelectedItemId(R.id.invisible);
+                //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
                 break;
 
             case R.id.orderNav:
-                startActivity(new Intent(DashBoard.this, CheckOut.class));
-                finish();
+                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_orders);
                 break;
 
-            case R.id.profileNav:
-
+            case R.id.offersNav:
+                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_discount);
                 break;
 
             case R.id.categoriesNav:
+                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
                 break;
 
             case R.id.notificationNav:
+
                 break;
 
             case R.id.logoutNav:
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                AlertDialog.Builder builder = new AlertDialog.Builder(DashBoard.this);
+                builder.setCancelable(false);
+                builder.setTitle("Do you want to logout");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(DashBoard.this, Login.class));
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+                Dialog alertDialog = builder.create();
+                alertDialog.show();
+
                 break;
 
         }
 
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
 
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+                    toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            getSupportFragmentManager().popBackStack();
+                        }
+                    });
+
+
+                } else {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
+                    actionBarDrawerToggle.syncState();
+                    toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawerLayout.openDrawer(GravityCompat.START);
+                        }
+                    });
+                }
+            }
+        });
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return false;
+    }
 }

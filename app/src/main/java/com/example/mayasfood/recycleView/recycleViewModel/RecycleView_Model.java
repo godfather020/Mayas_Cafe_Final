@@ -13,9 +13,24 @@ public class RecycleView_Model {
         this.foodImg = foodImg;
     }
 
+    public RecycleView_Model(String foodName, String foodPrice, int foodImg) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.foodImg = foodImg;
+    }
+
+    public RecycleView_Model(String foodName) {
+        this.foodName = foodName;
+    }
+
     public RecycleView_Model(String foodName, int foodImg) {
         this.foodName = foodName;
         this.foodImg = foodImg;
+    }
+
+    public RecycleView_Model(String foodName, String foodHeading) {
+        this.foodName = foodName;
+        this.foodHeading = foodHeading;
     }
 
     public RecycleView_Model(int foodImg) {

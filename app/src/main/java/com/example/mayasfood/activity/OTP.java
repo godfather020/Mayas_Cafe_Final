@@ -28,7 +28,7 @@ public class OTP extends AppCompatActivity {
     private boolean otpData = false;
     private String otp_1,otp_2,otp_3,otp_4;
     private EditText otp1,otp2,otp3,otp4;
-    TextView timer, resend_txt;
+    TextView timer;
     ImageButton img_back_otp;
     Button submit, resend;
 
@@ -42,7 +42,6 @@ public class OTP extends AppCompatActivity {
         otp2 = findViewById(R.id.otp2);
         otp3 = findViewById(R.id.otp3);
         otp4 = findViewById(R.id.otp4);
-        resend_txt = findViewById(R.id.resend_txt);
         timer = findViewById(R.id.timer);
         img_back_otp = findViewById(R.id.img_back_otp);
         submit = findViewById(R.id.submit);
@@ -88,7 +87,6 @@ public class OTP extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 resend.setVisibility(View.GONE);
-                resend_txt.setVisibility(View.VISIBLE);
                 timer.setVisibility(View.VISIBLE);
                 countdownTimer();
             }
@@ -142,7 +140,7 @@ public class OTP extends AppCompatActivity {
                         String sDuration = String.format(Locale.getDefault(), "%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(l), TimeUnit.MILLISECONDS.toSeconds(l) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)));
 
-                        timer.setText(sDuration);
+                        timer.setText(getString(R.string.OTP_resend)+" "+ sDuration + " sec");
                     }
                 });
 
@@ -151,7 +149,6 @@ public class OTP extends AppCompatActivity {
             @Override
             public void onFinish() {
                 resend.setVisibility(View.VISIBLE);
-                resend_txt.setVisibility(View.GONE);
                 timer.setVisibility(View.GONE);
             }
         }.start();

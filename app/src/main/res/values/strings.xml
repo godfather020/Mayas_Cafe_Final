@@ -2,6 +2,38 @@
     <string name="app_name">Mayas Food</string>
     <string name="get_start">Get Start</string>
     <string name="no_title"> </string>
+
+    <string name="Splash_title">Maya\'s</string>
+    <string name="Splash_Subtitle">garden &amp; juice Bar</string>
+    <string name="GetStart_Title">Maya\'s</string>
+    <string name="GetStart_SubTitle">garden &amp; juice Bar</string>
+    <string name="GetStart_Heading">Cooking our dishes with love for you</string>
+    <string name="GetStart_ButtonTxt">Get Start</string>
+    <string name="Register_title">Create New \nAccount</string>
+    <string name="Register_Subtitle">Join us and enjoy your food</string>
+    <string name="Register_userName">Enter your fullname</string>
+    <string name="Register_userPhone">Enter your mobile number</string>
+    <string name="Register_ButtonTxt">Sign Up</string>
+    <string name="Register_Skip">Skip</string>
+    <string name="Login_title">Login with \nMobile Number</string>
+    <string name="Login_subTitle">We will send you a confirmation code</string>
+    <string name="Login_EditTxt">Enter your mobile number</string>
+    <string name="Login_button_txt">Sign In</string>
+    <string name="Login_newUser">New User ?</string>
+    <string name="Login_signup">\tSignup</string>
+    <string name="OTP_Title">Enter code \nsent to your Number</string>
+    <string name="OTP_subTitle">We have sent the code verification</string>
+    <string name="OTP_Buttontxt">Submit</string>
+    <string name="OTP_resend">Resend code in</string>
+    <string name="OTP_submit">Submit</string>
+    <string name="OTP_Buttonresend">Resend</string>
+    <string name="Dashboard_title">Hello Ramu Kaka</string>
+    <string name="Dashboard_popular">Popular Food</string>
+    <string name="Dashboard_offers">Best Offers</string>
+    <string name="Dashboard_restchoice">Restaurant Choices</string>
+    <string name="Dashboard_seeAll">See all</string>
+
+
     <string-array name="Food_txt">
         <item>Breakfast</item>
         <item>Porridge</item>
@@ -10,7 +42,6 @@
         <item>Sides</item>
         <item>Appetizers</item>
         <item>Lunch &amp; Dinner</item>
-        <item>Pasta</item>
         <item>Soup</item>
     </string-array>
     <string-array name="Food_name">
@@ -24,9 +55,9 @@
         <item>(Cut into rings)</item>
     </string-array>
     <string-array name="Food_price">
-        <item>₹ 250</item>
-        <item>₹ 250</item>
-        <item>₹ 150</item>
+        <item>$12</item>
+        <item>$5</item>
+        <item>$12</item>
     </string-array>
     <string-array name="Name_Food">
         <item>Green Salad</item>
@@ -39,10 +70,23 @@
         <item>(Hot and Sour)</item>
     </string-array>
     <string-array name="Food_rate">
-        <item>₹ 50</item>
-        <item>₹ 50</item>
-        <item>₹ 70</item>
+        <item>$5</item>
+        <item>$15</item>
+        <item>$7</item>
     </string-array>
+
+    <string-array name="Offer_txt">
+        <item>Looking for a new summer Food? Get 25% off our new Recipe. Place an order before April 25 2022</item>
+        <item>New summer Offer! Get 25% off. 7 Day’s Left</item>
+        <item>Looking for a new summer outfit? Get 50% off our new recipe. Place an order before 1 March</item>
+    </string-array>
+
+    <string-array name="Offer_img">
+        <item>https://i.postimg.cc/VNk523np/image-2.png</item>
+        <item>https://i.postimg.cc/FFMd1CXk/001–1–1.jpg</item>
+        <item>https://i.postimg.cc/2Sq6C4V8/002–1.png</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">
@@ -135,4 +179,13 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="home">Home</string>
+    <string name="order">Order</string>
+    <string name="offers">Offers</string>
+    <string name="categories">Categories</string>
+    <string name="notification">Notification</string>
+    <string name="logout">Logout</string>
+    <string name="category_nav">Categories</string>
+    <string name="favorites">Favorites</string>
+    <string name="orders">Orders</string>
+    <string name="offers_nav">Offers</string>
 </resources>

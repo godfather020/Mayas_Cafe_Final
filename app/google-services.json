@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:937473483537:android:a562a648975226cb0522b0",
+        "android_client_info": {
+          "package_name": "com.example.mayas_cafe_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937473483537-l5o61nl8mun3ohj6fus9kocss08o6tc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUQWtk4Jzuf8QuA2uE7UKoaKMCjZSih3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937473483537-l5o61nl8mun3ohj6fus9kocss08o6tc9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:937473483537:android:690064c3de9242e30522b0",
         "android_client_info": {
           "package_name": "com.example.mayasfood"
