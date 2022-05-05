@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/avd_anim.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_button.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_edit_text.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_otp_edittext.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/mayas512__1_.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/mayas512__1_svg.xml" value="0.178" />
+        <entry key="app/src/main/res/layout-normal/activity_dash_board.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout-normal/activity_otp.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout-normal/activity_registration.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout-normal/activity_splash.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_dash_board.xml" value="1.9642857142857142" />
+        <entry key="app/src/main/res/layout/activity_get_start.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_otp.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/arrow.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/toolbar.xml" value="0.2864583333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
