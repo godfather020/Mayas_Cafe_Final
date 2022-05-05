@@ -6,8 +6,8 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="130dp"
-        android:layout_height="180dp"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -35,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/foodimage1"
-                android:layout_width="90dp"
-                android:layout_height="80dp"
+                android:layout_width="100dp"
+                android:layout_height="90dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +56,62 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodimage1" />
+
+            <ImageView
+                android:id="@+id/star_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clarity_favorite_solid"
+                app:layout_constraintTop_toBottomOf="@id/name_food1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="68dp"
+                />
+
+            <ImageView
+                android:id="@+id/star_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clarity_favorite_solid"
+                app:layout_constraintTop_toBottomOf="@id/name_food1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="48dp"
+                />
+
+            <ImageView
+                android:id="@+id/star_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clarity_favorite_solid"
+                app:layout_constraintTop_toBottomOf="@id/name_food1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="88dp"
+                />
+
+            <ImageView
+                android:id="@+id/star_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clarity_favorite_solid"
+                app:layout_constraintTop_toBottomOf="@id/name_food1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="108dp"
+                />
+
+            <ImageView
+                android:id="@+id/star_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clarity_favorite_solid"
+                app:layout_constraintTop_toBottomOf="@id/name_food1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="28dp"
+                />
+
 
             <TextView
                 android:id="@+id/food_price1"

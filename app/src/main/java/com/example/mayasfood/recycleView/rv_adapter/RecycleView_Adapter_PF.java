@@ -48,6 +48,52 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
         holder.price.setText(foodModels2.get(position).getFoodPrice());
 
+        if (foodModels2.get(position).getStars() == 1){
+
+            holder.star1.setVisibility(View.GONE);
+            holder.star2.setVisibility(View.GONE);
+            holder.star3.setVisibility(View.VISIBLE);
+            holder.star4.setVisibility(View.GONE);
+            holder.star5.setVisibility(View.GONE);
+
+        }
+
+        else if (foodModels2.get(position).getStars() == 2){
+
+            holder.star1.setVisibility(View.GONE);
+            holder.star2.setVisibility(View.VISIBLE);
+            holder.star3.setVisibility(View.VISIBLE);
+            holder.star4.setVisibility(View.GONE);
+            holder.star5.setVisibility(View.GONE);
+        }
+
+        else if (foodModels2.get(position).getStars() == 3){
+
+            holder.star1.setVisibility(View.GONE);
+            holder.star2.setVisibility(View.VISIBLE);
+            holder.star3.setVisibility(View.VISIBLE);
+            holder.star4.setVisibility(View.VISIBLE);
+            holder.star5.setVisibility(View.GONE);
+        }
+
+        else if (foodModels2.get(position).getStars() == 4){
+
+            holder.star1.setVisibility(View.VISIBLE);
+            holder.star2.setVisibility(View.VISIBLE);
+            holder.star3.setVisibility(View.VISIBLE);
+            holder.star4.setVisibility(View.VISIBLE);
+            holder.star5.setVisibility(View.GONE);
+        }
+
+        else {
+
+            holder.star1.setVisibility(View.VISIBLE);
+            holder.star2.setVisibility(View.VISIBLE);
+            holder.star3.setVisibility(View.VISIBLE);
+            holder.star4.setVisibility(View.VISIBLE);
+            holder.star5.setVisibility(View.VISIBLE);
+        }
+
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,12 +118,17 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         //grabbing the views from rv_column.xml
 
-        ImageView imageView;
+        ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            star1 = itemView.findViewById(R.id.star_1);
+            star2 = itemView.findViewById(R.id.star_2);
+            star3 = itemView.findViewById(R.id.star_3);
+            star4 = itemView.findViewById(R.id.star_4);
+            star5 = itemView.findViewById(R.id.star_5);
             imageView = itemView.findViewById(R.id.imgfood);
             name = itemView.findViewById(R.id.name_food);
             price = itemView.findViewById(R.id.food_price);

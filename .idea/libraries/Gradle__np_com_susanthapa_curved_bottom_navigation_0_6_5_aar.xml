@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: np.com.susanthapa:curved_bottom_navigation:0.6.5@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6e996ef5a57e9bf2632048d83af32cda/transformed/jetified-curved_bottom_navigation-0.6.5/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6e996ef5a57e9bf2632048d83af32cda/transformed/jetified-curved_bottom_navigation-0.6.5/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6e996ef5a57e9bf2632048d83af32cda/transformed/jetified-curved_bottom_navigation-0.6.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/feafcdaa86e7dd1a2fa45be5a50a7ebe/transformed/jetified-curved_bottom_navigation-0.6.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/feafcdaa86e7dd1a2fa45be5a50a7ebe/transformed/jetified-curved_bottom_navigation-0.6.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/feafcdaa86e7dd1a2fa45be5a50a7ebe/transformed/jetified-curved_bottom_navigation-0.6.5/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

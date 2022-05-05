@@ -26,6 +26,7 @@ import com.example.mayasfood.R;
 import com.example.mayasfood.fragments.Category_frag;
 import com.example.mayasfood.fragments.Dashboard_frag;
 import com.example.mayasfood.fragments.Favorite_frag;
+import com.example.mayasfood.fragments.Notification_frag;
 import com.example.mayasfood.fragments.Offers_frag;
 import com.example.mayasfood.fragments.Orders_frag;
 import com.example.mayasfood.functions.Functions;
@@ -70,27 +71,42 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                     case R.id.bottom_nav_category:
                         navigationView.setCheckedItem(R.id.categoriesNav);
+                        toolbar_const.getMenu().getItem(0).setVisible(true);
+                        toolbar_const.getMenu().getItem(2).setVisible(true);
+                        toolbar_const.getMenu().getItem(1).setVisible(true);
                         Functions.loadFragment(getSupportFragmentManager(), new Category_frag(),R.id.frag_cont, true, "Category", null);
                         return true;
 
                     case R.id.bottom_nav_favorie:
                         navigationView.setCheckedItem(R.id.invisibleNav);
+                        toolbar_const.getMenu().getItem(0).setVisible(true);
+                        toolbar_const.getMenu().getItem(2).setVisible(true);
+                        toolbar_const.getMenu().getItem(1).setVisible(true);
                         Functions.loadFragment(getSupportFragmentManager(), new Favorite_frag(),R.id.frag_cont, true, "Favorites", null);
                         return true;
 
                     case R.id.bottom_nav_orders:
                         navigationView.setCheckedItem(R.id.orderNav);
+                        toolbar_const.getMenu().getItem(0).setVisible(false);
+                        toolbar_const.getMenu().getItem(2).setVisible(false);
+                        toolbar_const.getMenu().getItem(1).setVisible(true);
                         Functions.loadFragment(getSupportFragmentManager(), new Orders_frag(),R.id.frag_cont, true, "Orders", null);
                         return true;
 
                     case R.id.bottom_nav_discount:
                         navigationView.setCheckedItem(R.id.offersNav);
+                        toolbar_const.getMenu().getItem(0).setVisible(true);
+                        toolbar_const.getMenu().getItem(2).setVisible(false);
+                        toolbar_const.getMenu().getItem(1).setVisible(false);
                         Functions.loadFragment(getSupportFragmentManager(), new Offers_frag(),R.id.frag_cont, true, "Offers", null);
                         return true;
 
                     case R.id.invisible:
                         navigationView.setCheckedItem(R.id.homeNav);
                         toolbar_const.setTitle("");
+                        toolbar_const.getMenu().getItem(0).setVisible(true);
+                        toolbar_const.getMenu().getItem(2).setVisible(true);
+                        toolbar_const.getMenu().getItem(1).setVisible(true);
                         Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
                         return true;
 
@@ -159,6 +175,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         if (id == R.id.search) {
             Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.notification) {
+
+            toolbar_const.getMenu().getItem(1).setVisible(false);
+            navigationView.setCheckedItem(R.id.notificationNav);
+            Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, true, "Notification", null);
+
             Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.cart) {
             Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
@@ -191,6 +212,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         switch (item.getItemId()) {
             //go to home
             case R.id.homeNav:
+
                 bottomNavigationView.setSelectedItemId(R.id.invisible);
                 //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
                 break;
@@ -208,7 +230,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.notificationNav:
-
+                navigationView.setCheckedItem(R.id.notificationNav);
+                Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, true, "Notification", null);
                 break;
 
             case R.id.logoutNav:
@@ -255,7 +278,6 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                             getSupportFragmentManager().popBackStack();
                         }
                     });
-
 
                 } else {
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);

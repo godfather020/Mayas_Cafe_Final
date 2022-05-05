@@ -19,8 +19,16 @@
         <entry key="app/src/main/res/layout/activity_otp.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/arrow.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_notification_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/offers_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/popular_food_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/restaurant_choice_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/today_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/topping_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/yesterday_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/menu/toolbar.xml" value="0.2864583333333333" />
