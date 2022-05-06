@@ -1,16 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.lifecycle:lifecycle-runtime-testing:2.3.1@aar">
     <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/411f281aac3634915645cf91112c34ab/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf3c963f490ae8700670d17493c90dc5/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/bf3c963f490ae8700670d17493c90dc5/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/73d6e3b64fa326185d9d4face0dafd32/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/ccf88590a6aab72f75db14bbb308d85c/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/ccf88590a6aab72f75db14bbb308d85c/transformed/jetified-lifecycle-runtime-testing-2.3.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/ccf88590a6aab72f75db14bbb308d85c/transformed/jetified-lifecycle-runtime-testing-2.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ccf88590a6aab72f75db14bbb308d85c/transformed/jetified-lifecycle-runtime-testing-2.3.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ccf88590a6aab72f75db14bbb308d85c/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ccf88590a6aab72f75db14bbb308d85c/transformed/jetified-lifecycle-runtime-testing-2.3.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime-testing/2.3.1/95f9d77a6ffb70df17d728b6ed513302c8056275/lifecycle-runtime-testing-2.3.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime-testing/2.3.1/95f9d77a6ffb70df17d728b6ed513302c8056275/lifecycle-runtime-testing-2.3.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

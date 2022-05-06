@@ -51,8 +51,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/user_name" />
@@ -89,13 +89,14 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv2"
                     android:layout_width="0dp"
-                    android:layout_height="193dp"
+                    android:layout_height="220dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView13"
+                    tools:listitem="@layout/popular_food_rv"/>
 
                 <TextView
                     android:id="@+id/textView14"
@@ -143,8 +144,8 @@
                         android:id="@+id/slider"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:fitsSystemWindows="true"
                         android:layout_centerInParent="false"
+                        android:fitsSystemWindows="true"
                         app:sliderAnimationDuration="600"
                         app:sliderAutoCycleDirection="back_and_forth"
                         app:sliderIndicatorAnimationDuration="600"
@@ -212,7 +213,8 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView15"
+                    tools:listitem="@layout/restaurant_choice_rv"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

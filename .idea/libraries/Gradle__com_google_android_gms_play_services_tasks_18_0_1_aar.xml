@@ -2,14 +2,12 @@
   <library name="Gradle: com.google.android.gms:play-services-tasks:18.0.1@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/921724bbe24ab725290772e2ffc637d4/transformed/jetified-play-services-tasks-18.0.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/921724bbe24ab725290772e2ffc637d4/transformed/jetified-play-services-tasks-18.0.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/d76b81f183048d3b1f20da7a0d5e816d/transformed/jetified-play-services-tasks-18.0.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/aa2d9bf89d7e4f60b5f06f0849990523/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/aa2d9bf89d7e4f60b5f06f0849990523/transformed/jetified-play-services-tasks-18.0.1/res" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/aa2d9bf89d7e4f60b5f06f0849990523/transformed/jetified-play-services-tasks-18.0.1/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/aa2d9bf89d7e4f60b5f06f0849990523/transformed/jetified-play-services-tasks-18.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aa2d9bf89d7e4f60b5f06f0849990523/transformed/jetified-play-services-tasks-18.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/aa2d9bf89d7e4f60b5f06f0849990523/transformed/jetified-play-services-tasks-18.0.1/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-tasks/18.0.1/2e3c5d886f131c9c8ae2d93dcf32aa58dad438e3/play-services-tasks-18.0.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-tasks/18.0.1/2e3c5d886f131c9c8ae2d93dcf32aa58dad438e3/play-services-tasks-18.0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

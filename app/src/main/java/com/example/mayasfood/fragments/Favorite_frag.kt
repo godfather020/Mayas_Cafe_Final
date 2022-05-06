@@ -1,12 +1,12 @@
 package com.example.mayasfood.fragments
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
-import android.view.View
+import android.view.*
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
+
 
 class Favorite_frag : Fragment() {
 
@@ -24,6 +24,8 @@ class Favorite_frag : Fragment() {
         dashBoard.toolbar_const.setTitle("My Favorites");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+
         return view
     }
+
 }

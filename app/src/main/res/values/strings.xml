@@ -87,6 +87,28 @@
         <item>https://i.postimg.cc/2Sq6C4V8/002–1.png</item>
     </string-array>
 
+    <string-array name="NotifyToday_txt">
+        <item>Fusce sed congue leo. Praesent eleifend, ipsum a bibendum feugia...</item>
+        <item>Fusce sed congue leo. Praesent eleifend, ipsum..... </item>
+        <item>Fusce sed congue leo. Praesent eleifend, ipsum a bibendum .....</item>
+    </string-array>
+
+    <string-array name="NotifyYesterday_txt">
+        <item>Fusce sed congue leo. Praesent eleifend,</item>
+        <item>Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugiat, massa ....</item>
+    </string-array>
+    
+    <string-array name="NotifyToday_time">
+        <item>07:30\nAM</item>
+        <item>07:30\nAM</item>
+        <item>07:30\nAM</item>
+    </string-array>
+
+    <string-array name="NotifyYesterday_time">
+        <item>07:30\nAM</item>
+        <item>07:30\nAM</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">

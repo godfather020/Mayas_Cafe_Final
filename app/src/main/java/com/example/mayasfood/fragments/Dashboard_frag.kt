@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +28,6 @@ import java.util.ArrayList
 class Dashboard_frag : Fragment() {
     private val isBackPressed = false
     lateinit var dashBoard: DashBoard
-
     lateinit var see_offers: TextView
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
@@ -46,7 +47,6 @@ class Dashboard_frag : Fragment() {
 
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
-
         see_offers = v.findViewById(R.id.see_offers)
 
         // Initializing the ViewPager Object
@@ -124,6 +124,8 @@ class Dashboard_frag : Fragment() {
         val NameFood = resources.getStringArray(R.array.Name_Food)
         val Food_op = resources.getStringArray(R.array.Food_op)
         val Food_rate = resources.getStringArray(R.array.Food_rate)
+        val starts = arrayOf(1,2,3,4,5)
+
         for (s in foodName) {
             recycleView_models.add(RecycleView_Model(s))
         }
@@ -132,7 +134,7 @@ class Dashboard_frag : Fragment() {
                 RecycleView_Model(
                     nameFood[i],
                     foodprice[i],
-                    Constants.imgFood[i]
+                    Constants.imgFood[i],starts[i]
                 )
             )
         }
@@ -141,7 +143,7 @@ class Dashboard_frag : Fragment() {
                 RecycleView_Model(
                     NameFood[i],
                     Food_rate[i],
-                    Constants.foodimg[i]
+                    Constants.foodimg[i],starts[i]
                 )
             )
         }
