@@ -243,7 +243,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+                        getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", false).apply();
                         startActivity(new Intent(DashBoard.this, Login.class));
+                        finish();
                     }
                 });
 

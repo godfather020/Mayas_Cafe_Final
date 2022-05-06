@@ -4,10 +4,13 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7573ddc47a202c8b3baedf9d305642df/transformed/jetified-chip-navigation-bar-1.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7573ddc47a202c8b3baedf9d305642df/transformed/jetified-chip-navigation-bar-1.4.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7573ddc47a202c8b3baedf9d305642df/transformed/jetified-chip-navigation-bar-1.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/628bddd83626c9a5af7b8bcfe888ac39/transformed/jetified-chip-navigation-bar-1.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/628bddd83626c9a5af7b8bcfe888ac39/transformed/jetified-chip-navigation-bar-1.4.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/628bddd83626c9a5af7b8bcfe888ac39/transformed/jetified-chip-navigation-bar-1.4.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ismaeldivita/chip-navigation-bar/1.4.0/ab4eed8ac080381bc8d796159120c7655acdc80e/chip-navigation-bar-1.4.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.github.ismaeldivita/chip-navigation-bar/1.4.0/ab4eed8ac080381bc8d796159120c7655acdc80e/chip-navigation-bar-1.4.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

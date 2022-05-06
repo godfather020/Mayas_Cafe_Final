@@ -40,9 +40,20 @@ public class GetStart extends AppCompatActivity {
         getStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GetStart.this, Login.class);
-                startActivity(intent);
-                finish();
+
+                if (getSharedPreferences("LogIn", MODE_PRIVATE).getBoolean("LogIn", false)){
+
+                    Intent intent = new Intent(GetStart.this, DashBoard.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                else {
+
+                    Intent intent = new Intent(GetStart.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 

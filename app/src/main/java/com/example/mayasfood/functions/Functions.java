@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -26,6 +27,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 public class Functions {
 
@@ -33,12 +35,14 @@ public class Functions {
 
     public static boolean checkData(String user_name, String user_phone, EditText userName, EditText phoneNum) {
 
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+
         if (user_name.isEmpty()){
             userName.requestFocus();
             userName.setError(Constants.emptyFieldError);
             return false;
         }
-        else if (!user_name.matches("[a-z A-z]{3,15}+")){
+        else if (!user_name.matches("[a-z A-z]{3,40}+") && pattern.matcher(user_name).matches() == false){
             userName.requestFocus();
             userName.setError(Constants.userNameError);
             return false;

@@ -36,7 +36,7 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
 
         super.onNewToken(token);
         Log.d("newToken", token);
-        getSharedPreferences("DeviceToken", MODE_PRIVATE).edit().putString("fireBaseToken", token).apply();
+        getSharedPreferences("MsgToken", MODE_PRIVATE).edit().putString("fireBaseToken", token).apply();
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -103,6 +103,6 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
     }
 
     public static String getToken(Context context) {
-        return context.getSharedPreferences("DeviceToken", MODE_PRIVATE).getString("fireBaseToken", "empty");
+        return context.getSharedPreferences("MsgToken", MODE_PRIVATE).getString("fireBaseToken", "empty");
     }
 }

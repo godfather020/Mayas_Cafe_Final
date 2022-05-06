@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>994009274690-pnv1d0d9ifr580tl5qljit854fo16bji.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.994009274690-pnv1d0d9ifr580tl5qljit854fo16bji</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0mp1TvuELuv1BcyxWaPBsR3Ka8G0dmSE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>994009274690</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mayascafe</string>
+	<key>PROJECT_ID</key>
+	<string>maya-garden</string>
+	<key>STORAGE_BUCKET</key>
+	<string>maya-garden.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:994009274690:ios:ea09f1a00e9001e0f750db</string>
+</dict>
+</plist>

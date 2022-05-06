@@ -4,10 +4,13 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/428ed1011b01f5ab30e1da2e23ec80c4/transformed/jetified-navigation-dynamic-features-fragment-2.4.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/428ed1011b01f5ab30e1da2e23ec80c4/transformed/jetified-navigation-dynamic-features-fragment-2.4.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/428ed1011b01f5ab30e1da2e23ec80c4/transformed/jetified-navigation-dynamic-features-fragment-2.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8cd7e180e4586e5a490eb2c9a26b80cd/transformed/jetified-navigation-dynamic-features-fragment-2.4.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8cd7e180e4586e5a490eb2c9a26b80cd/transformed/jetified-navigation-dynamic-features-fragment-2.4.1/res" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8cd7e180e4586e5a490eb2c9a26b80cd/transformed/jetified-navigation-dynamic-features-fragment-2.4.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-dynamic-features-fragment/2.4.1/8551cd26df3853d842dff6d30255753b16dd9095/navigation-dynamic-features-fragment-2.4.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.navigation/navigation-dynamic-features-fragment/2.4.1/8551cd26df3853d842dff6d30255753b16dd9095/navigation-dynamic-features-fragment-2.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

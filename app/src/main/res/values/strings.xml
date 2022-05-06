@@ -11,7 +11,7 @@
     <string name="GetStart_ButtonTxt">Get Start</string>
     <string name="Register_title">Create New \nAccount</string>
     <string name="Register_Subtitle">Join us and enjoy your food</string>
-    <string name="Register_userName">Enter your fullname</string>
+    <string name="Register_userName">Enter your fullname or Email</string>
     <string name="Register_userPhone">Enter your mobile number</string>
     <string name="Register_ButtonTxt">Sign Up</string>
     <string name="Register_Skip">Skip</string>
