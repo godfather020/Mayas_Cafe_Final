@@ -26,7 +26,7 @@ import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
 import java.util.ArrayList
 
 class Dashboard_frag : Fragment() {
-    private val isBackPressed = false
+
     lateinit var dashBoard: DashBoard
     lateinit var see_offers: TextView
 
@@ -48,7 +48,6 @@ class Dashboard_frag : Fragment() {
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         see_offers = v.findViewById(R.id.see_offers)
-
         // Initializing the ViewPager Object
         val sliderDataArrayList = ArrayList<SliderData>()
 
@@ -83,11 +82,7 @@ class Dashboard_frag : Fragment() {
         // to start autocycle below method is used.
         sliderView.startAutoCycle()
 
-        // drawerLayout = v.findViewById(R.id.drawer_frag);
-        //  navigationView = v.findViewById(R.id.nav_view_frag);
-        //  navigationView.bringToFront();
-        //  Menu menu = navigationView.getMenu();
-        // toolbar = v.findViewById(R.id.toolbar_frag);
+
         val recyclerView: RecyclerView = v.findViewById(R.id.rv1)
         val recyclerView2: RecyclerView = v.findViewById(R.id.rv2)
         val recyclerView3: RecyclerView = v.findViewById(R.id.rv3)
@@ -147,34 +142,5 @@ class Dashboard_frag : Fragment() {
                 )
             )
         }
-    } /*@Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-            //go to home
-            case R.id.homeNav:
-                break;
-
-            case R.id.orderNav:
-
-                break;
-
-            case R.id.profileNav:
-
-                break;
-
-            case R.id.categoriesNav:
-                break;
-
-            case R.id.notificationNav:
-                break;
-
-            case R.id.logoutNav:
-                break;
-
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }*/
+    }
 }

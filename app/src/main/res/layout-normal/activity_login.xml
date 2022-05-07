@@ -75,6 +75,7 @@
             android:inputType="phone"
             android:fontFamily="@font/montserrat_bold"
             android:maxLength="13"
+            android:maxLines="1"
             android:textColor="@color/Login_editTxt"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"

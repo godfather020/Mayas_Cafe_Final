@@ -124,7 +124,6 @@ class Login : AppCompatActivity() {
     override fun onBackPressed() {
         if (isBackPressed) {
             super.onBackPressed()
-            exitProcess(1)
             return
         }
         Toast.makeText(this@Login, "Press again to exit", Toast.LENGTH_SHORT).show()

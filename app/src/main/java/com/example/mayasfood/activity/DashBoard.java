@@ -192,6 +192,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         if (isBackPressed) {
             super.onBackPressed();
+            this.finish();
             return;
         }
 

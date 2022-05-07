@@ -53,7 +53,7 @@ class Registration_ViewModel : ViewModel() {
                 if(response.isSuccessful) {
 
                     commonResponse.value=response.body()!!
-                    Toast.makeText(activity, "Enter 4 digit OTP sent to your number", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Verify your number", Toast.LENGTH_SHORT).show()
 
                 }else {
                     Log.d("error", response.message().toString())

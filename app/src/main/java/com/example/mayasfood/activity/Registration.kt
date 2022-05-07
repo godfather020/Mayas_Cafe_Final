@@ -1,11 +1,18 @@
 package com.example.mayasfood.activity
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import com.hbb20.CountryCodePicker
 import android.os.Bundle
 import com.example.mayasfood.R
 import android.content.Intent
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Environment
 import android.os.Handler
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -20,6 +27,7 @@ import com.hbb20.CountryCodePicker.OnCountryChangeListener
 import com.example.mayasfood.activity.ViewModels.Registration_ViewModel
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.functions.Functions
+import java.io.*
 
 class Registration : AppCompatActivity() {
 
@@ -33,6 +41,8 @@ class Registration : AppCompatActivity() {
     private var user_name: String? = null
     private var user_phone: String? = null
     lateinit var cc_r: CountryCodePicker
+    lateinit var profile_btn: ImageView
+    lateinit var profile_img: ImageView
 
     lateinit var viewModel: Registration_ViewModel
     //lateinit var viewModel1: Login_ViewModel
@@ -50,6 +60,8 @@ class Registration : AppCompatActivity() {
         skip = findViewById(R.id.skip)
         back_img_r = findViewById(R.id.back_img_r)
         cc_r = findViewById(R.id.cc_r)
+        profile_btn = findViewById(R.id.profileBtn_r)
+        profile_img = findViewById(R.id.profileImg_r)
 
         if (!getIntent().getStringExtra("UserPhone").isNullOrEmpty()) {
 
@@ -69,6 +81,11 @@ class Registration : AppCompatActivity() {
             Log.d("CountryCode", Constants.cc)
         })
 
+        profile_btn.setOnClickListener {
+
+            selectImage()
+        }
+
         signUp.setOnClickListener(View.OnClickListener {
             user_name = userName.getText().toString()
             user_phone = Constants.cc + phoneNum.getText().toString()
@@ -78,7 +95,7 @@ class Registration : AppCompatActivity() {
 
                 user_phone = phoneNum.text.toString()
                 Log.d("PhoneNo", user_phone!!)
-                viewModel.registerUser(this, user_name!!, user_phone!!).observe(this, androidx.lifecycle.Observer { it ->
+                viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, androidx.lifecycle.Observer { it ->
 
                     if(it!=null){
 
@@ -129,5 +146,93 @@ class Registration : AppCompatActivity() {
         Handler().postDelayed({ isBackPressed = false }, 2000)
     }
 
+    private fun selectImage() {
+        val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Add Photo!")
+        builder.setItems(options, DialogInterface.OnClickListener { dialog, item ->
+            if (options[item] == "Take Photo") {
+                //val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                val f = File(Environment.getExternalStorageDirectory().toString(), "temp.jpg")
+                intent.putExtra("File", f)
 
+                //context?.let { FileProvider.getUriForFile(it, requireContext().getApplicationContext().getPackageName() + ".provider", f) }
+                startActivityForResult(intent, 1)
+            } else if (options[item] == "Choose from Gallery") {
+                val intent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intent, 2)
+            } else if (options[item] == "Cancel") {
+                dialog.dismiss()
+            }
+        })
+        builder.show()
+    }
+
+
+    //
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+
+            Log.d("requestCode", requestCode.toString())
+            if (requestCode == 1) {
+                profile_img.setImageBitmap(data!!.extras!!.get("data") as Bitmap?)
+                Log.d("requestCode", requestCode.toString())
+                var f = File(Environment.getExternalStorageDirectory().toString())
+                //for (temp in f.listFiles()!!) {
+                //Log.d("cameraIN", temp.name)
+                //if (temp.name == "temp.jpg") {
+                //Log.d("cameraIN", temp.name)
+                //}
+                //  }
+                try {
+                    val bitmap: Bitmap
+                    val bitmapOptions = BitmapFactory.Options()
+                    bitmap = BitmapFactory.decodeFile(
+                        f.absolutePath,
+                        bitmapOptions
+                    )
+                    profile_img.setImageBitmap(bitmap)
+                    val path = (Environment
+                        .getExternalStorageDirectory()
+                        .toString() + File.separator
+                            + "Phoenix" + File.separator + "default")
+                    f.delete()
+                    var outFile: OutputStream? = null
+                    val file = File(path, System.currentTimeMillis().toString() + ".jpg")
+                    try {
+                        outFile = FileOutputStream(file)
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile)
+                        outFile.flush()
+                        outFile.close()
+                    } catch (e: FileNotFoundException) {
+                        e.printStackTrace()
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            } else if (requestCode == 2) {
+                val selectedImage = data!!.data
+                val filePath = arrayOf(MediaStore.Images.Media.DATA)
+                val c: Cursor =
+                    selectedImage?.let { this.getContentResolver().query(it, filePath, null, null, null) }!!
+                c.moveToFirst()
+                val columnIndex: Int = c.getColumnIndex(filePath[0])
+                val picturePath: String = c.getString(columnIndex)
+                c.close()
+                val thumbnail = BitmapFactory.decodeFile(picturePath)
+                Log.w(
+                    "path of image from gallery......******************.........",
+                    picturePath + ""
+                )
+                profile_img.setImageBitmap(thumbnail)
+            }
+        }
+    }
 }

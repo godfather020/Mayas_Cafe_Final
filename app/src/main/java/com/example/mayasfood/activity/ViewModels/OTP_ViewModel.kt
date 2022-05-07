@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lottry.data.remote.retrofit.request.Request_Login
 import com.example.mayasfood.FirebaseCloudMsg
+import com.example.mayasfood.Modules.NetworkModule
 import com.example.mayasfood.Retrofite.request.Request_Verify
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.development.retrofit.RetrofitInstance
@@ -51,7 +52,6 @@ class OTP_ViewModel: ViewModel() {
 
         val retrofitInstance: RetrofitInstance = RetrofitInstance()
         val retrofitData = retrofitInstance.retrofit.getVerifyOtp(param)
-
 
         retrofitData.enqueue(object : Callback<Response_Common> {
 
