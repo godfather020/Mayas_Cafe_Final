@@ -121,6 +121,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="$12"
+                android:textFontWeight="800"
                 android:textColor="@color/Popular_rate"
                 android:textStyle="bold"
                 android:textSize="@dimen/Popular_food_price"

@@ -60,8 +60,8 @@
 
         <EditText
             android:id="@+id/otp1"
-            android:layout_width="74dp"
-            android:layout_height="65dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="6dp"
@@ -81,8 +81,8 @@
 
         <EditText
             android:id="@+id/otp2"
-            android:layout_width="74dp"
-            android:layout_height="65dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="6dp"
@@ -102,8 +102,8 @@
 
         <EditText
             android:id="@+id/otp3"
-            android:layout_width="74dp"
-            android:layout_height="65dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/custom_otp_edittext"
@@ -121,8 +121,8 @@
 
         <EditText
             android:id="@+id/otp4"
-            android:layout_width="74dp"
-            android:layout_height="65dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/custom_otp_edittext"
@@ -137,6 +137,46 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/otp3"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/otp5"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/custom_otp_edittext"
+            android:elevation="4dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/otp4"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/otp6"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/custom_otp_edittext"
+            android:elevation="4dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/otp5"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -156,39 +196,34 @@
 
     <Button
         android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_width="294dp"
+        android:layout_height="45dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/custom_button"
         android:elevation="8dp"
-        android:fontFamily="@font/montserrat_semibold"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/OTP_submit"
         android:textAllCaps="false"
         android:textColor="@color/Button_txt"
-        android:padding="12dp"
-        android:textSize="@dimen/OTP_Buttontxt"
-        android:textStyle="normal"
+        android:textSize="@dimen/Button_txt"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/otps" />
 
     <Button
         android:id="@+id/resend"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_width="294dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/OTP_Buttonresend"
         android:textAllCaps="false"
         android:textColor="@color/Button_txt"
-        android:textSize="@dimen/OTP_Buttontxt"
-        android:textStyle="normal"
+        android:textSize="@dimen/Button_txt"
+        android:textStyle="bold"
         android:visibility="gone"
         android:elevation="8dp"
         app:layout_constraintTop_toBottomOf="@+id/submit"

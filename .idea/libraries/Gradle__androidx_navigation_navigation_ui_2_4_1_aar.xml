@@ -1,16 +1,17 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.navigation:navigation-ui:2.4.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7c993386efab6abf725c98ada3fc47df/transformed/navigation-ui-2.4.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7c993386efab6abf725c98ada3fc47df/transformed/navigation-ui-2.4.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7c993386efab6abf725c98ada3fc47df/transformed/navigation-ui-2.4.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/18eada2872f3ab31d34a5d1b276229cd/transformed/navigation-ui-2.4.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/18eada2872f3ab31d34a5d1b276229cd/transformed/navigation-ui-2.4.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/18eada2872f3ab31d34a5d1b276229cd/transformed/navigation-ui-2.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d7abef6b0046ac7d49a8ac3dcc9d842c/transformed/navigation-ui-2.4.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d7abef6b0046ac7d49a8ac3dcc9d842c/transformed/navigation-ui-2.4.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d7abef6b0046ac7d49a8ac3dcc9d842c/transformed/navigation-ui-2.4.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.navigation/navigation-ui/2.4.1/89d1adbee4f51f0894d7bbd09355ea2dadd307c1/navigation-ui-2.4.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-ui/2.4.1/89d1adbee4f51f0894d7bbd09355ea2dadd307c1/navigation-ui-2.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

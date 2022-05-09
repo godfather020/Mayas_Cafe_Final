@@ -16,8 +16,14 @@ import com.example.mayasfood.R
 import com.example.mayasfood.activity.ViewModels.Login_ViewModel
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.functions.Functions
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.hbb20.CountryCodePicker
 import com.hbb20.CountryCodePicker.OnCountryChangeListener
+import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 
 class Login : AppCompatActivity() {
@@ -30,6 +36,9 @@ class Login : AppCompatActivity() {
     lateinit var back_img: ImageButton
     lateinit var cc: CountryCodePicker
     lateinit var viewModel: Login_ViewModel
+    lateinit var auth : FirebaseAuth
+    lateinit var storedVerificationId: String
+    lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +51,9 @@ class Login : AppCompatActivity() {
         back_img = findViewById(R.id.back_img)
         signUp = findViewById(R.id.sign_up)
         cc = findViewById(R.id.cc)
+        auth = FirebaseAuth.getInstance()
+
+
         cc.setOnCountryChangeListener(OnCountryChangeListener {
             Constants.cc = cc.getSelectedCountryCode()
         })
@@ -58,7 +70,11 @@ class Login : AppCompatActivity() {
                 phoneNumber = phoneNum.text.toString()
                 Log.d("phone", phoneNumber)
 
-                viewModel.get_otp(this, phoneNumber).observe(this, Observer {
+                getSharedPreferences("UserPhone", MODE_PRIVATE).edit().putString("UserPhone", phoneNumber).apply()
+
+                sendVerificationCode(phoneNumber)
+
+                /*viewModel.get_otp(this, phoneNumber).observe(this, Observer {
 
                     if (it != null){
 
@@ -94,7 +110,7 @@ class Login : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     }
-                })
+                })*/
 
 
             } else {
@@ -119,6 +135,38 @@ class Login : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun sendVerificationCode(phoneNumber: String) {
+
+        mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                val intent: Intent = Intent(this@Login, OTP::class.java)
+                intent.putExtra("verifyID", verificationId)
+                startActivity(intent)
+            }
+        }
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber("+91"+phoneNumber)      // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this)                 // Activity (for callback binding)
+            .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
     }
 
     override fun onBackPressed() {

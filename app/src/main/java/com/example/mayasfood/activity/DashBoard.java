@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mayasfood.FirebaseCloudMsg;
@@ -29,6 +30,7 @@ import com.example.mayasfood.fragments.Favorite_frag;
 import com.example.mayasfood.fragments.Notification_frag;
 import com.example.mayasfood.fragments.Offers_frag;
 import com.example.mayasfood.fragments.Orders_frag;
+import com.example.mayasfood.fragments.UserProfile_frag;
 import com.example.mayasfood.functions.Functions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -41,6 +43,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     public NavigationView navigationView;
     DrawerLayout drawerLayout;
     ImageButton close;
+    ImageView user_profile;
     ActionBarDrawerToggle actionBarDrawerToggle;
     public BottomNavigationView bottomNavigationView;
 
@@ -49,8 +52,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        String token = FirebaseCloudMsg.getToken(this);
-        Log.d("mainToken", token);
+        //String token = FirebaseCloudMsg.getToken(this);
+        //Log.d("mainToken", token);
 
         drawerLayout = findViewById(R.id.drawer);
         toolbar_const = findViewById(R.id.toolbar_const);
@@ -143,11 +146,24 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 super.onDrawerOpened(drawerView);
 
                 close = findViewById(R.id.close_frag);
+                user_profile = findViewById(R.id.user_profile);
+
                 close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         drawerLayout.isDrawerOpen(GravityCompat.START);
                         {
+                            drawerLayout.closeDrawer(GravityCompat.START);
+                        }
+                    }
+                });
+
+                user_profile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        drawerLayout.isDrawerOpen(GravityCompat.START);
+                        {
+                            Functions.loadFragment(getSupportFragmentManager(), new UserProfile_frag(), R.id.frag_cont, false, "UserProfile", null);
                             drawerLayout.closeDrawer(GravityCompat.START);
                         }
                     }
@@ -160,6 +176,40 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         toolbar_const.getNavigationIcon().setTint(getResources().getColor(R.color.black));
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+                    toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            getSupportFragmentManager().popBackStack();
+                        }
+                    });
+
+                } else {
+                    drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                    actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
+                    actionBarDrawerToggle.syncState();
+                    toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawerLayout.openDrawer(GravityCompat.START);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override

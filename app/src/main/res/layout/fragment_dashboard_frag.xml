@@ -55,7 +55,7 @@
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/user_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/user_name"/>
 
                 <TextView
                     android:id="@+id/textView13"
@@ -78,8 +78,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:textStyle="normal"
-                    android:fontFamily="@font/montserrat_bold"
+                    android:textStyle="bold"
+                    android:textFontWeight="400"
+                    android:fontFamily="@font/montserrat_variablefont_wght"
                     android:text="@string/Dashboard_seeAll"
                     android:textColor="@color/Dashboard_seeall"
                     android:textSize="@dimen/Dashboard_seeall"

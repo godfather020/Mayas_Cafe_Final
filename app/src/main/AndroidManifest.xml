@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mayasfood">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
@@ -67,13 +66,13 @@
             android:name=".MainActivity"
             android:exported="true" />
 
-        <service
+        <!--<service
             android:name=".FirebaseCloudMsg"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
-        </service>
+        </service>-->
 
         <!--<meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

@@ -22,13 +22,15 @@ import java.util.regex.Pattern;
 
 public class FirebaseCloudMsg extends FirebaseMessagingService {
 
-    public static EditText otp1,otp2,otp3,otp4;
+    public static EditText otp1,otp2,otp3,otp4,otp5,otp6;
 
-    public void setEditTextOtp(EditText editText1, EditText editText2, EditText editText3, EditText editText4){
+    public void setEditTextOtp(EditText editText1, EditText editText2, EditText editText3, EditText editText4, EditText editText5, EditText editText6){
         FirebaseCloudMsg.otp1 = editText1;
         FirebaseCloudMsg.otp2 = editText2;
         FirebaseCloudMsg.otp3 = editText3;
         FirebaseCloudMsg.otp4 = editText4;
+        FirebaseCloudMsg.otp5 = editText5;
+        FirebaseCloudMsg.otp6 = editText6;
     }
 
     @Override
@@ -54,9 +56,9 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
 
         Log.d("msgbody", title);
 
-        if (body.contains("OTP")) {
+        if (body.contains("verification")) {
 
-            Pattern pattern = Pattern.compile("(|^)\\d{4}");
+            Pattern pattern = Pattern.compile("(|^)\\d{6}");
             Matcher matcher = pattern.matcher(body);
             if (matcher.find()) {
                 Log.d("Otp", matcher.group(0));
@@ -68,8 +70,13 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
                 Log.d("o2", sotp2);
                 String sotp3 = otp.substring(2,3);
                 Log.d("o3", sotp3);
-                String sotp4 = otp.substring(3);
+                String sotp4 = otp.substring(3,4);
                 Log.d("o4", sotp4);
+                String sotp5 = otp.substring(4,5);
+                Log.d("o5", sotp5);
+                String sotp6 = otp.substring(5);
+                Log.d("o6", sotp6);
+
                 otp1.setText(sotp1);
 
                 otp2.setText(sotp2);
@@ -78,6 +85,9 @@ public class FirebaseCloudMsg extends FirebaseMessagingService {
 
                 otp4.setText(sotp4);
 
+                otp5.setText(sotp5);
+
+                otp6.setText(sotp6);
 
                 Log.d("Complete", "working");
             }

@@ -4,10 +4,14 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/89977b2e9fcc9eff045f57addd5d785f/transformed/jetified-startup-runtime-1.0.0/res" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/89977b2e9fcc9eff045f57addd5d785f/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/89977b2e9fcc9eff045f57addd5d785f/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/365516919cd280ec3c493b5b0a4a111f/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/365516919cd280ec3c493b5b0a4a111f/transformed/jetified-startup-runtime-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/365516919cd280ec3c493b5b0a4a111f/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.startup/startup-runtime/1.0.0/1caeb57122c1e988047c3f5a98493a3a8c6d5f21/startup-runtime-1.0.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.startup/startup-runtime/1.0.0/1caeb57122c1e988047c3f5a98493a3a8c6d5f21/startup-runtime-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

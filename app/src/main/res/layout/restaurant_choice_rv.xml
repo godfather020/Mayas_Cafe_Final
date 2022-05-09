@@ -123,6 +123,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="$5"
                 android:textSize="@dimen/Rest_choice_price"
+                android:textFontWeight="800"
                 android:textColor="@color/Rest_choice_price"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -1,16 +1,17 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.navigation:navigation-common:2.4.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8078c8822be1d5518ef0f824298d1aad/transformed/navigation-common-2.4.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8078c8822be1d5518ef0f824298d1aad/transformed/navigation-common-2.4.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8078c8822be1d5518ef0f824298d1aad/transformed/navigation-common-2.4.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/26f4d70834b47c688ca5349ad28b7127/transformed/navigation-common-2.4.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/26f4d70834b47c688ca5349ad28b7127/transformed/navigation-common-2.4.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/26f4d70834b47c688ca5349ad28b7127/transformed/navigation-common-2.4.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/58c0b0fa5a5a7ad26afe25cc7a90feca/transformed/navigation-common-2.4.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/58c0b0fa5a5a7ad26afe25cc7a90feca/transformed/navigation-common-2.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/58c0b0fa5a5a7ad26afe25cc7a90feca/transformed/navigation-common-2.4.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.navigation/navigation-common/2.4.1/4ecd5ff20a671ef8fd72096f507633eaa8ec3ae0/navigation-common-2.4.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-common/2.4.1/4ecd5ff20a671ef8fd72096f507633eaa8ec3ae0/navigation-common-2.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

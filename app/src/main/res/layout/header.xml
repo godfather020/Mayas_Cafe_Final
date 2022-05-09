@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/user_profile"
             android:layout_width="78dp"
             android:layout_height="78dp"
             android:layout_marginStart="28dp"
@@ -50,7 +50,7 @@
             android:textColor="@color/Login_Title"
             android:textSize="24sp"
             android:textStyle="normal"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:textColor="@color/Login_Title"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     <string name="Splash_title">Maya\'s</string>
     <string name="Splash_Subtitle">garden &amp; juice Bar</string>
     <string name="GetStart_Title">Maya\'s</string>
-    <string name="GetStart_SubTitle">garden &amp; juice Bar</string>
+    <string name="GetStart_SubTitle">Garden &amp; Juice Bar</string>
     <string name="GetStart_Heading">Cooking our dishes with love for you</string>
     <string name="GetStart_ButtonTxt">Get Start</string>
     <string name="Register_title">Create New \nAccount</string>
@@ -97,7 +97,7 @@
         <item>Fusce sed congue leo. Praesent eleifend,</item>
         <item>Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugiat, massa ....</item>
     </string-array>
-    
+
     <string-array name="NotifyToday_time">
         <item>07:30\nAM</item>
         <item>07:30\nAM</item>

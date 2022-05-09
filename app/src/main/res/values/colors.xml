@@ -11,16 +11,16 @@
     <color name="Splash_Title">#D5D9FB</color>
     <color name="Splash_SubTitle">#9FA1BC</color>
     <color name="GetStart_Title">#363853</color>
-    <color name="GetStart_SubTitle">#9FA1BC</color>
+    <color name="GetStart_SubTitle">#363853</color>
     <color name="GetStart_Heading">#363853</color>
     <color name="Button_txt">#FFFFFF</color>
     <color name="Register_Title">#363853</color>
     <color name="Register_SubTitle">#989BBD</color>
-    <color name="EditTxt_color">#B6B7C999</color>
+    <color name="EditTxt_color">#B6000000</color>
     <color name="Register_skip">#363853</color>
     <color name="Login_Title">#363853</color>
     <color name="Login_subTitle">#989BBD</color>
-    <color name="Login_editTxt">#B6B7C999</color>
+    <color name="Login_editTxt">#B6000000</color>
     <color name="Login_newUser">#82838B</color>
     <color name="Login_signUp">#F4511E</color>
     <color name="OTP_title">#363853</color>
@@ -38,6 +38,7 @@
     <color name="Popular_rate">#363853</color>
     <color name="Rest_choice_txt">#000000</color>
     <color name="Rest_choice_price">#363853</color>
+    <color name="Profile_txt">#363853</color>
 
 
 </resources>

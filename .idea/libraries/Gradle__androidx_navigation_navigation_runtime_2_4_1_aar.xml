@@ -1,16 +1,17 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.navigation:navigation-runtime:2.4.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/34c8527482931f0263485757aa954994/transformed/navigation-runtime-2.4.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/34c8527482931f0263485757aa954994/transformed/navigation-runtime-2.4.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/34c8527482931f0263485757aa954994/transformed/navigation-runtime-2.4.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/e5009f54d0227673838357706c036eac/transformed/navigation-runtime-2.4.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/e5009f54d0227673838357706c036eac/transformed/navigation-runtime-2.4.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/e5009f54d0227673838357706c036eac/transformed/navigation-runtime-2.4.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4bf9f819b15d586956ed2c9c506401fd/transformed/navigation-runtime-2.4.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4bf9f819b15d586956ed2c9c506401fd/transformed/navigation-runtime-2.4.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4bf9f819b15d586956ed2c9c506401fd/transformed/navigation-runtime-2.4.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.navigation/navigation-runtime/2.4.1/b407b0d69960fa7a1449c3171124b07a4cd8c59/navigation-runtime-2.4.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-runtime/2.4.1/b407b0d69960fa7a1449c3171124b07a4cd8c59/navigation-runtime-2.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

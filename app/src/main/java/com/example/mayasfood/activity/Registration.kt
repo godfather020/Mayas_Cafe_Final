@@ -27,7 +27,13 @@ import com.hbb20.CountryCodePicker.OnCountryChangeListener
 import com.example.mayasfood.activity.ViewModels.Registration_ViewModel
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.functions.Functions
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import java.io.*
+import java.util.concurrent.TimeUnit
 
 class Registration : AppCompatActivity() {
 
@@ -43,6 +49,8 @@ class Registration : AppCompatActivity() {
     lateinit var cc_r: CountryCodePicker
     lateinit var profile_btn: ImageView
     lateinit var profile_img: ImageView
+    lateinit var auth: FirebaseAuth
+    lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     lateinit var viewModel: Registration_ViewModel
     //lateinit var viewModel1: Login_ViewModel
@@ -95,7 +103,10 @@ class Registration : AppCompatActivity() {
 
                 user_phone = phoneNum.text.toString()
                 Log.d("PhoneNo", user_phone!!)
-                viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, androidx.lifecycle.Observer { it ->
+
+                //sendOTP(user_phone!!)
+
+                /*viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, androidx.lifecycle.Observer { it ->
 
                     if(it!=null){
 
@@ -112,7 +123,7 @@ class Registration : AppCompatActivity() {
 
                         }
                     }
-                })
+                })*/
             } else {
                 Toast.makeText(this@Registration, "Check Information", Toast.LENGTH_SHORT).show()
             }
@@ -134,6 +145,38 @@ class Registration : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun sendOTP(userPhone: String) {
+
+        mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                val intent: Intent = Intent(this@Registration, OTP::class.java)
+                intent.putExtra("verifyID", verificationId)
+                startActivity(intent)
+            }
+        }
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber("+91"+userPhone)      // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this)                 // Activity (for callback binding)
+            .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
     }
 
     override fun onBackPressed() {

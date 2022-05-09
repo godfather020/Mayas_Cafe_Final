@@ -26,7 +26,7 @@ class OTP_ViewModel: ViewModel() {
     val commonResponse = MutableLiveData<Response_Common>()
     val commonResponse1 = MutableLiveData<Response_Common>()
 
-    fun verify_otp(activity:AppCompatActivity,phoneNumber:String,otp:String):MutableLiveData<Response_Common>{
+    fun verify_otp(activity:AppCompatActivity,phoneNumber:String,deviceId: String, deviceName: String, deviceOS: String):MutableLiveData<Response_Common>{
 
         this.activity=activity
 
@@ -36,9 +36,12 @@ class OTP_ViewModel: ViewModel() {
         val requestVerify= Request_Verify()
 
         requestVerify.phoneNumber=phoneNumber
-        requestVerify.otp=otp
-        requestVerify.deviceType="Android"
+        requestVerify.deviceType = "Android"
+        requestVerify.deviceId = deviceId
+        requestVerify.deviceName = deviceName
+        requestVerify.osVersion = deviceOS
         requestVerify.deviceToken = token
+        //requestVerify.deviceToken = token
         //Log.d("deviceToken", Constant.ApiConstant.DEVICE_TOKEN )
         //Log.d("deviceTokensh", Constant.sharedPrefrencesConstant.DEVICE_TOKEN)
 

@@ -79,7 +79,7 @@ public class Functions {
         }
     }
 
-    public static boolean checkOtp(String otp_1, String otp_2, String otp_3, String otp_4, EditText otp1, EditText otp2, EditText otp3, EditText otp4){
+    public static boolean checkOtp(String otp_1, String otp_2, String otp_3, String otp_4, String otp_5, String otp_6, EditText otp1, EditText otp2, EditText otp3, EditText otp4, EditText otp5, EditText otp6){
 
         if (otp_1.isEmpty()){
             otp1.requestFocus();
