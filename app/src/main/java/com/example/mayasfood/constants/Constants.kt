@@ -3,6 +3,7 @@ package com.example.mayasfood.constants
 import com.example.mayasfood.R
 
 object Constants {
+
     //Base URLs
     const val API_DEVELOPMENT_URL = "http://18.118.2.222:3000/api/"
     const val API_TESTING_URL = "testingURL"
@@ -11,10 +12,10 @@ object Constants {
     object ApiConstant {
 
         //API END POINTS
-        internal const val LOGIN = "public/login"
+        internal const val DASHBOARD = "public/Listhomedetails"
         internal const val VERIFY = "public/verify"
         internal const val REGISTER = "public/register"
-        internal const val LOTTERIES = "v1/lotteries"
+        internal const val DEVICE_INFO = "public/deviceInfo"
         internal const val TICKETS = "v1/tickets"
         internal const val BUY_TICKETS = "v1/buyTickets"
         internal const val MY_TICKETS = "v1/myTickets"
@@ -25,7 +26,7 @@ object Constants {
         internal const val NOTIFICATION = "v1/notifications"
         internal const val ADD_WALLET_BALANCE = "v1/addWallet"
         internal const val DEDUCT_WALLET_BALANCE = "v1/withdraw"
-        internal const val SET_PROFILE_IMAGE = "v1/uploadProfilePic"
+        internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
         internal const val TODAY_WINNERS = "v1/todaywinninglist"
         internal var DEVICE_TOKEN = ""
 
@@ -39,9 +40,20 @@ object Constants {
         internal const val REFFERAL_AMOUNT="referral-balance"
         internal const val LOGIN="login"
         internal const val FIRST_TIME="first_time"
+        internal const val USER_N = "userName"
+        internal const val USER_P = "userPhone"
+        internal const val USER_I = "userProfile"
+
     }
-
-
+    @JvmField
+    var USER_NAME = "RAMU KAKA"
+    @JvmField
+    var USER_PHONE = ""
+    @JvmField
+    var USER_TOKEN = ""
+    const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
+    const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
+    const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val userNameError = "Enter a valid name"
     const val emptyFieldError = "Field can't be empty"
     const val phoneNumError = "Enter a valid phone number"

@@ -10,9 +10,11 @@ import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.provider.MediaStore
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -32,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import okhttp3.internal.trimSubstring
 import java.io.*
 import java.util.concurrent.TimeUnit
 
@@ -51,6 +54,8 @@ class Registration : AppCompatActivity() {
     lateinit var profile_img: ImageView
     lateinit var auth: FirebaseAuth
     lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    lateinit var loading: ProgressBar
+    var afterOTP = false
 
     lateinit var viewModel: Registration_ViewModel
     //lateinit var viewModel1: Login_ViewModel
@@ -58,6 +63,8 @@ class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+
+        auth = FirebaseAuth.getInstance()
 
         viewModel = ViewModelProvider(this).get(Registration_ViewModel::class.java)
         //viewModel1 = ViewModelProvider(this).get(Login_ViewModel::class.java)
@@ -70,13 +77,21 @@ class Registration : AppCompatActivity() {
         cc_r = findViewById(R.id.cc_r)
         profile_btn = findViewById(R.id.profileBtn_r)
         profile_img = findViewById(R.id.profileImg_r)
+        loading = findViewById(R.id.loading_bar)
 
-        if (!getIntent().getStringExtra("UserPhone").isNullOrEmpty()) {
+        Constants.cc = "+"+cc_r.getSelectedCountryCode()
 
-            var user_phone_intent = getIntent().getStringExtra("UserPhone").toString()
+        if (!getIntent().getStringExtra("userPhone").isNullOrEmpty()) {
 
-            phoneNum.setText(user_phone_intent)
-            Log.d("user_phone_intent", user_phone_intent)
+            var user_phone_intent = intent.getStringExtra("userPhone").toString()
+
+            var user_phone_intent1 = user_phone_intent.removeRange(0,3)
+
+            phoneNum.setText(user_phone_intent1)
+            phoneNum.isEnabled = false
+            cc_r.isEnabled = false
+            cc_r.isClickable = false
+            Log.d("user_phone_intent", user_phone_intent1)
         }
 
         back_img_r.setOnClickListener {
@@ -85,7 +100,7 @@ class Registration : AppCompatActivity() {
         }
 
         cc_r.setOnCountryChangeListener(OnCountryChangeListener {
-            Constants.cc = cc_r.getSelectedCountryCode()
+            Constants.cc = "+"+cc_r.getSelectedCountryCode()
             Log.d("CountryCode", Constants.cc)
         })
 
@@ -95,36 +110,60 @@ class Registration : AppCompatActivity() {
         }
 
         signUp.setOnClickListener(View.OnClickListener {
+
+
+
             user_name = userName.getText().toString()
             user_phone = Constants.cc + phoneNum.getText().toString()
             Log.d("PhoneNo", user_phone!!)
             dataCheck = Functions.checkData(user_name, user_phone, userName, phoneNum)
             if (dataCheck) {
 
-                user_phone = phoneNum.text.toString()
+                loading.visibility = View.VISIBLE
+
                 Log.d("PhoneNo", user_phone!!)
 
                 //sendOTP(user_phone!!)
 
-                /*viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, androidx.lifecycle.Observer { it ->
+                viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, androidx.lifecycle.Observer { it ->
 
                     if(it!=null){
 
                         if(it.getSuccess()!!) {
 
-                            Log.d("PhoneNo", user_phone!!)
+                            val deviceName = Build.BRAND + " " + Build.MODEL
 
-                            getSharedPreferences("UserPhone", MODE_PRIVATE).edit().putString("UserPhone", user_phone!!).apply()
+                            viewModel.verify_otp(this, user_phone!!, Settings.Secure.ANDROID_ID, deviceName, Build.VERSION.RELEASE).observe(this , Observer {it1->
 
-                            val intent: Intent = Intent(this@Registration, OTP::class.java)
-                            intent.putExtra("getOtp", "1")
-                            startActivity(intent)
-                            finish()
+                                if (it1!=null) {
 
+                                    if (it1.getSuccess()!!) {
+
+                                        loading.visibility = View.GONE
+
+                                        Log.d("PhoneNo", user_phone!!)
+
+                                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it1.getData()!!.result!!.phoneNumber).apply()
+                                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it1.getData()!!.result!!.userName).apply()
+                                            getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", true).apply()
+                                            val intent: Intent = Intent(this@Registration, DashBoard::class.java)
+                                            //intent.putExtra("getOtp", "1")
+                                            startActivity(intent)
+                                            finish()
+
+                                    }
+                                }
+
+                            })
                         }
                     }
-                })*/
+                    else {
+
+                        loading.visibility = View.GONE
+                    }
+                })
             } else {
+                loading.visibility = View.GONE
                 Toast.makeText(this@Registration, "Check Information", Toast.LENGTH_SHORT).show()
             }
         })
@@ -170,7 +209,7 @@ class Registration : AppCompatActivity() {
         }
 
         val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber("+91"+userPhone)      // Phone number to verify
+            .setPhoneNumber(userPhone)      // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks

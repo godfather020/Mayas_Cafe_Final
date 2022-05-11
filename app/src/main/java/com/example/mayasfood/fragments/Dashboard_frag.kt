@@ -1,5 +1,6 @@
 package com.example.mayasfood.fragments
 
+import android.content.SharedPreferences
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.R
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
@@ -13,8 +14,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.ViewPagerAdapter.SliderData
 import com.smarteist.autoimageslider.SliderView
 import com.example.mayasfood.ViewPagerAdapter.SliderAdapter
@@ -23,12 +26,15 @@ import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
+import com.google.android.gms.common.util.SharedPreferencesUtils
 import java.util.ArrayList
 
 class Dashboard_frag : Fragment() {
 
     lateinit var dashBoard: DashBoard
     lateinit var see_offers: TextView
+    lateinit var userName : TextView
+    val commonResponse = MutableLiveData<Response_Common>()
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
     var url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg"
@@ -48,6 +54,10 @@ class Dashboard_frag : Fragment() {
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         see_offers = v.findViewById(R.id.see_offers)
+        userName = v.findViewById(R.id.user_name)
+
+        userName.setText("Hello "+Constants.USER_NAME)
+
         // Initializing the ViewPager Object
         val sliderDataArrayList = ArrayList<SliderData>()
 

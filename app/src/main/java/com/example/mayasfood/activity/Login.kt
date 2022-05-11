@@ -31,7 +31,6 @@ class Login : AppCompatActivity() {
     private var phoneCheck = false
     private lateinit var phoneNumber: String
     lateinit var phoneNum: EditText
-    lateinit var signUp: TextView
     lateinit var signIn: Button
     lateinit var back_img: ImageButton
     lateinit var cc: CountryCodePicker
@@ -39,6 +38,7 @@ class Login : AppCompatActivity() {
     lateinit var auth : FirebaseAuth
     lateinit var storedVerificationId: String
     lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    lateinit var loading : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +49,17 @@ class Login : AppCompatActivity() {
         signIn = findViewById(R.id.sign_in)
         phoneNum = findViewById(R.id.phoneNum)
         back_img = findViewById(R.id.back_img)
-        signUp = findViewById(R.id.sign_up)
         cc = findViewById(R.id.cc)
         auth = FirebaseAuth.getInstance()
+        loading = findViewById(R.id.loading_bar)
 
+        Constants.cc = "+"+cc.selectedCountryCode
+
+        Log.d("cc", Constants.cc)
 
         cc.setOnCountryChangeListener(OnCountryChangeListener {
-            Constants.cc = cc.getSelectedCountryCode()
+            Constants.cc = "+"+cc.selectedCountryCode
+            Log.d("cc", Constants.cc)
         })
         back_img.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this@Login, GetStart::class.java))
@@ -67,11 +71,10 @@ class Login : AppCompatActivity() {
             phoneCheck = Functions.checkData(phoneNumber, phoneNum)
             if (phoneCheck) {
 
-                phoneNumber = phoneNum.text.toString()
                 Log.d("phone", phoneNumber)
 
-                getSharedPreferences("UserPhone", MODE_PRIVATE).edit().putString("UserPhone", phoneNumber).apply()
-
+                getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, phoneNumber).apply()
+                loading.visibility = View.VISIBLE
                 sendVerificationCode(phoneNumber)
 
                 /*viewModel.get_otp(this, phoneNumber).observe(this, Observer {
@@ -117,14 +120,7 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this@Login, "Check Information", Toast.LENGTH_SHORT).show()
             }
         })
-        signUp.setOnClickListener(View.OnClickListener {
 
-            val intent : Intent = Intent(this@Login, Registration::class.java)
-            intent.putExtra("UserPhone", "")
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
-        })
         phoneNum.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
@@ -143,9 +139,17 @@ class Login : AppCompatActivity() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
+                loading.visibility = View.GONE
+
+                Toast.makeText(applicationContext, "Enter 6 digit OTP", Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
+
+                loading.visibility = View.GONE
+
+                Toast.makeText(applicationContext, "Verification Failed", Toast.LENGTH_SHORT).show()
 
             }
 
@@ -153,6 +157,8 @@ class Login : AppCompatActivity() {
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
+
+                loading.visibility = View.GONE
                 val intent: Intent = Intent(this@Login, OTP::class.java)
                 intent.putExtra("verifyID", verificationId)
                 startActivity(intent)
@@ -160,7 +166,7 @@ class Login : AppCompatActivity() {
         }
 
         val options = PhoneAuthOptions.newBuilder(auth)
-            .setPhoneNumber("+91"+phoneNumber)      // Phone number to verify
+            .setPhoneNumber(phoneNumber)      // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
@@ -170,6 +176,9 @@ class Login : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
+        loading.visibility = View.GONE
+
         if (isBackPressed) {
             super.onBackPressed()
             return

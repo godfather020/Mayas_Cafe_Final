@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lottry.data.remote.retrofit.request.Request_Login
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.activity.Registration
 import com.example.mayasfood.development.retrofit.RetrofitInstance
@@ -23,7 +22,7 @@ class Login_ViewModel : ViewModel() {
 
     val commonResponse = MutableLiveData<Response_Common>()
 
-    fun get_otp(activity:AppCompatActivity,phoneNumber:String):MutableLiveData<Response_Common>{
+    /*fun get_otp(activity:AppCompatActivity,phoneNumber:String):MutableLiveData<Response_Common>{
 
         this.activity=activity
 
@@ -80,5 +79,5 @@ class Login_ViewModel : ViewModel() {
             }
         })
     }
-
+*/
 }

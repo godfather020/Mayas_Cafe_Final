@@ -6,15 +6,18 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.VerifiedInputEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.example.mayasfood.FirebaseCloudMsg
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.ViewModels.OTP_ViewModel
@@ -22,11 +25,14 @@ import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.functions.Functions
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 class OTP : AppCompatActivity() {
+
+    private var isBackPressed = false
     private var otpData = false
     private lateinit var otp_1: String
     private lateinit var otp_2: String
@@ -47,12 +53,20 @@ class OTP : AppCompatActivity() {
     lateinit var verificationId: String
     lateinit var userPhone : String
     lateinit var viewModel : OTP_ViewModel
+    lateinit var loading : ProgressBar
+    lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    lateinit var auth : FirebaseAuth
+    lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_otp)
 
         viewModel = ViewModelProvider(this).get(OTP_ViewModel::class.java)
+
+        var token = FirebaseCloudMsg.getToken(this)
+
+        Log.d("tokenOTP", token.toString())
 
         val getOTP = intent.getStringExtra("getOtp").toString()
 
@@ -66,13 +80,20 @@ class OTP : AppCompatActivity() {
         img_back_otp = findViewById(R.id.img_back_otp)
         submit = findViewById(R.id.submit)
         resend = findViewById(R.id.resend)
+        loading = findViewById(R.id.loading_bar)
+
         Functions.otpTextChange(otp1, otp2, otp1)
         Functions.otpTextChange(otp2, otp3, otp1)
         Functions.otpTextChange(otp3, otp4, otp2)
         Functions.otpTextChange(otp4, otp5, otp3)
         Functions.otpTextChange(otp5, otp6, otp4)
         Functions.otpTextChange(otp6, otp6, otp5)
+
+        sharedPreferencesUtil = SharedPreferencesUtil(this)
+
         countdownTimer()
+
+        auth = FirebaseAuth.getInstance()
 
         //val code = intent.getStringExtra("code").toString()
 
@@ -80,7 +101,7 @@ class OTP : AppCompatActivity() {
 
         Log.d("ID", verificationId)
 
-        userPhone = getSharedPreferences("UserPhone", MODE_PRIVATE).getString("UserPhone", "empty")
+        userPhone = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "empty")
             .toString()
 
         if (getOTP == "1") {
@@ -113,17 +134,21 @@ class OTP : AppCompatActivity() {
             resend.setVisibility(View.GONE)
             timer.setVisibility(View.VISIBLE)
             countdownTimer()
-            var userPhone =
-                getSharedPreferences("UserPhone", MODE_PRIVATE).getString("UserPhone", "empty")
+            val userPhone =
+                getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "empty")
                     .toString()
 
             Log.d("userPH1", userPhone)
 
-            viewModel.get_otp(this, userPhone)
+            loading.visibility = View.VISIBLE
 
+            sendVerificationCode(userPhone)
 
+            //viewModel.get_otp(this, userPhone)
         })
+
         submit.setOnClickListener(View.OnClickListener {
+
             otp_1 = otp1.getText().toString()
             otp_2 = otp2.getText().toString()
             otp_3 = otp3.getText().toString()
@@ -136,9 +161,10 @@ class OTP : AppCompatActivity() {
             otpData = Functions.checkOtp(otp_1, otp_2, otp_3, otp_4, otp_5, otp_6, otp1, otp2, otp3, otp4, otp5, otp6)
             if (otpData) {
 
+                loading.visibility = View.VISIBLE
                 var otp = otp_1 + otp_2 + otp_3 + otp_4 + otp_5 + otp_6
                 var userPhone =
-                    getSharedPreferences("UserPhone", MODE_PRIVATE).getString("UserPhone", "empty")
+                    getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "empty")
                         .toString()
 
                 Log.d("OTP", otp)
@@ -167,10 +193,7 @@ class OTP : AppCompatActivity() {
             }
         })
 
-
-        FirebaseCloudMsg().setEditTextOtp(otp1, otp2, otp3, otp4, otp5, otp6)
-
-
+        FirebaseCloudMsg.setEditTextOtp(otp1, otp2, otp3, otp4, otp5, otp6)
     }
 
     private fun verifyCode(code: String) {
@@ -187,27 +210,50 @@ class OTP : AppCompatActivity() {
                 val deviceName = Build.BRAND + " " + Build.MODEL
                 viewModel.verify_otp(this, userPhone, Settings.Secure.ANDROID_ID, deviceName, Build.VERSION.RELEASE).observe(this, androidx.lifecycle.Observer {
 
-                    if (it.getSuccess() == true){
+                    if (it != null) {
+
+                        if (it.getSuccess()!!) {
+
+                            loading.visibility = View.GONE
+
+                            Toast.makeText(
+                                applicationContext,
+                                "Login Successful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            Log.d(
+                                "OTPToken", getSharedPreferences(
+                                    "DeviceToken",
+                                    MODE_PRIVATE
+                                ).getString("DeviceToken", "Empty").toString()
+                            )
+
+                            getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", true).apply()
+
+                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it.getData()!!.result!!.phoneNumber).apply()
+                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it.getData()!!.result!!.userName).apply()
+                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.result!!.profilePic).apply()
+                            getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.X_TOKEN, it.getData()!!.token).apply()
+                            sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.result!!.profilePic)
 
 
+                            Log.d("userToken",
+                                getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.X_TOKEN, "")
+                                    .toString()
+                            )
+
+                            val intent: Intent = Intent(this, DashBoard::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 })
 
-                //Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
-                Log.d(
-                    "OTPToken",
-                    getSharedPreferences(
-                        "DeviceToken",
-                        MODE_PRIVATE
-                    ).getString("DeviceToken", "Empty").toString()
-                )
-                getSharedPreferences("LogIn", MODE_PRIVATE).edit()
-                    .putBoolean("LogIn", true).apply()
-                startActivity(Intent(this@OTP, DashBoard::class.java))
-                finish()
             } else {
 
-                Toast.makeText(applicationContext, "failed", Toast.LENGTH_SHORT).show()
+                loading.visibility = View.GONE
+                Toast.makeText(applicationContext, "OTP not match", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -266,6 +312,62 @@ class OTP : AppCompatActivity() {
                 "Host: ${Build.HOST} \n" +
                 "FingerPrint: ${Build.FINGERPRINT} \n" +
                 "Version Code: ${Build.VERSION.RELEASE}"
+    }
+
+    private fun sendVerificationCode(phoneNumber: String) {
+
+        mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+
+                loading.visibility = View.GONE
+
+                Toast.makeText(applicationContext, "Enter 6 digit OTP", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+
+                loading.visibility = View.GONE
+
+                Toast.makeText(applicationContext, e.toString(), Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+
+                loading.visibility = View.GONE
+
+                /*val intent: Intent = Intent(this@Login, OTP::class.java)
+                intent.putExtra("verifyID", verificationId)
+                startActivity(intent)*/
+            }
+        }
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phoneNumber)      // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this)                 // Activity (for callback binding)
+            .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
+    }
+
+    override fun onBackPressed() {
+
+        loading.visibility = View.GONE
+
+        if (isBackPressed) {
+            super.onBackPressed()
+            return
+        }
+        Toast.makeText(this@OTP, "Press again to exit", Toast.LENGTH_SHORT).show()
+        isBackPressed = true
+        Handler().postDelayed({ isBackPressed = false }, 2000)
     }
 
 }

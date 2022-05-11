@@ -3,33 +3,72 @@ package com.example.mayasfood.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.lottry.data.remote.retrofit.request.Request_DeviceInfo;
+import com.example.lottry.data.remote.retrofit.response.Lotteries;
+import com.example.mayasfood.FirebaseCloudMsg;
 import com.example.mayasfood.R;
+import com.example.mayasfood.Retrofite.response.Response_Common;
+import com.example.mayasfood.activity.ViewModels.GetStart_ViewModel;
+import com.example.mayasfood.activity.ViewModels.Registration_ViewModel;
+import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.development.retrofit.RetrofitInstance;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class GetStart extends AppCompatActivity {
 
     private boolean isBackPressed = false;
     ArrayList<String> permission = new ArrayList<String>();
+    FirebaseAuth auth;
+    String token;
+    GetStart_ViewModel getStart_viewModel;
+    ViewModelProvider viewModelProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_start);
+
+        viewModelProvider = new ViewModelProvider(this);
+        getStart_viewModel = viewModelProvider.get(GetStart_ViewModel.class);
+
         Button getStart = findViewById(R.id.get_start);
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        String userPhone = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "empty");
+
+        token = FirebaseCloudMsg.getToken(this);
+
+        Log.d("tokenGS", token);
+
+        if(currentUser != null) {
+
+            Log.d("userPhoneC", Objects.requireNonNull(currentUser).getPhoneNumber());
+        }
 
         if (check_Permission()) {
             Log.d("permission", "granted");
@@ -37,15 +76,38 @@ public class GetStart extends AppCompatActivity {
             requestPermission();
         }
 
+        getStart_viewModel.sendDeviceInfo(this);
+
         getStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (getSharedPreferences("LogIn", MODE_PRIVATE).getBoolean("LogIn", false)){
 
-                    Intent intent = new Intent(GetStart.this, DashBoard.class);
-                    startActivity(intent);
-                    finish();
+                    Log.d("userPhone", userPhone);
+
+                    if(currentUser != null) {
+
+                        if (currentUser.getPhoneNumber().equals(userPhone)) {
+
+                            Intent intent = new Intent(GetStart.this, DashBoard.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        else {
+
+                            Intent intent = new Intent(GetStart.this, Login.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                    else {
+
+                        Intent intent = new Intent(GetStart.this, Login.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
 
                 else {
@@ -56,8 +118,8 @@ public class GetStart extends AppCompatActivity {
                 }
             }
         });
-
     }
+
 
     @Override
     public void onBackPressed() {

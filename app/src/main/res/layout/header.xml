@@ -29,13 +29,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_profile"
             android:layout_width="78dp"
             android:layout_height="78dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="104dp"
-            android:src="@drawable/mask_group_1"
+            android:src="@drawable/image_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +54,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/user_name_nav"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"

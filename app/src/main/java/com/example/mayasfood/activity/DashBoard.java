@@ -7,23 +7,31 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil;
 import com.example.mayasfood.FirebaseCloudMsg;
 import com.example.mayasfood.R;
+import com.example.mayasfood.activity.ViewModels.GetStart_ViewModel;
+import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.Category_frag;
 import com.example.mayasfood.fragments.Dashboard_frag;
 import com.example.mayasfood.fragments.Favorite_frag;
@@ -35,6 +43,16 @@ import com.example.mayasfood.functions.Functions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.ktx.Firebase;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DashBoard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -43,17 +61,42 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     public NavigationView navigationView;
     DrawerLayout drawerLayout;
     ImageButton close;
-    ImageView user_profile;
+    public CircleImageView user_profile;
+    TextView user_name_nav;
     ActionBarDrawerToggle actionBarDrawerToggle;
     public BottomNavigationView bottomNavigationView;
+    FirebaseAuth auth;
+    String userProfile;
+    SharedPreferencesUtil sharedPreferencesUtil;
+    GetStart_ViewModel getStart_viewModel;
+    ViewModelProvider viewModelProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        //String token = FirebaseCloudMsg.getToken(this);
-        //Log.d("mainToken", token);
+        String token = FirebaseCloudMsg.getToken(this);
+        Log.d("mainToken", token);
+
+        viewModelProvider = new ViewModelProvider(this);
+        getStart_viewModel = viewModelProvider.get(GetStart_ViewModel.class);
+
+        sharedPreferencesUtil = new SharedPreferencesUtil(this);
+
+        /*StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);*/
+
+        Constants.USER_NAME = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_N, "Ramu Kaka");
+        Constants.USER_PHONE = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "");
+        Constants.USER_TOKEN = getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.X_TOKEN, "");
+        //userProfile = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_I, "default.png");
+        userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
+
+        if(userProfile != null) {
+            Log.d("userProfile", userProfile);
+        }
+        Log.d("userToken", Constants.USER_TOKEN);
 
         drawerLayout = findViewById(R.id.drawer);
         toolbar_const = findViewById(R.id.toolbar_const);
@@ -119,6 +162,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             }
         });
 
+        getDashboardItems();
+
+    }
+
+    private void getDashboardItems() {
+
+
     }
 
     public void setUpToolbar() {
@@ -147,6 +197,21 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 close = findViewById(R.id.close_frag);
                 user_profile = findViewById(R.id.user_profile);
+                user_name_nav = findViewById(R.id.user_name_nav);
+
+                userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
+
+                if (userProfile != null) {
+
+                    Picasso.get()
+                            .load(Constants.UserProfile_Path + userProfile)
+                            .into(user_profile);
+                }
+
+                //user_profile.setImageBitmap(getBitmapFromURL(Constants.UserProfile_Path+userProfile));
+
+
+                user_name_nav.setText(Constants.USER_NAME);
 
                 close.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -295,6 +360,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        auth = FirebaseAuth.getInstance();
+                        auth.signOut();
+
                         getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", false).apply();
                         startActivity(new Intent(DashBoard.this, Login.class));
                         finish();
@@ -351,5 +419,23 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            Log.e("src",src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
     }
 }

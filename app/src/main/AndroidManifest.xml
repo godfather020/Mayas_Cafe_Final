@@ -23,6 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/mayas512__1_" />
+
         <activity
             android:name=".activity.CheckOut"
             android:exported="false" />
@@ -66,13 +71,13 @@
             android:name=".MainActivity"
             android:exported="true" />
 
-        <!--<service
-            android:name=".FirebaseCloudMsg"
+        <service
+            android:name="com.example.mayasfood.FirebaseCloudMsg"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
-        </service>-->
+        </service>
 
         <!--<meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

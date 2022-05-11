@@ -12,9 +12,9 @@ import retrofit2.http.*
 interface Apis {
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.LOGIN)
-    fun getOtp(
-    @Body body:Request_Login
+    @POST(Constants.ApiConstant.DASHBOARD)
+    fun getDashboardItems(
+    @Body body:Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
@@ -30,10 +30,9 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.LOTTERIES)
-    fun getLotteryDetail(
-        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body:Request_Lottery
+    @POST(Constants.ApiConstant.DEVICE_INFO)
+    fun sendDeviceDetail(
+        @Body body:Request_DeviceInfo
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
