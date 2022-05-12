@@ -15,13 +15,20 @@ import android.widget.TextView
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lottry.data.remote.retrofit.response.HomeTempResponse
+import com.example.mayasfood.Retrofite.response.ListcouponResponce
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.ViewPagerAdapter.SliderData
 import com.smarteist.autoimageslider.SliderView
 import com.example.mayasfood.ViewPagerAdapter.SliderAdapter
+import com.example.mayasfood.activity.ViewModels.Dashboard_ViewModel
 import com.example.mayasfood.constants.Constants
+import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
+import com.example.mayasfood.fragments.ViewModels.UserProfile_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
@@ -34,12 +41,15 @@ class Dashboard_frag : Fragment() {
     lateinit var dashBoard: DashBoard
     lateinit var see_offers: TextView
     lateinit var userName : TextView
-    val commonResponse = MutableLiveData<Response_Common>()
+    //val commonResponse = MutableLiveData<Response_Common>()
+    lateinit var viewModel: Dashboard_frag_ViewModel
+    lateinit var sliderView: SliderView
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
     var url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg"
     var url3 = "https://i.postimg.cc/VNk523np/image-2.png"
-
+    var couponImg = ArrayList<String>()
+    val sliderDataArrayList = ArrayList<SliderData>()
 
     var recycleView_models = ArrayList<RecycleView_Model>()
     var recycleView_models1 = ArrayList<RecycleView_Model>()
@@ -51,27 +61,31 @@ class Dashboard_frag : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_dashboard_frag, container, false)
 
+        viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
+
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         see_offers = v.findViewById(R.id.see_offers)
         userName = v.findViewById(R.id.user_name)
 
-        userName.setText("Hello "+Constants.USER_NAME)
+        userName.setText(Constants.USER_NAME)
+
+        setDashboardView()
 
         // Initializing the ViewPager Object
-        val sliderDataArrayList = ArrayList<SliderData>()
+
 
         // initializing the slider view.
-        val sliderView: SliderView = v.findViewById(R.id.slider)
+        sliderView = v.findViewById(R.id.slider)
 
         // adding the urls inside array list
         //sliderDataArrayList.add(new SliderData(images));
-        sliderDataArrayList.add(SliderData(url1))
+        /*sliderDataArrayList.add(SliderData(url1))
         sliderDataArrayList.add(SliderData(url2))
-        sliderDataArrayList.add(SliderData(url3))
+        sliderDataArrayList.add(SliderData(url3))*/
 
         // passing this array list inside our adapter class.
-        val adapter = SliderAdapter(context, sliderDataArrayList)
+        /*val adapter = SliderAdapter(context, sliderDataArrayList)
 
         // below method is used to set auto cycle direction in left to
         // right direction you can change according to requirement.
@@ -90,7 +104,7 @@ class Dashboard_frag : Fragment() {
         sliderView.isAutoCycle = true
 
         // to start autocycle below method is used.
-        sliderView.startAutoCycle()
+        sliderView.startAutoCycle()*/
 
 
         val recyclerView: RecyclerView = v.findViewById(R.id.rv1)
@@ -119,6 +133,68 @@ class Dashboard_frag : Fragment() {
         }
 
         return v
+    }
+
+    private fun setDashboardView() {
+
+        viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    Log.d("indice", it.getData()!!.ListcouponResponce!!.indices.toString())
+
+                    val homeResList: ArrayList<ListcouponResponce> =ArrayList()
+
+                    for (i in  it.getData()!!.ListcouponResponce!!.indices){
+
+                        var ListcouponResponce =ListcouponResponce()
+
+                        Log.d("indice", i.toString())
+
+                        ListcouponResponce = it.getData()!!.ListcouponResponce!![i]
+
+                        //couponImg.add(i ,it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
+
+                        val bannerImage = it.getData()!!.ListcouponResponce!![i].name
+
+                        Log.d("indiimage", it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
+                        Log.d("id", it.getData()!!.ListcouponResponce!![i].toString())
+                        Log.d("indiimage", bannerImage.toString())
+
+
+                        homeResList.add(ListcouponResponce)
+
+                        //Log.d("url", Constants.UserCoupon_Path+couponImg[i])
+
+                    }
+                    for (i in homeResList.indices){
+
+                    sliderDataArrayList.add(SliderData(Constants.UserCoupon_Path+ homeResList.get(i).bannerImage))
+                    }
+
+                    val adapter = SliderAdapter(context, sliderDataArrayList)
+                    sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+                    sliderView.setSliderAdapter(adapter)
+                    sliderView.scrollTimeInSec = 3
+
+                    // to set it scrollable automatically
+                    // we use below method.
+                    sliderView.isAutoCycle = true
+
+                    // to start autocycle below method is used.
+                    sliderView.startAutoCycle()
+
+                }
+                else{
+
+
+                }
+
+
+            }
+        })
     }
 
     private fun setUpFoodModel() {

@@ -7,7 +7,7 @@
     android:background="@color/Screen_BG">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,9 +62,11 @@
             android:fontFamily="@font/ntailu"
             android:paddingRight="24dp"
             android:text="Ramu Kaka"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/Login_Title"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 

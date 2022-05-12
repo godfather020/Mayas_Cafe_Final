@@ -20,7 +20,7 @@
     <dimen name="OTP_subTitle">19sp</dimen>
     <dimen name="OTP_Buttontxt">27sp</dimen>
     <dimen name="OTP_resend">16sp</dimen>
-    <dimen name="Dashboard_title">31sp</dimen>
+    <dimen name="Dashboard_title">28sp</dimen>
     <dimen name="Dashboard_subtitle">19sp</dimen>
     <dimen name="Dashboard_seeall">15sp</dimen>
     <dimen name="Food_Category">12sp</dimen>

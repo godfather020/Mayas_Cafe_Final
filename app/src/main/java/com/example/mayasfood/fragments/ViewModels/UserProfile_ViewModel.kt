@@ -2,10 +2,10 @@ package com.example.mayasfood.fragments.ViewModels
 
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mayasfood.Retrofite.request.Request_updateProfile
 import com.example.lottry.data.remote.retrofit.response.UserDetail
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
@@ -25,6 +25,8 @@ class UserProfile_ViewModel: ViewModel() {
     lateinit var activity: Fragment
 
     val commonResponse = MutableLiveData<Response_Common>()
+    val commonResponse1 = MutableLiveData<Response_Common>()
+    val commonResponse2 = MutableLiveData<Response_Common>()
 
     fun set_profileImage(activity:Fragment,imgUrl: File):MutableLiveData<Response_Common>{
 
@@ -85,5 +87,86 @@ class UserProfile_ViewModel: ViewModel() {
         })
 
         return commonResponse
+    }
+
+    fun getUserDetails(activity: Fragment):MutableLiveData<Response_Common>{
+
+        Log.d("userT", Constants.USER_TOKEN)
+
+        this.activity=activity
+
+        val retrofitInstance: RetrofitInstance = RetrofitInstance()
+        val retrofitData = retrofitInstance.retrofit.getUserProfile(Constants.USER_TOKEN)
+
+        retrofitData.enqueue(object : Callback<Response_Common>{
+            override fun onResponse(
+                call: Call<Response_Common>,
+                response: Response<Response_Common>
+            ) {
+
+                if (response.isSuccessful){
+
+                    commonResponse1.value = response.body()
+
+                }
+                else{
+
+                    Log.d("error", response.message())
+                }
+
+            }
+
+            override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+
+                Log.d("userDetails", t.toString())
+
+                Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
+        return commonResponse1
+    }
+
+    fun updateUserProfile(activity: Fragment, userName: String, userAddress : String, userEmail : String): MutableLiveData<Response_Common> {
+
+        this.activity = activity
+
+        val requestUpdateprofile : Request_updateProfile = Request_updateProfile()
+
+        requestUpdateprofile.userName = userName
+        requestUpdateprofile.email = userEmail
+        requestUpdateprofile.address = userAddress
+
+        updateProfileAPI(requestUpdateprofile)
+
+        return commonResponse2
+    }
+
+    private fun updateProfileAPI(param: Request_updateProfile) {
+
+        val retrofitInstance: RetrofitInstance = RetrofitInstance()
+        val retrofitData = retrofitInstance.retrofit.updateUserProfile(Constants.USER_TOKEN, param)
+
+        retrofitData.enqueue(object : Callback<Response_Common>{
+            override fun onResponse(
+                call: Call<Response_Common>,
+                response: Response<Response_Common>
+            ) {
+                if (response.isSuccessful){
+
+                    commonResponse2.value = response.body()
+                }
+                else{
+
+                    Toast.makeText(activity.requireContext(), response.message(), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+                Log.d("error", t.toString())
+            }
+        })
+
     }
 }

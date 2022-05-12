@@ -2,11 +2,14 @@ package com.example.mayasfood.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -17,10 +20,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.example.mayasfood.R
@@ -29,9 +33,9 @@ import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.UserProfile_ViewModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import java.io.*
-import java.text.SimpleDateFormat
-import java.util.*
+import java.io.File
+import java.io.IOException
+import java.io.OutputStream
 
 
 class UserProfile_frag : Fragment() {
@@ -43,6 +47,17 @@ class UserProfile_frag : Fragment() {
     lateinit var dashBoard: DashBoard
     private var mImageBitmap: Bitmap? = null
     private var mCurrentPhotoPath: String? = null
+    var photoFile: File? = null
+    lateinit var picture_icon: ImageView
+    var uploadImgPath: String? = null
+    lateinit var userImage : CircleImageView
+    lateinit var userName : EditText
+    lateinit var userAddress : EditText
+    lateinit var userPhone : TextView
+    lateinit var userEmail : EditText
+    lateinit var updateProfile : Button
+    lateinit var changePro: ImageButton
+    lateinit var cancelUpdate : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,14 +75,130 @@ class UserProfile_frag : Fragment() {
 
         viewModel = ViewModelProvider(this).get(UserProfile_ViewModel::class.java)
 
+        userImage = view.findViewById(R.id.user_img)
+        userName = view.findViewById(R.id.userName)
+        userEmail = view.findViewById(R.id.email)
+        userPhone = view.findViewById(R.id.phone)
+        userAddress = view.findViewById(R.id.address)
+        updateProfile = view.findViewById(R.id.update_profile)
         userProfile_edit = view.findViewById(R.id.userProfile_edit)
+        changePro = view.findViewById(R.id.change_pic)
+        cancelUpdate = view.findViewById(R.id.cancelUpdate)
+
+        getUserDetals()
 
         userProfile_edit.setOnClickListener {
 
-            showProfileEditPopup()
+            userName.isEnabled = true
+            userEmail.isEnabled = true
+            userAddress.isEnabled = true
+            updateProfile.visibility = View.VISIBLE
+            changePro.visibility = View.VISIBLE
+            cancelUpdate.visibility = View.VISIBLE
+            userProfile_edit.visibility = View.GONE
+
+            //showProfileEditPopup()
         }
 
+        changePro.setOnClickListener {
+
+            selectImage()
+        }
+
+        updateProfile.setOnClickListener {
+
+            if (uploadImgPath != null){
+
+                sendProfileImg(uploadImgPath!!)
+            }
+
+            updateUserDetails(userName.text.toString(), userAddress.text.toString(), userEmail.text.toString())
+
+            updateProfile.visibility = View.GONE
+            changePro.visibility = View.GONE
+            cancelUpdate.visibility = View.GONE
+            userProfile_edit.visibility = View.VISIBLE
+            userEmail.isEnabled = false
+            userName.isEnabled = false
+            userAddress.isEnabled = false
+        }
+
+        cancelUpdate.setOnClickListener {
+
+            userEmail.isEnabled = false
+            userName.isEnabled = false
+            userAddress.isEnabled = false
+            updateProfile.visibility = View.GONE
+            changePro.visibility = View.GONE
+            cancelUpdate.visibility = View.GONE
+            userProfile_edit.visibility = View.VISIBLE
+        }
+
+
         return view
+    }
+
+    private fun updateUserDetails(user_Name: String, user_address: String, userEmail: String) {
+
+        viewModel.updateUserProfile(this, user_Name, user_address, userEmail).observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+
+
+                    Constants.USER_NAME = user_Name
+
+                    sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N, user_Name)
+
+                    Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+
+                }
+                else{
+
+                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            else{
+
+                Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+    }
+
+    private fun getUserDetals() {
+
+        viewModel.getUserDetails(this).observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    val userProfile =
+                        sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I)
+
+                    Log.d("userP", it.getData()!!.user!!.profilePic.toString())
+                    Log.d("userN", it.getData()!!.user!!.userName.toString())
+                    Log.d("userE", it.getData()!!.user!!.email.toString())
+                    Log.d("userA", it.getData()!!.user!!.address.toString())
+                    Log.d("userP", it.getData()!!.user!!.phoneNumber.toString())
+
+                    Picasso.get()
+                        .load(Constants.UserProfile_Path + it.getData()!!.user!!.profilePic.toString())
+                        .into(userImage)
+
+                    userName.setText(it.getData()!!.user!!.userName.toString())
+                    userEmail.setText(it.getData()!!.user!!.email.toString())
+                    userAddress.setText(it.getData()!!.user!!.address.toString())
+                    userPhone.setText(it.getData()!!.user!!.phoneNumber.toString())
+                }
+            }
+
+        })
     }
 
     private fun showProfileEditPopup(){
@@ -87,10 +218,58 @@ class UserProfile_frag : Fragment() {
 
         userPro = view.findViewById<CircleImageView>(R.id.circleImageView)
         val close = view.findViewById<ImageButton>(R.id.userEdit_close)
+        val update = view.findViewById<Button>(R.id.userEdit_update)
+        picture_icon = view.findViewById<ImageView>(R.id.profile_upload)
+        val userNameE = view.findViewById<EditText>(R.id.userEdit_name)
+        val userPhoneE = view.findViewById<EditText>(R.id.userEdit_phone)
+        val userEmailE = view.findViewById<EditText>(R.id.userEdit_email)
+        val userAddressE = view.findViewById<EditText>(R.id.userEdit_address)
+
+        userNameE.setText(userName.text.toString())
+        userAddressE.setText(userAddress.text.toString())
+        userEmailE.setText(userEmail.text.toString())
+        userNameE.setText(userName.text.toString())
 
         userPro.setOnClickListener {
-
+            picture_icon.visibility = View.GONE
             selectImage()
+        }
+
+        update.setOnClickListener {
+
+            if (uploadImgPath != null){
+
+                sendProfileImg(uploadImgPath!!)
+            }
+
+            viewModel.updateUserProfile(this, userNameE.text.toString(), userAddressE.text.toString(), userEmailE.text.toString()).observe(viewLifecycleOwner, Observer {
+
+                if (it != null){
+
+                    if (it.getSuccess()!!){
+
+                        Constants.USER_NAME = userNameE.text.toString()
+
+                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N, userNameE.text.toString())
+
+                        Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
+
+                    }
+                    else{
+
+                        Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+                else{
+
+                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
+                }
+
+            })
+
+            dialog.cancel()
+
         }
 
         close.setOnClickListener {
@@ -108,26 +287,28 @@ class UserProfile_frag : Fragment() {
         builder.setItems(options, DialogInterface.OnClickListener { dialog, item ->
             if (options[item] == "Take Photo") {
 
-                try {
-                    val photoFile = createImageFile()
-
-                //val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                val f = Uri.fromFile(createImageFile())
-                    if (photoFile != null) {
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                        startActivityForResult(intent, 1);
-                    }
 
-                } catch (ex: IOException) {
-                    // Error occurred while creating the File
-                    Log.d("excep", "IOException")
+                photoFile = getPhotoFileUri("temp.jpg")
+
+                val fileProvider = FileProvider.getUriForFile(
+                    requireContext(),
+                    "com.codepath.fileprovider",
+                    photoFile!!
+                )
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
+
+                if (intent.resolveActivity(requireActivity().packageManager) != null) {
+
+                    startActivityForResult(intent, 1)
                 }
             } else if (options[item] == "Choose from Gallery") {
-                val intent =
-                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 startActivityForResult(intent, 2)
             } else if (options[item] == "Cancel") {
+
+                picture_icon.visibility  = View.VISIBLE
+
                 dialog.dismiss()
             }
         })
@@ -143,68 +324,31 @@ class UserProfile_frag : Fragment() {
             Log.d("requestCode", requestCode.toString())
             if (requestCode == 1) {
 
-                try {
-                    mImageBitmap = MediaStore.Images.Media.getBitmap(
-                        requireActivity().contentResolver,
-                        Uri.parse(mCurrentPhotoPath)
-                    )
-                    userPro.setImageBitmap(mImageBitmap)
+                val bitmap: Bitmap? = rotateImageIfRequired(photoFile!!.absolutePath)
+                Log.d("camerPath", photoFile!!.absolutePath)
 
-                    Log.d("path", mCurrentPhotoPath.toString())
-                    Log.d("path", mImageBitmap.toString())
-                    sendProfileImg(mCurrentPhotoPath.toString())
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-
-                //userPro.setImageBitmap(data!!.extras!!.get("data") as Bitmap?)
-                /*Log.d("requestCode", requestCode.toString())
-                val f = File(Environment.getExternalStorageDirectory().toString())
-               // Log.d("cameraINpath", f.absolutePath)
-                for (temp in f.listFiles()!!) {
-                //Log.d("cameraIN", temp.name)
-                if (temp.name == ) {
-               // Log.d("cameraIN1", temp.name)
-                }
-                  }
-                try {
-                    val bitmap: Bitmap
-                    val bitmapOptions = BitmapFactory.Options()
-                    bitmap = BitmapFactory.decodeFile(
-                        f.absolutePath,
-                        bitmapOptions
-                    )
-                    userPro.setImageBitmap(bitmap)
-                    val path = (Environment
-                        .getExternalStorageDirectory()
-                        .toString() + File.separator
-                            + "Phoenix" + File.separator + "default")
-                    f.delete()
-                    var outFile: OutputStream? = null
-                    val file = File(path, System.currentTimeMillis().toString() + ".jpg")
-                    Log.d("cameraPath", path)
-                    try {
-                        outFile = FileOutputStream(file)
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile)
-                        outFile.flush()
-                        outFile.close()
-                    } catch (e: FileNotFoundException) {
-                        e.printStackTrace()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }*/
-
+                /*Picasso.get()
+                    .load(File(photoFile!!.absoluteFile.toString()))
+                    .centerCrop()
+                    .into(userPro)*/
+                loadBitmapByPicasso(requireContext(), bitmap!!, userImage)
+                //userPro.setImageBitmap(bitmap)
+                //sendProfileImg(photoFile!!.absolutePath)
+                uploadImgPath = photoFile!!.absolutePath
 
             } else if (requestCode == 2) {
                 val selectedImage = data!!.data
                 val filePath = arrayOf(MediaStore.Images.Media.DATA)
                 val c: Cursor =
-                    selectedImage?.let { requireContext().contentResolver.query(it, filePath, null, null, null) }!!
+                    selectedImage?.let {
+                        requireContext().contentResolver.query(
+                            it,
+                            filePath,
+                            null,
+                            null,
+                            null
+                        )
+                    }!!
                 c.moveToFirst()
                 val columnIndex: Int = c.getColumnIndex(filePath[0])
                 val picturePath: String = c.getString(columnIndex)
@@ -214,8 +358,9 @@ class UserProfile_frag : Fragment() {
                     "path of image from gallery......******************.........",
                     picturePath + ""
                 )
-                userPro.setImageBitmap(thumbnail)
-                sendProfileImg(picturePath)
+                userImage.setImageBitmap(thumbnail)
+                //sendProfileImg(picturePath)
+                uploadImgPath = picturePath
             }
         }
     }
@@ -224,7 +369,7 @@ class UserProfile_frag : Fragment() {
 
         val file: File = File(picturePath)
 
-        viewModel.set_profileImage(this, file).observe(this, androidx.lifecycle.Observer {
+        viewModel.set_profileImage(this, file).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
             if (it!=null){
 
@@ -242,9 +387,7 @@ class UserProfile_frag : Fragment() {
 
                     Log.d("profileImg", it.getData()!!.result!!.profilePic)
                 }
-
             }
-
             else {
 
                 Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
@@ -253,23 +396,68 @@ class UserProfile_frag : Fragment() {
         })
     }
 
-    @Throws(IOException::class)
-    private fun createImageFile(): File? {
-        // Create an image file name
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_"
-        val storageDir = Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_PICTURES
-        )
-        val image = File.createTempFile(
-            imageFileName,  // prefix
-            ".jpg",  // suffix
-            storageDir // directory
-        )
+    fun getPhotoFileUri(fileName: String): File? {
+        // Get safe storage directory for photos
+        // Use `getExternalFilesDir` on Context to access package-specific directories.
+        // This way, we don't need to request external read/write runtime permissions.
+        val mediaStorageDir =
+            File(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), "CustomImg")
 
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.absolutePath
-        Log.d("path", mCurrentPhotoPath.toString())
-        return image
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
+            Log.d("CustomImg", "failed to create directory")
+        }
+
+        // Return the file target for the photo based on filename
+        return File(mediaStorageDir.path + File.separator.toString() + fileName)
     }
+
+    fun rotateImageIfRequired(imagePath: String): Bitmap? {
+        var degrees = 0
+        try {
+            val exif = ExifInterface(imagePath)
+            val orientation = exif.getAttributeInt(
+                ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_NORMAL
+            )
+            when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 -> degrees = 90
+                ExifInterface.ORIENTATION_ROTATE_180 -> degrees = 180
+                ExifInterface.ORIENTATION_ROTATE_270 -> degrees = 270
+            }
+        } catch (e: IOException) {
+            Log.e("ImageError", "Error in reading Exif data of $imagePath", e)
+        }
+        val decodeBounds = BitmapFactory.Options()
+        decodeBounds.inJustDecodeBounds = true
+        var bitmap = BitmapFactory.decodeFile(imagePath, decodeBounds)
+        val numPixels = decodeBounds.outWidth * decodeBounds.outHeight
+        val maxPixels = 2048 * 1536 // requires 12 MB heap
+        val options = BitmapFactory.Options()
+        options.inSampleSize = if (numPixels > maxPixels) 2 else 1
+        bitmap = BitmapFactory.decodeFile(imagePath, options)
+        if (bitmap == null) {
+            return null
+        }
+        val matrix = Matrix()
+        matrix.setRotate(degrees.toFloat())
+        bitmap = Bitmap.createBitmap(
+            bitmap, 0, 0, bitmap.width,
+            bitmap.height, matrix, true
+        )
+        return bitmap
+    }
+
+    private fun loadBitmapByPicasso(pContext: Context, pBitmap: Bitmap, pImageView: CircleImageView) {
+        try {
+            val uri = Uri.fromFile(File.createTempFile("temp_file_name", ".jpg", pContext.cacheDir))
+            val outputStream: OutputStream? = pContext.contentResolver.openOutputStream(uri)
+            pBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream!!.close()
+            Picasso.get().load(uri).into(pImageView)
+        } catch (e: java.lang.Exception) {
+            Log.e("LoadBitmapByPicasso", e.message!!)
+        }
+    }
+
 }

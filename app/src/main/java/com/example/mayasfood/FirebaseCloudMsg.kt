@@ -69,6 +69,23 @@ class FirebaseCloudMsg : FirebaseMessagingService() {
             println(e)
         }
 
+        finally {
+
+            if (img == null) {
+
+                getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
+                val notification: Notification.Builder = Notification.Builder(this, CHANNEL_ID)
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setStyle(Notification.BigTextStyle())
+                    .setSmallIcon(R.drawable.mayas512__1_)
+                    //.setStyle(Notification.BigPictureStyle().bigPicture(image))
+                    .setAutoCancel(true)
+                NotificationManagerCompat.from(this)
+                    .notify(Random().nextInt(), notification.build())
+            }
+        }
+
         Log.d("msgbody", title)
         Log.d("msgbody", body)
 

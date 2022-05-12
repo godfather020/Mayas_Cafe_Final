@@ -11,10 +11,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -47,8 +51,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.ktx.Firebase;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -84,14 +90,17 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         sharedPreferencesUtil = new SharedPreferencesUtil(this);
 
-        /*StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);*/
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        Constants.USER_NAME = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_N, "Ramu Kaka");
+        //Constants.USER_NAME = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_N, "Ramu Kaka");
         Constants.USER_PHONE = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "");
         Constants.USER_TOKEN = getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.X_TOKEN, "");
         //userProfile = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_I, "default.png");
         userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
+
+        Constants.USER_NAME = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_N);
+
 
         if(userProfile != null) {
             Log.d("userProfile", userProfile);
@@ -199,18 +208,6 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 user_profile = findViewById(R.id.user_profile);
                 user_name_nav = findViewById(R.id.user_name_nav);
 
-                userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
-
-                if (userProfile != null) {
-
-                    Picasso.get()
-                            .load(Constants.UserProfile_Path + userProfile)
-                            .into(user_profile);
-                }
-
-                //user_profile.setImageBitmap(getBitmapFromURL(Constants.UserProfile_Path+userProfile));
-
-
                 user_name_nav.setText(Constants.USER_NAME);
 
                 close.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +219,27 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         }
                     }
                 });
+
+                userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
+
+                if (userProfile != null) {
+
+                    /*BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                    Bitmap bitmap = BitmapFactory.decodeFile(Constants.UserProfile_Path + userProfile,bmOptions);
+                    bitmap = Bitmap.createScaledBitmap(bitmap,150,150,true);*/
+
+                    //Bitmap bitmap = rotateImageIfRequired(Constants.UserProfile_Path + userProfile);
+
+                    //loadBitmapByPicasso(getApplicationContext(), bitmap, user_profile);
+
+                    Picasso.get()
+                            .load(Constants.UserProfile_Path + userProfile)
+                            .into(user_profile);
+
+                    //user_profile.setImageBitmap(bitmap);
+                }
+
+
 
                 user_profile.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -437,5 +455,68 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             Log.e("Exception",e.getMessage());
             return null;
         }
+    }
+
+    private void loadBitmapByPicasso(Context pContext, Bitmap pBitmap, ImageView pImageView) {
+        try {
+            Uri uri = Uri.fromFile(File.createTempFile("temp_file_name", ".jpg", pContext.getCacheDir()));
+            OutputStream outputStream = pContext.getContentResolver().openOutputStream(uri);
+            pBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            outputStream.close();
+            Picasso.get().load(uri).into(pImageView);
+        } catch (Exception e) {
+            Log.e("LoadBitmapByPicasso", e.getMessage());
+        }
+    }
+
+    public  Bitmap rotateImageIfRequired(String imagePath) {
+        int degrees = 0;
+
+        try {
+            ExifInterface exif = new ExifInterface(imagePath);
+            int orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degrees = 90;
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degrees = 180;
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degrees = 270;
+                    break;
+            }
+        } catch (IOException e) {
+            Log.e("ImageError", "Error in reading Exif data of " + imagePath, e);
+        }
+
+        BitmapFactory.Options decodeBounds = new BitmapFactory.Options();
+        decodeBounds.inJustDecodeBounds = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(imagePath, decodeBounds);
+        int numPixels = decodeBounds.outWidth * decodeBounds.outHeight;
+        int maxPixels = 2048 * 1536; // requires 12 MB heap
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = (numPixels > maxPixels) ? 2 : 1;
+
+        bitmap = BitmapFactory.decodeFile(imagePath, options);
+
+        if (bitmap == null) {
+            return null;
+        }
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(degrees);
+
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                bitmap.getHeight(), matrix, true);
+
+        return bitmap;
     }
 }

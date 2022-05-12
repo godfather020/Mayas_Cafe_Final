@@ -34,7 +34,7 @@ class Response_Data {
 
     @SerializedName("ListcouponResponce")
     @Expose
-    val ListcouponResponce: List<ListcouponResponce>? = null
+    var ListcouponResponce: List<ListcouponResponce>? = null
 
     @SerializedName("ListpopularproductResponce")
     @Expose
@@ -95,5 +95,8 @@ class Response_Data {
  @SerializedName("profilePic")
  @Expose
  var profilePic : String = ""
+
+ @SerializedName("user" )
+ var user : User? = User()
 
 }

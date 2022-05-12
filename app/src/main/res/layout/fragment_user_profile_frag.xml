@@ -28,13 +28,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <TextView
-        android:id="@+id/textView7"
+    <ImageButton
+        android:id="@+id/change_pic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ellipse_32"
+        android:src="@drawable/vector__1_"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/user_img"
+        app:layout_constraintEnd_toEndOf="@+id/user_img" />
+
+    <EditText
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/ntailu"
         android:text="Ramu Kaka"
+        android:padding="8dp"
+        android:enabled="false"
+        android:background="@drawable/custom_edit_text"
         android:textColor="@color/black"
         android:textSize="38sp"
         android:textStyle="bold"
@@ -52,7 +65,7 @@
         app:cardCornerRadius="8dp"
         android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" >
+        app:layout_constraintTop_toBottomOf="@+id/userName" >
 
     <ImageView
         android:layout_width="wrap_content"
@@ -62,19 +75,23 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/textView12"
+    <EditText
+        android:id="@+id/address"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="62dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:fontFamily="@font/ntailu"
+        android:background="@drawable/custom_edit_text"
         android:text="296, G-1 Vaishanav Nagar , AB Road "
         android:textColor="@color/Profile_txt"
         android:textSize="18sp"
+        android:enabled="false"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -97,18 +114,34 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textView17"
-        android:layout_width="250dp"
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="34dp"
         android:fontFamily="@font/ntailu"
         android:text="9595785458"
+        android:padding="8dp"
         android:textColor="@color/Profile_txt"
         android:textSize="18sp"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/cardView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/address" />
+
+    <TextView
+        android:id="@+id/change_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ntailu"
+        android:text="Change number"
+        android:textColor="@color/Dashboard_seeall"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:visibility="gone"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
@@ -130,18 +163,54 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
+    <EditText
+        android:id="@+id/email"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="Dj2022@gmail.com"
         android:textColor="@color/Profile_txt"
         android:textSize="18sp"
         android:textStyle="normal"
+        android:enabled="false"
+        android:padding="8dp"
+        android:background="@drawable/custom_edit_text"
         android:fontFamily="@font/ntailu"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="36dp"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@+id/cardView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+    <Button
+        android:id="@+id/update_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="28dp"
+        android:background="@drawable/custom_button"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textColor="@color/Button_txt"
+        android:textSize="@dimen/Button_txt"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/cancelUpdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cancelUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/Button_txt"
+        android:textSize="@dimen/Button_txt"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_margin="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
