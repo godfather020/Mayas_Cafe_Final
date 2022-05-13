@@ -58,6 +58,7 @@ class UserProfile_frag : Fragment() {
     lateinit var updateProfile : Button
     lateinit var changePro: ImageButton
     lateinit var cancelUpdate : Button
+    lateinit var loading : ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +85,9 @@ class UserProfile_frag : Fragment() {
         userProfile_edit = view.findViewById(R.id.userProfile_edit)
         changePro = view.findViewById(R.id.change_pic)
         cancelUpdate = view.findViewById(R.id.cancelUpdate)
+        loading = view.findViewById(R.id.loading)
+
+        loading.visibility = View.VISIBLE
 
         getUserDetals()
 
@@ -93,7 +97,6 @@ class UserProfile_frag : Fragment() {
             userEmail.isEnabled = true
             userAddress.isEnabled = true
             updateProfile.visibility = View.VISIBLE
-            changePro.visibility = View.VISIBLE
             cancelUpdate.visibility = View.VISIBLE
             userProfile_edit.visibility = View.GONE
 
@@ -115,7 +118,6 @@ class UserProfile_frag : Fragment() {
             updateUserDetails(userName.text.toString(), userAddress.text.toString(), userEmail.text.toString())
 
             updateProfile.visibility = View.GONE
-            changePro.visibility = View.GONE
             cancelUpdate.visibility = View.GONE
             userProfile_edit.visibility = View.VISIBLE
             userEmail.isEnabled = false
@@ -129,7 +131,6 @@ class UserProfile_frag : Fragment() {
             userName.isEnabled = false
             userAddress.isEnabled = false
             updateProfile.visibility = View.GONE
-            changePro.visibility = View.GONE
             cancelUpdate.visibility = View.GONE
             userProfile_edit.visibility = View.VISIBLE
         }
@@ -195,6 +196,8 @@ class UserProfile_frag : Fragment() {
                     userEmail.setText(it.getData()!!.user!!.email.toString())
                     userAddress.setText(it.getData()!!.user!!.address.toString())
                     userPhone.setText(it.getData()!!.user!!.phoneNumber.toString())
+
+                    loading.visibility = View.GONE
                 }
             }
 
@@ -237,16 +240,18 @@ class UserProfile_frag : Fragment() {
 
         update.setOnClickListener {
 
-            if (uploadImgPath != null){
+            /*if (uploadImgPath != null){
 
                 sendProfileImg(uploadImgPath!!)
-            }
-
+            }*/
+            loading.visibility = View.VISIBLE
             viewModel.updateUserProfile(this, userNameE.text.toString(), userAddressE.text.toString(), userEmailE.text.toString()).observe(viewLifecycleOwner, Observer {
 
                 if (it != null){
 
                     if (it.getSuccess()!!){
+
+                        loading.visibility = View.GONE
 
                         Constants.USER_NAME = userNameE.text.toString()
 
@@ -256,13 +261,13 @@ class UserProfile_frag : Fragment() {
 
                     }
                     else{
-
+                        loading.visibility = View.GONE
                         Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
                     }
 
                 }
                 else{
-
+                    loading.visibility = View.GONE
                     Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
                 }
 
@@ -333,7 +338,7 @@ class UserProfile_frag : Fragment() {
                     .into(userPro)*/
                 loadBitmapByPicasso(requireContext(), bitmap!!, userImage)
                 //userPro.setImageBitmap(bitmap)
-                //sendProfileImg(photoFile!!.absolutePath)
+                sendProfileImg(photoFile!!.absolutePath)
                 uploadImgPath = photoFile!!.absolutePath
 
             } else if (requestCode == 2) {
@@ -359,13 +364,15 @@ class UserProfile_frag : Fragment() {
                     picturePath + ""
                 )
                 userImage.setImageBitmap(thumbnail)
-                //sendProfileImg(picturePath)
+                sendProfileImg(picturePath)
                 uploadImgPath = picturePath
             }
         }
     }
 
     private fun sendProfileImg(picturePath: String) {
+
+        loading.visibility = View.VISIBLE
 
         val file: File = File(picturePath)
 
@@ -375,6 +382,7 @@ class UserProfile_frag : Fragment() {
 
                 if(it.getSuccess()!!){
 
+                    loading.visibility = View.GONE
                     Toast.makeText(activity, "Image Uploaded", Toast.LENGTH_SHORT).show()
 
                     val userPic = it.getData()!!.result!!.profilePic
@@ -389,7 +397,7 @@ class UserProfile_frag : Fragment() {
                 }
             }
             else {
-
+                loading.visibility = View.GONE
                 Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
             }
 

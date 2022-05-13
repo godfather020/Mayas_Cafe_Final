@@ -1,6 +1,5 @@
 package com.example.mayasfood.fragments
 
-import android.content.SharedPreferences
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.R
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
@@ -8,32 +7,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
-import android.widget.RelativeLayout
+import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lottry.data.remote.retrofit.response.HomeTempResponse
 import com.example.mayasfood.Retrofite.response.ListcouponResponce
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.ViewPagerAdapter.SliderData
 import com.smarteist.autoimageslider.SliderView
 import com.example.mayasfood.ViewPagerAdapter.SliderAdapter
-import com.example.mayasfood.activity.ViewModels.Dashboard_ViewModel
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
-import com.example.mayasfood.fragments.ViewModels.UserProfile_ViewModel
-import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
-import com.google.android.gms.common.util.SharedPreferencesUtils
 import java.util.ArrayList
 
 class Dashboard_frag : Fragment() {
@@ -44,6 +36,21 @@ class Dashboard_frag : Fragment() {
     //val commonResponse = MutableLiveData<Response_Common>()
     lateinit var viewModel: Dashboard_frag_ViewModel
     lateinit var sliderView: SliderView
+    var categoryName = ArrayList<String>()
+    var popularFoodName = ArrayList<String>()
+    var popularFoodPrice = ArrayList<String>()
+    var popularFoodImg = ArrayList<String>()
+    var restaurantFoodName = ArrayList<String>()
+    var restaurantFoodPrice = ArrayList<String>()
+    var restaurantFoodImg = ArrayList<String>()
+    var popularFoodRating = ArrayList<String>()
+    var restaurantFoodRating = ArrayList<String>()
+    lateinit var recyclerView : RecyclerView
+    lateinit var recyclerView3 : RecyclerView
+    lateinit var recyclerView2 : RecyclerView
+    lateinit var homeResList: ArrayList<ListcouponResponce>
+    lateinit var loading : ProgressBar
+    var notResumed = false
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
     var url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg"
@@ -54,6 +61,12 @@ class Dashboard_frag : Fragment() {
     var recycleView_models = ArrayList<RecycleView_Model>()
     var recycleView_models1 = ArrayList<RecycleView_Model>()
     var recycleView_models2 = ArrayList<RecycleView_Model>()
+
+    /*private val dataObserver = Observer<Response_Common> { it ->
+
+        //setDashboardView(it)
+    }*/
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,16 +74,20 @@ class Dashboard_frag : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_dashboard_frag, container, false)
 
-        viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
 
+        //viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, dataObserver)
+
+        homeResList =ArrayList<ListcouponResponce>()
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         see_offers = v.findViewById(R.id.see_offers)
         userName = v.findViewById(R.id.user_name)
 
         userName.setText(Constants.USER_NAME)
+        loading = v.findViewById(R.id.progress_bar)
+        loading.visibility = View.VISIBLE
 
-        setDashboardView()
+        //setDashboardView()
 
         // Initializing the ViewPager Object
 
@@ -78,52 +95,16 @@ class Dashboard_frag : Fragment() {
         // initializing the slider view.
         sliderView = v.findViewById(R.id.slider)
 
-        // adding the urls inside array list
-        //sliderDataArrayList.add(new SliderData(images));
-        /*sliderDataArrayList.add(SliderData(url1))
-        sliderDataArrayList.add(SliderData(url2))
-        sliderDataArrayList.add(SliderData(url3))*/
-
-        // passing this array list inside our adapter class.
-        /*val adapter = SliderAdapter(context, sliderDataArrayList)
-
-        // below method is used to set auto cycle direction in left to
-        // right direction you can change according to requirement.
-        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-
-        // below method is used to
-        // setadapter to sliderview.
-        sliderView.setSliderAdapter(adapter)
-
-        // below method is use to set
-        // scroll time in seconds.
-        sliderView.scrollTimeInSec = 3
-
-        // to set it scrollable automatically
-        // we use below method.
-        sliderView.isAutoCycle = true
-
-        // to start autocycle below method is used.
-        sliderView.startAutoCycle()*/
-
-
-        val recyclerView: RecyclerView = v.findViewById(R.id.rv1)
-        val recyclerView2: RecyclerView = v.findViewById(R.id.rv2)
-        val recyclerView3: RecyclerView = v.findViewById(R.id.rv3)
+        recyclerView = v.findViewById(R.id.rv1)
+        recyclerView2 = v.findViewById(R.id.rv2)
+        recyclerView3 = v.findViewById(R.id.rv3)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val layoutManager2 = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val layoutManager3 = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
         recyclerView2.layoutManager = layoutManager2
         recyclerView3.layoutManager = layoutManager3
-        setUpFoodModel()
-        val recycleView_adapter = RecycleView_Adapter_C(activity, recycleView_models)
-        val recycleView_adapter_pf = RecycleView_Adapter_PF(activity, recycleView_models1)
-        val recycleView_adapter_rc = RecycleView_Adapter_RC(activity, recycleView_models2)
-        recyclerView.adapter = recycleView_adapter
-        recyclerView2.adapter = recycleView_adapter_pf
-        recyclerView3.adapter = recycleView_adapter_rc
-        recycleView_adapter.notifyDataSetChanged()
+
 
         see_offers.setOnClickListener {
 
@@ -137,96 +118,260 @@ class Dashboard_frag : Fragment() {
 
     private fun setDashboardView() {
 
-        viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, Observer {
+        //viewModel.getDashboardData(this, "1").removeObserver { this }
+            viewModel.getDashboardData(this, "1").observe(this, object : Observer<Response_Common> {
 
-            if (it != null){
+                override fun onChanged(it: Response_Common?) {
 
-                if (it.getSuccess()!!){
+                    if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED) {
 
-                    Log.d("indice", it.getData()!!.ListcouponResponce!!.indices.toString())
+                        if (it != null) {
 
-                    val homeResList: ArrayList<ListcouponResponce> =ArrayList()
+                            if (it.getSuccess()!!) {
 
-                    for (i in  it.getData()!!.ListcouponResponce!!.indices){
+                                popularFoodName.clear()
+                                popularFoodImg.clear()
+                                popularFoodPrice.clear()
+                                popularFoodRating.clear()
+                                restaurantFoodName.clear()
+                                restaurantFoodImg.clear()
+                                restaurantFoodPrice.clear()
+                                restaurantFoodRating.clear()
+                                categoryName.clear()
 
-                        var ListcouponResponce =ListcouponResponce()
+                                Log.d(
+                                    "indice",
+                                    it.getData()!!.ListcouponResponce!!.indices.toString()
+                                )
 
-                        Log.d("indice", i.toString())
+                                for (i in it.getData()!!.ListcouponResponce!!.indices) {
 
-                        ListcouponResponce = it.getData()!!.ListcouponResponce!![i]
+                                    var ListcouponResponce = ListcouponResponce()
 
-                        //couponImg.add(i ,it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
+                                    Log.d("indice", i.toString())
 
-                        val bannerImage = it.getData()!!.ListcouponResponce!![i].name
+                                    ListcouponResponce = it.getData()!!.ListcouponResponce!![i]
 
-                        Log.d("indiimage", it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
-                        Log.d("id", it.getData()!!.ListcouponResponce!![i].toString())
-                        Log.d("indiimage", bannerImage.toString())
+                                    //couponImg.add(i ,it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
+
+                                    var bannerImage = it.getData()!!.ListcouponResponce!![i].name
+
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListcouponResponce!![i].bannerImage.toString()
+                                    )
+                                    Log.d("id", it.getData()!!.ListcouponResponce!![i].toString())
+                                    Log.d("indiimage", bannerImage.toString())
 
 
-                        homeResList.add(ListcouponResponce)
+                                    homeResList.add(ListcouponResponce)
 
-                        //Log.d("url", Constants.UserCoupon_Path+couponImg[i])
+                                    //Log.d("url", Constants.UserCoupon_Path+couponImg[i])
 
+                                }
+                                for (i in homeResList.indices) {
+
+                                    sliderDataArrayList.add(
+                                        SliderData(
+                                            Constants.UserCoupon_Path + homeResList.get(
+                                                i
+                                            ).bannerImage
+                                        )
+                                    )
+
+                                }
+
+                                val adapter = SliderAdapter(context, sliderDataArrayList)
+                                sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+                                sliderView.setSliderAdapter(adapter)
+                                sliderView.scrollTimeInSec = 3
+
+                                // to set it scrollable automatically
+                                // we use below method.
+                                sliderView.isAutoCycle = true
+
+                                // to start autocycle below method is used.
+                                sliderView.startAutoCycle()
+
+                                for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
+
+                                    popularFoodName.add(
+                                        i,
+                                        it.getData()!!.ListpopularproductResponce!![i].productName.toString()
+                                    )
+                                    popularFoodPrice.add(
+                                        i,
+                                        it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].amount.toString()
+                                    )
+                                    popularFoodRating.add(
+                                        i,
+                                        it.getData()!!.ListpopularproductResponce!![i].customerrating.toString()
+                                    )
+                                    popularFoodImg.add(
+                                        i,
+                                        it.getData()!!.ListpopularproductResponce!![i].productPic.toString()
+                                    )
+
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListpopularproductResponce!![i].productName.toString()
+                                    )
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].amount.toString()
+                                    )
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListpopularproductResponce!![i].customerrating.toString()
+                                    )
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListpopularproductResponce!![i].productPic.toString()
+                                    )
+                                }
+
+                                for (i in it.getData()!!.ListrestaurantproductResponce!!.indices) {
+
+                                    restaurantFoodName.add(
+                                        i,
+                                        it.getData()!!.ListrestaurantproductResponce!![i].productName.toString()
+                                    )
+                                    restaurantFoodPrice.add(
+                                        i,
+                                        it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].amount.toString()
+                                    )
+                                    restaurantFoodImg.add(
+                                        i,
+                                        it.getData()!!.ListrestaurantproductResponce!![i].productPic.toString()
+                                    )
+                                    restaurantFoodRating.add(
+                                        i,
+                                        it.getData()!!.ListrestaurantproductResponce!![i].systemrating.toString()
+                                    )
+
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListrestaurantproductResponce!![i].productName.toString()
+                                    )
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].amount.toString()
+                                    )
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListrestaurantproductResponce!![i].customerrating.toString()
+                                    )
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListrestaurantproductResponce!![i].productPic.toString()
+                                    )
+                                }
+
+                                for (i in it.getData()!!.ListcategoryResponce!!.indices) {
+
+                                    categoryName.add(
+                                        i,
+                                        it.getData()!!.ListcategoryResponce!![i].categoryName.toString()
+                                    )
+
+                                    Log.d(
+                                        "indiimage",
+                                        it.getData()!!.ListcategoryResponce!![i].categoryName.toString()
+                                    )
+                                }
+
+                                loading.visibility = View.GONE
+                            } else {
+
+                                Log.d("response", "Failed")
+                            }
+                            setUpFoodModel()
+                        }
                     }
-                    for (i in homeResList.indices){
-
-                    sliderDataArrayList.add(SliderData(Constants.UserCoupon_Path+ homeResList.get(i).bannerImage))
-                    }
-
-                    val adapter = SliderAdapter(context, sliderDataArrayList)
-                    sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-                    sliderView.setSliderAdapter(adapter)
-                    sliderView.scrollTimeInSec = 3
-
-                    // to set it scrollable automatically
-                    // we use below method.
-                    sliderView.isAutoCycle = true
-
-                    // to start autocycle below method is used.
-                    sliderView.startAutoCycle()
-
                 }
-                else{
-
-
-                }
-
-
-            }
-        })
-    }
+            })
+        }
 
     private fun setUpFoodModel() {
-        val foodName = resources.getStringArray(R.array.Food_txt)
-        val nameFood = resources.getStringArray(R.array.Food_name)
-        val foodop = resources.getStringArray(R.array.Food_option)
-        val foodprice = resources.getStringArray(R.array.Food_price)
-        val NameFood = resources.getStringArray(R.array.Name_Food)
-        val Food_op = resources.getStringArray(R.array.Food_op)
-        val Food_rate = resources.getStringArray(R.array.Food_rate)
-        val starts = arrayOf(1,2,3,4,5)
 
-        for (s in foodName) {
+
+        for (s in categoryName) {
             recycleView_models.add(RecycleView_Model(s))
+
+            Log.d("indiimage1", s)
         }
-        for (i in nameFood.indices) {
+        for (i in popularFoodName.indices) {
             recycleView_models1.add(
                 RecycleView_Model(
-                    nameFood[i],
-                    foodprice[i],
-                    Constants.imgFood[i],starts[i]
+                    popularFoodName[i],
+                    popularFoodPrice[i],
+                    popularFoodImg[i],
+                    popularFoodRating[i]
                 )
             )
+
+            Log.d("indiimage1", popularFoodName[i])
+            Log.d("indiimage1", popularFoodPrice[i])
+            Log.d("indiimage1", popularFoodImg[i])
+            Log.d("indiimage1", popularFoodRating[i])
+
         }
-        for (i in NameFood.indices) {
+        for (i in restaurantFoodName.indices) {
             recycleView_models2.add(
                 RecycleView_Model(
-                    NameFood[i],
-                    Food_rate[i],
-                    Constants.foodimg[i],starts[i]
+                    restaurantFoodName[i],
+                    restaurantFoodPrice[i],
+                    restaurantFoodImg[i],
+                    restaurantFoodRating[i]
                 )
             )
+
+            Log.d("indiimage1", restaurantFoodName[i])
+            Log.d("indiimage1", restaurantFoodName[i])
+            Log.d("indiimage1", restaurantFoodName[i])
+            Log.d("indiimage1", restaurantFoodName[i])
         }
+
+        val recycleView_adapter = RecycleView_Adapter_C(activity, recycleView_models)
+        val recycleView_adapter_pf = RecycleView_Adapter_PF(activity, recycleView_models1)
+        val recycleView_adapter_rc = RecycleView_Adapter_RC(activity, recycleView_models2)
+        recyclerView.adapter = recycleView_adapter
+        recyclerView2.adapter = recycleView_adapter_pf
+        recyclerView3.adapter = recycleView_adapter_rc
+        recycleView_adapter.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notResumed = false
+        Log.d("life", "resume")
+        setDashboardView()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("life", "create")
+        viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
+        //setDashboardView()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("life", "pause")
+    }
+
+    override fun onStop() {
+        Log.d("life", "stop")
+        super.onStop()
+        notResumed = true
+
+        if (notResumed){
+            this.onDestroy()
+        }
+    }
+
+    override fun onDestroy() {
+        Log.d("life", "destroy")
+        super.onDestroy()
     }
 }

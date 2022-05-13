@@ -1,12 +1,15 @@
 package com.example.mayasfood.fragments.ViewModels
 
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mayasfood.Retrofite.request.Request_updateProfile
 import com.example.lottry.data.remote.retrofit.response.UserDetail
+import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
@@ -31,6 +34,7 @@ class UserProfile_ViewModel: ViewModel() {
     fun set_profileImage(activity:Fragment,imgUrl: File):MutableLiveData<Response_Common>{
 
         this.activity=activity
+
 
         //val reqFile: RequestBody = imgUrl.asRequestBody(".png".toMediaTypeOrNull())
         val reqFile: RequestBody = RequestBody.create("image/jpg".toMediaTypeOrNull(), imgUrl);
@@ -70,6 +74,8 @@ class UserProfile_ViewModel: ViewModel() {
                     if(jsonObject.get("code").toString().equals("500")){
 //                       if(jsonObject.get("message").asString.equals(activity.resources.getString(R.string.please_registered_your_number_),true)){
                         //activity.showToast(jsonObject.get("message").asString)
+
+
                         Toast.makeText(activity.context, jsonObject.get("message").asString, Toast.LENGTH_SHORT).show()
                         Log.d("imgUploaded", jsonObject.get("message").asString)
 //                       }
@@ -82,6 +88,7 @@ class UserProfile_ViewModel: ViewModel() {
 //               TODO("Not yet implemented")
 //               binding.progessBar.visibility= View.GONE
                 Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
+
                 Log.d("imgUploaded", t.toString())
             }
         })

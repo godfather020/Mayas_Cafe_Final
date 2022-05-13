@@ -1,7 +1,10 @@
 package com.example.mayasfood.recycleView.rv_adapter;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
 import com.example.mayasfood.activity.singleItem;
+import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,14 +50,23 @@ public class RecycleView_Adapter_O extends RecyclerView.Adapter<RecycleView_Adap
         final RecycleView_Model temp = foodModels4.get(position);
 
         holder.offer_txt.setText(foodModels4.get(position).getFoodName());
-        holder.offer_img.setBackgroundResource(foodModels4.get(position).getFoodImg());
+        //holder.offer_img.setBackgroundResource(foodModels4.get(position).getFoodImg());
+
+        Picasso.get()
+                .load(Constants.UserCoupon_Path + foodModels4.get(position).getFoodHeading())
+                .fit()
+                .into(holder.offer_img);
 
 
         holder.copy_offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(context.getApplicationContext(), "Code Copied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context.getApplicationContext(), "Coupon Code Copied", Toast.LENGTH_SHORT).show();
+
+                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Coupon_Code", foodModels4.get(holder.getAdapterPosition()).getFoodPrice());
+                clipboard.setPrimaryClip(clip);
 
                 /*Intent intent = new Intent(context, singleItem.class);
                 intent.putExtra("imagefood", temp.getFoodImg());

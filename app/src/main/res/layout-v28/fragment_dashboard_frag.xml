@@ -239,36 +239,20 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
         </ScrollView>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frag_cont"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <np.com.susanthapa.curved_bottom_navigation.CurvedBottomNavigationView
-            android:id="@+id/chip_nav"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            app:cbn_bg="@color/black"
-            app:cbn_fabBg="@color/black"
-            android:elevation="8dp"
-            app:itemIconSize="12dp"
-            app:cbn_selectedColor="#e80937"
-            app:cbn_unSelectedColor="@color/teal_700"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

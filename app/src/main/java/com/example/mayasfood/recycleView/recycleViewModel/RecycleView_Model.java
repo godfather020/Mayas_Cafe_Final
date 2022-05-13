@@ -4,20 +4,27 @@ public class RecycleView_Model {
 
 
     private String foodName,foodHeading, foodPrice;
-    private int foodImg, stars;
+    private String foodImg, stars;
+    private int foodImg1;
 
     public RecycleView_Model(String foodName, String foodHeading, String foodPrice, int foodImg) {
         this.foodName = foodName;
         this.foodHeading = foodHeading;
         this.foodPrice = foodPrice;
-        this.foodImg = foodImg;
+        this.foodImg1 = foodImg;
     }
 
-    public RecycleView_Model(String foodName, String foodPrice, int foodImg, int stars) {
+    public RecycleView_Model(String foodName, String foodPrice, String foodImg, String stars) {
         this.foodName = foodName;
         this.foodPrice = foodPrice;
         this.foodImg = foodImg;
         this.stars = stars;
+    }
+
+    public RecycleView_Model(String foodName, String foodHeading, String foodPrice) {
+        this.foodName = foodName;
+        this.foodHeading = foodHeading;
+        this.foodPrice = foodPrice;
     }
 
     public RecycleView_Model(String foodName) {
@@ -26,16 +33,16 @@ public class RecycleView_Model {
 
     public RecycleView_Model(String foodName, int foodImg) {
         this.foodName = foodName;
-        this.foodImg = foodImg;
+        this.foodImg1 = foodImg;
     }
 
-    public RecycleView_Model(String foodName, String foodHeading) {
+    public RecycleView_Model(String foodName, String foodImg) {
         this.foodName = foodName;
-        this.foodHeading = foodHeading;
+        this.foodImg = foodImg;
     }
 
     public RecycleView_Model(int foodImg) {
-        this.foodImg = foodImg;
+        this.foodImg1 = foodImg;
     }
 
     public String getFoodName() {
@@ -50,15 +57,15 @@ public class RecycleView_Model {
         return foodPrice;
     }
 
-    public int getFoodImg() {
+    public String getFoodImg() {
         return foodImg;
     }
 
-    public int getStars() {
+    public String getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void setStars(String stars) {
         this.stars = stars;
     }
 
@@ -75,6 +82,6 @@ public class RecycleView_Model {
     }
 
     public void setFoodImg(int foodImg) {
-        this.foodImg = foodImg;
+        this.foodImg1 = foodImg;
     }
 }

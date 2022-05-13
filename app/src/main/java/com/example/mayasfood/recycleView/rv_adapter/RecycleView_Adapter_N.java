@@ -42,7 +42,7 @@ public class RecycleView_Adapter_N extends RecyclerView.Adapter<RecycleView_Adap
 
         final RecycleView_Model temp = foodModels4.get(position);
 
-        holder.noti_time.setText(foodModels4.get(position).getFoodHeading());
+        holder.noti_time.setText(foodModels4.get(position).getFoodImg());
         holder.noti_body.setText(foodModels4.get(position).getFoodName());
 
 

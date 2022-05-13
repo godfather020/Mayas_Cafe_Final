@@ -124,16 +124,17 @@
             android:inputType="phone"
             android:maxLength="13"
             android:maxLines="1"
+            android:padding="16dp"
             android:textColor="@color/EditTxt_color"
             android:fontFamily="@font/montserrat_bold"
             android:textSize="@dimen/Register_EditTxt"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cc_r"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.hbb20.CountryCodePicker
+        <!--<com.hbb20.CountryCodePicker
             android:id="@+id/cc_r"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -146,7 +147,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/phoneNum_r"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -178,6 +179,7 @@
         android:textColor="@color/Register_skip"
         android:textSize="@dimen/Register_skip"
         android:textStyle="normal"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp"
         app:layout_constraintEnd_toEndOf="parent" />

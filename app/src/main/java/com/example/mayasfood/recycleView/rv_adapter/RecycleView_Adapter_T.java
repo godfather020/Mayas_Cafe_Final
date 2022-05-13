@@ -39,7 +39,7 @@ public class RecycleView_Adapter_T extends RecyclerView.Adapter<RecycleView_Adap
         //Assigning values to the views we created
         final RecycleView_Model temp = foodModels.get(position);
 
-        holder.imageView.setImageResource(foodModels.get(position).getFoodImg());
+        //holder.imageView.setImageResource(foodModels.get(position).getFoodImg());
     }
 
     @Override

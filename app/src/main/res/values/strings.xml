@@ -206,7 +206,7 @@
     <string name="categories">Categories</string>
     <string name="notification">Notification</string>
     <string name="logout">Logout</string>
-    <string name="category_nav">Categories</string>
+    <string name="home_nav">Home</string>
     <string name="favorites">Favorites</string>
     <string name="orders">Orders</string>
     <string name="offers_nav">Offers</string>

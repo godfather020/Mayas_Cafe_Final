@@ -2,6 +2,7 @@ package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,12 @@ import com.example.mayasfood.R;
 import com.example.mayasfood.activity.singleItem;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import kotlin.text.Regex;
 
 public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Adapter_PF.MyViewHolder> {
 
@@ -44,11 +48,19 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         final RecycleView_Model temp = foodModels2.get(position);
 
-        holder.name.setText(foodModels2.get(position).getFoodName());
-        holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
-        holder.price.setText(foodModels2.get(position).getFoodPrice());
+        Log.d("rcPN", foodModels2.get(position).getFoodName());
 
-        if (foodModels2.get(position).getStars() == 1){
+
+        holder.name.setText(foodModels2.get(position).getFoodName());
+
+        Picasso.get()
+                .load(Constants.UserProduct_Path + foodModels2.get(position).getFoodImg())
+                .into(holder.imageView);
+
+        //holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
+        holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
+
+        if (foodModels2.get(position).getStars().matches("^[1][.][12345]")){
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.GONE);
@@ -58,7 +70,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         }
 
-        else if (foodModels2.get(position).getStars() == 2){
+        else if (foodModels2.get(position).getStars().matches("^[1][.][6789]") ||foodModels2.get(position).getStars().matches("^[2][.][1234]")){
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.VISIBLE);
@@ -67,7 +79,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             holder.star5.setVisibility(View.GONE);
         }
 
-        else if (foodModels2.get(position).getStars() == 3){
+        else if (foodModels2.get(position).getStars().matches("^[2][.][6789]") || foodModels2.get(position).getStars().matches("^[3][.][1234]")){
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.VISIBLE);
@@ -76,7 +88,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             holder.star5.setVisibility(View.GONE);
         }
 
-        else if (foodModels2.get(position).getStars() == 4){
+        else if (foodModels2.get(position).getStars().matches("^[3][.][6789]") || foodModels2.get(position).getStars().matches("^[4][.][12345]")){
 
             holder.star1.setVisibility(View.VISIBLE);
             holder.star2.setVisibility(View.VISIBLE);

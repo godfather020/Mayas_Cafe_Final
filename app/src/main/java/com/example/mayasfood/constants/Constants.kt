@@ -18,7 +18,7 @@ object Constants {
         internal const val DEVICE_INFO = "public/deviceInfo"
         internal const val USER_PROFILE = "customer/getprofile"
         internal const val UPDATE_PROFILE = "customer/Updatecustomerprofile"
-        internal const val MY_TICKETS = "v1/myTickets"
+        internal const val MY_COUPONS = "public/Listcoupon"
         internal const val TOP_WINNERS = "v1/topWinners"
         internal const val WALLET_BALANCE = "v1/myWallet"
         internal const val PAYTM_TOKEN = "v1/paytmChecksum"
@@ -51,9 +51,11 @@ object Constants {
     var USER_PHONE = ""
     @JvmField
     var USER_TOKEN = ""
+    @JvmField
+    var onetTime = 1
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
-    const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
+    const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"
     const val userNameError = "Enter a valid name"
     const val emptyFieldError = "Field can't be empty"
     const val phoneNumError = "Enter a valid phone number"

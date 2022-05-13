@@ -3,12 +3,17 @@ package com.example.mayasfood.fragments
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
+import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
+import com.example.mayasfood.fragments.ViewModels.Offers_frag_viewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_O
@@ -18,6 +23,11 @@ class Offers_frag : Fragment() {
 
     lateinit var dashBoard: DashBoard
     var recycleView_models = ArrayList<RecycleView_Model>()
+    val offers_img = ArrayList<String>()
+    val offers_txt = ArrayList<String>()
+    val offers_code = ArrayList<String>()
+    lateinit var offers_frag_viewModel : Offers_frag_viewModel
+    lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,24 +37,55 @@ class Offers_frag : Fragment() {
         val v = inflater.inflate(R.layout.fragment_search_frag, container, false)
         val dashBoard = activity as DashBoard
 
+        offers_frag_viewModel = ViewModelProvider(this).get(Offers_frag_viewModel::class.java)
+
         dashBoard.toolbar_const.setTitle("All Offers");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
-        val recyclerView: RecyclerView = v.findViewById(R.id.offers_rv)
+        recyclerView = v.findViewById(R.id.offers_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
-        val offers_txt = resources.getStringArray(R.array.Offer_txt)
-        val offers_img : ArrayList<Int> = arrayListOf<Int>(R.drawable.image_2, R.drawable._01_1__1_, R.drawable._02_1)
-
-        for (i in offers_txt.indices) {
-            recycleView_models.add(RecycleView_Model(offers_txt[i], offers_img[i]))
-        }
-
-        val recycleView_adapter = RecycleView_Adapter_O(activity, recycleView_models)
-        recyclerView.adapter = recycleView_adapter
-        recycleView_adapter.notifyDataSetChanged()
+        getCoupons()
 
         return v
+    }
+
+    private fun getCoupons() {
+
+        offers_frag_viewModel.getAllCoupons(this, "1").observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    offers_img.clear()
+                    offers_txt.clear()
+                    offers_code.clear()
+
+                    for (i in it.getData()!!.ListcouponResponce!!.indices){
+
+                        offers_img.add(i , it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
+                        offers_txt.add(i , it.getData()!!.ListcouponResponce!![i].title.toString()+" "+it.getData()!!.ListcouponResponce!![i].desc
+                                + " CODE :- " +it.getData()!!.ListcouponResponce!![i].code)
+                        offers_code.add(i , it.getData()!!.ListcouponResponce!![i].code.toString())
+                    }
+
+                    for (i in offers_txt.indices) {
+                        recycleView_models.add(RecycleView_Model(offers_txt[i], offers_img[i], offers_code[i]))
+                    }
+
+                    val recycleView_adapter = RecycleView_Adapter_O(activity, recycleView_models)
+                    recyclerView.adapter = recycleView_adapter
+                    recycleView_adapter.notifyDataSetChanged()
+
+                }
+                else{
+
+                    Log.d("failure", "Failed")
+                }
+
+            }
+        })
     }
 }

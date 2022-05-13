@@ -4,6 +4,7 @@ import com.example.lottry.data.remote.retrofit.request.*
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.Retrofite.request.Request_Registration
 import com.example.mayasfood.Retrofite.request.Request_Verify
+import com.example.mayasfood.Retrofite.request.Request_myCoupons
 import com.example.mayasfood.Retrofite.request.Request_updateProfile
 import com.example.mayasfood.constants.Constants
 import okhttp3.MultipartBody
@@ -50,10 +51,9 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.MY_TICKETS)
-    fun myTicket(
-        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        //@Body body: Request_myTicket
+    @POST(Constants.ApiConstant.MY_COUPONS)
+    fun myCoupons(
+        @Body body: Request_myCoupons
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
