@@ -52,7 +52,7 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
 
         ColorStateList color = holder.cardView.getCardBackgroundColor();
 
-        holder.name.setOnClickListener(new View.OnClickListener() {
+        /*holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -69,7 +69,7 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
                     click = 1;
                 }
             }
-        });
+        });*/
     }
 
     @Override

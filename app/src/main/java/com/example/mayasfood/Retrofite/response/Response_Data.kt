@@ -30,7 +30,7 @@ class Response_Data {
 
     @SerializedName("ListrestaurantproductResponce")
     @Expose
-    var ListrestaurantproductResponce: List<ListrestaurantproductResponce>? = null
+    val ListrestaurantproductResponce: List<ListrestaurantproductResponce>? = null
 
     @SerializedName("ListcouponResponce")
     @Expose

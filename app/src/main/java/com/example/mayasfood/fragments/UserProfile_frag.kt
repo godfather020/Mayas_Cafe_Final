@@ -110,6 +110,8 @@ class UserProfile_frag : Fragment() {
 
         updateProfile.setOnClickListener {
 
+            loading.visibility = View.VISIBLE
+
             if (uploadImgPath != null){
 
                 sendProfileImg(uploadImgPath!!)

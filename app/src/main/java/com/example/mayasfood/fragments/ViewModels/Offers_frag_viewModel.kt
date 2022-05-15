@@ -60,7 +60,7 @@ class Offers_frag_viewModel : ViewModel() {
                     //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
+                    loading.visibility = View.GONE
                     Log.d("Offers", "failed")
                 }
             }

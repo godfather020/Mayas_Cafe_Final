@@ -57,16 +57,15 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.TOP_WINNERS)
-    fun getTopWinners(
-        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_topWinners
+    @POST(Constants.ApiConstant.POPULAR_FOOD)
+    fun getPopularFood(
+        @Body body: Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @GET(Constants.ApiConstant.WALLET_BALANCE)
-    fun getWalletBalance(
-        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String
+    @POST(Constants.ApiConstant.RESTAURANT_CHOICES)
+    fun getRestaurantChoices(
+        @Body body: Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")

@@ -71,7 +71,7 @@ class UserProfile_ViewModel: ViewModel() {
                 }else {
                     val element: JsonElement = Gson().fromJson(response.errorBody()!!.string(), JsonElement::class.java)
                     val jsonObject = element.asJsonObject
-
+                    loading.visibility = View.GONE
                     if(jsonObject.get("code").toString().equals("500")){
 //                       if(jsonObject.get("message").asString.equals(activity.resources.getString(R.string.please_registered_your_number_),true)){
                         //activity.showToast(jsonObject.get("message").asString)
@@ -119,7 +119,7 @@ class UserProfile_ViewModel: ViewModel() {
 
                 }
                 else{
-
+                    loading.visibility = View.GONE
                     Log.d("error", response.message())
                 }
 
@@ -168,7 +168,7 @@ class UserProfile_ViewModel: ViewModel() {
                     commonResponse2.value = response.body()
                 }
                 else{
-
+                    loading.visibility = View.GONE
                     Toast.makeText(activity.requireContext(), response.message(), Toast.LENGTH_SHORT).show()
                 }
             }

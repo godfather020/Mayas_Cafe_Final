@@ -60,7 +60,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         //holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
         holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
 
-        if (foodModels2.get(position).getStars().matches("^[1][.][12345]")){
+        if (foodModels2.get(position).getStars().matches("^[0]") || foodModels2.get(position).getStars().matches("^[0][.]") || foodModels2.get(position).getStars().matches("^[1][.][12345]")){
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.GONE);
@@ -110,13 +110,13 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context, singleItem.class);
+                /*Intent intent = new Intent(context, singleItem.class);
                 intent.putExtra("imagefood", temp.getFoodImg());
                 intent.putExtra("foodname", temp.getFoodName());
                 intent.putExtra("foodprice", temp.getFoodPrice());
                 intent.putExtra("fooddes", temp.getFoodHeading());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
             }
         });
     }

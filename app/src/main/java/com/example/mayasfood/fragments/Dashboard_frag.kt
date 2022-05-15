@@ -21,17 +21,21 @@ import com.example.mayasfood.ViewPagerAdapter.SliderData
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
+import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
 import com.smarteist.autoimageslider.SliderView
+import kotlin.concurrent.fixedRateTimer
 
 
 class Dashboard_frag : Fragment() {
 
     lateinit var dashBoard: DashBoard
     lateinit var see_offers: TextView
+    lateinit var see_popular: TextView
+    lateinit var see_restchoice: TextView
     lateinit var userName : TextView
     //val commonResponse = MutableLiveData<Response_Common>()
     lateinit var viewModel: Dashboard_frag_ViewModel
@@ -84,6 +88,8 @@ class Dashboard_frag : Fragment() {
 
         see_offers = v.findViewById(R.id.see_offers)
         userName = v.findViewById(R.id.user_name)
+        see_popular = v.findViewById(R.id.see_popular)
+        see_restchoice = v.findViewById(R.id.see_restChoice)
 
         if (Constants.USER_NAME != null) {
 
@@ -115,6 +121,18 @@ class Dashboard_frag : Fragment() {
         recyclerView3.layoutManager = layoutManager3
 
 
+        see_popular.setOnClickListener {
+
+            dashBoard.bottomNavigationView.visibility = View.GONE
+            Functions.loadFragment(fragmentManager, popular_frag(), R.id.frag_cont, false, "Popular Food", null)
+        }
+
+        see_restchoice.setOnClickListener {
+
+            dashBoard.bottomNavigationView.visibility = View.GONE
+            Functions.loadFragment(fragmentManager, Restarant_choice_frag(), R.id.frag_cont, false, "Restaurant Choices", null)
+        }
+
         see_offers.setOnClickListener {
 
             dashBoard.bottomNavigationView.selectedItemId = R.id.bottom_nav_discount
@@ -140,7 +158,7 @@ class Dashboard_frag : Fragment() {
 
                             if (it.getSuccess()!!) {
 
-                                //*popularFoodName.clear()
+                                popularFoodName.clear()
                                 popularFoodImg.clear()
                                 popularFoodPrice.clear()
                                 popularFoodRating.clear()

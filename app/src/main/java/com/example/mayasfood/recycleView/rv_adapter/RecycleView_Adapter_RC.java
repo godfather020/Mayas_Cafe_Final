@@ -55,7 +55,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         //holder.imageView.setImageResource(foodModels3.get(position).getFoodImg());
         holder.price.setText("$"+foodModels3.get(position).getFoodPrice());
 
-        if (foodModels3.get(position).getStars().matches("^[1][.][12345]")){
+        if (foodModels3.get(position).getStars().matches("^[0]") || foodModels3.get(position).getStars().matches("^[0][.]") || foodModels3.get(position).getStars().matches("^[1][.][12345]")){
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.GONE);

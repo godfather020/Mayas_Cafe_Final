@@ -87,6 +87,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv1" />
 
                 <TextView
+                    android:id="@+id/see_popular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/rv1"
@@ -209,6 +210,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/relative" />
 
                 <TextView
+                    android:id="@+id/see_restChoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Dashboard_seeAll"
