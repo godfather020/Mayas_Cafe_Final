@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,10 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
-import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
 import com.example.mayasfood.fragments.ViewModels.Offers_frag_viewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_O
 import kotlin.collections.ArrayList
 
@@ -28,19 +27,24 @@ class Offers_frag : Fragment() {
     val offers_code = ArrayList<String>()
     lateinit var offers_frag_viewModel : Offers_frag_viewModel
     lateinit var recyclerView: RecyclerView
+    lateinit var loading : ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v = inflater.inflate(R.layout.fragment_search_frag, container, false)
+        val v = inflater.inflate(R.layout.fragment_offers_frag, container, false)
         val dashBoard = activity as DashBoard
 
         offers_frag_viewModel = ViewModelProvider(this).get(Offers_frag_viewModel::class.java)
 
         dashBoard.toolbar_const.setTitle("All Offers");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+
+        loading = v.findViewById(R.id.loading_offer)
+
+        loading.visibility = View.VISIBLE
 
         recyclerView = v.findViewById(R.id.offers_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -53,7 +57,7 @@ class Offers_frag : Fragment() {
 
     private fun getCoupons() {
 
-        offers_frag_viewModel.getAllCoupons(this, "1").observe(viewLifecycleOwner, Observer {
+        offers_frag_viewModel.getAllCoupons(this, "1", loading).observe(viewLifecycleOwner, Observer {
 
             if (it != null){
 
@@ -79,6 +83,7 @@ class Offers_frag : Fragment() {
                     recyclerView.adapter = recycleView_adapter
                     recycleView_adapter.notifyDataSetChanged()
 
+                    loading.visibility = View.GONE
                 }
                 else{
 

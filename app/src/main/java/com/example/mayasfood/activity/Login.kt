@@ -39,6 +39,7 @@ class Login : AppCompatActivity() {
     lateinit var storedVerificationId: String
     lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var loading : ProgressBar
+    lateinit var skip : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +53,19 @@ class Login : AppCompatActivity() {
         cc = findViewById(R.id.cc)
         auth = FirebaseAuth.getInstance()
         loading = findViewById(R.id.loading_bar)
+        skip = findViewById(R.id.skip)
 
         Constants.cc = "+"+cc.selectedCountryCode
 
         Log.d("cc", Constants.cc)
+
+        skip.setOnClickListener {
+
+            startActivity(Intent(this@Login, DashBoard::class.java))
+            finish()
+
+
+        }
 
         cc.setOnCountryChangeListener(OnCountryChangeListener {
             Constants.cc = "+"+cc.selectedCountryCode
@@ -76,45 +86,6 @@ class Login : AppCompatActivity() {
                 getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, phoneNumber).apply()
                 loading.visibility = View.VISIBLE
                 sendVerificationCode(phoneNumber)
-
-                /*viewModel.get_otp(this, phoneNumber).observe(this, Observer {
-
-                    if (it != null){
-
-                        if (it.getSuccess() == true){
-
-                            Log.d("success", "success")
-
-                            getSharedPreferences("UserPhone", MODE_PRIVATE).edit().putString("UserPhone", phoneNumber).apply()
-
-                            startActivity(Intent(this@Login, OTP::class.java))
-                            finish()
-                        }
-                        else {
-
-                            Log.d("success", "failed")
-
-                            val intent : Intent = Intent(this@Login, Registration::class.java)
-
-                            intent.putExtra("UserPhone", phoneNumber)
-                            startActivity(intent)
-                            finish()
-
-                        }
-                    }
-
-                    else {
-
-                        Log.d("success", "failed1")
-                        val intent : Intent = Intent(this@Login, Registration::class.java)
-
-                        intent.putExtra("UserPhone", phoneNumber)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
-                        finish()
-                    }
-                })*/
-
 
             } else {
                 Toast.makeText(this@Login, "Check Information", Toast.LENGTH_SHORT).show()

@@ -1,17 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.core:core-ktx:1.7.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f587b1bada15b08f29735c09dfb96ed5/transformed/jetified-core-ktx-1.7.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f587b1bada15b08f29735c09dfb96ed5/transformed/jetified-core-ktx-1.7.0/res" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f587b1bada15b08f29735c09dfb96ed5/transformed/jetified-core-ktx-1.7.0/jars/classes.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/67f3361939b84b789cb68df23d9c3f87/transformed/jetified-core-ktx-1.7.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/67f3361939b84b789cb68df23d9c3f87/transformed/jetified-core-ktx-1.7.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/67f3361939b84b789cb68df23d9c3f87/transformed/jetified-core-ktx-1.7.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/77cb3f4c61f33314779adc127f8a4cdb/transformed/jetified-core-ktx-1.7.0/res" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/77cb3f4c61f33314779adc127f8a4cdb/transformed/jetified-core-ktx-1.7.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/77cb3f4c61f33314779adc127f8a4cdb/transformed/jetified-core-ktx-1.7.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.core/core-ktx/1.7.0/8ab417a25ecc45ec8996edeef98f1b77b4690dd8/core-ktx-1.7.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.core/core-ktx/1.7.0/8ab417a25ecc45ec8996edeef98f1b77b4690dd8/core-ktx-1.7.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -43,6 +43,7 @@ import com.example.mayasfood.fragments.Favorite_frag;
 import com.example.mayasfood.fragments.Notification_frag;
 import com.example.mayasfood.fragments.Offers_frag;
 import com.example.mayasfood.fragments.Orders_frag;
+import com.example.mayasfood.fragments.Search_frag;
 import com.example.mayasfood.fragments.UserProfile_frag;
 import com.example.mayasfood.functions.Functions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -86,10 +87,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         String token = FirebaseCloudMsg.getToken(this);
         Log.d("mainToken", token);
 
+        auth = FirebaseAuth.getInstance();
+
         viewModelProvider = new ViewModelProvider(this);
         getStart_viewModel = viewModelProvider.get(GetStart_ViewModel.class);
-
-
 
         sharedPreferencesUtil = new SharedPreferencesUtil(this);
 
@@ -118,6 +119,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
 
         bottomNavigationView = findViewById(R.id.chip_nav);
+
+        bottomNavigationView.setVisibility(View.VISIBLE);
 
         bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
 
@@ -188,6 +191,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         navigationView.setCheckedItem(R.id.homeNav);
 
+        if (auth.getCurrentUser() == null) {
+
+            navigationView.getMenu().getItem(5).setTitle("Login");
+        }
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -204,8 +212,12 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 close = findViewById(R.id.close_frag);
                 user_profile = findViewById(R.id.user_profile);
                 user_name_nav = findViewById(R.id.user_name_nav);
-
-                user_name_nav.setText(Constants.USER_NAME);
+                if (Constants.USER_NAME != null) {
+                    user_name_nav.setText(Constants.USER_NAME);
+                }
+                else {
+                    user_name_nav.setText("Ramu Kaka");
+                }
 
                 close.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -236,18 +248,20 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     //user_profile.setImageBitmap(bitmap);
                 }
 
+                //if (auth.getCurrentUser() != null) {
 
-
-                user_profile.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        drawerLayout.isDrawerOpen(GravityCompat.START);
-                        {
-                            Functions.loadFragment(getSupportFragmentManager(), new UserProfile_frag(), R.id.frag_cont, false, "UserProfile", null);
-                            drawerLayout.closeDrawer(GravityCompat.START);
+                    user_profile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            drawerLayout.isDrawerOpen(GravityCompat.START);
+                            {
+                                bottomNavigationView.setVisibility(View.GONE);
+                                Functions.loadFragment(getSupportFragmentManager(), new UserProfile_frag(), R.id.frag_cont, false, "UserProfile", null);
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                            }
                         }
-                    }
-                });
+                    });
+               // }
             }
         };
 
@@ -272,6 +286,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         @Override
                         public void onClick(View view) {
                             Log.d("backClick", "back");
+                            bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
                             getSupportFragmentManager().popBackStack();
                         }
@@ -305,15 +320,21 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         int id = item.getItemId();
 
         if (id == R.id.search) {
+            bottomNavigationView.setVisibility(View.GONE);
+            toolbar_const.getMenu().getItem(0).setVisible(false);
             Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+            Functions.loadFragment(getSupportFragmentManager(), new Search_frag(), R.id.frag_cont, false, "Search", null);
+
         } else if (id == R.id.notification) {
 
             toolbar_const.getMenu().getItem(1).setVisible(false);
             navigationView.setCheckedItem(R.id.notificationNav);
-            Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, true, "Notification", null);
+            bottomNavigationView.setVisibility(View.GONE);
+            Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
 
             Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.cart) {
+            bottomNavigationView.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }
         return true;
@@ -364,40 +385,23 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
             case R.id.notificationNav:
                 navigationView.setCheckedItem(R.id.notificationNav);
-                Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, true, "Notification", null);
+                bottomNavigationView.setVisibility(View.GONE);
+                Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
                 break;
 
             case R.id.logoutNav:
 
-                drawerLayout.closeDrawer(GravityCompat.START);
-                AlertDialog.Builder builder = new AlertDialog.Builder(DashBoard.this);
-                builder.setCancelable(false);
-                builder.setTitle("Do you want to logout");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                if (auth.getCurrentUser() != null) {
 
-                        auth = FirebaseAuth.getInstance();
-                        auth.signOut();
+                    dialog("Do you want to logout?");
 
-                        getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", false).apply();
-                        startActivity(new Intent(DashBoard.this, Login.class));
-                        finish();
-                    }
-                });
+                }
+                else {
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+                    dialog("Do you want to login?");
 
-                Dialog alertDialog = builder.create();
-                alertDialog.show();
-
+                }
                 break;
-
         }
 
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
@@ -414,6 +418,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
                             getSupportFragmentManager().popBackStack();
                         }
@@ -518,5 +523,37 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 bitmap.getHeight(), matrix, true);
 
         return bitmap;
+    }
+
+    private void dialog(String msg){
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+        AlertDialog.Builder builder = new AlertDialog.Builder(DashBoard.this);
+        builder.setCancelable(false);
+        builder.setTitle(msg);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                //auth = FirebaseAuth.getInstance();
+                auth.signOut();
+
+                getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", false).apply();
+                startActivity(new Intent(DashBoard.this, Login.class));
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        Dialog alertDialog = builder.create();
+        alertDialog.show();
+
+
     }
 }

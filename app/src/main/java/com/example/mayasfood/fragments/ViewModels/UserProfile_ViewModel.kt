@@ -26,6 +26,7 @@ import java.io.File
 class UserProfile_ViewModel: ViewModel() {
 
     lateinit var activity: Fragment
+    lateinit var loading : ProgressBar
 
     val commonResponse = MutableLiveData<Response_Common>()
     val commonResponse1 = MutableLiveData<Response_Common>()
@@ -88,7 +89,7 @@ class UserProfile_ViewModel: ViewModel() {
 //               TODO("Not yet implemented")
 //               binding.progessBar.visibility= View.GONE
                 Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
-
+                loading.visibility = View.GONE
                 Log.d("imgUploaded", t.toString())
             }
         })
@@ -96,11 +97,12 @@ class UserProfile_ViewModel: ViewModel() {
         return commonResponse
     }
 
-    fun getUserDetails(activity: Fragment):MutableLiveData<Response_Common>{
+    fun getUserDetails(activity: Fragment, loading : ProgressBar):MutableLiveData<Response_Common>{
 
         Log.d("userT", Constants.USER_TOKEN)
 
         this.activity=activity
+        this.loading = loading.findViewById(R.id.loading)
 
         val retrofitInstance: RetrofitInstance = RetrofitInstance()
         val retrofitData = retrofitInstance.retrofit.getUserProfile(Constants.USER_TOKEN)
@@ -126,6 +128,7 @@ class UserProfile_ViewModel: ViewModel() {
             override fun onFailure(call: Call<Response_Common>, t: Throwable) {
 
                 Log.d("userDetails", t.toString())
+                loading.visibility = View.GONE
 
                 Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
 
@@ -172,6 +175,7 @@ class UserProfile_ViewModel: ViewModel() {
 
             override fun onFailure(call: Call<Response_Common>, t: Throwable) {
                 Log.d("error", t.toString())
+                loading.visibility = View.GONE
             }
         })
 

@@ -1,21 +1,20 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.material:material:1.5.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/49d4d1e6ecc1ef6576dc3c7a0ada8292/transformed/material-1.5.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3768d56baa047e83ea5f0749017cbf28/transformed/material-1.5.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f48cc5b0ff2e4d9b94759c85c20c271d/transformed/material-1.5.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/49d4d1e6ecc1ef6576dc3c7a0ada8292/transformed/material-1.5.0/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/49d4d1e6ecc1ef6576dc3c7a0ada8292/transformed/material-1.5.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/49d4d1e6ecc1ef6576dc3c7a0ada8292/transformed/material-1.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3768d56baa047e83ea5f0749017cbf28/transformed/material-1.5.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3768d56baa047e83ea5f0749017cbf28/transformed/material-1.5.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3768d56baa047e83ea5f0749017cbf28/transformed/material-1.5.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f48cc5b0ff2e4d9b94759c85c20c271d/transformed/material-1.5.0/res" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f48cc5b0ff2e4d9b94759c85c20c271d/transformed/material-1.5.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f48cc5b0ff2e4d9b94759c85c20c271d/transformed/material-1.5.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.material/material/1.5.0/8d3b87c7463f55053836b805e014cb238f64757a/material-1.5.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.5.0/8d3b87c7463f55053836b805e014cb238f64757a/material-1.5.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

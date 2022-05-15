@@ -1,18 +1,22 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.bumptech.glide:gifdecoder:4.11.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/769520f0cf21e0ee36933d9481372d44/transformed/jetified-gifdecoder-4.11.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0962940dc1b4fa7928c9ad2968453b06/transformed/jetified-gifdecoder-4.11.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/649ff84a7379dc2d3928c8bf353b4fbd/transformed/jetified-gifdecoder-4.11.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d5b2df53faa23a4560ddb885171aa773/transformed/jetified-gifdecoder-4.11.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/d5b2df53faa23a4560ddb885171aa773/transformed/jetified-gifdecoder-4.11.0/res" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/769520f0cf21e0ee36933d9481372d44/transformed/jetified-gifdecoder-4.11.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/769520f0cf21e0ee36933d9481372d44/transformed/jetified-gifdecoder-4.11.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/769520f0cf21e0ee36933d9481372d44/transformed/jetified-gifdecoder-4.11.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0962940dc1b4fa7928c9ad2968453b06/transformed/jetified-gifdecoder-4.11.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0962940dc1b4fa7928c9ad2968453b06/transformed/jetified-gifdecoder-4.11.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0962940dc1b4fa7928c9ad2968453b06/transformed/jetified-gifdecoder-4.11.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/468dd44b9d3616218b2c8aa9ec00d20e/transformed/jetified-gifdecoder-4.11.0/res" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0962940dc1b4fa7928c9ad2968453b06/transformed/jetified-gifdecoder-4.11.0/res" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/b2d651392ff194cfabeef69f2d54d363/transformed/jetified-gifdecoder-4.11.0/res" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/649ff84a7379dc2d3928c8bf353b4fbd/transformed/jetified-gifdecoder-4.11.0/res" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/649ff84a7379dc2d3928c8bf353b4fbd/transformed/jetified-gifdecoder-4.11.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/649ff84a7379dc2d3928c8bf353b4fbd/transformed/jetified-gifdecoder-4.11.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.11.0/aa879357fc550aa27b5047d401997803a6a6bf38/gifdecoder-4.11.0-javadoc.jar!/" />

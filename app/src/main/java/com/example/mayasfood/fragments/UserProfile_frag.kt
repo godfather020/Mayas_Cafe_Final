@@ -173,7 +173,7 @@ class UserProfile_frag : Fragment() {
 
     private fun getUserDetals() {
 
-        viewModel.getUserDetails(this).observe(viewLifecycleOwner, Observer {
+        viewModel.getUserDetails(this, loading).observe(viewLifecycleOwner, Observer {
 
             if (it != null){
 

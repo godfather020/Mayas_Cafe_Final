@@ -1,32 +1,32 @@
 package com.example.mayasfood.fragments
 
-import com.example.mayasfood.activity.DashBoard
-import com.example.mayasfood.R
-import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.ListcouponResponce
 import com.example.mayasfood.Retrofite.response.Response_Common
-import com.example.mayasfood.ViewPagerAdapter.SliderData
-import com.smarteist.autoimageslider.SliderView
 import com.example.mayasfood.ViewPagerAdapter.SliderAdapter
+import com.example.mayasfood.ViewPagerAdapter.SliderData
+import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
+import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
-import java.util.ArrayList
+import com.smarteist.autoimageslider.SliderView
+
 
 class Dashboard_frag : Fragment() {
 
@@ -74,16 +74,25 @@ class Dashboard_frag : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_dashboard_frag, container, false)
 
-
         //viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, dataObserver)
+        viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
 
         homeResList =ArrayList<ListcouponResponce>()
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
+       // dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
         see_offers = v.findViewById(R.id.see_offers)
         userName = v.findViewById(R.id.user_name)
 
-        userName.setText(Constants.USER_NAME)
+        if (Constants.USER_NAME != null) {
+
+            userName.setText(Constants.USER_NAME)
+        }
+        else{
+
+            userName.setText("Ramu Kaka")
+        }
         loading = v.findViewById(R.id.progress_bar)
         loading.visibility = View.VISIBLE
 
@@ -118,7 +127,9 @@ class Dashboard_frag : Fragment() {
 
     private fun setDashboardView() {
 
-        //viewModel.getDashboardData(this, "1").removeObserver { this }
+        //viewModel.getDashboardData(this, "1").removeObserver(this)
+        //viewModel.getDashboardData(this, "1").observe(this,observer)
+
             viewModel.getDashboardData(this, "1").observe(this, object : Observer<Response_Common> {
 
                 override fun onChanged(it: Response_Common?) {
@@ -129,7 +140,7 @@ class Dashboard_frag : Fragment() {
 
                             if (it.getSuccess()!!) {
 
-                                popularFoodName.clear()
+                                //*popularFoodName.clear()
                                 popularFoodImg.clear()
                                 popularFoodPrice.clear()
                                 popularFoodRating.clear()
@@ -287,10 +298,16 @@ class Dashboard_frag : Fragment() {
                             }
                             setUpFoodModel()
                         }
+
+
                     }
+
+                    viewModel.getDashboardData(this@Dashboard_frag, "1").removeObserver(this)
                 }
+
             })
-        }
+
+            }
 
     private fun setUpFoodModel() {
 
@@ -345,33 +362,42 @@ class Dashboard_frag : Fragment() {
         super.onResume()
         notResumed = false
         Log.d("life", "resume")
+        Log.d("lifer", Constants.onetTime.toString())
+        //viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
         setDashboardView()
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("life", "create")
-        viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
-        //setDashboardView()
+        Log.d("lifec", Constants.onetTime.toString())
+
+        //if (Constants.onetTime == 1) {
+
+            //setDashboardView()
+        //}
     }
 
     override fun onPause() {
         super.onPause()
         Log.d("life", "pause")
+        Log.d("lifep", Constants.onetTime.toString())
     }
 
     override fun onStop() {
         Log.d("life", "stop")
         super.onStop()
-        notResumed = true
+        this.onDestroy()
+        //Constants.onetTime = 0
+        Log.d("lifes", Constants.onetTime.toString())
 
-        if (notResumed){
-            this.onDestroy()
-        }
     }
 
     override fun onDestroy() {
         Log.d("life", "destroy")
         super.onDestroy()
+        //Constants.onetTime = 1
+        Log.d("lifed", Constants.onetTime.toString())
     }
 }

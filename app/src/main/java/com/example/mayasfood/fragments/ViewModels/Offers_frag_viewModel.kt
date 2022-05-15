@@ -1,10 +1,13 @@
 package com.example.mayasfood.fragments.ViewModels
 
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.request.Request_myCoupons
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
@@ -19,9 +22,13 @@ class Offers_frag_viewModel : ViewModel() {
 
     val commonResponse = MutableLiveData<Response_Common>()
 
-    fun getAllCoupons(activity : Fragment, branchId : String): MutableLiveData<Response_Common> {
+    lateinit var loading : ProgressBar
+
+    fun getAllCoupons(activity : Fragment, branchId : String, loading: ProgressBar): MutableLiveData<Response_Common> {
 
         this.activity = activity
+
+        this.loading = loading.findViewById(R.id.loading_offer)
 
         val requestMycoupons : Request_myCoupons = Request_myCoupons()
 
@@ -59,6 +66,7 @@ class Offers_frag_viewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
+                loading.visibility = View.GONE
                 Toast.makeText(activity.requireContext(), t.toString(), Toast.LENGTH_SHORT).show()
             }
         })
