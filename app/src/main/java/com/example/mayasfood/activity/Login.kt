@@ -40,6 +40,7 @@ class Login : AppCompatActivity() {
     lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var loading : ProgressBar
     lateinit var skip : TextView
+    var code : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,13 +107,17 @@ class Login : AppCompatActivity() {
 
     private fun sendVerificationCode(phoneNumber: String) {
 
-        mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        val  mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
+
+        = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
                 loading.visibility = View.GONE
 
                 Toast.makeText(applicationContext, "Enter 6 digit OTP", Toast.LENGTH_SHORT).show()
+
+                code = credential.smsCode
 
             }
 
@@ -129,10 +134,19 @@ class Login : AppCompatActivity() {
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
 
+                storedVerificationId = verificationId
+
+                Log.d("OTP", code.toString())
+
                 loading.visibility = View.GONE
                 val intent: Intent = Intent(this@Login, OTP::class.java)
-                intent.putExtra("verifyID", verificationId)
+                intent.putExtra("verifyID", storedVerificationId)
+                if (code != null){
+
+                    getSharedPreferences("OTP", MODE_PRIVATE).edit().putString("OTP", code).apply()
+                }
                 startActivity(intent)
+                finish()
             }
         }
 

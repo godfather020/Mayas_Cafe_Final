@@ -70,6 +70,8 @@ class OTP : AppCompatActivity() {
 
         val getOTP = intent.getStringExtra("getOtp").toString()
 
+        val code = getSharedPreferences("OTP", MODE_PRIVATE).getString("OTP", null)
+
         otp1 = findViewById(R.id.otp1)
         otp2 = findViewById(R.id.otp2)
         otp3 = findViewById(R.id.otp3)
@@ -122,6 +124,32 @@ class OTP : AppCompatActivity() {
                 }
             }
         })
+
+        if (code != null){
+
+            Log.d("OTP", code)
+
+            val sotp1 = code.substring(0, 1)
+            Log.d("o1", sotp1)
+            val sotp2 = code.substring(1, 2)
+            Log.d("o2", sotp2)
+            val sotp3 = code.substring(2, 3)
+            Log.d("o3", sotp3)
+            val sotp4 = code.substring(3, 4)
+            Log.d("o4", sotp4)
+            val sotp5 = code.substring(4, 5)
+            Log.d("o5", sotp5)
+            val sotp6 = code.substring(5)
+            Log.d("o6", sotp6)
+
+            otp1.setText(sotp1)
+            otp2.setText(sotp2)
+            otp3.setText(sotp3)
+            otp4.setText(sotp4)
+            otp5.setText(sotp5)
+            otp6.setText(sotp6)
+        }
+
         img_back_otp.setOnClickListener(View.OnClickListener {
             startActivity(
                 Intent(
@@ -232,11 +260,16 @@ class OTP : AppCompatActivity() {
                             getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", true).apply()
 
                             getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it.getData()!!.result!!.phoneNumber).apply()
+                            sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N , it.getData()!!.result!!.userName)
                             getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it.getData()!!.result!!.userName).apply()
                             getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.result!!.profilePic).apply()
                             getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.X_TOKEN, it.getData()!!.token).apply()
                             sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.result!!.profilePic)
 
+                            Log.d("userN",
+                                sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_N)
+                                    .toString()
+                            )
 
                             Log.d("userToken",
                                 getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.X_TOKEN, "")
@@ -323,6 +356,34 @@ class OTP : AppCompatActivity() {
                 loading.visibility = View.GONE
 
                 Toast.makeText(applicationContext, "Enter 6 digit OTP", Toast.LENGTH_SHORT).show()
+
+                val code = credential.smsCode
+
+                if (code != null){
+
+                    Log.d("OTP", code)
+
+                    val sotp1 = code.substring(0, 1)
+                    Log.d("o1", sotp1)
+                    val sotp2 = code.substring(1, 2)
+                    Log.d("o2", sotp2)
+                    val sotp3 = code.substring(2, 3)
+                    Log.d("o3", sotp3)
+                    val sotp4 = code.substring(3, 4)
+                    Log.d("o4", sotp4)
+                    val sotp5 = code.substring(4, 5)
+                    Log.d("o5", sotp5)
+                    val sotp6 = code.substring(5)
+                    Log.d("o6", sotp6)
+
+                    otp1.setText(sotp1)
+                    otp2.setText(sotp2)
+                    otp3.setText(sotp3)
+                    otp4.setText(sotp4)
+                    otp5.setText(sotp5)
+                    otp6.setText(sotp6)
+
+                }
 
             }
 

@@ -49,7 +49,7 @@ class Registration : AppCompatActivity() {
     private var dataCheck = false
     private var user_name: String? = null
     private var user_phone: String? = null
-    lateinit var cc_r: CountryCodePicker
+    //lateinit var cc_r: CountryCodePicker
     lateinit var profile_btn: ImageView
     lateinit var profile_img: ImageView
     lateinit var auth: FirebaseAuth
@@ -74,23 +74,23 @@ class Registration : AppCompatActivity() {
         signUp = findViewById(R.id.signUp)
         skip = findViewById(R.id.skip)
         back_img_r = findViewById(R.id.back_img_r)
-        cc_r = findViewById(R.id.cc_r)
+        //cc_r = findViewById(R.id.cc_r)
         profile_btn = findViewById(R.id.profileBtn_r)
         profile_img = findViewById(R.id.profileImg_r)
         loading = findViewById(R.id.loading_bar)
 
-        Constants.cc = "+"+cc_r.getSelectedCountryCode()
+        //Constants.cc = "+"+cc_r.getSelectedCountryCode()
 
         if (!getIntent().getStringExtra("userPhone").isNullOrEmpty()) {
 
             var user_phone_intent = intent.getStringExtra("userPhone").toString()
 
-            var user_phone_intent1 = user_phone_intent.removeRange(0,3)
+            var user_phone_intent1 = user_phone_intent
 
             phoneNum.setText(user_phone_intent1)
             phoneNum.isEnabled = false
-            cc_r.isEnabled = false
-            cc_r.isClickable = false
+            //cc_r.isEnabled = false
+            //cc_r.isClickable = false
             Log.d("user_phone_intent", user_phone_intent1)
         }
 
@@ -99,10 +99,10 @@ class Registration : AppCompatActivity() {
             finish()
         }
 
-        cc_r.setOnCountryChangeListener(OnCountryChangeListener {
+        /*cc_r.setOnCountryChangeListener(OnCountryChangeListener {
             Constants.cc = "+"+cc_r.getSelectedCountryCode()
             Log.d("CountryCode", Constants.cc)
-        })
+        })*/
 
         profile_btn.setOnClickListener {
 

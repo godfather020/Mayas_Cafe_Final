@@ -41,6 +41,7 @@ class Dashboard_frag : Fragment() {
     lateinit var viewModel: Dashboard_frag_ViewModel
     lateinit var sliderView: SliderView
     var categoryName = ArrayList<String>()
+    var categoryId = ArrayList<String>()
     var popularFoodName = ArrayList<String>()
     var popularFoodPrice = ArrayList<String>()
     var popularFoodImg = ArrayList<String>()
@@ -302,6 +303,7 @@ class Dashboard_frag : Fragment() {
                                         i,
                                         it.getData()!!.ListcategoryResponce!![i].categoryName.toString()
                                     )
+                                    categoryId.add(i , it.getData()!!.ListcategoryResponce!![i].id.toString())
 
                                     Log.d(
                                         "indiimage",
@@ -315,6 +317,7 @@ class Dashboard_frag : Fragment() {
                                 Log.d("response", "Failed")
                             }
                             setUpFoodModel()
+
                         }
 
 
@@ -330,10 +333,10 @@ class Dashboard_frag : Fragment() {
     private fun setUpFoodModel() {
 
 
-        for (s in categoryName) {
-            recycleView_models.add(RecycleView_Model(s))
+        for (s in categoryName.indices) {
+            recycleView_models.add(RecycleView_Model(categoryName[s], categoryId[s]))
 
-            Log.d("indiimage1", s)
+            Log.d("indiimage1", categoryId[s])
         }
         for (i in popularFoodName.indices) {
             recycleView_models1.add(

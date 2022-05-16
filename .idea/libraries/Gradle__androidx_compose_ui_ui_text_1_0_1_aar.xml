@@ -11,6 +11,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.compose.ui/ui-text/1.0.1/4536a690eae671aebd209959855372e537aee7d5/ui-text-1.0.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.ui/ui-text/1.0.1/4536a690eae671aebd209959855372e537aee7d5/ui-text-1.0.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -11,6 +11,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.compose.runtime/runtime/1.0.1/c431c33253972911af37ad57b36ada1dd3c02c11/runtime-1.0.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.runtime/runtime/1.0.1/c431c33253972911af37ad57b36ada1dd3c02c11/runtime-1.0.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

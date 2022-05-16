@@ -89,7 +89,7 @@ class FirebaseCloudMsg : FirebaseMessagingService() {
         Log.d("msgbody", title)
         Log.d("msgbody", body)
 
-        if (body.contains("OTP")) {
+        if (body.contains("code")) {
             val pattern = Pattern.compile("(|^)\\d{6}")
             val matcher = pattern.matcher(body)
             if (matcher.find()) {

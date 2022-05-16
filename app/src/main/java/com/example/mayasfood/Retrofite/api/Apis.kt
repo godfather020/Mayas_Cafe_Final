@@ -1,11 +1,8 @@
 package com.example.lottry.data.remote.retrofit.api
 
 import com.example.lottry.data.remote.retrofit.request.*
+import com.example.mayasfood.Retrofite.request.*
 import com.example.mayasfood.Retrofite.response.Response_Common
-import com.example.mayasfood.Retrofite.request.Request_Registration
-import com.example.mayasfood.Retrofite.request.Request_Verify
-import com.example.mayasfood.Retrofite.request.Request_myCoupons
-import com.example.mayasfood.Retrofite.request.Request_updateProfile
 import com.example.mayasfood.constants.Constants
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -69,10 +66,9 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.PAYTM_TOKEN)
-    fun getPaytmToken(
-        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_paytmChecksum
+    @POST(Constants.ApiConstant.LIST_PRODUCTS)
+    fun getFoodCategory(
+        @Body body: Request_CategoryDetails
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")

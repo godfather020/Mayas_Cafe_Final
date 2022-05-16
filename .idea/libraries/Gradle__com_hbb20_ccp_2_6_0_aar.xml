@@ -10,9 +10,11 @@
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.hbb20/ccp/2.6.0/4704abc1c0b81d9dfdca2df997a79ffb6e495c75/ccp-2.6.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hbb20/ccp/2.6.0/4704abc1c0b81d9dfdca2df997a79ffb6e495c75/ccp-2.6.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.hbb20/ccp/2.6.0/e6566ea9e9a43af02d764e8788e39504e1bec744/ccp-2.6.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.hbb20/ccp/2.6.0/e6566ea9e9a43af02d764e8788e39504e1bec744/ccp-2.6.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

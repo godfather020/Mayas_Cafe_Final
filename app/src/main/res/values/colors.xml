@@ -34,6 +34,7 @@
     <color name="Food_category_bg">#F2EFF0</color>
     <color name="Food_category_txt">#82838B</color>
     <color name="Card_View">#FFFFFF</color>
+    <color name="Card_Back">#363853</color>
     <color name="Popular_title">#000000</color>
     <color name="Popular_rate">#363853</color>
     <color name="Rest_choice_txt">#000000</color>

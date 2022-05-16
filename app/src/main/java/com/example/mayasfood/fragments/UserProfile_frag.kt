@@ -149,7 +149,7 @@ class UserProfile_frag : Fragment() {
 
                 if (it.getSuccess()!!){
 
-
+                    loading.visibility = View.GONE
 
                     Constants.USER_NAME = user_Name
 

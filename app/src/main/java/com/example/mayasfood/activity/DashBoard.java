@@ -287,8 +287,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         public void onClick(View view) {
                             Log.d("backClick", "back");
                             bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
-                            getSupportFragmentManager().popBackStack();
+                            //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                            Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                            Constants.onetTime = 1;
+                            //getSupportFragmentManager().popBackStack();
                         }
                     });
 
@@ -419,8 +421,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         @Override
                         public void onClick(View view) {
                             bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
-                            getSupportFragmentManager().popBackStack();
+                            //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                            Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                            Constants.onetTime = 1;
+                            //getSupportFragmentManager().popBackStack();
                         }
                     });
 

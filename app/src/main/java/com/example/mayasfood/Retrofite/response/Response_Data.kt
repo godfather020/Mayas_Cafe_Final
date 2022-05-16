@@ -28,6 +28,10 @@ class Response_Data {
     @Expose
     var userName: String = ""
 
+    @SerializedName("ListproductResponce" )
+    @Expose
+    var ListproductResponce : List<ListproductResponce>? = null
+
     @SerializedName("ListrestaurantproductResponce")
     @Expose
     val ListrestaurantproductResponce: List<ListrestaurantproductResponce>? = null

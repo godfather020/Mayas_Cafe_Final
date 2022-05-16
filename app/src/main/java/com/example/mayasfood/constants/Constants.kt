@@ -21,7 +21,7 @@ object Constants {
         internal const val MY_COUPONS = "public/Listcoupon"
         internal const val POPULAR_FOOD = "public/Listpopularproduct"
         internal const val RESTAURANT_CHOICES = "public/Listrestaurentproduct"
-        internal const val PAYTM_TOKEN = "v1/paytmChecksum"
+        internal const val LIST_PRODUCTS = "public/Listproduct"
         internal const val TRANS_HISTORY = "v1/myTransactions"
         internal const val NOTIFICATION = "v1/notifications"
         internal const val ADD_WALLET_BALANCE = "v1/addWallet"
@@ -43,6 +43,7 @@ object Constants {
         internal const val USER_N = "userName"
         internal const val USER_P = "userPhone"
         internal const val USER_I = "userProfile"
+        internal const val CATEGORYID = "categoryID"
 
     }
     @JvmField
@@ -53,6 +54,8 @@ object Constants {
     var USER_TOKEN = ""
     @JvmField
     var onetTime = 1
+    @JvmField
+    var categoryId = "0"
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
     const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"

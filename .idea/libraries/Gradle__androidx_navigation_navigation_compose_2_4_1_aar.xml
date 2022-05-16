@@ -11,6 +11,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.navigation/navigation-compose/2.4.1/62becddcad66de8aa78af1f5872dc8a3d6ee8526/navigation-compose-2.4.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-compose/2.4.1/62becddcad66de8aa78af1f5872dc8a3d6ee8526/navigation-compose-2.4.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

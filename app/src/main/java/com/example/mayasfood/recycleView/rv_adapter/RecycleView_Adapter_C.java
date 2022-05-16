@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
 import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.fragments.Dashboard_Category_frag;
+import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 
 import java.util.ArrayList;
@@ -50,7 +57,21 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
 
         holder.name.setText(foodModels.get(position).getFoodName());
 
+        String categoryId = foodModels.get(position).getFoodImg();
+
         ColorStateList color = holder.cardView.getCardBackgroundColor();
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                Constants.categoryId = foodModels.get(position).getFoodImg();
+
+                Functions.loadFragment(activity.getSupportFragmentManager(), new Dashboard_Category_frag(),R.id.frag_cont, false, "Category", null);
+            }
+        });
 
         /*holder.name.setOnClickListener(new View.OnClickListener() {
             @Override

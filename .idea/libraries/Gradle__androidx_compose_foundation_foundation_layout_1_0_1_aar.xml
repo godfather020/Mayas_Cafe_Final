@@ -11,6 +11,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.compose.foundation/foundation-layout/1.0.1/1ae2a585cf8094a49d274c2d4aaf8ec6ac233270/foundation-layout-1.0.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.foundation/foundation-layout/1.0.1/1ae2a585cf8094a49d274c2d4aaf8ec6ac233270/foundation-layout-1.0.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
