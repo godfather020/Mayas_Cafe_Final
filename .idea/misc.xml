@@ -92,6 +92,8 @@
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_details_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard__category_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_popular_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_restarant_choice_frag.xml" value="0.2864583333333333" />
       </map>
     </option>
   </component>

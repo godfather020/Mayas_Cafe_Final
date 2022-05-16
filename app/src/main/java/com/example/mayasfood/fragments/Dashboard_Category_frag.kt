@@ -57,7 +57,9 @@ class Dashboard_Category_frag : Fragment() {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
 
-        Functions.loadFragment(parentFragmentManager, CategoryDetails_frag(), R.id.frag_cont_cat, false, "Details", null)
+        Functions.loadFragment(fragmentManager, CategoryDetails_frag(), R.id.frag_cont_cat, false, "Details", null)
+
+        Constants.popBack = 1
 
         setUpCategoryView()
 

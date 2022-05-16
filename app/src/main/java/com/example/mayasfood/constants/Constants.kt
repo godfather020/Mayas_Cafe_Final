@@ -56,6 +56,8 @@ object Constants {
     var onetTime = 1
     @JvmField
     var categoryId = "0"
+    @JvmField
+    var popBack = 0
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
     const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"

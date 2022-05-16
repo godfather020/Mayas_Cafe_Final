@@ -166,10 +166,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     case R.id.invisible:
                         navigationView.setCheckedItem(R.id.categoriesNav);
                         //toolbar_const.setTitle("");
+                        bottomNavigationView.setVisibility(View.GONE);
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(2).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
-                        Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, true, "DashBoard", null );
+                        Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "DashBoard", null );
                         return true;
 
                 }
@@ -286,9 +287,22 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         @Override
                         public void onClick(View view) {
                             Log.d("backClick", "back");
+
+                            Log.d("backpop", String.valueOf(Constants.popBack));
+
+                            if (Constants.popBack == 1){
+
+                                Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                                getSupportFragmentManager().popBackStackImmediate();
+                            }
+                            else {
+
+                                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                            }
+
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
-                            Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+
                             Constants.onetTime = 1;
                             //getSupportFragmentManager().popBackStack();
                         }
@@ -421,8 +435,21 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         @Override
                         public void onClick(View view) {
                             bottomNavigationView.setVisibility(View.VISIBLE);
+
+                            Log.d("backpop", String.valueOf(Constants.popBack));
+
+                            if (Constants.popBack == 1){
+
+                                Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                                getSupportFragmentManager().popBackStackImmediate();
+                            }
+                            else {
+
+                                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                            }
+
                             //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
-                            Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                            //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
                             Constants.onetTime = 1;
                             //getSupportFragmentManager().popBackStack();
                         }
