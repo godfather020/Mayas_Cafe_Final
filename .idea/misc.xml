@@ -85,15 +85,32 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/menu/bottom_nav.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/menu/toolbar.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/akar_icons_search.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/cart.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/mi_notification.xml" value="0.2065" />
         <entry key="app/src/main/res/layout-normal-v28/activity_login.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout-normal/activity_dash_board.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-normal/activity_registration.xml" value="0.17" />
         <entry key="app/src/main/res/layout-v28/fragment_dashboard_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_details_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_category_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard__category_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_notification_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_popular_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_profile_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_restarant_choice_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_user_profile_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/nav_category_frag.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/nav_category_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/popular_food_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/restaurant_choice_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/today_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/yesterday_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/toolbar.xml" value="0.2864583333333333" />
       </map>
     </option>
   </component>

@@ -81,8 +81,7 @@ interface Apis {
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.NOTIFICATION)
     fun getNotificaiton(
-        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_notification
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")

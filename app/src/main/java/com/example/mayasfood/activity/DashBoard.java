@@ -188,13 +188,14 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         Menu menu = navigationView.getMenu();
         setSupportActionBar(toolbar_const);
         navigationView.setNavigationItemSelectedListener(this);
-        Functions.setArrow(navigationView);
+        //Functions.setArrow(navigationView);
 
         navigationView.setCheckedItem(R.id.homeNav);
 
         if (auth.getCurrentUser() == null) {
 
             navigationView.getMenu().getItem(5).setTitle("Login");
+
         }
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(
@@ -215,9 +216,6 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 user_name_nav = findViewById(R.id.user_name_nav);
                 if (Constants.USER_NAME != null) {
                     user_name_nav.setText(Constants.USER_NAME);
-                }
-                else {
-                    user_name_nav.setText("Ramu Kaka");
                 }
 
                 close.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +247,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     //user_profile.setImageBitmap(bitmap);
                 }
 
-                //if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null) {
 
                     user_profile.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -262,7 +260,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                             }
                         }
                     });
-               // }
+                }
             }
         };
 
@@ -290,14 +288,25 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                             Log.d("backpop", String.valueOf(Constants.popBack));
 
-                            if (Constants.popBack == 1){
+                            if (Constants.poptToMainCat == 1){
 
-                                Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                               // bottomNavigationView.setSelectedItemId(R.id.invisible);
+                                Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "Dashboard", null);
+                                bottomNavigationView.setVisibility(View.GONE);
+                                //getSupportFragmentManager().popBackStack();
+                                Constants.poptToMainCat = 0;
+                            }
+
+                            else if (Constants.popBack == 1){
+                                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                                //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
                                 getSupportFragmentManager().popBackStackImmediate();
                             }
                             else {
-
+                                navigationView.setCheckedItem(R.id.homeNav);
                                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                                getSupportFragmentManager().popBackStackImmediate();
+                                getSupportFragmentManager().popBackStack();
                             }
 
                             bottomNavigationView.setVisibility(View.VISIBLE);
@@ -438,14 +447,27 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                             Log.d("backpop", String.valueOf(Constants.popBack));
 
-                            if (Constants.popBack == 1){
+                            if (Constants.poptToMainCat == 1){
+
+                                //bottomNavigationView.setSelectedItemId(R.id.invisible);
+                                Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "Dashboard", null);
+                                bottomNavigationView.setVisibility(View.GONE);
+                               // getSupportFragmentManager().popBackStack();
+                                Constants.poptToMainCat = 0;
+                            }
+
+                            else if (Constants.popBack == 1){
 
                                 Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
                                 getSupportFragmentManager().popBackStackImmediate();
+                                getSupportFragmentManager().popBackStack();
                             }
                             else {
-
+                                Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                                navigationView.setCheckedItem(R.id.homeNav);
                                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                                getSupportFragmentManager().popBackStackImmediate();
+                                getSupportFragmentManager().popBackStack();
                             }
 
                             //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);

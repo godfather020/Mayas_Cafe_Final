@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_margin="8dp"
         android:backgroundTint="#F5F9FE"
@@ -53,6 +53,7 @@
             android:textColor="#363853" />
 
         <TextView
+            android:id="@+id/notyes_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Maya's Garden"
@@ -70,6 +71,7 @@
             android:text="Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugia..."
             android:layout_marginStart="100dp"
             android:layout_marginTop="40dp"
+            android:layout_marginBottom="8dp"
             />
 
     </androidx.cardview.widget.CardView>

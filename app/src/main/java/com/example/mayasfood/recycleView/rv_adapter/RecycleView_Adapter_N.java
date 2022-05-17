@@ -42,8 +42,9 @@ public class RecycleView_Adapter_N extends RecyclerView.Adapter<RecycleView_Adap
 
         final RecycleView_Model temp = foodModels4.get(position);
 
-        holder.noti_time.setText(foodModels4.get(position).getFoodImg());
-        holder.noti_body.setText(foodModels4.get(position).getFoodName());
+        holder.noti_time.setText(foodModels4.get(position).getFoodName());
+        holder.noti_body.setText(foodModels4.get(position).getFoodHeading());
+        holder.notyTitle.setText(foodModels4.get(position).getFoodPrice());
 
 
         /*holder.copy_offer.setOnClickListener(new View.OnClickListener() {
@@ -73,13 +74,14 @@ public class RecycleView_Adapter_N extends RecyclerView.Adapter<RecycleView_Adap
         //grabbing the views from rv_column.xml
 
 
-        TextView noti_body, noti_time;
+        TextView noti_body, noti_time, notyTitle;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             noti_body = itemView.findViewById(R.id.noti_body);
             noti_time = itemView.findViewById(R.id.noti_time);
+            notyTitle = itemView.findViewById(R.id.noty_title);
         }
     }
 }

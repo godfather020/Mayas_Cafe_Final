@@ -17,6 +17,7 @@
         android:backgroundTint="@color/Screen_BG"
         android:background="@drawable/custom_nav"
         app:headerLayout="@layout/header"
+        app:itemTextAppearance="@style/Style_TextView"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>

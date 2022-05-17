@@ -9,4 +9,8 @@
     <style name="circular">
         <item name="cornerSize">20dp</item>
     </style>
+    <style name="Style_TextView">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

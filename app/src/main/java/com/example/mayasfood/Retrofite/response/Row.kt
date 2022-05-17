@@ -64,8 +64,6 @@ class Row : Serializable{
     @Expose
     var ticketNumber: String? = null
 
-
-
     @SerializedName("Lottery")
     @Expose
     var lottery: Lottery? = null

@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
+import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.Dashboard_category_ViewModel
 import com.example.mayasfood.functions.Functions
@@ -24,14 +24,11 @@ class Dashboard_Category_frag : Fragment() {
 
     var categoryName = ArrayList<String>()
     lateinit var recyclerView : RecyclerView
-    var foodName = ArrayList<String>()
-    var foodPrice = ArrayList<String>()
-    var foodImg = ArrayList<String>()
-    var foodRating = ArrayList<String>()
     lateinit var loading : ProgressBar
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var viewModel: Dashboard_category_ViewModel
     var categoryId = ArrayList<String>()
+    lateinit var dashBoard: DashBoard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,9 +46,16 @@ class Dashboard_Category_frag : Fragment() {
 
         viewModel = ViewModelProvider(this).get(Dashboard_category_ViewModel::class.java)
 
+        dashBoard = activity as DashBoard
+
+        dashBoard.bottomNavigationView.visibility = View.GONE
+
         val value  = Constants.categoryId
 
         Log.d("value", value)
+
+        loading = view.findViewById(R.id.loading_catD)
+        loading.visibility = View.VISIBLE
 
         recyclerView = view.findViewById(R.id.category_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -66,9 +70,9 @@ class Dashboard_Category_frag : Fragment() {
         return view
     }
 
-    public fun setUpCategoryView() {
+    private fun setUpCategoryView() {
 
-        viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, Observer {
+        viewModel.getDashboardData(this, "1", loading).observe(viewLifecycleOwner, Observer {
 
             if (it != null){
 
@@ -90,6 +94,8 @@ class Dashboard_Category_frag : Fragment() {
                             it.getData()!!.ListcategoryResponce!![i].categoryName.toString()
                         )
                     }
+
+                    loading.visibility = View.GONE
                 }
                 setUpModel()
             }

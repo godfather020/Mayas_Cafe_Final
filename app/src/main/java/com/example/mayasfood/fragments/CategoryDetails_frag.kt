@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
+import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.CategoryDetails_ViewModel
 import com.example.mayasfood.fragments.ViewModels.Dashboard_category_ViewModel
@@ -27,6 +28,7 @@ class CategoryDetails_frag : Fragment() {
     var foodRating = ArrayList<String>()
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var viewModel : CategoryDetails_ViewModel
+    lateinit var dashBoard: DashBoard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,11 @@ class CategoryDetails_frag : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_category_details_frag, container, false)
 
         viewModel = ViewModelProvider(this).get(CategoryDetails_ViewModel::class.java)
+
+        dashBoard = activity as DashBoard
+
+        dashBoard.toolbar_const.setTitle(Constants.categoryName);
+        dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         recyclerView = view.findViewById(R.id.category_details_rv)
         val layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)

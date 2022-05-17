@@ -21,10 +21,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
+import com.example.mayasfood.activity.DashBoard;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.Dashboard_Category_frag;
 import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +69,7 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
-                Constants.categoryId = foodModels.get(position).getFoodImg();
+                Constants.categoryId = foodModels.get(holder.getAdapterPosition()).getFoodImg();
 
                 Functions.loadFragment(activity.getSupportFragmentManager(), new Dashboard_Category_frag(),R.id.frag_cont, false, "Category", null);
             }

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.example.mayasfood.R;
 import com.example.mayasfood.activity.singleItem;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,10 +29,12 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
     Context context;
     ArrayList<RecycleView_Model> foodModels2;
+    FirebaseAuth auth;
 
     public RecycleView_Adapter_PF(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
         this.foodModels2 = foodModels2;
+        auth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -50,6 +54,14 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         Log.d("rcPN", foodModels2.get(position).getFoodName());
 
+        if (auth.getCurrentUser() == null){
+
+            holder.addToFav.setVisibility(View.GONE);
+        }
+        else {
+
+            holder.addToFav.setVisibility(View.VISIBLE);
+        }
 
         holder.name.setText(foodModels2.get(position).getFoodName());
 
@@ -132,6 +144,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
+        ImageButton addToFav;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,6 +157,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             imageView = itemView.findViewById(R.id.imgfood);
             name = itemView.findViewById(R.id.name_food);
             price = itemView.findViewById(R.id.food_price);
+            addToFav = itemView.findViewById(R.id.addToFav);
         }
     }
 }

@@ -36,6 +36,7 @@
                 app:srcCompat="@drawable/do_011318_alc_kapoleichinese_lt001_file_shrimp" />
 
             <ImageButton
+                android:id="@+id/addToFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bi_heart"

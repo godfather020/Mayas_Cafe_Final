@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.example.mayasfood.R;
 import com.example.mayasfood.activity.singleItem;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,10 +26,12 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
     Context context;
     ArrayList<RecycleView_Model> foodModels3;
+    FirebaseAuth auth;
 
     public RecycleView_Adapter_RC(Context context, ArrayList<RecycleView_Model> foodModels3){
         this.context = context;
         this.foodModels3 = foodModels3;
+        auth = FirebaseAuth.getInstance();
     }
 
     @NonNull
@@ -44,6 +48,15 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         //Assigning values to the views we created
 
         final RecycleView_Model temp = foodModels3.get(position);
+
+        if (auth.getCurrentUser() != null){
+
+            holder.addToFav.setVisibility(View.VISIBLE);
+        }
+        else {
+
+            holder.addToFav.setVisibility(View.GONE);
+        }
 
         holder.name.setText(foodModels3.get(position).getFoodName());
         Picasso.get()
@@ -128,6 +141,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
+        ImageButton addToFav;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -140,6 +154,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             imageView = itemView.findViewById(R.id.foodimage1);
             name = itemView.findViewById(R.id.name_food1);
             price = itemView.findViewById(R.id.food_price1);
+            addToFav = itemView.findViewById(R.id.addToFav);
         }
     }
 }

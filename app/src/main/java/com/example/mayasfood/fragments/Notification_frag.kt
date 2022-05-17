@@ -1,27 +1,40 @@
 package com.example.mayasfood.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
+import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
+import com.example.mayasfood.fragments.ViewModels.Notification_ViewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_N
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_N2
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Notification_frag : Fragment() {
 
     lateinit var dashBoard: DashBoard
     var recycleView_models = ArrayList<RecycleView_Model>()
     var recycleView_models1 = ArrayList<RecycleView_Model>()
+    lateinit var viewModel : Notification_ViewModel
+    lateinit var loading : ProgressBar
+    var notificationTodayTxt = ArrayList<String>()
+    var notificationTodayTime = ArrayList<String>()
+    var notificationTodayTitle = ArrayList<String>()
+    var notificationPreviousTxt = ArrayList<String>()
+    var notificationPreviousTime = ArrayList<String>()
+    var notificationPreviousTitle = ArrayList<String>()
+    lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView2: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +43,17 @@ class Notification_frag : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_notification_frag, container, false)
 
+        viewModel = ViewModelProvider(this).get(Notification_ViewModel::class.java)
+
         val dashBoard = activity as DashBoard
 
         dashBoard.toolbar_const.setTitle("My Notification");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.today_rv)
-        val recyclerView2: RecyclerView = view.findViewById(R.id.yesterday_rv)
+        loading = view.findViewById(R.id.loading_notify)
+
+        recyclerView= view.findViewById(R.id.today_rv)
+        recyclerView2 = view.findViewById(R.id.yesterday_rv)
 
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         val layoutManager2 = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -44,33 +61,102 @@ class Notification_frag : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView2.layoutManager = layoutManager2
 
-        setUpNotifyRv()
+        setUpNotifyView()
+
+        return view
+    }
+
+    private fun setUpNotifyView() {
+
+        viewModel.getNotificationData(this, loading).observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    notificationTodayTxt.clear()
+                    notificationPreviousTime.clear()
+                    notificationPreviousTxt.clear()
+                    notificationPreviousTitle.clear()
+                    notificationTodayTime.clear()
+                    notificationTodayTime.clear()
+
+                    //val dateTime = it.getData()!!.notifications!!.rows!![0].createdAt.toString()
+
+                    val todayDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+
+                    Log.d("timeDateCurrent", todayDate.toString())
+
+                    //val date = "2022-05-12"
+
+                    val sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
+
+
+                    /*val currentTime =
+                        SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+
+                    Log.d("timeC", currentTime)*/
+
+                    for (i in it.getData()!!.notifications!!.rows!!.indices){
+
+                        val createdDateTime = it.getData()!!.notifications!!.rows!![i].createdAt!!
+
+                        val date1: Date = sdf.parse(createdDateTime) as Date
+
+                        val createdDate = SimpleDateFormat("yyy-MM-dd", Locale.getDefault()).format(date1)
+
+                        Log.d("DateC", createdDate)
+
+                        val notyTime =
+                            SimpleDateFormat("HH:mm a", Locale.getDefault()).format(date1)
+
+                        Log.d("timeC", notyTime)
+
+                        val newAMPM = notyTime.substring(5,notyTime.length)
+                        val newNotyTime = notyTime.substring(0,5)
+
+                        if (createdDate == todayDate){
+
+                            Log.d("inside", "inside")
+
+                            notificationTodayTime.add( newNotyTime+"\n"+newAMPM)
+                            notificationTodayTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
+                            notificationTodayTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
+
+                        }
+                        else{
+
+                            Log.d("inside1", "inside1")
+                            notificationPreviousTime.add( newNotyTime+"\n"+newAMPM)
+                            notificationPreviousTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
+                            notificationPreviousTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
+                        }
+                    }
+                }
+
+                setUpNotifyRv()
+            }
+
+        })
+    }
+
+    private fun setUpNotifyRv() {
+
+        for (i in notificationTodayTime.indices){
+
+            recycleView_models.add(RecycleView_Model(notificationTodayTime[i], notificationTodayTxt[i], notificationTodayTitle[i]))
+        }
+
+        for (i in notificationPreviousTitle.indices){
+
+            recycleView_models1.add(RecycleView_Model(notificationPreviousTime[i], notificationPreviousTxt[i], notificationPreviousTitle[i]))
+        }
 
         val recycleView_adapter_N = RecycleView_Adapter_N(activity, recycleView_models)
         val recycleView_adapter_N2 = RecycleView_Adapter_N2(activity, recycleView_models1)
         recyclerView.adapter = recycleView_adapter_N
         recyclerView2.adapter = recycleView_adapter_N2
         recycleView_adapter_N.notifyDataSetChanged()
-
-        return view
-    }
-
-    private fun setUpNotifyRv() {
-
-        val notifyToday_txt = resources.getStringArray(R.array.NotifyToday_txt)
-        val notifyToday_time = resources.getStringArray(R.array.NotifyToday_time)
-        val notifyYesterday_txt = resources.getStringArray(R.array.NotifyYesterday_txt)
-        val notifyYesterday_time = resources.getStringArray(R.array.NotifyYesterday_time)
-
-        for (i in notifyToday_txt.indices){
-
-            recycleView_models.add(RecycleView_Model(notifyToday_txt[i], notifyToday_time[i]))
-        }
-
-        for (i in notifyYesterday_txt.indices){
-
-            recycleView_models1.add(RecycleView_Model(notifyYesterday_txt[i], notifyYesterday_time[i]))
-        }
     }
 
 }

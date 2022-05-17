@@ -96,10 +96,7 @@ class Dashboard_frag : Fragment() {
 
             userName.setText(Constants.USER_NAME)
         }
-        else{
 
-            userName.setText("Ramu Kaka")
-        }
         loading = v.findViewById(R.id.progress_bar)
         loading.visibility = View.VISIBLE
 

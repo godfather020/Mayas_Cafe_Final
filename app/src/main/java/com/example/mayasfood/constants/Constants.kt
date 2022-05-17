@@ -23,7 +23,7 @@ object Constants {
         internal const val RESTAURANT_CHOICES = "public/Listrestaurentproduct"
         internal const val LIST_PRODUCTS = "public/Listproduct"
         internal const val TRANS_HISTORY = "v1/myTransactions"
-        internal const val NOTIFICATION = "v1/notifications"
+        internal const val NOTIFICATION = "customer/notifications"
         internal const val ADD_WALLET_BALANCE = "v1/addWallet"
         internal const val DEDUCT_WALLET_BALANCE = "v1/withdraw"
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
@@ -47,7 +47,7 @@ object Constants {
 
     }
     @JvmField
-    var USER_NAME = "RAMU KAKA"
+    var USER_NAME = "Stranger"
     @JvmField
     var USER_PHONE = ""
     @JvmField
@@ -58,6 +58,10 @@ object Constants {
     var categoryId = "0"
     @JvmField
     var popBack = 0
+    @JvmField
+    var poptToMainCat = 0
+    @JvmField
+    var categoryName = ""
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
     const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"
