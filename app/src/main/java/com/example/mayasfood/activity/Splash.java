@@ -11,7 +11,7 @@ import com.example.mayasfood.R;
 
 public class Splash extends AppCompatActivity {
 
-    private static final long SPLASH_DELAY = 2000;
+    private static final long SPLASH_DELAY = 4000;
     private Handler mHandler = new Handler();
     private Launcher mLauncher = new Launcher();
     private Intent intent;

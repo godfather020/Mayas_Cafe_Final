@@ -35,7 +35,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="104dp"
-            android:src="@drawable/image_2"
+            android:src="@drawable/mask_group_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,14 +59,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="125dp"
-            android:fontFamily="@font/ntailu"
+            android:fontFamily="@font/montserrat_bold"
             android:paddingRight="24dp"
             android:text="Stranger"
-            android:layout_marginEnd="8dp"
             android:textColor="@color/Login_Title"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toTopOf="parent" />
 

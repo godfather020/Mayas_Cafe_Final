@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.ViewModels.Login_ViewModel
 import com.example.mayasfood.constants.Constants
@@ -41,6 +42,7 @@ class Login : AppCompatActivity() {
     lateinit var loading : ProgressBar
     lateinit var skip : TextView
     var code : String? = null
+    lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,12 +62,14 @@ class Login : AppCompatActivity() {
 
         Log.d("cc", Constants.cc)
 
+        sharedPreferencesUtil = SharedPreferencesUtil(this)
+
         skip.setOnClickListener {
+
+            sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N , "Stranger")
 
             startActivity(Intent(this@Login, DashBoard::class.java))
             finish()
-
-
         }
 
         cc.setOnCountryChangeListener(OnCountryChangeListener {

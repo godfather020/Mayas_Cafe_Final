@@ -13,4 +13,8 @@
         <item name="fontFamily">@font/montserrat_bold</item>
         <item name="android:textSize">18sp</item>
     </style>
+    <style name="Style_ToolTextView">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

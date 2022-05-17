@@ -40,6 +40,7 @@ import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.Category_frag;
 import com.example.mayasfood.fragments.Dashboard_frag;
 import com.example.mayasfood.fragments.Favorite_frag;
+import com.example.mayasfood.fragments.NotLogIn_frag;
 import com.example.mayasfood.fragments.Notification_frag;
 import com.example.mayasfood.fragments.Offers_frag;
 import com.example.mayasfood.fragments.Orders_frag;
@@ -144,7 +145,15 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(2).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
-                        Functions.loadFragment(getSupportFragmentManager(), new Favorite_frag(),R.id.frag_cont, true, "Favorites", null);
+
+                        if (auth.getCurrentUser()!=null) {
+
+                            Functions.loadFragment(getSupportFragmentManager(), new Favorite_frag(), R.id.frag_cont, true, "Favorites", null);
+                        }
+                        else {
+
+                            Functions.loadFragment(getSupportFragmentManager(), new NotLogIn_frag(), R.id.frag_cont, true, "Faveroties", null);
+                        }
                         return true;
 
                     case R.id.bottom_nav_orders:
@@ -152,7 +161,14 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         toolbar_const.getMenu().getItem(0).setVisible(false);
                         toolbar_const.getMenu().getItem(2).setVisible(false);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
-                        Functions.loadFragment(getSupportFragmentManager(), new Orders_frag(),R.id.frag_cont, true, "Orders", null);
+                        if (auth.getCurrentUser()!=null) {
+
+                            Functions.loadFragment(getSupportFragmentManager(), new Orders_frag(), R.id.frag_cont, true, "Orders", null);
+                        }
+                        else{
+
+                            Functions.loadFragment(getSupportFragmentManager(), new NotLogIn_frag(), R.id.frag_cont, true, "Faveroties", null);
+                        }
                         return true;
 
                     case R.id.bottom_nav_discount:
@@ -230,21 +246,30 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
 
-                if (userProfile != null) {
+                if (auth.getCurrentUser() != null) {
+
+                    if (userProfile != null) {
 
                     /*BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                     Bitmap bitmap = BitmapFactory.decodeFile(Constants.UserProfile_Path + userProfile,bmOptions);
                     bitmap = Bitmap.createScaledBitmap(bitmap,150,150,true);*/
 
-                    //Bitmap bitmap = rotateImageIfRequired(Constants.UserProfile_Path + userProfile);
+                        //Bitmap bitmap = rotateImageIfRequired(Constants.UserProfile_Path + userProfile);
 
-                    //loadBitmapByPicasso(getApplicationContext(), bitmap, user_profile);
+                        //loadBitmapByPicasso(getApplicationContext(), bitmap, user_profile);
+
+                        Picasso.get()
+                                .load(Constants.UserProfile_Path + userProfile)
+                                .into(user_profile);
+
+                        //user_profile.setImageBitmap(bitmap);
+                    }
+                }
+                else {
 
                     Picasso.get()
-                            .load(Constants.UserProfile_Path + userProfile)
+                            .load(R.drawable.mask_group_1)
                             .into(user_profile);
-
-                    //user_profile.setImageBitmap(bitmap);
                 }
 
                 if (auth.getCurrentUser() != null) {
@@ -298,9 +323,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                             }
 
                             else if (Constants.popBack == 1){
-                                bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
-                                //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+
+                                Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
                                 getSupportFragmentManager().popBackStackImmediate();
+                                getSupportFragmentManager().popBackStack();
+                                //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
+                                //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+                                //getSupportFragmentManager().popBackStackImmediate();
                             }
                             else {
                                 navigationView.setCheckedItem(R.id.homeNav);
@@ -347,20 +376,27 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         if (id == R.id.search) {
             bottomNavigationView.setVisibility(View.GONE);
             toolbar_const.getMenu().getItem(0).setVisible(false);
-            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
             Functions.loadFragment(getSupportFragmentManager(), new Search_frag(), R.id.frag_cont, false, "Search", null);
 
         } else if (id == R.id.notification) {
 
-            toolbar_const.getMenu().getItem(1).setVisible(false);
-            navigationView.setCheckedItem(R.id.notificationNav);
-            bottomNavigationView.setVisibility(View.GONE);
-            Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
+            if (auth.getCurrentUser() != null) {
 
-            Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
+                toolbar_const.getMenu().getItem(1).setVisible(false);
+                navigationView.setCheckedItem(R.id.notificationNav);
+                bottomNavigationView.setVisibility(View.GONE);
+                Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
+            }
+            else {
+
+                dialog("Please Login/Register to see notifications.");
+            }
+
+            //Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.cart) {
             bottomNavigationView.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -397,6 +433,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.orderNav:
+
                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_orders);
                 break;
 
@@ -409,9 +446,17 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.notificationNav:
-                navigationView.setCheckedItem(R.id.notificationNav);
-                bottomNavigationView.setVisibility(View.GONE);
-                Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
+
+                if (auth.getCurrentUser() != null) {
+
+                    navigationView.setCheckedItem(R.id.notificationNav);
+                    bottomNavigationView.setVisibility(View.GONE);
+                    Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
+                }
+                else {
+
+                    dialog("Please Login/Register to see notifications.");
+                }
                 break;
 
             case R.id.logoutNav:
