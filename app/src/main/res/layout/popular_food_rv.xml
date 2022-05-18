@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/do_011318_alc_kapoleichinese_lt001_file_shrimp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/addToFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

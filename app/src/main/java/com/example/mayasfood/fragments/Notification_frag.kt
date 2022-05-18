@@ -2,10 +2,9 @@ package com.example.mayasfood.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,8 +32,10 @@ class Notification_frag : Fragment() {
     var notificationPreviousTxt = ArrayList<String>()
     var notificationPreviousTime = ArrayList<String>()
     var notificationPreviousTitle = ArrayList<String>()
-    lateinit var recyclerView: RecyclerView
+    lateinit var  recyclerView: RecyclerView
     lateinit var recyclerView2: RecyclerView
+    var today = 0
+    lateinit var today_txt: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,12 +46,17 @@ class Notification_frag : Fragment() {
 
         viewModel = ViewModelProvider(this).get(Notification_ViewModel::class.java)
 
-        val dashBoard = activity as DashBoard
+        dashBoard = activity as DashBoard
 
         dashBoard.toolbar_const.setTitle("My Notification");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+        setHasOptionsMenu(true)
+
         loading = view.findViewById(R.id.loading_notify)
+        loading.visibility = View.VISIBLE
+
+        today_txt = view.findViewById(R.id.today_txt)
 
         recyclerView= view.findViewById(R.id.today_rv)
         recyclerView2 = view.findViewById(R.id.yesterday_rv)
@@ -80,6 +86,8 @@ class Notification_frag : Fragment() {
                     notificationPreviousTitle.clear()
                     notificationTodayTime.clear()
                     notificationTodayTime.clear()
+                    recycleView_models.clear()
+                    recycleView_models1.clear()
 
                     //val dateTime = it.getData()!!.notifications!!.rows!![0].createdAt.toString()
 
@@ -115,9 +123,20 @@ class Notification_frag : Fragment() {
                         val newAMPM = notyTime.substring(5,notyTime.length)
                         val newNotyTime = notyTime.substring(0,5)
 
+                        if (newAMPM.contains("am")){
+
+                            newAMPM.replace("am", "AM")
+                        }
+                        else{
+
+                            newAMPM.replace("pm", "PM")
+                        }
+
                         if (createdDate == todayDate){
 
                             Log.d("inside", "inside")
+
+                            today = 2
 
                             notificationTodayTime.add( newNotyTime+"\n"+newAMPM)
                             notificationTodayTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
@@ -132,6 +151,14 @@ class Notification_frag : Fragment() {
                             notificationPreviousTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
                         }
                     }
+
+                    if (today == 0){
+
+                        today_txt.visibility = View.GONE
+                        recyclerView.visibility = View.GONE
+                    }
+
+                    loading.visibility = View.GONE
                 }
 
                 setUpNotifyRv()
@@ -157,6 +184,12 @@ class Notification_frag : Fragment() {
         recyclerView.adapter = recycleView_adapter_N
         recyclerView2.adapter = recycleView_adapter_N2
         recycleView_adapter_N.notifyDataSetChanged()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.getItem(1).setVisible(false)
     }
 
 }

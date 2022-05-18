@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lottry.data.remote.retrofit.request.Request_Branch
+import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.development.retrofit.RetrofitInstance
 import retrofit2.Call
@@ -30,7 +30,7 @@ class Dashboard_ViewModel : ViewModel() {
     private fun getDashboardDataApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getDashboardItems(param)
+        val retrofitData = retrofitInstance.retrofit.getDashboardItems("", param)
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

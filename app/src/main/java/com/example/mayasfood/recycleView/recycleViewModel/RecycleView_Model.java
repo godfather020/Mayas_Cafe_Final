@@ -1,9 +1,11 @@
 package com.example.mayasfood.recycleView.recycleViewModel;
 
+import androidx.lifecycle.ViewModel;
+
 public class RecycleView_Model {
 
 
-    private String foodName,foodHeading, foodPrice;
+    private String foodName,foodHeading, foodPrice, productId;
     private String foodImg, stars;
     private int foodImg1;
 
@@ -12,6 +14,14 @@ public class RecycleView_Model {
         this.foodHeading = foodHeading;
         this.foodPrice = foodPrice;
         this.foodImg1 = foodImg;
+    }
+
+    public RecycleView_Model(String foodName, String foodPrice, String productId, String foodImg, String stars) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.productId = productId;
+        this.foodImg = foodImg;
+        this.stars = stars;
     }
 
     public RecycleView_Model(String foodName, String foodPrice, String foodImg, String stars) {
@@ -63,6 +73,14 @@ public class RecycleView_Model {
 
     public String getStars() {
         return stars;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public void setStars(String stars) {

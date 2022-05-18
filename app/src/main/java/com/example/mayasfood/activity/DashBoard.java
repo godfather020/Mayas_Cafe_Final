@@ -134,6 +134,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     case R.id.bottom_nav_category:
                         navigationView.setCheckedItem(R.id.homeNav);
                         toolbar_const.setTitle("");
+                        item.setChecked(true);
+                        item.setEnabled(true);
+                        item.setCheckable(true);
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(2).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
@@ -182,7 +185,6 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     case R.id.invisible:
                         navigationView.setCheckedItem(R.id.categoriesNav);
                         //toolbar_const.setTitle("");
-                        bottomNavigationView.setVisibility(View.GONE);
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(2).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
@@ -313,7 +315,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                             Log.d("backpop", String.valueOf(Constants.popBack));
 
-                            if (Constants.poptToMainCat == 1){
+                           /* if (Constants.poptToMainCat == 1){
 
                                // bottomNavigationView.setSelectedItemId(R.id.invisible);
                                 Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "Dashboard", null);
@@ -336,13 +338,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
                                 getSupportFragmentManager().popBackStackImmediate();
                                 getSupportFragmentManager().popBackStack();
-                            }
+                            }*/
 
-                            bottomNavigationView.setVisibility(View.VISIBLE);
+                            //bottomNavigationView.setVisibility(View.VISIBLE);
                             //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
 
                             Constants.onetTime = 1;
-                            //getSupportFragmentManager().popBackStack();
+                            getSupportFragmentManager().popBackStack();
                         }
                     });
 
@@ -366,6 +368,19 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar, menu);
+
+        if (Constants.currentFrag.equals("N")){
+
+            menu.getItem(1).setVisible(true);
+        }
+        else if (Constants.currentFrag.equals("S")){
+
+            menu.getItem(0).setVisible(true);
+        }
+        else {
+
+            menu.getItem(2).setVisible(true);
+        }
         return true;
     }
 
@@ -374,6 +389,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         int id = item.getItemId();
 
         if (id == R.id.search) {
+            Constants.currentFrag = "S";
             bottomNavigationView.setVisibility(View.GONE);
             toolbar_const.getMenu().getItem(0).setVisible(false);
             //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
@@ -382,7 +398,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.notification) {
 
             if (auth.getCurrentUser() != null) {
-
+                Constants.currentFrag = "N";
                 toolbar_const.getMenu().getItem(1).setVisible(false);
                 navigationView.setCheckedItem(R.id.notificationNav);
                 bottomNavigationView.setVisibility(View.GONE);
@@ -395,6 +411,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
             //Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.cart) {
+            Constants.currentFrag = "C";
             bottomNavigationView.setVisibility(View.GONE);
             //Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }
@@ -442,7 +459,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.categoriesNav:
-                bottomNavigationView.setSelectedItemId(R.id.invisible);
+                navigationView.setCheckedItem(R.id.categoriesNav);
+                bottomNavigationView.setVisibility(View.GONE);
+                Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "Notification", null);
                 break;
 
             case R.id.notificationNav:
@@ -457,6 +476,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                     dialog("Please Login/Register to see notifications.");
                 }
+                break;
+
+            case R.id.invisibleNav:
+                navigationView.setCheckedItem(R.id.invisibleNav);
                 break;
 
             case R.id.logoutNav:
@@ -488,11 +511,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            bottomNavigationView.setVisibility(View.VISIBLE);
+                            //bottomNavigationView.setVisibility(View.VISIBLE);
 
                             Log.d("backpop", String.valueOf(Constants.popBack));
 
-                            if (Constants.poptToMainCat == 1){
+                            /*if (Constants.poptToMainCat == 1){
 
                                 //bottomNavigationView.setSelectedItemId(R.id.invisible);
                                 Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "Dashboard", null);
@@ -513,12 +536,12 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                                 bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
                                 getSupportFragmentManager().popBackStackImmediate();
                                 getSupportFragmentManager().popBackStack();
-                            }
+                            }*/
 
                             //bottomNavigationView.setSelectedItemId(R.id.bottom_nav_category);
                             //Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
                             Constants.onetTime = 1;
-                            //getSupportFragmentManager().popBackStack();
+                            getSupportFragmentManager().popBackStack();
                         }
                     });
 
@@ -654,4 +677,6 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
 
     }
+
+
 }

@@ -1,10 +1,8 @@
 package com.example.mayasfood.fragments
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.*
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -35,12 +33,15 @@ class Offers_frag : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_offers_frag, container, false)
-        val dashBoard = activity as DashBoard
+        dashBoard = activity as DashBoard
 
         offers_frag_viewModel = ViewModelProvider(this).get(Offers_frag_viewModel::class.java)
 
         dashBoard.toolbar_const.setTitle("All Offers");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+        dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
+        setHasOptionsMenu(true)
 
         loading = v.findViewById(R.id.loading_offer)
 
@@ -92,5 +93,15 @@ class Offers_frag : Fragment() {
 
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.getItem(0).setVisible(true)
+        menu.getItem(1).setVisible(false)
+        menu.getItem(2).setVisible(false)
+
+        dashBoard.navigationView.setCheckedItem(R.id.offersNav)
     }
 }

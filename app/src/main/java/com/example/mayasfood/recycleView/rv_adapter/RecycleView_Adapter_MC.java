@@ -60,7 +60,7 @@ public class RecycleView_Adapter_MC extends RecyclerView.Adapter<RecycleView_Ada
 
                 Constants.categoryId = foodModels.get(holder.getAdapterPosition()).getFoodImg();
 
-                Constants.poptToMainCat = 1;
+                //Constants.poptToMainCat = 1;
 
                 Constants.categoryName = foodModels.get(holder.getAdapterPosition()).getFoodName();
 

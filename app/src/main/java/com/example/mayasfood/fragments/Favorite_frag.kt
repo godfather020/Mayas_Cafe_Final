@@ -19,13 +19,24 @@ class Favorite_frag : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_favorite_frag, container, false)
 
-        val dashBoard = activity as DashBoard
+        dashBoard = activity as DashBoard
 
         dashBoard.toolbar_const.setTitle("My Favorites");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+        dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
+        setHasOptionsMenu(true)
 
         return view
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.getItem(0).setVisible(true)
+        menu.getItem(1).setVisible(true)
+        menu.getItem(2).setVisible(true)
+        dashBoard.navigationView.setCheckedItem(R.id.invisibleNav)
+    }
 }

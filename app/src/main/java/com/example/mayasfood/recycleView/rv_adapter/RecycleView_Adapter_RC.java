@@ -141,7 +141,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
-        ImageButton addToFav;
+        ImageView addToFav;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

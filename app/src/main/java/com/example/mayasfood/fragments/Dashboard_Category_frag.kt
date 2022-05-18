@@ -15,7 +15,6 @@ import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.Dashboard_category_ViewModel
-import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_DC
 
@@ -61,7 +60,10 @@ class Dashboard_Category_frag : Fragment() {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = layoutManager
 
-        Functions.loadFragment(fragmentManager, CategoryDetails_frag(), R.id.frag_cont_cat, false, "Details", null)
+        (activity as DashBoard).supportFragmentManager.beginTransaction()
+            .replace(R.id.frag_cont_cat, CategoryDetails_frag()).commit()
+
+        //Functions.loadFragment(fragmentManager, CategoryDetails_frag(), R.id.frag_cont_cat, true, "Details", null)
 
         Constants.popBack = 1
 

@@ -1,9 +1,7 @@
 package com.example.mayasfood.fragments
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
-import android.view.View
+import android.view.*
 import androidx.fragment.app.Fragment
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
@@ -20,11 +18,24 @@ class Orders_frag : Fragment() {
         // Inflate the layout for this fragment
         val view : View =  inflater.inflate(R.layout.fragment_profile_frag, container, false)
 
-        val dashBoard = activity as DashBoard
+        dashBoard = activity as DashBoard
 
         dashBoard.toolbar_const.setTitle("My Orders");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+        dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
+        setHasOptionsMenu(true)
+
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.getItem(0).setVisible(false)
+        menu.getItem(1).setVisible(true)
+        menu.getItem(2).setVisible(false)
+        dashBoard.navigationView.setCheckedItem(R.id.orderNav)
     }
 }

@@ -1,16 +1,13 @@
 package com.example.mayasfood.fragments.ViewModels
 
 import android.util.Log
-import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lottry.data.remote.retrofit.request.Request_Branch
+import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.development.retrofit.RetrofitInstance
-import com.example.mayasfood.fragments.Dashboard_frag
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +32,7 @@ class Dashboard_frag_ViewModel : ViewModel() {
     private fun getDashboardDataApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getDashboardItems(param)
+        val retrofitData = retrofitInstance.retrofit.getDashboardItems("", param)
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

@@ -40,10 +40,11 @@ class Category_frag : Fragment() {
 
         viewModel = ViewModelProvider(this).get(Category_frag_ViewModel::class.java)
 
-        val dashBoard = activity as DashBoard
+        dashBoard = activity as DashBoard
 
         dashBoard.toolbar_const.setTitle("Categories");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+        dashBoard.bottomNavigationView.visibility = View.GONE
 
         loading = v.findViewById(R.id.loading_mainCat)
         loading.visibility = View.VISIBLE
@@ -57,18 +58,15 @@ class Category_frag : Fragment() {
 
     private fun setUpMainCategory() {
 
-        viewModel.getDashboardData(this , "1", loading).observe(viewLifecycleOwner, object : Observer<Response_Common> {
-
-            override fun onChanged(it: Response_Common?) {
-
-                if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED) {
-
+        viewModel.getDashboardData(this , "1", loading).observe(viewLifecycleOwner, Observer {
 
             if (it != null){
 
                 if (it.getSuccess()!!){
 
                     categoryName.clear()
+                    recycleView_models.clear()
+                    categoryId.clear()
 
                     for (i in it.getData()!!.ListcategoryResponce!!.indices) {
 
@@ -90,9 +88,6 @@ class Category_frag : Fragment() {
 
                 setUpModel()
             }
-                }
-            }
-
         })
     }
 

@@ -4,11 +4,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lottry.data.remote.retrofit.request.Request_Branch
+import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.development.retrofit.RetrofitInstance

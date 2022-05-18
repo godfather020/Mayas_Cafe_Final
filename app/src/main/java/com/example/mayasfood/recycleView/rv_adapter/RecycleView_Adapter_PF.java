@@ -1,35 +1,43 @@
 package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mayasfood.Retrofite.request.Request_Branch;
+import com.example.lottry.data.remote.retrofit.request.Request_addOrRemoveToFav;
 import com.example.mayasfood.R;
-import com.example.mayasfood.activity.singleItem;
+import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.development.retrofit.RetrofitInstance;
+import com.example.mayasfood.fragments.Dashboard_frag;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import kotlin.text.Regex;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Adapter_PF.MyViewHolder> {
 
     Context context;
     ArrayList<RecycleView_Model> foodModels2;
     FirebaseAuth auth;
+    MutableLiveData<Response_Common> response_commons = new MutableLiveData<>();
+    ArrayList<String> productId = new ArrayList<String>();
+    Dashboard_frag dashboard_frag = new Dashboard_frag();
 
     public RecycleView_Adapter_PF(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
@@ -62,6 +70,60 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
             holder.addToFav.setVisibility(View.VISIBLE);
         }
+
+        holder.addToFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Request_addOrRemoveToFav request_addOrRemoveToFav = new Request_addOrRemoveToFav();
+
+                request_addOrRemoveToFav.setBranchId("1");
+                request_addOrRemoveToFav.setProductId(foodModels2.get(holder.getAdapterPosition()).getProductId());
+
+                RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+                Call<Response_Common> retrofitData = retrofitInstance.getRetrofit().addOrRemoveToFav(Constants.USER_TOKEN, request_addOrRemoveToFav);
+
+                retrofitData.enqueue(new Callback<Response_Common>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Response_Common> call, @NonNull Response<Response_Common> response) {
+
+                        if (response.isSuccessful()){
+
+                            if (response.body().getData().getProductId() != null){
+
+                                Log.d("ProductR", response.body().getData().getProductId().toString());
+
+                                Toast.makeText(context, "Added to Favorite", Toast.LENGTH_SHORT).show();
+
+                                Constants.add = 1;
+
+                                holder.addToFav.setImageResource(R.drawable.red_heart);
+
+                            }
+                            else {
+                                Constants.add = 0;
+                                holder.addToFav.setImageResource(R.drawable.bi_heart);
+                                Toast.makeText(context, "Removed From Favorite", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        else {
+                            Constants.add = 0;
+                            holder.addToFav.setImageResource(R.drawable.bi_heart);
+                            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response_Common> call, Throwable t) {
+                        Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Log.d("add", String.valueOf(Constants.add));
+            }
+        });
 
         holder.name.setText(foodModels2.get(position).getFoodName());
 
@@ -144,7 +206,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
-        ImageButton addToFav;
+        ImageView addToFav;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -160,4 +222,98 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             addToFav = itemView.findViewById(R.id.addToFav);
         }
     }
+
+    private void addOrRemoveToFav(String productId){
+
+        Request_addOrRemoveToFav request_addOrRemoveToFav = new Request_addOrRemoveToFav();
+
+        request_addOrRemoveToFav.setBranchId("1");
+        request_addOrRemoveToFav.setProductId(productId);
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        Call<Response_Common> retrofitData = retrofitInstance.getRetrofit().addOrRemoveToFav(Constants.USER_TOKEN, request_addOrRemoveToFav);
+
+        retrofitData.enqueue(new Callback<Response_Common>() {
+            @Override
+            public void onResponse(@NonNull Call<Response_Common> call, @NonNull Response<Response_Common> response) {
+
+                if (response.isSuccessful()){
+
+                    if (response.body().getData().getProductId() != null){
+
+                        Log.d("ProductR", response.body().getData().getProductId().toString());
+
+                        Toast.makeText(context, "Added to Favorite", Toast.LENGTH_SHORT).show();
+
+                        Constants.add = 1;
+
+
+
+                    }
+                    else {
+                        Constants.add = 0;
+                        Toast.makeText(context, "Removed From Favorite", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else {
+                    Constants.add = 0;
+                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_Common> call, Throwable t) {
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Log.d("add", String.valueOf(Constants.add));
+
+    }
+
+   /* private ArrayList<String> getFavList(){
+
+        Request_Branch request_branch = new Request_Branch();
+
+        request_branch.setBranchId("1");
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        Call<Response_Common> retrofitData = retrofitInstance.getRetrofit().getFavList(Constants.USER_TOKEN, request_branch);
+
+        retrofitData.enqueue(new Callback<Response_Common>() {
+            @Override
+            public void onResponse(@NonNull Call<Response_Common> call, @NonNull Response<Response_Common> response) {
+
+                if (response.isSuccessful()){
+
+                    response_commons.setValue(response.body());
+
+                    for (int i = 0; i < response_commons.getValue().getData().getFavoriteListResponce().size(); i++){
+
+                        productId.add(i , String.valueOf(response_commons.getValue().getData().getFavoriteListResponce().get(i).getProductId()));
+
+                        Log.d("productId", productId.get(i));
+                    }
+
+                       // Toast.makeText(context, "All Ids success", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+
+                    Toast.makeText(context, "ID Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_Common> call, Throwable t) {
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return productId;
+    }*/
+
 }

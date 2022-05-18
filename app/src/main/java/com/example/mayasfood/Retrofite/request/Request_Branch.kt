@@ -1,4 +1,4 @@
-package com.example.lottry.data.remote.retrofit.request
+package com.example.mayasfood.Retrofite.request
 
 import android.os.Parcel
 import android.os.Parcelable

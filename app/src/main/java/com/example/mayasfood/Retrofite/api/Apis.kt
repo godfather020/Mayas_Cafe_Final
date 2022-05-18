@@ -13,7 +13,8 @@ interface Apis {
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.DASHBOARD)
     fun getDashboardItems(
-    @Body body:Request_Branch
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
@@ -72,10 +73,10 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.TRANS_HISTORY)
-    fun getTransHistory(
+    @POST(Constants.ApiConstant.ADD_REMOVE_FAV)
+    fun addOrRemoveToFav(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_transHistory
+        @Body body: Request_addOrRemoveToFav
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
@@ -85,10 +86,10 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.ADD_WALLET_BALANCE)
-    fun addWalletBalance(
+    @POST(Constants.ApiConstant.FAVORITE_LIST)
+    fun getFavList(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_addWalletBalance
+        @Body body: Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")

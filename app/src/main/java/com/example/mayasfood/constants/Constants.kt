@@ -22,9 +22,9 @@ object Constants {
         internal const val POPULAR_FOOD = "public/Listpopularproduct"
         internal const val RESTAURANT_CHOICES = "public/Listrestaurentproduct"
         internal const val LIST_PRODUCTS = "public/Listproduct"
-        internal const val TRANS_HISTORY = "v1/myTransactions"
+        internal const val ADD_REMOVE_FAV = "customer/Createproductfavorite"
         internal const val NOTIFICATION = "customer/notifications"
-        internal const val ADD_WALLET_BALANCE = "v1/addWallet"
+        internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
         internal const val DEDUCT_WALLET_BALANCE = "v1/withdraw"
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
         internal const val TODAY_WINNERS = "v1/todaywinninglist"
@@ -59,9 +59,13 @@ object Constants {
     @JvmField
     var popBack = 0
     @JvmField
-    var poptToMainCat = 0
+    var currentFrag = "D"
     @JvmField
     var categoryName = ""
+    @JvmField
+    var add = 0
+    @JvmField
+    var productId = ArrayList<String>()
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
     const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"

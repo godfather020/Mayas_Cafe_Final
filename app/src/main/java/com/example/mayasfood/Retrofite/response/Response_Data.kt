@@ -9,7 +9,31 @@ import com.google.gson.annotations.Expose
 
 class Response_Data {
 
-    @SerializedName("otp")
+ @SerializedName("id"         )
+ var id         : Int?    = null
+
+ @SerializedName("productId"  )
+ var productId  : String? = null
+
+ @SerializedName("ProductId"  )
+ var ProductId1  : Int? = null
+
+ @SerializedName("customerId" )
+ var customerId : Int?    = null
+
+ @SerializedName("branchId"   )
+ var branchId   : String? = null
+
+ @SerializedName("createdAt"  )
+ var createdAt  : String? = null
+
+ @SerializedName("updatedAt"  )
+ var updatedAt  : String? = null
+
+ @SerializedName("FavoriteListResponce" )
+ var FavoriteListResponce : List<FavoriteListResponce>? = null
+
+ @SerializedName("otp")
     var otp:String=""
 
     @SerializedName("result")
@@ -20,9 +44,9 @@ class Response_Data {
     @Expose
     var token: String = ""
 
-    @SerializedName("id")
+    /*@SerializedName("id")
     @Expose
-    var id: String = ""
+    var id: String = ""*/
 
     @SerializedName("userName")
     @Expose
