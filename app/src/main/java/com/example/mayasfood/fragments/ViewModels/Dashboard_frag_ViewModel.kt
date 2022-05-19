@@ -7,14 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.response.Response_Common
+import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
 
 class Dashboard_frag_ViewModel : ViewModel() {
 
     lateinit var activity: Fragment
+    lateinit var auth : FirebaseAuth
 
     var commonResponse = MutableLiveData<Response_Common>()
 
@@ -23,6 +27,7 @@ class Dashboard_frag_ViewModel : ViewModel() {
         this.activity = activity
         val requestBranch: Request_Branch = Request_Branch()
         requestBranch.branchId = branchId
+        auth = FirebaseAuth.getInstance()
 
         getDashboardDataApi(requestBranch)
 
@@ -32,7 +37,16 @@ class Dashboard_frag_ViewModel : ViewModel() {
     private fun getDashboardDataApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getDashboardItems("", param)
+        val retrofitData : Call<Response_Common>
+
+       /* if (auth.currentUser != null){
+
+            retrofitData = retrofitInstance.retrofit.getDashboardItems(Constants.USER_TOKEN, param)
+        }else {
+
+            retrofitData = retrofitInstance.retrofit.getDashboardItems(param)
+        }*/
+        retrofitData = retrofitInstance.retrofit.getDashboardItems(param)
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

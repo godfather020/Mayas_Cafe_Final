@@ -38,7 +38,7 @@ class Dashboard_frag : Fragment() {
     lateinit var see_popular: TextView
     lateinit var see_restchoice: TextView
     lateinit var userName : TextView
-    //val commonResponse = MutableLiveData<Response_Common>()
+    val commonResponse = MutableLiveData<Response_Common>()
     lateinit var viewModel: Dashboard_frag_ViewModel
     lateinit var sliderView: SliderView
     var categoryName = ArrayList<String>()
@@ -47,12 +47,14 @@ class Dashboard_frag : Fragment() {
     var popularFoodId = ArrayList<String>()
     var popularFoodPrice = ArrayList<String>()
     var popularFoodImg = ArrayList<String>()
+    var popularFoodIsFav = ArrayList<Int>()
     var restaurantFoodName = ArrayList<String>()
     var restaurantFoodPrice = ArrayList<String>()
     var restaurantFoodImg = ArrayList<String>()
     var restaurantFoodId = ArrayList<String>()
     var popularFoodRating = ArrayList<String>()
     var restaurantFoodRating = ArrayList<String>()
+    var restaurantFoodIsFav = ArrayList<Int>()
     lateinit var recyclerView : RecyclerView
     lateinit var recyclerView3 : RecyclerView
     lateinit var recyclerView2 : RecyclerView
@@ -174,6 +176,8 @@ class Dashboard_frag : Fragment() {
                     homeResList.clear()
                     popularFoodId.clear()
                     restaurantFoodId.clear()
+                    popularFoodIsFav.clear()
+                    restaurantFoodIsFav.clear()
 
                     Log.d(
                         "indice",
@@ -251,6 +255,9 @@ class Dashboard_frag : Fragment() {
                             i,
                             it.getData()!!.ListpopularproductResponce!![i].id.toString()
                         )
+                        popularFoodIsFav.add(i ,
+                            it.getData()!!.ListpopularproductResponce!![i].favorite!!
+                        )
 
                         Log.d(
                             "indiimage",
@@ -292,6 +299,7 @@ class Dashboard_frag : Fragment() {
                             i,
                             it.getData()!!.ListrestaurantproductResponce!![i].id.toString()
                         )
+                        restaurantFoodIsFav.add(i , it.getData()!!.ListrestaurantproductResponce!![i].favorite!!)
 
                         Log.d(
                             "indiimage",
@@ -335,6 +343,42 @@ class Dashboard_frag : Fragment() {
             }
 
         })
+
+        /*val requestBranch: Request_Branch = Request_Branch()
+        requestBranch.branchId = "1"
+
+        val retrofitInstance = RetrofitInstance()
+
+        val retrofitData : Call<Response_Common> =
+            retrofitInstance.retrofit.getFavList(Constants.USER_TOKEN, requestBranch)
+
+        retrofitData.enqueue(object : Callback<Response_Common?> {
+            override fun onResponse(
+                call: Call<Response_Common?>,
+                response: Response<Response_Common?>
+            ) {
+                if (response.isSuccessful) {
+
+                    commonResponse.value = response.body()
+
+                    for (i in commonResponse.value.getData()!!.FavoriteListResponce!!.indices) {
+
+                        favProductId.add(response.body()!!.getData()!!.productId.toString())
+                    }
+
+                    Log.d("Dashboard", "success")
+                    //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                    Log.d("Dashboard", "failed")
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
+                Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()
+            }
+        })*/
     }
 
     private fun setUpFoodModel() {
@@ -352,7 +396,8 @@ class Dashboard_frag : Fragment() {
                     popularFoodPrice[i],
                     popularFoodId[i],
                     popularFoodImg[i],
-                    popularFoodRating[i]
+                    popularFoodRating[i],
+                    popularFoodIsFav[i]
 
                 )
             )
@@ -370,7 +415,8 @@ class Dashboard_frag : Fragment() {
                     restaurantFoodPrice[i],
                     restaurantFoodId[i],
                     restaurantFoodImg[i],
-                    restaurantFoodRating[i]
+                    restaurantFoodRating[i],
+                    restaurantFoodIsFav[i]
                 )
             )
 

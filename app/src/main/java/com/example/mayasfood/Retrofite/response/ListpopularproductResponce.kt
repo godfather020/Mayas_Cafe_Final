@@ -51,4 +51,7 @@ class ListpopularproductResponce {
 
     @SerializedName("Topings"        )
     var Topings        : List<Topings>?       = null
+
+    @SerializedName("favorite")
+    var favorite : Int? = null
 }

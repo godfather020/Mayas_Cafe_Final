@@ -30,6 +30,7 @@ class popular_frag : Fragment() {
     var popularFoodImg = ArrayList<String>()
     var popularFoodRating = ArrayList<String>()
     lateinit var loading : ProgressBar
+    var popularFoodId = ArrayList<String>()
     lateinit var viewModel: popular_frag_ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +73,8 @@ class popular_frag : Fragment() {
                     popularFoodImg.clear()
                     popularFoodPrice.clear()
                     popularFoodRating.clear()
+                    recycleView_models.clear()
+                    popularFoodId.clear()
 
                     for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
 
@@ -91,6 +94,8 @@ class popular_frag : Fragment() {
                             i,
                             it.getData()!!.ListpopularproductResponce!![i].productPic.toString()
                         )
+
+                        popularFoodId.add(i, it.getData()!!.ListpopularproductResponce!![i].id.toString())
 
                         Log.d(
                             "indiimage",
@@ -128,6 +133,7 @@ class popular_frag : Fragment() {
                 RecycleView_Model(
                     popularFoodName[i],
                     popularFoodPrice[i],
+                    popularFoodId[i],
                     popularFoodImg[i],
                     popularFoodRating[i]
                 )

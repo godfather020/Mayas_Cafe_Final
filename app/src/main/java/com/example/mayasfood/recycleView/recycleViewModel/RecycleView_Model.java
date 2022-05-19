@@ -7,7 +7,7 @@ public class RecycleView_Model {
 
     private String foodName,foodHeading, foodPrice, productId;
     private String foodImg, stars;
-    private int foodImg1;
+    private int foodImg1, isFav;
 
     public RecycleView_Model(String foodName, String foodHeading, String foodPrice, int foodImg) {
         this.foodName = foodName;
@@ -22,6 +22,15 @@ public class RecycleView_Model {
         this.productId = productId;
         this.foodImg = foodImg;
         this.stars = stars;
+    }
+
+    public RecycleView_Model(String foodName, String foodPrice, String productId, String foodImg, String stars, int isFav) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.productId = productId;
+        this.foodImg = foodImg;
+        this.stars = stars;
+        this.isFav = isFav;
     }
 
     public RecycleView_Model(String foodName, String foodPrice, String foodImg, String stars) {
@@ -49,6 +58,14 @@ public class RecycleView_Model {
     public RecycleView_Model(String foodName, String foodImg) {
         this.foodName = foodName;
         this.foodImg = foodImg;
+    }
+
+    public int getIsFav() {
+        return isFav;
+    }
+
+    public void setIsFav(int isFav) {
+        this.isFav = isFav;
     }
 
     public RecycleView_Model(int foodImg) {

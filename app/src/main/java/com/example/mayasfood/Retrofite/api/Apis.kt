@@ -18,6 +18,12 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.DASHBOARD)
+    fun getDashboardItems(
+        @Body body: Request_Branch
+    ):Call<Response_Common>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.VERIFY)
     fun getVerifyOtp(
         @Body body: Request_Verify

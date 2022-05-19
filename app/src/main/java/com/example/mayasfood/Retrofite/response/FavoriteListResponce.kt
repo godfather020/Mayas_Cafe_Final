@@ -28,7 +28,7 @@ class FavoriteListResponce {
     @SerializedName("ProductId"  )
     var ProductIdF  : Int?     = null
 
-    /*@SerializedName("Product"    )
-    var Product    : Product? = Product()*/
+    @SerializedName("Product"    )
+    var Product    : Product? = Product()
 
 }

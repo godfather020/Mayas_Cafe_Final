@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +72,19 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             holder.addToFav.setVisibility(View.VISIBLE);
         }
 
+        if (foodModels2.get())
+
+        /*for (int i =0; i < productId.size(); i++){
+
+            if (foodModels2.get(holder.getAdapterPosition()).getProductId().equals(productId.get(i))){
+
+                holder.addToFav.setImageResource(R.drawable.red_heart);
+
+            }
+        }*/
+
+        holder.addToFav.setOnClickListener(null);
+
         holder.addToFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,9 +92,11 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
                 Request_addOrRemoveToFav request_addOrRemoveToFav = new Request_addOrRemoveToFav();
 
                 request_addOrRemoveToFav.setBranchId("1");
-                request_addOrRemoveToFav.setProductId(foodModels2.get(holder.getAdapterPosition()).getProductId());
+                request_addOrRemoveToFav.setProductId(foodModels2.get(holder.getLayoutPosition()).getProductId());
 
                 RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+                Log.d("click", String.valueOf(holder.getBindingAdapterPosition()));
 
                 Call<Response_Common> retrofitData = retrofitInstance.getRetrofit().addOrRemoveToFav(Constants.USER_TOKEN, request_addOrRemoveToFav);
 
@@ -98,13 +114,22 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
                                 Constants.add = 1;
 
+                                Log.d("adapter", String.valueOf(holder.getAdapterPosition()));
+
+                                holder.isFav.setChecked(true);
+
                                 holder.addToFav.setImageResource(R.drawable.red_heart);
+
+                                Log.d("clickF", holder.addToFav.toString());
+
+                                //notifyDataSetChanged();
 
                             }
                             else {
                                 Constants.add = 0;
                                 holder.addToFav.setImageResource(R.drawable.bi_heart);
                                 Toast.makeText(context, "Removed From Favorite", Toast.LENGTH_SHORT).show();
+
                             }
 
                         }
@@ -201,15 +226,19 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         return foodModels2.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         //grabbing the views from rv_column.xml
 
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
         ImageView addToFav;
+        CheckBox isFav;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            //this.setIsRecyclable(false);
+
 
             star1 = itemView.findViewById(R.id.star_1);
             star2 = itemView.findViewById(R.id.star_2);
@@ -220,10 +249,26 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             name = itemView.findViewById(R.id.name_food);
             price = itemView.findViewById(R.id.food_price);
             addToFav = itemView.findViewById(R.id.addToFav);
+            isFav = itemView.findViewById(R.id.isFav);
+
+            getFavList();
+
+            for (int i =0; i < productId.size(); i++){
+
+                for (int j = 0; j< foodModels2.size(); j++) {
+
+                    if (foodModels2.get(j).getProductId().equals(productId.get(i))) {
+
+                        addToFav.setImageResource(R.drawable.red_heart);
+
+                    }
+                }
+            }
+
         }
     }
 
-    private void addOrRemoveToFav(String productId){
+    /*private void addOrRemoveToFav(String productId){
 
         Request_addOrRemoveToFav request_addOrRemoveToFav = new Request_addOrRemoveToFav();
 
@@ -271,9 +316,9 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         Log.d("add", String.valueOf(Constants.add));
 
-    }
+    }*/
 
-   /* private ArrayList<String> getFavList(){
+    private void getFavList(){
 
         Request_Branch request_branch = new Request_Branch();
 
@@ -288,6 +333,8 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             public void onResponse(@NonNull Call<Response_Common> call, @NonNull Response<Response_Common> response) {
 
                 if (response.isSuccessful()){
+
+                    productId.clear();
 
                     response_commons.setValue(response.body());
 
@@ -313,7 +360,6 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             }
         });
 
-        return productId;
-    }*/
+    }
 
 }
