@@ -1,10 +1,13 @@
 package com.example.mayasfood.fragments.ViewModels
 
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
@@ -19,12 +22,14 @@ class Dashboard_frag_ViewModel : ViewModel() {
 
     lateinit var activity: Fragment
     lateinit var auth : FirebaseAuth
+    lateinit var loading: ProgressBar
 
     var commonResponse = MutableLiveData<Response_Common>()
 
-    fun getDashboardData(activity: Fragment, branchId: String): MutableLiveData<Response_Common> {
+    fun getDashboardData(activity: Fragment, branchId: String, loading: ProgressBar): MutableLiveData<Response_Common> {
 
         this.activity = activity
+        this.loading = loading.findViewById(R.id.progress_bar)
         val requestBranch: Request_Branch = Request_Branch()
         requestBranch.branchId = branchId
         auth = FirebaseAuth.getInstance()
@@ -39,14 +44,14 @@ class Dashboard_frag_ViewModel : ViewModel() {
         val retrofitInstance = RetrofitInstance()
         val retrofitData : Call<Response_Common>
 
-       /* if (auth.currentUser != null){
+        if (auth.currentUser != null){
 
             retrofitData = retrofitInstance.retrofit.getDashboardItems(Constants.USER_TOKEN, param)
         }else {
 
-            retrofitData = retrofitInstance.retrofit.getDashboardItems(param)
-        }*/
-        retrofitData = retrofitInstance.retrofit.getDashboardItems(param)
+            retrofitData = retrofitInstance.retrofit.getDashboardItems("x-token",param)
+        }
+       // retrofitData = retrofitInstance.retrofit.getDashboardItems(Constants.USER_TOKEN,param)
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(
@@ -61,12 +66,13 @@ class Dashboard_frag_ViewModel : ViewModel() {
                     //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
+                    loading.visibility = View.GONE
                     Log.d("Dashboard", "failed")
                 }
             }
 
             override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
+                loading.visibility = View.GONE
                 Toast.makeText(activity.requireContext(), t.toString(), Toast.LENGTH_SHORT).show()
             }
         })

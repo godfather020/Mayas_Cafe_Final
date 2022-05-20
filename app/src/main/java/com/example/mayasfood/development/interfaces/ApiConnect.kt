@@ -1,8 +1,8 @@
 package com.example.lottry.development.interfaces
 
-import com.example.lottry.data.remote.retrofit.api.Apis
+import com.example.mayasfood.Retrofite.api.Apis
 
 interface ApiConnect {
 
-    val api:Apis
+    val api: Apis
 }

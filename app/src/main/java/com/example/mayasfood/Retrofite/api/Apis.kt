@@ -1,4 +1,4 @@
-package com.example.lottry.data.remote.retrofit.api
+package com.example.mayasfood.Retrofite.api
 
 import com.example.lottry.data.remote.retrofit.request.*
 import com.example.mayasfood.Retrofite.request.*
@@ -63,18 +63,21 @@ interface Apis {
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.POPULAR_FOOD)
     fun getPopularFood(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.RESTAURANT_CHOICES)
     fun getRestaurantChoices(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_Branch
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.LIST_PRODUCTS)
     fun getFoodCategory(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
         @Body body: Request_CategoryDetails
     ):Call<Response_Common>
 

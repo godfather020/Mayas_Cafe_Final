@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,9 +27,12 @@ class CategoryDetails_frag : Fragment() {
     var foodPrice = ArrayList<String>()
     var foodImg = ArrayList<String>()
     var foodRating = ArrayList<String>()
+    var foodIsFav = ArrayList<Int>()
+    var foodId = ArrayList<String>()
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var viewModel : CategoryDetails_ViewModel
     lateinit var dashBoard: DashBoard
+    lateinit var loading : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +54,8 @@ class CategoryDetails_frag : Fragment() {
 
         dashBoard.toolbar_const.setTitle(Constants.categoryName);
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+        loading = view.findViewById(R.id.loading_catDetails)
+        loading.visibility = View.VISIBLE
 
         recyclerView = view.findViewById(R.id.category_details_rv)
         val layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
@@ -62,7 +68,7 @@ class CategoryDetails_frag : Fragment() {
 
     private fun setUpCategoryView() {
 
-        viewModel.getCategoryDetails(this, Constants.categoryId, "1").observe(viewLifecycleOwner, Observer {
+        viewModel.getCategoryDetails(this, Constants.categoryId, "1", loading).observe(viewLifecycleOwner, Observer {
 
             if (it != null){
 
@@ -72,6 +78,9 @@ class CategoryDetails_frag : Fragment() {
                     foodName.clear()
                     foodPrice.clear()
                     foodRating.clear()
+                    foodIsFav.clear()
+                    foodId.clear()
+                    recycleView_models.clear()
 
                     for(i in it.getData()!!.ListproductResponce!!.indices){
 
@@ -79,7 +88,11 @@ class CategoryDetails_frag : Fragment() {
                         foodImg.add(i, it.getData()!!.ListproductResponce!![i].productPic.toString())
                         foodPrice.add(i, it.getData()!!.ListproductResponce!![i].Productprices!![0].amount.toString())
                         foodRating.add(i, it.getData()!!.ListproductResponce!![i].customerrating.toString())
+                        foodIsFav.add(i , it.getData()!!.ListproductResponce!![i].favorite!!)
+                        foodId.add(i , it.getData()!!.ListproductResponce!![i].id.toString())
                     }
+
+                    loading.visibility = View.GONE
                 }
 
                 setUpModel()
@@ -95,11 +108,15 @@ class CategoryDetails_frag : Fragment() {
                 RecycleView_Model(
                     foodName[i],
                     foodPrice[i],
+                    foodId[i],
                     foodImg[i],
-                    foodRating[i]
+                    foodRating[i],
+                    foodIsFav[i]
                 )
             )
         }
+
+
 
         val recycleView_adapter = RecycleView_Adapter_PF(activity, recycleView_models)
         recyclerView.adapter = recycleView_adapter

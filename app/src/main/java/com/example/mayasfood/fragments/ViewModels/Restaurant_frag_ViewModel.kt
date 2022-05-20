@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
+import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,7 +38,7 @@ class Restaurant_frag_ViewModel : ViewModel() {
     private fun getRestaurantChoiceFoodApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getRestaurantChoices(param)
+        val retrofitData = retrofitInstance.retrofit.getRestaurantChoices(Constants.USER_TOKEN, param)
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

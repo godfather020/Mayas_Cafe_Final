@@ -49,6 +49,8 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Green Salad"
+                android:gravity="center"
+                android:textAlignment="center"
                 android:textColor="@color/Rest_choice_txt"
                 android:textSize="@dimen/Rest_choice_title"
                 android:textStyle="bold"

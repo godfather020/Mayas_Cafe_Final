@@ -1,6 +1,6 @@
 package com.example.mayasfood.Modules
 
-import com.example.lottry.data.remote.retrofit.api.Apis
+import com.example.mayasfood.Retrofite.api.Apis
 import com.example.lottry.development.implementation.ConnectionApiEndPoint
 import com.example.lottry.development.interfaces.EndPoint
 import com.example.mayasfood.constants.Constants
@@ -32,7 +32,7 @@ class NetworkModule {
     }
 
     @Provides
-    internal fun providRetrofitApi(retrofit: Retrofit):Apis{
+    internal fun providRetrofitApi(retrofit: Retrofit): Apis {
 
         return retrofit.create(Apis::class.java)
     }

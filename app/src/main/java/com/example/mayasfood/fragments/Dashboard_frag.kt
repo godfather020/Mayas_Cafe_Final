@@ -25,6 +25,7 @@ import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
+import com.google.firebase.auth.FirebaseAuth
 import com.smarteist.autoimageslider.SliderView
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,6 +64,7 @@ class Dashboard_frag : Fragment() {
     var notResumed = false
     var favProductId = ArrayList<String>()
     //var commonResponse = ArrayList<Response_Common>()
+    lateinit var auth : FirebaseAuth
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
     var url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg"
@@ -93,6 +95,8 @@ class Dashboard_frag : Fragment() {
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
+        auth = FirebaseAuth.getInstance()
 
         see_offers = v.findViewById(R.id.see_offers)
         userName = v.findViewById(R.id.user_name)
@@ -154,35 +158,13 @@ class Dashboard_frag : Fragment() {
 
     private fun setDashboardView() {
 
-        viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, Observer {
+        viewModel.getDashboardData(this, "1", loading).observe(viewLifecycleOwner, Observer {
 
             if (it != null) {
 
                 if (it.getSuccess()!!) {
 
-                    recycleView_models.clear()
-                    recycleView_models1.clear()
-                    recycleView_models2.clear()
-                    popularFoodName.clear()
-                    popularFoodImg.clear()
-                    popularFoodPrice.clear()
-                    popularFoodRating.clear()
-                    restaurantFoodName.clear()
-                    restaurantFoodImg.clear()
-                    restaurantFoodPrice.clear()
-                    restaurantFoodRating.clear()
-                    categoryName.clear()
-                    sliderDataArrayList.clear()
-                    homeResList.clear()
-                    popularFoodId.clear()
-                    restaurantFoodId.clear()
-                    popularFoodIsFav.clear()
-                    restaurantFoodIsFav.clear()
-
-                    Log.d(
-                        "indice",
-                        it.getData()!!.ListcouponResponce!!.indices.toString()
-                    )
+                    clearArrayList()
 
                     for (i in it.getData()!!.ListcouponResponce!!.indices) {
 
@@ -192,21 +174,10 @@ class Dashboard_frag : Fragment() {
 
                         ListcouponResponce = it.getData()!!.ListcouponResponce!![i]
 
-                        //couponImg.add(i ,it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
 
                         var bannerImage = it.getData()!!.ListcouponResponce!![i].name
 
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListcouponResponce!![i].bannerImage.toString()
-                        )
-                        Log.d("id", it.getData()!!.ListcouponResponce!![i].toString())
-                        Log.d("indiimage", bannerImage.toString())
-
-
                         homeResList.add(ListcouponResponce)
-
-                        //Log.d("url", Constants.UserCoupon_Path+couponImg[i])
 
                     }
                     for (i in homeResList.indices) {
@@ -226,11 +197,7 @@ class Dashboard_frag : Fragment() {
                     sliderView.setSliderAdapter(adapter)
                     sliderView.scrollTimeInSec = 3
 
-                    // to set it scrollable automatically
-                    // we use below method.
                     sliderView.isAutoCycle = true
-
-                    // to start autocycle below method is used.
                     sliderView.startAutoCycle()
 
                     for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
@@ -255,26 +222,20 @@ class Dashboard_frag : Fragment() {
                             i,
                             it.getData()!!.ListpopularproductResponce!![i].id.toString()
                         )
-                        popularFoodIsFav.add(i ,
-                            it.getData()!!.ListpopularproductResponce!![i].favorite!!
-                        )
+                        if (auth.currentUser!=null) {
 
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].productName.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].amount.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].customerrating.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].productPic.toString()
-                        )
+                            popularFoodIsFav.add(
+                                i,
+                                it.getData()!!.ListpopularproductResponce!![i].favorite!!
+                            )
+                        }
+                        else{
+
+                            popularFoodIsFav.add(
+                                i,
+                                0
+                            )
+                        }
                     }
 
                     for (i in it.getData()!!.ListrestaurantproductResponce!!.indices) {
@@ -299,24 +260,20 @@ class Dashboard_frag : Fragment() {
                             i,
                             it.getData()!!.ListrestaurantproductResponce!![i].id.toString()
                         )
-                        restaurantFoodIsFav.add(i , it.getData()!!.ListrestaurantproductResponce!![i].favorite!!)
 
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].productName.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].amount.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].customerrating.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].productPic.toString()
-                        )
+                        if (auth.currentUser != null) {
+                            restaurantFoodIsFav.add(
+                                i,
+                                it.getData()!!.ListrestaurantproductResponce!![i].favorite!!
+                            )
+                        }
+                        else{
+                            restaurantFoodIsFav.add(
+                                i,
+                                0
+                            )
+
+                        }
                     }
 
                     for (i in it.getData()!!.ListcategoryResponce!!.indices) {
@@ -327,10 +284,6 @@ class Dashboard_frag : Fragment() {
                         )
                         categoryId.add(i, it.getData()!!.ListcategoryResponce!![i].id.toString())
 
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListcategoryResponce!![i].categoryName.toString()
-                        )
                     }
 
                     loading.visibility = View.GONE
@@ -343,42 +296,6 @@ class Dashboard_frag : Fragment() {
             }
 
         })
-
-        /*val requestBranch: Request_Branch = Request_Branch()
-        requestBranch.branchId = "1"
-
-        val retrofitInstance = RetrofitInstance()
-
-        val retrofitData : Call<Response_Common> =
-            retrofitInstance.retrofit.getFavList(Constants.USER_TOKEN, requestBranch)
-
-        retrofitData.enqueue(object : Callback<Response_Common?> {
-            override fun onResponse(
-                call: Call<Response_Common?>,
-                response: Response<Response_Common?>
-            ) {
-                if (response.isSuccessful) {
-
-                    commonResponse.value = response.body()
-
-                    for (i in commonResponse.value.getData()!!.FavoriteListResponce!!.indices) {
-
-                        favProductId.add(response.body()!!.getData()!!.productId.toString())
-                    }
-
-                    Log.d("Dashboard", "success")
-                    //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                }
-                else{
-
-                    Log.d("Dashboard", "failed")
-                }
-            }
-
-            override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
-                Toast.makeText(activity, t.toString(), Toast.LENGTH_SHORT).show()
-            }
-        })*/
     }
 
     private fun setUpFoodModel() {
@@ -426,6 +343,8 @@ class Dashboard_frag : Fragment() {
             Log.d("indiimage1", restaurantFoodName[i])
         }
 
+
+
         val recycleView_adapter = RecycleView_Adapter_C(activity, recycleView_models)
         val recycleView_adapter_pf = RecycleView_Adapter_PF(activity, recycleView_models1)
         val recycleView_adapter_rc = RecycleView_Adapter_RC(activity, recycleView_models2)
@@ -446,35 +365,6 @@ class Dashboard_frag : Fragment() {
         //setHasOptionsMenu(true)
 
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("life", "create")
-        Log.d("lifec", Constants.onetTime.toString())
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("life", "pause")
-        Log.d("lifep", Constants.onetTime.toString())
-    }
-
-    override fun onStop() {
-        Log.d("life", "stop")
-        super.onStop()
-        this.onDestroy()
-        //Constants.onetTime = 0
-        Log.d("lifes", Constants.onetTime.toString())
-
-    }
-
-    override fun onDestroy() {
-        Log.d("life", "destroy")
-        super.onDestroy()
-        //Constants.onetTime = 1
-        Log.d("lifed", Constants.onetTime.toString())
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         // Do something that differs the Activity's menu here
@@ -498,4 +388,27 @@ class Dashboard_frag : Fragment() {
         }
         return false
     }*/
+
+    fun clearArrayList(){
+
+        recycleView_models.clear()
+        recycleView_models1.clear()
+        recycleView_models2.clear()
+        popularFoodName.clear()
+        popularFoodImg.clear()
+        popularFoodPrice.clear()
+        popularFoodRating.clear()
+        restaurantFoodName.clear()
+        restaurantFoodImg.clear()
+        restaurantFoodPrice.clear()
+        restaurantFoodRating.clear()
+        categoryName.clear()
+        sliderDataArrayList.clear()
+        homeResList.clear()
+        popularFoodId.clear()
+        restaurantFoodId.clear()
+        popularFoodIsFav.clear()
+        restaurantFoodIsFav.clear()
+
+    }
 }

@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel;
 
 public class RecycleView_Model {
 
-
     private String foodName,foodHeading, foodPrice, productId;
     private String foodImg, stars;
     private int foodImg1, isFav;

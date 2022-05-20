@@ -40,8 +40,9 @@ public void onBindViewHolder(@NonNull RecycleView_Adapter_N2.MyViewHolder holder
 final RecycleView_Model temp = foodModels4.get(position);
 
     holder.noti_time.setText(foodModels4.get(position).getFoodName());
-    holder.noti_body.setText(foodModels4.get(position).getFoodHeading());
-    holder.notyTitle.setText(foodModels4.get(position).getFoodPrice());
+    holder.noti_body.setText(foodModels4.get(position).getFoodPrice());
+    holder.notyTitle.setText(foodModels4.get(position).getFoodImg());
+    holder.createdDate.setText(foodModels4.get(position).getStars());
 
 
         /*holder.copy_offer.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +72,7 @@ public static class MyViewHolder extends RecyclerView.ViewHolder {
     //grabbing the views from rv_column.xml
 
 
-    TextView noti_body, noti_time, notyTitle;
+    TextView noti_body, noti_time, notyTitle, createdDate;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -79,6 +80,7 @@ public static class MyViewHolder extends RecyclerView.ViewHolder {
         noti_body = itemView.findViewById(R.id.notiyes_body);
         noti_time = itemView.findViewById(R.id.notiyes_time);
         notyTitle = itemView.findViewById(R.id.notyes_Title);
+        createdDate = itemView.findViewById(R.id.yesterday_rv_date);
     }
 }
 }

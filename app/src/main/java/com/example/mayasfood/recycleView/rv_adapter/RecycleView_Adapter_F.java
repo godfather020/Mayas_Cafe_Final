@@ -257,7 +257,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
         }
     }
 
-    private void dialog(String msg){
+    /*private void dialog(String msg){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
@@ -282,5 +282,5 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
         alertDialog.show();
 
 
-    }
+    }*/
 }

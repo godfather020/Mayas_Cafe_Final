@@ -97,6 +97,7 @@
         <entry key="app/src/main/res/layout-v28/header.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-v28/today_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-v28/yesterday_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/all_popular_food_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_details_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_category_frag.xml" value="0.2864583333333333" />

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
+import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,17 +19,14 @@ import retrofit2.Response
 class Dashboard_category_ViewModel: ViewModel() {
 
     lateinit var activity: Fragment
-    lateinit var loading : ProgressBar
 
     var commonResponse = MutableLiveData<Response_Common>()
 
-    fun getDashboardData(activity: Fragment, branchId: String, loading : ProgressBar): MutableLiveData<Response_Common> {
+    fun getDashboardData(activity: Fragment, branchId: String): MutableLiveData<Response_Common> {
 
         this.activity = activity
         val requestBranch: Request_Branch = Request_Branch()
         requestBranch.branchId = branchId
-
-        this.loading = loading.findViewById(R.id.loading_catD)
 
         getDashboardDataApi(requestBranch)
 
@@ -38,7 +36,7 @@ class Dashboard_category_ViewModel: ViewModel() {
     private fun getDashboardDataApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getDashboardItems("", param)
+        val retrofitData = retrofitInstance.retrofit.getDashboardItems(Constants.USER_TOKEN, param)
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(
@@ -53,14 +51,14 @@ class Dashboard_category_ViewModel: ViewModel() {
                     //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    loading.visibility = View.GONE
+
                     Log.d("Dashboard", "failed")
                 }
             }
 
             override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
                 Toast.makeText(activity.requireContext(), t.toString(), Toast.LENGTH_SHORT).show()
-                loading.visibility = View.GONE
+
             }
         })
 

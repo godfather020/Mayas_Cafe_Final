@@ -8,25 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lottry.data.remote.retrofit.request.Request_addOrRemoveToFav;
 import com.example.mayasfood.R;
+import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.example.mayasfood.activity.singleItem;
 import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.development.retrofit.RetrofitInstance;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Adapter_RC.MyViewHolder> {
 
     Context context;
     ArrayList<RecycleView_Model> foodModels3;
     FirebaseAuth auth;
+    String foodName;
 
     public RecycleView_Adapter_RC(Context context, ArrayList<RecycleView_Model> foodModels3){
         this.context = context;
@@ -49,6 +59,21 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
         final RecycleView_Model temp = foodModels3.get(position);
 
+        ArrayList<RecycleView_Model> tempFood = new ArrayList<>();
+
+        holder.addToFav.setEnabled(true);
+        holder.loading.setVisibility(View.GONE);
+
+        tempFood.clear();
+        /*ArrayList<Integer> isFav = new ArrayList<>();
+
+        isFav.clear();*/
+
+        for (int i = 0; i < foodModels3.size(); i++) {
+
+            tempFood.add(foodModels3.get(position));
+        }
+
         if (auth.getCurrentUser() != null){
 
             holder.addToFav.setVisibility(View.VISIBLE);
@@ -58,7 +83,113 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             holder.addToFav.setVisibility(View.GONE);
         }
 
-        holder.name.setText(foodModels3.get(position).getFoodName());
+        if (auth.getCurrentUser() != null) {
+
+            if (tempFood.get(holder.getAdapterPosition()).getIsFav() == 1) {
+
+                holder.addToFav.setImageResource(R.drawable.red_heart);
+            }
+            else {
+
+                holder.addToFav.setImageResource(R.drawable.bi_heart);
+            }
+        }
+
+        holder.addToFav.setOnClickListener(null);
+
+        holder.addToFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Request_addOrRemoveToFav request_addOrRemoveToFav = new Request_addOrRemoveToFav();
+
+                request_addOrRemoveToFav.setBranchId("1");
+                request_addOrRemoveToFav.setProductId(foodModels3.get(holder.getLayoutPosition()).getProductId());
+
+                RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+                Log.d("click", String.valueOf(holder.getBindingAdapterPosition()));
+
+                Call<Response_Common> retrofitData = retrofitInstance.getRetrofit().addOrRemoveToFav(Constants.USER_TOKEN, request_addOrRemoveToFav);
+
+                retrofitData.enqueue(new Callback<Response_Common>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Response_Common> call, @NonNull Response<Response_Common> response) {
+
+                        if (response.isSuccessful()){
+
+                            if (response.body().getData().getProductId() != null){
+
+                                Log.d("ProductR", response.body().getData().getProductId().toString());
+
+                                //Toast.makeText(context, "Added to Favorite", Toast.LENGTH_SHORT).show();
+
+                                Constants.add = 1;
+
+                                Log.d("adapter", String.valueOf(holder.getAdapterPosition()));
+
+                                //holder.isFav.setChecked(true);
+
+                                holder.addToFav.setImageResource(R.drawable.red_heart);
+
+                                Log.d("clickF", holder.addToFav.toString());
+
+                                tempFood.get(holder.getAdapterPosition()).setIsFav(1);
+
+                                holder.addToFav.setEnabled(false);
+
+                                holder.loading.setVisibility(View.VISIBLE);
+
+                                notifyDataSetChanged();
+                                //notifyItemChanged(holder.getAdapterPosition());
+
+                                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+
+                                //Functions.loadFragment(activity.getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
+
+                            }
+                            else {
+                                Constants.add = 0;
+                                holder.addToFav.setImageResource(R.drawable.bi_heart);
+                                //Toast.makeText(context, "Removed From Favorite", Toast.LENGTH_SHORT).show();
+                                tempFood.get(holder.getAdapterPosition()).setIsFav(0);
+                                holder.addToFav.setEnabled(false);
+                                holder.loading.setVisibility(View.VISIBLE);
+                                //notifyItemChanged(holder.getAdapterPosition());
+                                notifyDataSetChanged();
+                            }
+
+                        }
+                        else {
+                            Constants.add = 0;
+                            holder.addToFav.setImageResource(R.drawable.bi_heart);
+                            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response_Common> call, Throwable t) {
+                        Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Log.d("add", String.valueOf(Constants.add));
+            }
+        });
+
+        if (foodModels3.get(position).getFoodName().length() > 13){
+
+            foodName = foodModels3.get(position).getFoodName().substring(0, 13) + "...";
+        }
+        else {
+
+            foodName = foodModels3.get(position).getFoodName();
+        }
+
+        holder.name.setText(foodName);
+
+        //holder.name.setText(foodModels3.get(position).getFoodName());
         Picasso.get()
                 .load(Constants.UserProduct_Path + foodModels3.get(position).getFoodImg())
                 .into(holder.imageView);
@@ -142,6 +273,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
         ImageView addToFav;
+        ProgressBar loading;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -155,6 +287,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             name = itemView.findViewById(R.id.name_food1);
             price = itemView.findViewById(R.id.food_price1);
             addToFav = itemView.findViewById(R.id.addToFav);
+            loading = itemView.findViewById(R.id.loading_rest_rv);
         }
     }
 }

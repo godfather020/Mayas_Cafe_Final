@@ -19,5 +19,7 @@ class ListproductResponce {
     @SerializedName("createdAt"      ) var createdAt      : String?                  = null
     @SerializedName("updatedAt"      ) var updatedAt      : String?                  = null
     @SerializedName("Productprices"  ) var Productprices  : List<Productprices>? = null
+    @SerializedName("favorite")
+    var favorite : Int? = null
     //@SerializedName("Topings"        ) var Topings        : List<String>?        = null
 }

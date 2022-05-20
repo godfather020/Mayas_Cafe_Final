@@ -29,6 +29,7 @@ class popular_frag : Fragment() {
     var popularFoodPrice = ArrayList<String>()
     var popularFoodImg = ArrayList<String>()
     var popularFoodRating = ArrayList<String>()
+    var popularFoodIsFav = ArrayList<Int>()
     lateinit var loading : ProgressBar
     var popularFoodId = ArrayList<String>()
     lateinit var viewModel: popular_frag_ViewModel
@@ -75,6 +76,7 @@ class popular_frag : Fragment() {
                     popularFoodRating.clear()
                     recycleView_models.clear()
                     popularFoodId.clear()
+                    popularFoodIsFav.clear()
 
                     for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
 
@@ -97,22 +99,8 @@ class popular_frag : Fragment() {
 
                         popularFoodId.add(i, it.getData()!!.ListpopularproductResponce!![i].id.toString())
 
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].productName.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].amount.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].customerrating.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListpopularproductResponce!![i].productPic.toString()
-                        )
+                        popularFoodIsFav.add(i , it.getData()!!.ListpopularproductResponce!![i].favorite!!)
+
                     }
 
                     loading.visibility = View.GONE
@@ -135,7 +123,8 @@ class popular_frag : Fragment() {
                     popularFoodPrice[i],
                     popularFoodId[i],
                     popularFoodImg[i],
-                    popularFoodRating[i]
+                    popularFoodRating[i],
+                    popularFoodIsFav[i]
                 )
             )
 
@@ -145,6 +134,8 @@ class popular_frag : Fragment() {
             Log.d("indiimage1", popularFoodRating[i])
 
         }
+
+
 
         val recycleView_adapter = RecycleView_Adapter_PF(activity, recycleView_models)
 

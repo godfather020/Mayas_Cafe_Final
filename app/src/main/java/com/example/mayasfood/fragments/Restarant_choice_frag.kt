@@ -29,6 +29,7 @@ class Restarant_choice_frag : Fragment() {
     var restaurantFoodImg = ArrayList<String>()
     var restaurantFoodRating = ArrayList<String>()
     var restaurantFoodId = ArrayList<String>()
+    var restaurantFoodIsFav = ArrayList<Int>()
     lateinit var loading : ProgressBar
     lateinit var viewModel: Restaurant_frag_ViewModel
 
@@ -73,6 +74,7 @@ class Restarant_choice_frag : Fragment() {
                     restaurantFoodPrice.clear()
                     restaurantFoodRating.clear()
                     restaurantFoodId.clear()
+                    restaurantFoodIsFav.clear()
 
                     Log.d("indice", it.getData()!!.ListrestaurantproductResponce!!.indices.toString())
 
@@ -97,22 +99,9 @@ class Restarant_choice_frag : Fragment() {
 
                         restaurantFoodId.add(i , it.getData()!!.ListrestaurantproductResponce!![i].id.toString())
 
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].productName.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].amount.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].customerrating.toString()
-                        )
-                        Log.d(
-                            "indiimage",
-                            it.getData()!!.ListrestaurantproductResponce!![i].productPic.toString()
-                        )
+                        restaurantFoodIsFav.add(i , it.getData()!!.ListrestaurantproductResponce!![i].favorite!!)
+
+
                     }
                     loading.visibility = View.GONE
                 }
@@ -131,7 +120,8 @@ class Restarant_choice_frag : Fragment() {
                     restaurantFoodPrice[i],
                     restaurantFoodId[i],
                     restaurantFoodImg[i],
-                    restaurantFoodRating[i]
+                    restaurantFoodRating[i],
+                    restaurantFoodIsFav[i]
                 )
             )
 

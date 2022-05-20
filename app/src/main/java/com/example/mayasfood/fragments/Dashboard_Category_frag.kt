@@ -23,7 +23,7 @@ class Dashboard_Category_frag : Fragment() {
 
     var categoryName = ArrayList<String>()
     lateinit var recyclerView : RecyclerView
-    lateinit var loading : ProgressBar
+   // lateinit var loading : ProgressBar
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var viewModel: Dashboard_category_ViewModel
     var categoryId = ArrayList<String>()
@@ -53,8 +53,8 @@ class Dashboard_Category_frag : Fragment() {
 
         Log.d("value", value)
 
-        loading = view.findViewById(R.id.loading_catD)
-        loading.visibility = View.VISIBLE
+        //loading = view.findViewById(R.id.loading_catD)
+        //loading.visibility = View.VISIBLE
 
         recyclerView = view.findViewById(R.id.category_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -74,7 +74,7 @@ class Dashboard_Category_frag : Fragment() {
 
     private fun setUpCategoryView() {
 
-        viewModel.getDashboardData(this, "1", loading).observe(viewLifecycleOwner, Observer {
+        viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, Observer {
 
             if (it != null){
 
@@ -97,7 +97,7 @@ class Dashboard_Category_frag : Fragment() {
                         )
                     }
 
-                    loading.visibility = View.GONE
+                   // loading.visibility = View.GONE
                 }
                 setUpModel()
             }

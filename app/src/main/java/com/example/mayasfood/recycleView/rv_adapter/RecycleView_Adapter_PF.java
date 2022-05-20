@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +24,7 @@ import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.development.retrofit.RetrofitInstance;
 import com.example.mayasfood.fragments.Dashboard_frag;
+import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -38,7 +42,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
     FirebaseAuth auth;
     MutableLiveData<Response_Common> response_commons = new MutableLiveData<>();
     ArrayList<String> productId = new ArrayList<String>();
-    Dashboard_frag dashboard_frag = new Dashboard_frag();
+    String foodName = "";
 
     public RecycleView_Adapter_PF(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
@@ -61,6 +65,21 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         final RecycleView_Model temp = foodModels2.get(position);
 
+        ArrayList<RecycleView_Model> tempFood = new ArrayList<>();
+
+        holder.addToFav.setEnabled(true);
+        holder.loading.setVisibility(View.GONE);
+
+        tempFood.clear();
+        /*ArrayList<Integer> isFav = new ArrayList<>();
+
+        isFav.clear();*/
+
+        for (int i = 0; i < foodModels2.size(); i++) {
+
+            tempFood.add(foodModels2.get(position));
+        }
+
         Log.d("rcPN", foodModels2.get(position).getFoodName());
 
         if (auth.getCurrentUser() == null){
@@ -72,16 +91,17 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             holder.addToFav.setVisibility(View.VISIBLE);
         }
 
-        if (foodModels2.get())
+        if (auth.getCurrentUser() != null) {
 
-        /*for (int i =0; i < productId.size(); i++){
-
-            if (foodModels2.get(holder.getAdapterPosition()).getProductId().equals(productId.get(i))){
+            if (tempFood.get(holder.getAdapterPosition()).getIsFav() == 1) {
 
                 holder.addToFav.setImageResource(R.drawable.red_heart);
-
             }
-        }*/
+            else {
+
+                holder.addToFav.setImageResource(R.drawable.bi_heart);
+            }
+        }
 
         holder.addToFav.setOnClickListener(null);
 
@@ -110,7 +130,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
                                 Log.d("ProductR", response.body().getData().getProductId().toString());
 
-                                Toast.makeText(context, "Added to Favorite", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(context, "Added to Favorite", Toast.LENGTH_SHORT).show();
 
                                 Constants.add = 1;
 
@@ -122,14 +142,30 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
                                 Log.d("clickF", holder.addToFav.toString());
 
-                                //notifyDataSetChanged();
+                                tempFood.get(holder.getAdapterPosition()).setIsFav(1);
+
+                                holder.addToFav.setEnabled(false);
+
+                                holder.loading.setVisibility(View.VISIBLE);
+
+                                notifyDataSetChanged();
+                                //notifyItemChanged(holder.getAdapterPosition());
+
+                                //AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+
+                                //Functions.loadFragment(activity.getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Dashboard", null);
 
                             }
                             else {
                                 Constants.add = 0;
                                 holder.addToFav.setImageResource(R.drawable.bi_heart);
-                                Toast.makeText(context, "Removed From Favorite", Toast.LENGTH_SHORT).show();
-
+                                //Toast.makeText(context, "Removed From Favorite", Toast.LENGTH_SHORT).show();
+                                tempFood.get(holder.getAdapterPosition()).setIsFav(0);
+                                holder.addToFav.setEnabled(false);
+                                holder.loading.setVisibility(View.VISIBLE);
+                                //notifyItemChanged(holder.getAdapterPosition());
+                                notifyDataSetChanged();
                             }
 
                         }
@@ -150,7 +186,16 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             }
         });
 
-        holder.name.setText(foodModels2.get(position).getFoodName());
+        if (foodModels2.get(position).getFoodName().length() > 13){
+
+            foodName = foodModels2.get(position).getFoodName().substring(0, 13) + "...";
+        }
+        else {
+
+            foodName = foodModels2.get(position).getFoodName();
+        }
+
+        holder.name.setText(foodName);
 
         Picasso.get()
                 .load(Constants.UserProduct_Path + foodModels2.get(position).getFoodImg())
@@ -233,6 +278,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         TextView name, price;
         ImageView addToFav;
         CheckBox isFav;
+        ProgressBar loading;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -250,10 +296,11 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             price = itemView.findViewById(R.id.food_price);
             addToFav = itemView.findViewById(R.id.addToFav);
             isFav = itemView.findViewById(R.id.isFav);
+            loading = itemView.findViewById(R.id.loading_pop_rv);
 
-            getFavList();
+            //getFavList();
 
-            for (int i =0; i < productId.size(); i++){
+            /*for (int i =0; i < productId.size(); i++){
 
                 for (int j = 0; j< foodModels2.size(); j++) {
 
@@ -263,7 +310,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
                     }
                 }
-            }
+            }*/
 
         }
     }

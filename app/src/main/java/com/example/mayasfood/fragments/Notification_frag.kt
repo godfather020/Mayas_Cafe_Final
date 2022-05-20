@@ -29,9 +29,11 @@ class Notification_frag : Fragment() {
     var notificationTodayTxt = ArrayList<String>()
     var notificationTodayTime = ArrayList<String>()
     var notificationTodayTitle = ArrayList<String>()
+    var notificationTodayDate = ArrayList<String>()
     var notificationPreviousTxt = ArrayList<String>()
     var notificationPreviousTime = ArrayList<String>()
     var notificationPreviousTitle = ArrayList<String>()
+    var notificationPreviousDate = ArrayList<String>()
     lateinit var  recyclerView: RecyclerView
     lateinit var recyclerView2: RecyclerView
     var today = 0
@@ -115,32 +117,35 @@ class Notification_frag : Fragment() {
 
                         Log.d("DateC", createdDate)
 
+                        val createdDateAd = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(date1)
+
                         val notyTime =
                             SimpleDateFormat("HH:mm a", Locale.getDefault()).format(date1)
 
                         Log.d("timeC", notyTime)
 
-                        val newAMPM = notyTime.substring(5,notyTime.length)
+                        var newAMPM = notyTime.substring(5,notyTime.length)
                         val newNotyTime = notyTime.substring(0,5)
 
                         if (newAMPM.contains("am")){
 
-                            newAMPM.replace("am", "AM")
+                            newAMPM = newAMPM.replace("am", "AM")
                         }
                         else{
 
-                            newAMPM.replace("pm", "PM")
+                           newAMPM = newAMPM.replace("pm", "PM")
                         }
 
                         if (createdDate == todayDate){
 
                             Log.d("inside", "inside")
 
-                            today = 2
+                            today = 1
 
                             notificationTodayTime.add( newNotyTime+"\n"+newAMPM)
                             notificationTodayTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
                             notificationTodayTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
+                            notificationTodayDate.add(createdDateAd)
 
                         }
                         else{
@@ -149,6 +154,7 @@ class Notification_frag : Fragment() {
                             notificationPreviousTime.add( newNotyTime+"\n"+newAMPM)
                             notificationPreviousTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
                             notificationPreviousTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
+                            notificationPreviousDate.add(createdDateAd)
                         }
                     }
 
@@ -171,12 +177,12 @@ class Notification_frag : Fragment() {
 
         for (i in notificationTodayTime.indices){
 
-            recycleView_models.add(RecycleView_Model(notificationTodayTime[i], notificationTodayTxt[i], notificationTodayTitle[i]))
+            recycleView_models.add(RecycleView_Model(notificationTodayTime[i], notificationTodayTxt[i], notificationTodayTitle[i], notificationTodayDate[i]))
         }
 
         for (i in notificationPreviousTitle.indices){
 
-            recycleView_models1.add(RecycleView_Model(notificationPreviousTime[i], notificationPreviousTxt[i], notificationPreviousTitle[i]))
+            recycleView_models1.add(RecycleView_Model(notificationPreviousTime[i], notificationPreviousTxt[i], notificationPreviousTitle[i], notificationPreviousDate[i]))
         }
 
         val recycleView_adapter_N = RecycleView_Adapter_N(activity, recycleView_models)
