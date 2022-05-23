@@ -70,6 +70,7 @@ public class RecycleView_Adapter_C extends RecyclerView.Adapter<RecycleView_Adap
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
                 Constants.categoryId = foodModels.get(holder.getAdapterPosition()).getFoodImg();
+                Constants.categoryName = foodModels.get(position).getFoodName();
 
                 Functions.loadFragment(activity.getSupportFragmentManager(), new Dashboard_Category_frag(),R.id.frag_cont, false, "Category", null);
             }

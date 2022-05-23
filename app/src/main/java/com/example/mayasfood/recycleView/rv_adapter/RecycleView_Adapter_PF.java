@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -43,6 +44,8 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
     MutableLiveData<Response_Common> response_commons = new MutableLiveData<>();
     ArrayList<String> productId = new ArrayList<String>();
     String foodName = "";
+    //int q = 1;
+    int i = 0;
 
     public RecycleView_Adapter_PF(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
@@ -104,6 +107,56 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         }
 
         holder.addToFav.setOnClickListener(null);
+        holder.addToCart.setOnClickListener(null);
+
+        holder.addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Constants.foodImg.add(holder.getAdapterPosition(),foodModels2.get(holder.getAdapterPosition()).getFoodImg());
+                //Constants.foodName.add(holder.getAdapterPosition(),foodModels2.get(holder.getAdapterPosition()).getFoodName());
+                //Constants.foodPrice.add(holder.getAdapterPosition(),"$"+foodModels2.get(position).getFoodPrice());
+
+                Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+
+                if (Constants.foodName.contains(foodModels2.get(holder.getAdapterPosition()).getFoodName())) {
+
+                    for (int j =0 ; j < Constants.foodName.size(); j++){
+
+                        if (Constants.foodName.get(j).matches(foodModels2.get(holder.getAdapterPosition()).getFoodName())){
+                            int q = Constants.foodQuantity.get(j);
+                            Log.d("foodQ", String.valueOf(q + 1));
+                            //Constants.foodQuantity.add(j, 1 + Constants.q);
+                            Constants.foodQuantity.set(j, q + 1);
+                        }
+                    }
+                }
+                else {
+                        Constants.foodQuantity.add(i,1);
+                        Constants.foodImg.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodImg());
+                        Constants.foodName.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodName());
+                        Constants.foodPrice.add(i,"$"+foodModels2.get(holder.getAdapterPosition()).getFoodPrice());
+                        i++;
+                    }
+
+
+               /* if (Constants.foodName.contains(foodModels2.get(holder.getAdapterPosition()).getFoodName())){
+                    Log.d("foodQ", String.valueOf(1+q));
+                    Constants.foodQuantity.add(Constants.foodName.indexOf(foodModels2.get(holder.getAdapterPosition()).getFoodName()),1+q);
+                    q++;
+
+
+                }
+                else {
+                    Constants.foodQuantity.add(1);
+                    Constants.foodImg.add(foodModels2.get(holder.getAdapterPosition()).getFoodImg());
+                    Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
+                    Constants.foodPrice.add("$"+foodModels2.get(holder.getAdapterPosition()).getFoodPrice());
+                }*/
+
+            }
+        });
+
 
         holder.addToFav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -279,6 +332,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
         ImageView addToFav;
         CheckBox isFav;
         ProgressBar loading;
+        ImageButton addToCart;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -297,6 +351,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             addToFav = itemView.findViewById(R.id.addToFav);
             isFav = itemView.findViewById(R.id.isFav);
             loading = itemView.findViewById(R.id.loading_pop_rv);
+            addToCart = itemView.findViewById(R.id.addToCart);
 
             //getFavList();
 

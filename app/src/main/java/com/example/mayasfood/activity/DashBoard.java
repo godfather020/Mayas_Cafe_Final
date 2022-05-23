@@ -38,6 +38,7 @@ import com.example.mayasfood.R;
 import com.example.mayasfood.activity.ViewModels.GetStart_ViewModel;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.Category_frag;
+import com.example.mayasfood.fragments.CheckOut_frag;
 import com.example.mayasfood.fragments.Dashboard_frag;
 import com.example.mayasfood.fragments.Favorite_frag;
 import com.example.mayasfood.fragments.NotLogIn_frag;
@@ -405,7 +406,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
             }
             else {
-
+                
                 dialog("Please Login/Register to see notifications.");
             }
 
@@ -413,6 +414,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.cart) {
             Constants.currentFrag = "C";
             bottomNavigationView.setVisibility(View.GONE);
+            toolbar_const.getMenu().getItem(2).setVisible(false);
+            Functions.loadFragment(getSupportFragmentManager(), new CheckOut_frag(), R.id.frag_cont, false, "CheckOut", null);
             //Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }
         return true;

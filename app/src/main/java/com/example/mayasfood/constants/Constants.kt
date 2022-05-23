@@ -65,7 +65,19 @@ object Constants {
     @JvmField
     var add = 0
     @JvmField
+    var q = 1
+    @JvmField
+    var cart_totalItems = 0
+    @JvmField
     var productId = ArrayList<String>()
+    @JvmField
+    var foodImg = ArrayList<String>()
+    @JvmField
+    var foodName = ArrayList<String>()
+    @JvmField
+    var foodPrice = ArrayList<String>()
+    @JvmField
+    var foodQuantity = ArrayList<Int>()
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
     const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"
@@ -75,33 +87,5 @@ object Constants {
     @JvmField
     var cc = "+1"
     const val duration = 60
-    var foodImage = intArrayOf(
-        R.drawable.group_117,
-        R.drawable.group_118,
-        R.drawable.group_119,
-        R.drawable.group_120,
-        R.drawable.group_117,
-        R.drawable.group_118,
-        R.drawable.group_119,
-        R.drawable.group_120,
-        R.drawable.group_117
-    )
-    @JvmField
-    var toppingImage = intArrayOf(
-        R.drawable.top1__1_,
-        R.drawable.top2__1_,
-        R.drawable.top3__1_,
-        R.drawable.top4__1_,
-        R.drawable.top5__1_
-    )
-    var imgFood = intArrayOf(
-        R.drawable.do_011318_alc_kapoleichinese_lt001_file_shrimp,
-        R.drawable.jackfruit_bowl,
-        R.drawable.png_clipart_seafood__1_
-    )
-    var foodimg = intArrayOf(
-        R.drawable.pngwing_com,
-        R.drawable.png_clipart_vegetarian_cuisine_breakfast_spring__1_,
-        R.drawable.unnamed
-    )
+
 }

@@ -115,9 +115,9 @@ public class singleItem extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         toppingsRv.setLayoutManager(layoutManager);
 
-        for(int i = 0; i<Constants.toppingImage.length; i++) {
+       /* for(int i = 0; i<Constants.toppingImage.length; i++) {
             topping_recycleView_models.add(new RecycleView_Model(Constants.toppingImage[i]));
-        }
+        }*/
         RecycleView_Adapter_T recycleView_adapter = new RecycleView_Adapter_T(getApplicationContext() ,topping_recycleView_models);
 
         toppingsRv.setAdapter(recycleView_adapter);

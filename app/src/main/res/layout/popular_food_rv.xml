@@ -139,6 +139,7 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <ImageButton
+                android:id="@+id/addToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bxs_message_square_add"

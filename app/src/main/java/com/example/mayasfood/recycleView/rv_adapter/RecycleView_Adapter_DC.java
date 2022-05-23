@@ -105,6 +105,8 @@ public class RecycleView_Adapter_DC extends RecyclerView.Adapter<RecycleView_Ada
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
+                Constants.categoryName = foodModels.get(position).getFoodName();
+
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont_cat, new CategoryDetails_frag()).commit();
                 //Functions.loadFragment(activity.getSupportFragmentManager(), new CategoryDetails_frag(), R.id.frag_cont_cat, false, "Category", null);
                 Constants.onetTime = 1;

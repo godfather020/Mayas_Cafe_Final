@@ -87,6 +87,14 @@ public class RecycleView_Model {
         return foodImg;
     }
 
+    public int getFoodImg1() {
+        return foodImg1;
+    }
+
+    public void setFoodImg1(int foodImg1) {
+        this.foodImg1 = foodImg1;
+    }
+
     public String getStars() {
         return stars;
     }
