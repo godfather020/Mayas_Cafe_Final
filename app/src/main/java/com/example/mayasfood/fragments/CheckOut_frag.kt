@@ -72,6 +72,8 @@ class CheckOut_frag : Fragment() {
         cart_empty_img = view.findViewById(R.id.cart_empty_img)
         cart_empty_txt = view.findViewById(R.id.cart_empty_txt)
         cart_empty_btn = view.findViewById(R.id.cart_empty_btn)
+        loading = view.findViewById(R.id.loading_checkOut)
+
 
 
         recyclerView = view.findViewById(R.id.checkOut_rv)
@@ -102,6 +104,7 @@ class CheckOut_frag : Fragment() {
 
         checkOut.setOnClickListener {
 
+            loading.visibility = View.VISIBLE
             sendOrder()
         }
 
@@ -117,7 +120,15 @@ class CheckOut_frag : Fragment() {
 
        viewModel.sendOrderDetails(this, "1", loading).observe(viewLifecycleOwner, Observer {
 
+           if (it != null){
 
+               if(it.getSuccess()!!){
+
+                   Toast.makeText(activity, "Order Placed Successfully", Toast.LENGTH_SHORT).show()
+
+                   loading.visibility = View.GONE
+               }
+           }
 
        })
     }

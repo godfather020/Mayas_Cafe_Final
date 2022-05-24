@@ -30,7 +30,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
     fun sendOrderDetails(activity: Fragment, branchId: String, loading: ProgressBar): MutableLiveData<Response_Common> {
 
         this.activity = activity
-        this.loading = loading.findViewById(R.id.progress_bar)
+        this.loading = loading.findViewById(R.id.loading_checkOut)
         val requestOrderdetails: Request_OrderDetails = Request_OrderDetails()
 
         requestOrderdetails.branchId = branchId
