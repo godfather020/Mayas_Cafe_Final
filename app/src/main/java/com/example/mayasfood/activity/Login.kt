@@ -111,9 +111,7 @@ class Login : AppCompatActivity() {
 
     private fun sendVerificationCode(phoneNumber: String) {
 
-        val  mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
-
-        = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        val  mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
@@ -122,6 +120,26 @@ class Login : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Enter 6 digit OTP", Toast.LENGTH_SHORT).show()
 
                 code = credential.smsCode
+
+                if (null == credential) {
+                    //loginUser()
+
+                    Log.d("OTP0", "null")
+                } else {
+                    val code = credential.smsCode
+                    if (null != code) {
+                        Log.d("OTP1", code.toString())
+                        getSharedPreferences("OTP", MODE_PRIVATE).edit().putString("OTP", code).apply()
+                        //otp_view.otp = code
+//                        hideKeyboard(etPhoneNumber)
+//                        verificationCode = otp_view.otp
+//                        setSelected(verify)
+//                        authenticateOtp()
+                    } else {
+                        //loginUser()
+                        Log.d("OTP2", "null")
+                    }
+                }
 
             }
 

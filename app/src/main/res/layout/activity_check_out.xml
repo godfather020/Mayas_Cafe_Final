@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/cart_promo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="52dp"
@@ -112,9 +112,9 @@
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/editText2"
-                app:layout_constraintEnd_toEndOf="@+id/editText2"
-                app:layout_constraintTop_toTopOf="@+id/editText2" />
+                app:layout_constraintBottom_toBottomOf="@+id/cart_promo"
+                app:layout_constraintEnd_toEndOf="@+id/cart_promo"
+                app:layout_constraintTop_toTopOf="@+id/cart_promo" />
 
             <TextView
                 android:id="@+id/textView30"
@@ -128,7 +128,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/cart_promo" />
 
             <TextView
                 android:id="@+id/checkout_subtotal"
@@ -143,7 +143,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/cart_promo" />
 
             <TextView
                 android:id="@+id/textView32"

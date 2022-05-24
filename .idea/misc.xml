@@ -88,17 +88,19 @@
         <entry key="app/src/main/res/drawable/akar_icons_search.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/cart.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/mi_notification.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/trash_2.xml" value="0.2065" />
         <entry key="app/src/main/res/layout-normal-v28/activity_get_start.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-normal-v28/activity_login.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout-normal/activity_dash_board.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-normal/activity_registration.xml" value="0.17" />
         <entry key="app/src/main/res/layout-normal/activity_splash.xml" value="0.2864583333333333" />
-        <entry key="app/src/main/res/layout-v28/cart_details_rv.xml" value="0.28541666666666665" />
+        <entry key="app/src/main/res/layout-v28/cart_details_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout-v28/fragment_check_out_frag.xml" value="0.28102564102564104" />
         <entry key="app/src/main/res/layout-v28/fragment_dashboard_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-v28/header.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-v28/today_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-v28/yesterday_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/activity_check_out.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/all_popular_food_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/cart_details_rv.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />

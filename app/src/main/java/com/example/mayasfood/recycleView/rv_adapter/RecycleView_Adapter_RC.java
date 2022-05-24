@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +38,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
     ArrayList<RecycleView_Model> foodModels3;
     FirebaseAuth auth;
     String foodName;
+    int i = 0;
 
     public RecycleView_Adapter_RC(Context context, ArrayList<RecycleView_Model> foodModels3){
         this.context = context;
@@ -96,6 +98,38 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         }
 
         holder.addToFav.setOnClickListener(null);
+
+        holder.addToCart.setOnClickListener(null);
+
+        holder.addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+
+                if (Constants.foodName.contains(foodModels3.get(holder.getAdapterPosition()).getFoodName())) {
+
+                    for (int j =0 ; j < Constants.foodName.size(); j++){
+
+                        if (Constants.foodName.get(j).matches(foodModels3.get(holder.getAdapterPosition()).getFoodName())){
+                            int q = Constants.foodQuantity.get(j);
+                            Log.d("foodQ", String.valueOf(q + 1));
+                            //Constants.foodQuantity.add(j, 1 + Constants.q);
+                            Constants.foodQuantity.set(j, q + 1);
+                        }
+                    }
+                }
+                else {
+
+                    //Constants.foodId.add(i, )
+                    Constants.foodQuantity.add(i,1);
+                    Constants.foodImg.add(i,foodModels3.get(holder.getAdapterPosition()).getFoodImg());
+                    Constants.foodName.add(i,foodModels3.get(holder.getAdapterPosition()).getFoodName());
+                    Constants.foodPrice.add(i, Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getFoodPrice())));
+                    i++;
+                }
+            }
+        });
 
         holder.addToFav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,10 +304,12 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         //grabbing the views from rv_column.xml
 
-        ImageView imageView, star1, star2, star3, star4, star5;
+        ImageView star1, star2, star3, star4, star5;
+        CircleImageView imageView;
         TextView name, price;
         ImageView addToFav;
         ProgressBar loading;
+        ImageButton addToCart;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -288,6 +324,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             price = itemView.findViewById(R.id.food_price1);
             addToFav = itemView.findViewById(R.id.addToFav);
             loading = itemView.findViewById(R.id.loading_rest_rv);
+            addToCart = itemView.findViewById(R.id.addToCart);
         }
     }
 }

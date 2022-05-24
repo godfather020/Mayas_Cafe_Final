@@ -102,10 +102,10 @@ interface Apis {
     ):Call<Response_Common>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.DEDUCT_WALLET_BALANCE)
-    fun deductWalletBalance(
+    @POST(Constants.ApiConstant.CREATE_ORDER)
+    fun sendOrderDetails(
         @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
-        @Body body: Request_deductWalletBalance
+        @Body body: Request_OrderDetails
     ):Call<Response_Common>
 
     /*@Headers("Content-Type:application/json", "Accept:application/json")

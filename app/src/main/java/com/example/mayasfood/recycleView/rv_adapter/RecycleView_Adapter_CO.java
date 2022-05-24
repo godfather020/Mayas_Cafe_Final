@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
@@ -33,11 +34,12 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
     int click = 0;
     int row_index = -1;
     String foodName = "";
+    CheckOut_frag fragment;
 
-    public RecycleView_Adapter_CO(Context context, ArrayList<RecycleView_Model> foodModels) {
+    public RecycleView_Adapter_CO(Context context, ArrayList<RecycleView_Model> foodModels, CheckOut_frag fragment) {
         this.context = context;
         this.foodModels = foodModels;
-
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -66,14 +68,16 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
 
         holder.foodName.setText(foodName);
         //holder.foodName.setText(foodModels.get(position).getFoodName());
-        holder.foodPrice.setText(foodModels.get(position).getFoodPrice());
+
 
         Picasso.get()
                 .load(Constants.UserProduct_Path + foodModels.get(position).getFoodHeading())
                 .into(holder.food_img);
 
-        holder.foodItems.setText("Items x"+String.valueOf(foodModels.get(position).getFoodImg1()));
+        holder.foodItems.setText("Quantity x"+String.valueOf(foodModels.get(position).getFoodImg1()));
         holder.foodCount.setText(String.valueOf(foodModels.get(position).getFoodImg1()));
+
+        holder.foodPrice.setText("$"+Integer.valueOf(foodModels.get(position).getFoodPrice())*foodModels.get(position).getFoodImg1());
 
         holder.food_clear.setOnClickListener(null);
 
@@ -81,10 +85,14 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
+                Constants.subTotal = 0;
+
+                Log.d("subtotal", String.valueOf(Constants.subTotal));
+
                 Constants.foodName.remove(foodModels.get(holder.getAdapterPosition()).getFoodName());
                 Constants.foodImg.remove(foodModels.get(holder.getAdapterPosition()).getFoodHeading());
-                Constants.foodPrice.remove(foodModels.get(holder.getAdapterPosition()).getFoodPrice());
-                Constants.foodQuantity.remove(foodModels.get(holder.getAdapterPosition()).getFoodImg1());
+                Constants.foodPrice.remove(Integer.valueOf(foodModels.get(holder.getAdapterPosition()).getFoodPrice()));
+                Constants.foodQuantity.remove(Integer.valueOf(foodModels.get(holder.getAdapterPosition()).getFoodImg1()));
 
                 Constants.cart_totalItems -= 1;
 
@@ -92,6 +100,41 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 notifyItemRemoved(holder.getAdapterPosition());
                 notifyItemRangeChanged(holder.getAdapterPosition(), foodModels.size());
 
+                fragment.setUpModelRv();
+            }
+        });
+
+        holder.foodPlus.setOnClickListener(null);
+
+        holder.foodPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int q = Constants.foodQuantity.get(holder.getAdapterPosition());
+
+                Constants.foodQuantity.set(holder.getAdapterPosition(), q +1);
+
+                fragment.setUpModelRv();
+            }
+        });
+
+        holder.foodMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int q = Constants.foodQuantity.get(holder.getAdapterPosition());
+
+                if (q == 1){
+
+                    foodModels.remove(holder.getAdapterPosition());
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    notifyItemRangeChanged(holder.getAdapterPosition(), foodModels.size());
+                }
+                else {
+
+                    Constants.foodQuantity.set(holder.getAdapterPosition(), q - 1);
+                }
+                fragment.setUpModelRv();
             }
         });
 

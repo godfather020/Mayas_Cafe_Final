@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
     Context context;
     ArrayList<RecycleView_Model> foodModels2;
     FirebaseAuth auth;
+    int i = 0;
 
     public RecycleView_Adapter_F(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
@@ -75,6 +77,38 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
         }
 
         holder.addToFav.setImageResource(R.drawable.red_heart);
+
+        holder.addToCart.setOnClickListener(null);
+
+        holder.addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+
+                if (Constants.foodName.contains(foodModels2.get(holder.getAdapterPosition()).getFoodName())) {
+
+                    for (int j =0 ; j < Constants.foodName.size(); j++){
+
+                        if (Constants.foodName.get(j).matches(foodModels2.get(holder.getAdapterPosition()).getFoodName())){
+                            int q = Constants.foodQuantity.get(j);
+                            Log.d("foodQ", String.valueOf(q + 1));
+                            //Constants.foodQuantity.add(j, 1 + Constants.q);
+                            Constants.foodQuantity.set(j, q + 1);
+                        }
+                    }
+                }
+                else {
+
+                    //Constants.foodId.add(i, )
+                    Constants.foodQuantity.add(i,1);
+                    Constants.foodImg.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodImg());
+                    Constants.foodName.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodName());
+                    Constants.foodPrice.add(i, Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                    i++;
+                }
+            }
+        });
 
         holder.addToFav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,9 +157,9 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                                         notifyItemChanged(holder.getAdapterPosition());
                                         notifyItemRemoved(holder.getAdapterPosition());*/
 
-                                            foodModels2.remove(position);
-                                            notifyItemRemoved(position);
-                                            notifyItemRangeChanged(position, foodModels2.size());
+                                            foodModels2.remove(holder.getAdapterPosition());
+                                            notifyItemRemoved(holder.getAdapterPosition());
+                                            notifyItemRangeChanged(holder.getAdapterPosition(), foodModels2.size());
 
                                     }
 
@@ -241,6 +275,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
         ImageView imageView, star1, star2, star3, star4, star5;
         TextView name, price;
         ImageView addToFav;
+        ImageButton addToCart;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -254,6 +289,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             name = itemView.findViewById(R.id.name_food);
             price = itemView.findViewById(R.id.food_price);
             addToFav = itemView.findViewById(R.id.addToFav);
+            addToCart = itemView.findViewById(R.id.addToCart);
         }
     }
 

@@ -34,15 +34,15 @@
                 android:layout_margin="8dp"
                 />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/foodimage1"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/pngwing_com" />
+                android:background="@drawable/png_clipart_vegetarian_cuisine_breakfast_spring__1_" />
 
             <TextView
                 android:id="@+id/name_food1"
@@ -131,6 +131,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
+                android:id="@+id/addToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bxs_message_square_add"

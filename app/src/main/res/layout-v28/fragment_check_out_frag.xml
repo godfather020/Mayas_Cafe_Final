@@ -67,6 +67,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView27" />-->
 
+        <ImageView
+            android:id="@+id/cart_empty_img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@drawable/frown"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/cart_empty_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cart_empty_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Your Cart is Empty!\nPlease add items."
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="28sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/cart_empty_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Order Now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:layout_marginTop="32dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cart_empty_txt" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checkOut_rv"
             android:layout_width="match_parent"
@@ -74,7 +116,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/textView22"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/cart_dicount_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkout_totallItems"
@@ -139,17 +182,17 @@
        <!-- </ScrollView>-->
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/cart_discount_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:background="@drawable/vector__3_"
             android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/editText2"
+            app:layout_constraintBottom_toTopOf="@+id/cart_promo"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/cart_dicount_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -159,21 +202,22 @@
             android:textColor="@color/black"
             android:textFontWeight="600"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/editText2"
-            app:layout_constraintStart_toEndOf="@+id/imageView4" />
+            app:layout_constraintBottom_toTopOf="@+id/cart_promo"
+            app:layout_constraintStart_toEndOf="@+id/cart_discount_img" />
 
         <TextView
+            android:id="@+id/cart_clickHere"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="17dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Click Here"
             android:textColor="#DD2C00"
-            app:layout_constraintBottom_toTopOf="@+id/editText2"
-            app:layout_constraintStart_toEndOf="@+id/textView22" />
+            app:layout_constraintBottom_toTopOf="@+id/cart_promo"
+            app:layout_constraintStart_toEndOf="@+id/cart_dicount_txt" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/cart_promo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -181,6 +225,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_edit_text"
             android:hint="Promo Code"
+            android:visibility="gone"
             android:paddingStart="36dp"
             android:textColor="#B5B5BB"
             android:textSize="16sp"
@@ -189,27 +234,29 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
+            android:id="@+id/cart_promo_btn"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="12dp"
             android:background="@drawable/custom_button"
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:text="Apply"
+            android:visibility="gone"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textFontWeight="600"
             android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/editText2"
-            app:layout_constraintEnd_toEndOf="@+id/editText2"
-            app:layout_constraintTop_toTopOf="@+id/editText2" />
+            app:layout_constraintBottom_toBottomOf="@+id/cart_promo"
+            app:layout_constraintEnd_toEndOf="@+id/cart_promo"
+            app:layout_constraintTop_toTopOf="@+id/cart_promo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cart_card"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:foregroundGravity="bottom"
         app:cardCornerRadius="30dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
