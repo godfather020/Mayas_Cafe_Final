@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mayasfood.R
+import com.example.mayasfood.Retrofite.request.OrderItems
 import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.request.Request_OrderDetails
 import com.example.mayasfood.Retrofite.response.Response_Common
@@ -36,17 +37,40 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.branchId = branchId
         requestOrderdetails.toalQuantity = Constants.cart_totalItems.toString()
         requestOrderdetails.amount = Constants.total.toString()
-        requestOrderdetails.paymentMethod = "Cash"
-        requestOrderdetails.pickupAt = "24-05-2022 08:45 PM"
+        requestOrderdetails.paymentMethod = "CASE"
+        requestOrderdetails.pickupAt = "24-05-2022 08:45:09"
+
+        Log.d("orderItem", requestOrderdetails.toalQuantity.toString())
+        Log.d("orderItem", requestOrderdetails.amount.toString())
 
         for (i in Constants.foodName.indices) {
-            requestOrderdetails.orderItems[i].totalAmount = Constants.foodPrice.get(i).toString()
-            requestOrderdetails.orderItems[i].noItems = Constants.foodQuantity.get(i).toString()
-            requestOrderdetails.orderItems[i].totalAmount = Constants.foodPrice.get(i).toString()
-            requestOrderdetails.orderItems[i].productId = Constants.foodId.get(i).toString()
-            requestOrderdetails.orderItems[i].productpriceId = "1"
-            requestOrderdetails.orderItems[i].quantity = "M"
+
+            //val orderItems = ArrayList<OrderItems>()
+            val orderItems1 = OrderItems(Constants.foodId[i].toString(), Constants.foodPrice[i].toString(), "M", Constants.foodQuantity[i].toString(), "1")
+
+            /*orderItems1.noItems = Constants.foodQuantity[i].toString()
+            orderItems1.productId = Constants.foodId[i].toString()
+            orderItems1.quantity = "M"
+            orderItems1.productpriceId = "1"
+            orderItems1.totalAmount = Constants.foodPrice[i].toString()*/
+
+            //orderItems.addAll(i , listOf(orderItems1))
+
+            requestOrderdetails.orderItems.add(orderItems1)
+
+            Log.d("orderItem", Constants.foodId[i].toString())
+            Log.d("orderItem", requestOrderdetails.amount.toString())
+
+
+            Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).totalAmount.toString())
+            Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).noItems.toString())
+            Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).quantity.toString())
+            Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).productId.toString())
+            Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).productpriceId.toString())
+
+
         }
+
 
         auth = FirebaseAuth.getInstance()
 
@@ -76,7 +100,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
                 else{
                     loading.visibility = View.GONE
                     Log.d("Dashboard", "Failed")
-                    Toast.makeText(activity.requireContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity.requireContext(), response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 

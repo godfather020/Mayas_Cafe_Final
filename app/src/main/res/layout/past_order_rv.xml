@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pastOrder_card"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        app:cardCornerRadius="12dp"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/past_order_img"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="18dp"
+                android:background="@drawable/mayas1024_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pastOrder_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="#457485451"
+                android:textColor="@color/Register_Title"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/past_order_img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pastOrder_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="28dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Delivered"
+                android:textAlignment="center"
+                android:textColor="#12971F"
+                android:textFontWeight="800"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pastOrder_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:text="27 April 2022 12:00 pm"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_status" />
+
+            <TextView
+                android:id="@+id/pastOrder_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:text="Number of Items  5"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                app:layout_constraintStart_toEndOf="@+id/past_order_img"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_pick_txt" />
+
+            <TextView
+                android:id="@+id/pastOrder_time_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:text="Placed at :"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/past_order_img"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_num" />
+
+            <TextView
+                android:id="@+id/pastOrder_pick_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:text="27 April 22 - 11:00 AM"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/past_order_img"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_time_txt" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/line_22"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_quantity" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Total"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/pastOrder_total"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_date" />
+
+            <TextView
+                android:id="@+id/pastOrder_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="$16"
+                android:textColor="#E80937"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pastOrder_date" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/pastOrder_cancel"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="28dp"
+                android:background="@drawable/custom_order_details_btn"
+                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:gravity="center"
+                android:text="Rate Now"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/pastOrder_star1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/vector__6_"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/pastOrder_star2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/vector__6_"
+                app:layout_constraintStart_toEndOf="@+id/pastOrder_star1"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                tools:layout_editor_absoluteX="110dp" />
+
+            <ImageView
+                android:id="@+id/pastOrder_star3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/vector__6_"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toEndOf="@+id/pastOrder_star2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/pastOrder_star4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/vector__6_"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toEndOf="@+id/pastOrder_star3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <ImageView
+                android:id="@+id/pastOrder_star5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/vector__6_"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toEndOf="@+id/pastOrder_star4"
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+            <TextView
+                android:id="@+id/pastOrder_review_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="you haven't review yet"
+                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:textColor="@color/black"
+                android:textFontWeight="800"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

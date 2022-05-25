@@ -13,4 +13,18 @@ class OrderItems {
     @SerializedName("noItems"        ) var noItems        : String? = null
 
     @SerializedName("productpriceId" ) var productpriceId : String? = null
+
+    constructor(
+        productId: String?,
+        totalAmount: String?,
+        quantity: String?,
+        noItems: String?,
+        productpriceId: String?
+    ) {
+        this.productId = productId
+        this.totalAmount = totalAmount
+        this.quantity = quantity
+        this.noItems = noItems
+        this.productpriceId = productpriceId
+    }
 }

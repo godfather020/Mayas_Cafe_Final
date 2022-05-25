@@ -52,7 +52,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Green Salad"
                 android:textColor="@color/Rest_choice_txt"
-                android:textSize="@dimen/Rest_choice_title"
+                android:textSize="@dimen/Popular_food_title"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

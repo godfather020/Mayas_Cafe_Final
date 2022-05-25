@@ -212,9 +212,9 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             }
         });
 
-        if (foodModels3.get(position).getFoodName().length() > 13){
+        if (foodModels3.get(position).getFoodName().length() > 18){
 
-            foodName = foodModels3.get(position).getFoodName().substring(0, 13) + "...";
+            foodName = foodModels3.get(position).getFoodName().substring(0, 18) + "...";
         }
         else {
 
@@ -235,48 +235,57 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
         if (foodModels3.get(position).getStars().matches("^[0]") || foodModels3.get(position).getStars().matches("^[0][.]") || foodModels3.get(position).getStars().matches("^[1][.][12345]")){
 
-            holder.star1.setVisibility(View.GONE);
-            holder.star2.setVisibility(View.GONE);
+            holder.star1.setImageResource(R.drawable.clarity_favorite_solid);
+            /*holder.star2.setVisibility(View.GONE);
             holder.star3.setVisibility(View.VISIBLE);
             holder.star4.setVisibility(View.GONE);
-            holder.star5.setVisibility(View.GONE);
+            holder.star5.setVisibility(View.GONE);*/
+            holder.star2.setImageResource(R.drawable.vector__6_);
+            holder.star3.setImageResource(R.drawable.vector__6_);
+            holder.star4.setImageResource(R.drawable.vector__6_);
+            holder.star5.setImageResource(R.drawable.vector__6_);
 
         }
 
         else if (foodModels3.get(position).getStars().matches("^[1][.][6789]") ||foodModels3.get(position).getStars().matches("^[2][.][1234]")){
 
-            holder.star1.setVisibility(View.GONE);
-            holder.star2.setVisibility(View.VISIBLE);
-            holder.star3.setVisibility(View.VISIBLE);
+            holder.star1.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star2.setImageResource(R.drawable.clarity_favorite_solid);
+            /*holder.star3.setVisibility(View.GONE);
             holder.star4.setVisibility(View.GONE);
-            holder.star5.setVisibility(View.GONE);
+            holder.star5.setVisibility(View.GONE);*/
+            holder.star3.setImageResource(R.drawable.vector__6_);
+            holder.star4.setImageResource(R.drawable.vector__6_);
+            holder.star5.setImageResource(R.drawable.vector__6_);
         }
 
         else if (foodModels3.get(position).getStars().matches("^[2][.][6789]") || foodModels3.get(position).getStars().matches("^[3][.][1234]")){
 
-            holder.star1.setVisibility(View.GONE);
-            holder.star2.setVisibility(View.VISIBLE);
-            holder.star3.setVisibility(View.VISIBLE);
-            holder.star4.setVisibility(View.VISIBLE);
-            holder.star5.setVisibility(View.GONE);
+            holder.star1.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star2.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star3.setImageResource(R.drawable.clarity_favorite_solid);
+            /*holder.star4.setVisibility(View.GONE);
+            holder.star5.setVisibility(View.GONE);*/
+            holder.star4.setImageResource(R.drawable.vector__6_);
+            holder.star5.setImageResource(R.drawable.vector__6_);
         }
 
         else if (foodModels3.get(position).getStars().matches("^[3][.][6789]") || foodModels3.get(position).getStars().matches("^[4][.][12345]")){
 
-            holder.star1.setVisibility(View.VISIBLE);
-            holder.star2.setVisibility(View.VISIBLE);
-            holder.star3.setVisibility(View.VISIBLE);
-            holder.star4.setVisibility(View.VISIBLE);
-            holder.star5.setVisibility(View.GONE);
+            holder.star1.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star2.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star3.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star4.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star5.setImageResource(R.drawable.vector__6_);
         }
 
         else {
 
-            holder.star1.setVisibility(View.VISIBLE);
-            holder.star2.setVisibility(View.VISIBLE);
-            holder.star3.setVisibility(View.VISIBLE);
-            holder.star4.setVisibility(View.VISIBLE);
-            holder.star5.setVisibility(View.VISIBLE);
+            holder.star1.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star2.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star3.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star4.setImageResource(R.drawable.clarity_favorite_solid);
+            holder.star5.setImageResource(R.drawable.clarity_favorite_solid);
         }
 
 

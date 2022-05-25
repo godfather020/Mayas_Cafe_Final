@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
+import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.fragments.ViewModels.Restaurant_frag_ViewModel
 import com.example.mayasfood.fragments.ViewModels.popular_frag_ViewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
@@ -32,6 +33,7 @@ class Restarant_choice_frag : Fragment() {
     var restaurantFoodIsFav = ArrayList<Int>()
     lateinit var loading : ProgressBar
     lateinit var viewModel: Restaurant_frag_ViewModel
+    lateinit var dashBoard : DashBoard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,11 @@ class Restarant_choice_frag : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_restarant_choice_frag, container, false)
 
         viewModel = ViewModelProvider(this).get(Restaurant_frag_ViewModel::class.java)
+
+        dashBoard = activity as DashBoard
+
+        dashBoard.toolbar_const.setTitle("Restaurant Choices")
+        dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         recyclerView = view.findViewById(R.id.restaurant_rv)
         loading = view.findViewById(R.id.loading_rest)

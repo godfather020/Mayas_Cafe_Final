@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.request.Request_OrderDetails
+import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.activity.Login
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.CheckOut_frag_ViewModel
@@ -45,6 +46,7 @@ class CheckOut_frag : Fragment() {
     lateinit var cart_empty_txt : TextView
     lateinit var cart_empty_btn : Button
     lateinit var viewModel : CheckOut_frag_ViewModel
+    lateinit var dashBoard: DashBoard
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +56,8 @@ class CheckOut_frag : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_check_out_frag, container, false)
 
         viewModel = ViewModelProvider(this).get(CheckOut_frag_ViewModel::class.java)
+
+        dashBoard = activity as DashBoard
 
         setHasOptionsMenu(true)
 
@@ -74,7 +78,8 @@ class CheckOut_frag : Fragment() {
         cart_empty_btn = view.findViewById(R.id.cart_empty_btn)
         loading = view.findViewById(R.id.loading_checkOut)
 
-
+        dashBoard.toolbar_const.setTitle("My Cart")
+        dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         recyclerView = view.findViewById(R.id.checkOut_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -140,7 +145,7 @@ class CheckOut_frag : Fragment() {
         if (Constants.foodName.size == 0){
 
             recyclerView.visibility = View.GONE
-            checkOut_TotalItems.visibility = View.GONE
+            //checkOut_TotalItems.visibility = View.GONE
             cart_discount_txt.visibility = View.GONE
             cart_discount_img.visibility = View.GONE
             cart_discount_clickHere.visibility = View.GONE
@@ -159,7 +164,7 @@ class CheckOut_frag : Fragment() {
             cart_discount_clickHere.visibility = View.VISIBLE
             cart_card.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
-            checkOut_TotalItems.visibility = View.VISIBLE
+            //checkOut_TotalItems.visibility = View.VISIBLE
             cart_empty_img.visibility = View.GONE
             cart_empty_txt.visibility = View.GONE
             cart_empty_btn.visibility = View.GONE
@@ -173,7 +178,7 @@ class CheckOut_frag : Fragment() {
         }
 
         Constants.cart_totalItems = Constants.foodName.size
-        checkOut_TotalItems.setText(Constants.cart_totalItems.toString() + " Items")
+        checkOut_TotalItems.setText( "Total Items " + Constants.cart_totalItems.toString())
 
             for (i in Constants.foodPrice.indices){
 

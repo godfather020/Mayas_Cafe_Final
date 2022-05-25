@@ -30,7 +30,7 @@
     <color name="Screen_BG">#F5F9FE</color>
     <color name="Dashboard_title">#676767</color>
     <color name="Dashboard_subtitle">#000000</color>
-    <color name="Dashboard_seeall">#82838B</color>
+    <color name="Dashboard_seeall">#000000</color>
     <color name="Food_category_bg">#F2EFF0</color>
     <color name="Food_category_txt">#82838B</color>
     <color name="Card_View">#FFFFFF</color>
@@ -40,6 +40,8 @@
     <color name="Rest_choice_txt">#000000</color>
     <color name="Rest_choice_price">#363853</color>
     <color name="Profile_txt">#363853</color>
+    <color name="Tab_Button">#050715</color>
+    <color name="tab_text_normal">#82838B</color>
 
 
 </resources>

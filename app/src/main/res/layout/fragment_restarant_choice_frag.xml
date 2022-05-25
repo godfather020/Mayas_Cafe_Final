@@ -15,7 +15,8 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="Restaurant Choices"
         android:textColor="#363853"
-        android:textSize="25sp"
+        android:textSize="22sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +30,7 @@
         android:layout_marginBottom="16dp"
         android:paddingBottom="62dp"
         android:orientation="vertical"
+        tools:listitem="@layout/restaurant_choice_rv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />

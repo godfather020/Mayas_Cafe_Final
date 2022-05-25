@@ -57,9 +57,9 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
         //Assigning values to the views we created
         final RecycleView_Model temp = foodModels.get(position);
 
-        if (foodModels.get(position).getFoodName().length() > 13){
+        if (foodModels.get(position).getFoodName().length() > 25){
 
-            foodName = foodModels.get(position).getFoodName().substring(0, 13) + "...";
+            foodName = foodModels.get(position).getFoodName().substring(0, 25) + "...";
         }
         else {
 

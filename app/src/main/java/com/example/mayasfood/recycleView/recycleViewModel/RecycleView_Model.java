@@ -1,12 +1,30 @@
 package com.example.mayasfood.recycleView.recycleViewModel;
 
+import android.widget.TextView;
+
 import androidx.lifecycle.ViewModel;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecycleView_Model {
 
     private String foodName,foodHeading, foodPrice, productId;
     private String foodImg, stars;
     private int foodImg1, isFav;
+    private String runOrder_num , runOrder_total, runOrder_pickup, runOrder_create, runOrder_Quantity, runOrder_status,
+            runOrder_date;
+    String runOrder_img;
+
+    public RecycleView_Model(String runOrder_num, String runOrder_total, String runOrder_pickup, String runOrder_create, String runOrder_Quantity, String runOrder_status, String runOrder_date, String runOrder_img) {
+        this.runOrder_num = runOrder_num;
+        this.runOrder_total = runOrder_total;
+        this.runOrder_pickup = runOrder_pickup;
+        this.runOrder_create = runOrder_create;
+        this.runOrder_Quantity = runOrder_Quantity;
+        this.runOrder_status = runOrder_status;
+        this.runOrder_date = runOrder_date;
+        this.runOrder_img = runOrder_img;
+    }
 
     public RecycleView_Model(String foodName, String foodHeading, String foodPrice, int foodImg) {
         this.foodName = foodName;
@@ -57,6 +75,70 @@ public class RecycleView_Model {
     public RecycleView_Model(String foodName, String foodImg) {
         this.foodName = foodName;
         this.foodImg = foodImg;
+    }
+
+    public String getRunOrder_num() {
+        return runOrder_num;
+    }
+
+    public void setRunOrder_num(String runOrder_num) {
+        this.runOrder_num = runOrder_num;
+    }
+
+    public String getRunOrder_total() {
+        return runOrder_total;
+    }
+
+    public void setRunOrder_total(String runOrder_total) {
+        this.runOrder_total = runOrder_total;
+    }
+
+    public String getRunOrder_pickup() {
+        return runOrder_pickup;
+    }
+
+    public void setRunOrder_pickup(String runOrder_pickup) {
+        this.runOrder_pickup = runOrder_pickup;
+    }
+
+    public String getRunOrder_create() {
+        return runOrder_create;
+    }
+
+    public void setRunOrder_create(String runOrder_create) {
+        this.runOrder_create = runOrder_create;
+    }
+
+    public String getRunOrder_Quantity() {
+        return runOrder_Quantity;
+    }
+
+    public void setRunOrder_Quantity(String runOrder_Quantity) {
+        this.runOrder_Quantity = runOrder_Quantity;
+    }
+
+    public String getRunOrder_status() {
+        return runOrder_status;
+    }
+
+    public void setRunOrder_status(String runOrder_status) {
+        this.runOrder_status = runOrder_status;
+    }
+
+    public String getRunOrder_date() {
+        return runOrder_date;
+    }
+
+    public void setRunOrder_date(String runOrder_date) {
+        this.runOrder_date = runOrder_date;
+    }
+
+    public String getRunOrder_img() {
+        return runOrder_img;
+    }
+
+    public void setRunOrder_img(String runOrder_img) {
+        this.runOrder_img = runOrder_img;
     }
 
     public int getIsFav() {
