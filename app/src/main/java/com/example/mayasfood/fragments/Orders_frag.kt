@@ -103,19 +103,16 @@ class Orders_frag : Fragment() {
     }
 }
 
-class CustomViewAdapter : FragmentPagerAdapter {
+class CustomViewAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     val arrayFragment = ArrayList<Fragment>()
     val stringArray = ArrayList<String>()
-
-    constructor(fm: FragmentManager) : super(fm)
 
     fun addFragment (fragment: Fragment , s : String) {
 
         this.arrayFragment.add(fragment)
         this.stringArray.add(s)
     }
-
 
     override fun getCount(): Int {
         return arrayFragment.size
