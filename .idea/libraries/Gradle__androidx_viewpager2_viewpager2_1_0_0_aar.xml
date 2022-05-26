@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.viewpager2:viewpager2:1.0.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ac95d70fb0faf75b4001c27858dab85f/transformed/jetified-viewpager2-1.0.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/577e78063b7a20ecbed8004adc86a2d3/transformed/jetified-viewpager2-1.0.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7137066d1dd94dbaf1ab4cb0268c9a71/transformed/jetified-viewpager2-1.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/ac95d70fb0faf75b4001c27858dab85f/transformed/jetified-viewpager2-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ac95d70fb0faf75b4001c27858dab85f/transformed/jetified-viewpager2-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ac95d70fb0faf75b4001c27858dab85f/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/577e78063b7a20ecbed8004adc86a2d3/transformed/jetified-viewpager2-1.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/577e78063b7a20ecbed8004adc86a2d3/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/577e78063b7a20ecbed8004adc86a2d3/transformed/jetified-viewpager2-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7137066d1dd94dbaf1ab4cb0268c9a71/transformed/jetified-viewpager2-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7137066d1dd94dbaf1ab4cb0268c9a71/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7137066d1dd94dbaf1ab4cb0268c9a71/transformed/jetified-viewpager2-1.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

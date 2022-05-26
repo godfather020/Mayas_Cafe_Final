@@ -108,6 +108,13 @@ interface Apis {
         @Body body: Request_OrderDetails
     ):Call<Response_Common>
 
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.GET_ORDERS)
+    fun getAllOrders(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_Branch
+    ):Call<Response_Common>
+
     /*@Headers("Content-Type:application/json", "Accept:application/json")
     @FormUrlEncoded
     @POST(Constant.ApiConstant.SET_PROFILE_IMAGE)

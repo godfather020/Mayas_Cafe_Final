@@ -52,6 +52,10 @@ class Response_Data {
     @Expose
     var userName: String = ""
 
+    @SerializedName("ListOrderResponce" )
+    var ListOrderResponce : List<ListOrderResponce>? = null
+
+
     @SerializedName("ListproductResponce" )
     @Expose
     var ListproductResponce : List<ListproductResponce>? = null

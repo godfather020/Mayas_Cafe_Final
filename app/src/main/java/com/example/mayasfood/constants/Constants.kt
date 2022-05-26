@@ -26,6 +26,7 @@ object Constants {
         internal const val NOTIFICATION = "customer/notifications"
         internal const val FAVORITE_LIST = "customer/Listfavoriteproduct"
         internal const val CREATE_ORDER = "customer/Createorder"
+        internal const val GET_ORDERS = "customer/Listorder"
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
         internal const val TODAY_WINNERS = "v1/todaywinninglist"
         internal var DEVICE_TOKEN = ""
@@ -86,6 +87,8 @@ object Constants {
     var tax = 0
     @JvmField
     var total = 0
+    @JvmField
+    var singleID = ""
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"
     const val UserCoupon_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/coupons/"
     const val UserProduct_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/products/"

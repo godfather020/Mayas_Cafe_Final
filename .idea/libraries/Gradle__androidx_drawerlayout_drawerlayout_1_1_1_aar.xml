@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.drawerlayout:drawerlayout:1.1.1@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/11b7b57731b6993ebf835eade4cd437d/transformed/drawerlayout-1.1.1/annotations.zip!/" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/71339d84e708da2aa045c05d206822e8/transformed/drawerlayout-1.1.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1381cf8868930405b8afdfc57f6cd454/transformed/drawerlayout-1.1.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/11b7b57731b6993ebf835eade4cd437d/transformed/drawerlayout-1.1.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/11b7b57731b6993ebf835eade4cd437d/transformed/drawerlayout-1.1.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/11b7b57731b6993ebf835eade4cd437d/transformed/drawerlayout-1.1.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/71339d84e708da2aa045c05d206822e8/transformed/drawerlayout-1.1.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/71339d84e708da2aa045c05d206822e8/transformed/drawerlayout-1.1.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/71339d84e708da2aa045c05d206822e8/transformed/drawerlayout-1.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1381cf8868930405b8afdfc57f6cd454/transformed/drawerlayout-1.1.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1381cf8868930405b8afdfc57f6cd454/transformed/drawerlayout-1.1.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1381cf8868930405b8afdfc57f6cd454/transformed/drawerlayout-1.1.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

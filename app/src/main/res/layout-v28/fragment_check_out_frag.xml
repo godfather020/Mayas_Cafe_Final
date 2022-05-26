@@ -334,8 +334,8 @@
                 android:id="@+id/imageView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/line_22"
+                android:layout_margin="18dp"
+                android:background="@drawable/line_21__1_"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkout_tax" />

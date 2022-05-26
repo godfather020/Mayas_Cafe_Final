@@ -6,8 +6,6 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/240a708746b6a3679f8116a72372e871/transformed/lifecycle-livedata-core-2.3.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/240a708746b6a3679f8116a72372e871/transformed/lifecycle-livedata-core-2.3.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/62b12c1231b9f38feb4e4ee9a843d439/transformed/lifecycle-livedata-core-2.3.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9a7e5859bdb0be8e12bccabea510e651/transformed/lifecycle-livedata-core-2.3.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9a7e5859bdb0be8e12bccabea510e651/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9a7e5859bdb0be8e12bccabea510e651/transformed/lifecycle-livedata-core-2.3.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/330269e188ef6259ed544cba1f8746d6/transformed/lifecycle-livedata-core-2.3.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/9a7e5859bdb0be8e12bccabea510e651/transformed/lifecycle-livedata-core-2.3.1/res" />
@@ -15,6 +13,9 @@
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/37c6dc77cdae92506a33db527e9def63/transformed/lifecycle-livedata-core-2.3.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/37c6dc77cdae92506a33db527e9def63/transformed/lifecycle-livedata-core-2.3.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/37c6dc77cdae92506a33db527e9def63/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/81f744ec978ffee20df335a6fb3320dd/transformed/lifecycle-livedata-core-2.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/81f744ec978ffee20df335a6fb3320dd/transformed/lifecycle-livedata-core-2.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/81f744ec978ffee20df335a6fb3320dd/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -48,20 +48,8 @@ class Orders_frag : Fragment() {
 
         setHasOptionsMenu(true)
 
-        // initialize button labels
-        /*labels = arrayListOf(
-            "Running Orders",
-            "Past Orders"
-        )*/
-
-        // IMPORTANT TO CALL THIS!!
-        /*indicator.initializeButtons(labels)*/
-
-
-        // VIEW PAGER ADAPTER
-        //val items = labels
         val adapter = CustomViewAdapter(childFragmentManager)
-       // vpSample.adapter = adapter
+
         adapter.addFragment(RunningOrders_frag(), "Running Orders")
         adapter.addFragment(PastOrders_frag(), "Past Orders")
 

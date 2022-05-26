@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.lifecycle:lifecycle-runtime:2.4.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2556bcda73b3cbfb35df4d9e7d7728fe/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2556bcda73b3cbfb35df4d9e7d7728fe/transformed/lifecycle-runtime-2.4.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2556bcda73b3cbfb35df4d9e7d7728fe/transformed/lifecycle-runtime-2.4.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/30f47045175ffa891740e7c45f59cc90/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/30f47045175ffa891740e7c45f59cc90/transformed/lifecycle-runtime-2.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/30f47045175ffa891740e7c45f59cc90/transformed/lifecycle-runtime-2.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9b66d243878de4f3348d49725645b0a4/transformed/lifecycle-runtime-2.4.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9b66d243878de4f3348d49725645b0a4/transformed/lifecycle-runtime-2.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9b66d243878de4f3348d49725645b0a4/transformed/lifecycle-runtime-2.4.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

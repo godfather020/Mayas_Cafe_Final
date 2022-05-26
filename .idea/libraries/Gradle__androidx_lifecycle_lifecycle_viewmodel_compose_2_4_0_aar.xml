@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/32c72c9ab2be0ece5f9a276a902721ef/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/32c72c9ab2be0ece5f9a276a902721ef/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/32c72c9ab2be0ece5f9a276a902721ef/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/res" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2dad210050de1004b3c5509e842a848a/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2dad210050de1004b3c5509e842a848a/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2dad210050de1004b3c5509e842a848a/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/29b8a3f5fdb52456f224223cb6435a8d/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/29b8a3f5fdb52456f224223cb6435a8d/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/29b8a3f5fdb52456f224223cb6435a8d/transformed/jetified-lifecycle-viewmodel-compose-2.4.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

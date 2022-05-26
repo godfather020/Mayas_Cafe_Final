@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.compose.ui:ui:1.0.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bfcf06ef00e5eff4213f1e495d20292f/transformed/jetified-ui-1.0.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bfcf06ef00e5eff4213f1e495d20292f/transformed/jetified-ui-1.0.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bfcf06ef00e5eff4213f1e495d20292f/transformed/jetified-ui-1.0.1/jars/classes.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4c3ea30d0cfb4ed39e5eb6dc986a2c81/transformed/jetified-ui-1.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4c3ea30d0cfb4ed39e5eb6dc986a2c81/transformed/jetified-ui-1.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4c3ea30d0cfb4ed39e5eb6dc986a2c81/transformed/jetified-ui-1.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/31b65b2a97a5d571629623f822fb04bf/transformed/jetified-ui-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/31b65b2a97a5d571629623f822fb04bf/transformed/jetified-ui-1.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/31b65b2a97a5d571629623f822fb04bf/transformed/jetified-ui-1.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

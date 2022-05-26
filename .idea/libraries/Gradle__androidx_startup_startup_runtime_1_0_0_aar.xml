@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.startup:startup-runtime:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/365516919cd280ec3c493b5b0a4a111f/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/365516919cd280ec3c493b5b0a4a111f/transformed/jetified-startup-runtime-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/365516919cd280ec3c493b5b0a4a111f/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0620e2b1f890468a549fb3ba37b3ab4f/transformed/jetified-startup-runtime-1.0.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0620e2b1f890468a549fb3ba37b3ab4f/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0620e2b1f890468a549fb3ba37b3ab4f/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dba3167ae43a9856d7abf9c0a2e798fb/transformed/jetified-startup-runtime-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dba3167ae43a9856d7abf9c0a2e798fb/transformed/jetified-startup-runtime-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dba3167ae43a9856d7abf9c0a2e798fb/transformed/jetified-startup-runtime-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

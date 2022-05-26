@@ -221,63 +221,21 @@ class UserProfile_frag : Fragment() {
             );
         }
 
-        userPro = view.findViewById<CircleImageView>(R.id.circleImageView)
-        val close = view.findViewById<ImageButton>(R.id.userEdit_close)
+        val close = view.findViewById<ImageButton>(R.id.close_dialog)
         val update = view.findViewById<Button>(R.id.userEdit_update)
-        picture_icon = view.findViewById<ImageView>(R.id.profile_upload)
+
         val userNameE = view.findViewById<EditText>(R.id.userEdit_name)
-        val userPhoneE = view.findViewById<EditText>(R.id.userEdit_phone)
-        val userEmailE = view.findViewById<EditText>(R.id.userEdit_email)
-        val userAddressE = view.findViewById<EditText>(R.id.userEdit_address)
+
 
         userNameE.setText(userName.text.toString())
-        userAddressE.setText(userAddress.text.toString())
-        userEmailE.setText(userEmail.text.toString())
+
         userNameE.setText(userName.text.toString())
 
         userPro.setOnClickListener {
             picture_icon.visibility = View.GONE
-            selectImage()
+            //selectImage()
         }
 
-        update.setOnClickListener {
-
-            /*if (uploadImgPath != null){
-
-                sendProfileImg(uploadImgPath!!)
-            }*/
-            loading.visibility = View.VISIBLE
-            viewModel.updateUserProfile(this, userNameE.text.toString(), userAddressE.text.toString(), userEmailE.text.toString()).observe(viewLifecycleOwner, Observer {
-
-                if (it != null){
-
-                    if (it.getSuccess()!!){
-
-                        loading.visibility = View.GONE
-
-                        Constants.USER_NAME = userNameE.text.toString()
-
-                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N, userNameE.text.toString())
-
-                        Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()
-
-                    }
-                    else{
-                        loading.visibility = View.GONE
-                        Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
-                else{
-                    loading.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
-                }
-
-            })
-
-            dialog.cancel()
-
-        }
 
         close.setOnClickListener {
 

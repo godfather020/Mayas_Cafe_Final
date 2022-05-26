@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.appcompat:appcompat-resources:1.4.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c6071260a7a4c56bbd50dc8307f99976/transformed/jetified-appcompat-resources-1.4.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c6071260a7a4c56bbd50dc8307f99976/transformed/jetified-appcompat-resources-1.4.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c6071260a7a4c56bbd50dc8307f99976/transformed/jetified-appcompat-resources-1.4.1/res" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0151de1581a40d3953155cad99ffdcab/transformed/jetified-appcompat-resources-1.4.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0151de1581a40d3953155cad99ffdcab/transformed/jetified-appcompat-resources-1.4.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0151de1581a40d3953155cad99ffdcab/transformed/jetified-appcompat-resources-1.4.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dd71458a969a2ea7bea66deda90307a6/transformed/jetified-appcompat-resources-1.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dd71458a969a2ea7bea66deda90307a6/transformed/jetified-appcompat-resources-1.4.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dd71458a969a2ea7bea66deda90307a6/transformed/jetified-appcompat-resources-1.4.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

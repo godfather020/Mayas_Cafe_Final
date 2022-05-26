@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.transition:transition:1.2.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8ca53b919185dd18d056b235bf26e8b0/transformed/transition-1.2.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/54da1a73a3dcb1e1d7491872af67eb60/transformed/transition-1.2.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/91123de4eb8c871ecf485e51090f2ebd/transformed/transition-1.2.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8ca53b919185dd18d056b235bf26e8b0/transformed/transition-1.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8ca53b919185dd18d056b235bf26e8b0/transformed/transition-1.2.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8ca53b919185dd18d056b235bf26e8b0/transformed/transition-1.2.0/jars/classes.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/54da1a73a3dcb1e1d7491872af67eb60/transformed/transition-1.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/54da1a73a3dcb1e1d7491872af67eb60/transformed/transition-1.2.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/54da1a73a3dcb1e1d7491872af67eb60/transformed/transition-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/91123de4eb8c871ecf485e51090f2ebd/transformed/transition-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/91123de4eb8c871ecf485e51090f2ebd/transformed/transition-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/91123de4eb8c871ecf485e51090f2ebd/transformed/transition-1.2.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

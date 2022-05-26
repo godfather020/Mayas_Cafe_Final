@@ -6,8 +6,6 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0a7de56b6b1d7611efa3d6fd638fe348/transformed/espresso-idling-resource-3.4.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/0a7de56b6b1d7611efa3d6fd638fe348/transformed/espresso-idling-resource-3.4.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/527f4b2c88d1184b6e25e5be4e3022e1/transformed/espresso-idling-resource-3.4.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/efa9b3f6db13029008629308f3bc8649/transformed/espresso-idling-resource-3.4.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/efa9b3f6db13029008629308f3bc8649/transformed/espresso-idling-resource-3.4.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/efa9b3f6db13029008629308f3bc8649/transformed/espresso-idling-resource-3.4.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/b531c06994e76d67f5ec72bd8e473a57/transformed/espresso-idling-resource-3.4.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/efa9b3f6db13029008629308f3bc8649/transformed/espresso-idling-resource-3.4.0/res" />
@@ -15,6 +13,9 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f1446a7cfebc67c3ab675e66a5627940/transformed/espresso-idling-resource-3.4.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f1446a7cfebc67c3ab675e66a5627940/transformed/espresso-idling-resource-3.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/f1446a7cfebc67c3ab675e66a5627940/transformed/espresso-idling-resource-3.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/46baec551ea67969b2c4352ae727d087/transformed/espresso-idling-resource-3.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/46baec551ea67969b2c4352ae727d087/transformed/espresso-idling-resource-3.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/46baec551ea67969b2c4352ae727d087/transformed/espresso-idling-resource-3.4.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.test.espresso/espresso-idling-resource/3.4.0/69a300fcf8de2c433672d07a6c436a19dfb9b8f9/espresso-idling-resource-3.4.0-javadoc.jar!/" />

@@ -152,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/pastOrder_date" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/pastOrder_cancel"
+                android:id="@+id/pastOrder_review_btn"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"

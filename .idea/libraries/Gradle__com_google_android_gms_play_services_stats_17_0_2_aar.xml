@@ -5,8 +5,6 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/582e645552f43a5e82d5942012cfbfa1/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/582e645552f43a5e82d5942012cfbfa1/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/9e2b42ebee9425c87cdc9af66ea562d2/transformed/jetified-play-services-stats-17.0.2/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9cc4ace36a17814ccf45f9b3f745021d/transformed/jetified-play-services-stats-17.0.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9cc4ace36a17814ccf45f9b3f745021d/transformed/jetified-play-services-stats-17.0.2/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9cc4ace36a17814ccf45f9b3f745021d/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/af68d579ab7948b9515794793c15a951/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/9cc4ace36a17814ccf45f9b3f745021d/transformed/jetified-play-services-stats-17.0.2/res" />
@@ -14,6 +12,9 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/494c80a0a3c2faba7283dbe8baa8f74d/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/494c80a0a3c2faba7283dbe8baa8f74d/transformed/jetified-play-services-stats-17.0.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/494c80a0a3c2faba7283dbe8baa8f74d/transformed/jetified-play-services-stats-17.0.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-stats/17.0.2/c0d58b8efa926b2c607984c54fb3d274490badd1/play-services-stats-17.0.2-javadoc.jar!/" />

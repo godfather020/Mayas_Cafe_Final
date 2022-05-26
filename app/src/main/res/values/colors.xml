@@ -42,6 +42,10 @@
     <color name="Profile_txt">#363853</color>
     <color name="Tab_Button">#050715</color>
     <color name="tab_text_normal">#82838B</color>
+    <color name="pending">#F7BE00</color>
+    <color name="accepted">#12971F</color>
+    <color name="prepared">#1FD2D2</color>
+    <color name="pickup">#12971F</color>
 
 
 </resources>

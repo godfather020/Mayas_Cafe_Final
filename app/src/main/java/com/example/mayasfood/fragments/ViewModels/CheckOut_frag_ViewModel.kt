@@ -38,12 +38,12 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.toalQuantity = Constants.cart_totalItems.toString()
         requestOrderdetails.amount = Constants.total.toString()
         requestOrderdetails.paymentMethod = "CASE"
-        requestOrderdetails.pickupAt = "24-05-2022 08:45:09"
+        requestOrderdetails.pickupAt = "26-05-2022 21:45:09"
 
         Log.d("orderItem", requestOrderdetails.toalQuantity.toString())
         Log.d("orderItem", requestOrderdetails.amount.toString())
 
-        for (i in Constants.foodName.indices) {
+        for (i in Constants.foodId.indices) {
 
             //val orderItems = ArrayList<OrderItems>()
             val orderItems1 = OrderItems(Constants.foodId[i].toString(), Constants.foodPrice[i].toString(), "M", Constants.foodQuantity[i].toString(), "1")

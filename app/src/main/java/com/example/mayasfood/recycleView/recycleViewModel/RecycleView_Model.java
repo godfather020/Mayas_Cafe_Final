@@ -12,10 +12,10 @@ public class RecycleView_Model {
     private String foodImg, stars;
     private int foodImg1, isFav;
     private String runOrder_num , runOrder_total, runOrder_pickup, runOrder_create, runOrder_Quantity, runOrder_status,
-            runOrder_date;
+            runOrder_date, orderRating, orderComment, order_id;
     String runOrder_img;
 
-    public RecycleView_Model(String runOrder_num, String runOrder_total, String runOrder_pickup, String runOrder_create, String runOrder_Quantity, String runOrder_status, String runOrder_date, String runOrder_img) {
+    public RecycleView_Model(String orderId ,String runOrder_num, String runOrder_total, String runOrder_pickup, String runOrder_create, String runOrder_Quantity, String runOrder_status, String runOrder_date, String runOrder_img) {
         this.runOrder_num = runOrder_num;
         this.runOrder_total = runOrder_total;
         this.runOrder_pickup = runOrder_pickup;
@@ -24,6 +24,20 @@ public class RecycleView_Model {
         this.runOrder_status = runOrder_status;
         this.runOrder_date = runOrder_date;
         this.runOrder_img = runOrder_img;
+        this.order_id = orderId;
+    }
+
+    public RecycleView_Model(String runOrder_num, String runOrder_total, String runOrder_pickup, String runOrder_create, String runOrder_Quantity, String runOrder_status, String runOrder_date, String runOrder_img, String orderRating, String orderComment) {
+        this.runOrder_num = runOrder_num;
+        this.runOrder_total = runOrder_total;
+        this.runOrder_pickup = runOrder_pickup;
+        this.runOrder_create = runOrder_create;
+        this.runOrder_Quantity = runOrder_Quantity;
+        this.runOrder_status = runOrder_status;
+        this.runOrder_date = runOrder_date;
+        this.runOrder_img = runOrder_img;
+        this.orderRating = orderRating;
+        this.orderComment = orderComment;
     }
 
     public RecycleView_Model(String foodName, String foodHeading, String foodPrice, int foodImg) {
@@ -107,6 +121,14 @@ public class RecycleView_Model {
 
     public void setRunOrder_create(String runOrder_create) {
         this.runOrder_create = runOrder_create;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 
     public String getRunOrder_Quantity() {
@@ -207,5 +229,21 @@ public class RecycleView_Model {
 
     public void setFoodImg(int foodImg) {
         this.foodImg1 = foodImg;
+    }
+
+    public String getOrderRating() {
+        return orderRating;
+    }
+
+    public void setOrderRating(String orderRating) {
+        this.orderRating = orderRating;
+    }
+
+    public String getOrderComment() {
+        return orderComment;
+    }
+
+    public void setOrderComment(String orderComment) {
+        this.orderComment = orderComment;
     }
 }
