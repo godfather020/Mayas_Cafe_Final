@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/foodImg"
+        android:id="@+id/pfCard"
         android:layout_width="150dp"
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"

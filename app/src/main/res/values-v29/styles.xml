@@ -9,7 +9,8 @@
         <item name="android:forceDarkAllowed">false</item>
     </style>
     <style name="Style_TextView">
-        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="fontFamily">@font/montserrat_variablefont_wght</item>
+        <item name="android:textFontWeight">800</item>
         <item name="android:textSize">18sp</item>
     </style>
 </resources>

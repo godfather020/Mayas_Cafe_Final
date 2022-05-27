@@ -52,11 +52,11 @@ public class Functions {
             phoneNum.setError(Constants.emptyFieldError);
             return false;
         }
-        else if (!user_phone.matches("^[0-9 +]{9,13}$")){
+        /*else if (!user_phone.matches("^[0-9 +]{9,13}$")){
             phoneNum.requestFocus();
             phoneNum.setError(Constants.phoneNumError);
             return false;
-        }
+        }*/
         else {
             return true;
         }
@@ -69,7 +69,7 @@ public class Functions {
             phoneNum.setError(Constants.emptyFieldError);
             return false;
         }
-        else if (!user_phone.matches("^[0-9 +]{9,13}$")){
+        else if (!user_phone.matches("^[0-9 +]{9,15}$")){
             phoneNum.requestFocus();
             phoneNum.setError(Constants.phoneNumError);
             return false;

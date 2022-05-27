@@ -100,9 +100,9 @@ class PastOrders_frag : Fragment() {
                         Log.d("createdDate", createdTime)
                         Log.d("createdDate", pickedTime)
 
-                        if (it.getData()!!.ListOrderResponce!![i].orderStatus == "6" || it.getData()!!.ListOrderResponce!![i].orderStatus == "5"){
+                        if (it.getData()!!.ListOrderResponce!![i].orderStatus == "6" || it.getData()!!.ListOrderResponce!![i].orderStatus == "5" || it.getData()!!.ListOrderResponce!![i].cancelStatus == true){
 
-                            pastOrder_num.add(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
+                            pastOrder_num.add(it.getData()!!.ListOrderResponce!![i].id.toString())
                            pastOrder_status.add(it.getData()!!.ListOrderResponce!![i].orderStatus.toString())
                             pastOrder_total.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
                             pastOrder_quantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())

@@ -88,11 +88,11 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 Constants.subTotal = 0;
 
                 Log.d("subtotal", String.valueOf(Constants.subTotal));
-
-                Constants.foodName.remove(foodModels.get(holder.getAdapterPosition()).getFoodName());
-                Constants.foodImg.remove(foodModels.get(holder.getAdapterPosition()).getFoodHeading());
-                Constants.foodPrice.remove(Integer.valueOf(foodModels.get(holder.getAdapterPosition()).getFoodPrice()));
-                Constants.foodQuantity.remove(Integer.valueOf(foodModels.get(holder.getAdapterPosition()).getFoodImg1()));
+                Constants.foodId.remove(holder.getAdapterPosition());
+                Constants.foodName.remove(holder.getAdapterPosition());
+                Constants.foodImg.remove(holder.getAdapterPosition());
+                Constants.foodPrice.remove(holder.getAdapterPosition());
+                Constants.foodQuantity.remove(holder.getAdapterPosition());
 
                 Constants.cart_totalItems -= 1;
 

@@ -23,6 +23,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.example.mayasfood.activity.ViewModels.Login_ViewModel
 import com.example.mayasfood.activity.ViewModels.OTP_ViewModel
 import com.hbb20.CountryCodePicker.OnCountryChangeListener
@@ -56,6 +57,7 @@ class Registration : AppCompatActivity() {
     lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var loading: ProgressBar
     var afterOTP = false
+    lateinit var sharedPreferencesUtil : SharedPreferencesUtil
 
     lateinit var viewModel: Registration_ViewModel
     //lateinit var viewModel1: Login_ViewModel
@@ -78,6 +80,8 @@ class Registration : AppCompatActivity() {
         profile_btn = findViewById(R.id.profileBtn_r)
         profile_img = findViewById(R.id.profileImg_r)
         loading = findViewById(R.id.loading_bar)
+
+        sharedPreferencesUtil = SharedPreferencesUtil(this)
 
         //Constants.cc = "+"+cc_r.getSelectedCountryCode()
 
@@ -114,7 +118,7 @@ class Registration : AppCompatActivity() {
 
 
             user_name = userName.getText().toString()
-            user_phone = Constants.cc + phoneNum.getText().toString()
+            user_phone = phoneNum.getText().toString()
             Log.d("PhoneNo", user_phone!!)
             dataCheck = Functions.checkData(user_name, user_phone, userName, phoneNum)
             if (dataCheck) {
@@ -143,9 +147,14 @@ class Registration : AppCompatActivity() {
 
                                         Log.d("PhoneNo", user_phone!!)
 
-                                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it1.getData()!!.result!!.phoneNumber).apply()
-                                            getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it1.getData()!!.result!!.userName).apply()
-                                            getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", true).apply()
+                                        getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", true).apply()
+
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it.getData()!!.phoneNumber).apply()
+                                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N , it.getData()!!.result!!.userName)
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it.getData()!!.userName).apply()
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.profilePic).apply()
+                                        //getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.X_TOKEN, it.getData()!!.token).apply()
+                                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.result!!.profilePic)
                                             val intent: Intent = Intent(this@Registration, DashBoard::class.java)
                                             //intent.putExtra("getOtp", "1")
                                             startActivity(intent)

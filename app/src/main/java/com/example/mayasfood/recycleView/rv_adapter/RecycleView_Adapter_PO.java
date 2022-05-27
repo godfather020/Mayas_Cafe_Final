@@ -2,6 +2,8 @@ package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -28,6 +31,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
     Context context;
     ArrayList<RecycleView_Model> foodModels4;
+    String rating = "";
 
     public RecycleView_Adapter_PO(Context context, ArrayList<RecycleView_Model> foodModels4){
         this.context = context;
@@ -49,7 +53,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
         final RecycleView_Model temp = foodModels4.get(position);
 
-        holder.runOrder_num.setText(foodModels4.get(position).getRunOrder_num());
+        holder.runOrder_num.setText("#"+foodModels4.get(position).getRunOrder_num());
         holder.runOrder_total.setText("$"+foodModels4.get(position).getRunOrder_total());
         holder.runOrder_Quantity.setText("Number of Items "+foodModels4.get(position).getRunOrder_Quantity());
         //holder.runOrder_status.setText(foodModels4.get(position).getRunOrder_status());
@@ -64,14 +68,28 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
             holder.runOrder_status.setText("Delivered");
             holder.runOrder_status.setTextColor(context.getColorStateList(R.color.accepted));
+            holder.star1.setVisibility(View.VISIBLE);
+            holder.star2.setVisibility(View.VISIBLE);
+            holder.star3.setVisibility(View.VISIBLE);
+            holder.star4.setVisibility(View.VISIBLE);
+            holder.star5.setVisibility(View.VISIBLE);
+            holder.runOrder_btn.setVisibility(View.VISIBLE);
+            holder.orderReview.setVisibility(View.VISIBLE);
         }
         else {
 
             holder.runOrder_status.setText("Canceled");
             holder.runOrder_status.setTextColor(context.getColorStateList(R.color.accepted));
+            holder.star1.setVisibility(View.GONE);
+            holder.star2.setVisibility(View.GONE);
+            holder.star3.setVisibility(View.GONE);
+            holder.star4.setVisibility(View.GONE);
+            holder.star5.setVisibility(View.GONE);
+            holder.runOrder_btn.setVisibility(View.GONE);
+            holder.orderReview.setVisibility(View.GONE);
         }
 
-        if (foodModels4.get(position).getOrderComment().equals("null")){
+        if (foodModels4.get(position).getOrderComment().equals("null") && foodModels4.get(position).getRunOrder_status().equals("5")){
 
             holder.runOrder_btn.setVisibility(View.VISIBLE);
             holder.orderReview.setText("You Haven't Review Yet");
@@ -178,18 +196,170 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
         if (dialog.getWindow() != null) {
             dialog.getWindow().setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.WRAP_CONTENT
             );
         }
 
+        ImageView ratingStar1 = view.findViewById(R.id.rating_star1);
+        ImageView ratingStar2 = view.findViewById(R.id.rating_star2);
+        ImageView ratingStar3 = view.findViewById(R.id.rating_star3);
+        ImageView ratingStar4 = view.findViewById(R.id.rating_star4);
+        ImageView ratingStar5 = view.findViewById(R.id.rating_star5);
         TextView notNow = view.findViewById(R.id.rating_notNow);
         Button update = view.findViewById(R.id.rating_submit);
         //EditText userNameE = view.findViewById(R.id.userEdit_name);
+
+        ratingStar1.setTag("");
+        ratingStar2.setTag("");
+        ratingStar3.setTag("");
+        ratingStar4.setTag("");
+        ratingStar5.setTag("");
+        rating = "0";
+
+        ratingStar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                if (ratingStar1.getTag().equals("rated")){
+
+                    ratingStar1.setImageResource(R.drawable.vector__6_);
+                    ratingStar2.setImageResource(R.drawable.vector__6_);
+                    ratingStar3.setImageResource(R.drawable.vector__6_);
+                    ratingStar4.setImageResource(R.drawable.vector__6_);
+                    ratingStar5.setImageResource(R.drawable.vector__6_);
+                    rating = "0";
+                    ratingStar1.setTag("unrated");
+                    ratingStar2.setTag("unrated");
+                    ratingStar3.setTag("unrated");
+                    ratingStar4.setTag("unrated");
+                    ratingStar5.setTag("unrated");
+                }
+                else {
+                    ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
+                    rating = "1";
+                    ratingStar1.setTag("rated");
+                }
+
+            }
+        });
+
+        ratingStar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (ratingStar2.getTag().equals("rated")){
+
+                    ratingStar2.setImageResource(R.drawable.vector__6_);
+                    ratingStar3.setImageResource(R.drawable.vector__6_);
+                    ratingStar4.setImageResource(R.drawable.vector__6_);
+                    ratingStar5.setImageResource(R.drawable.vector__6_);
+                    rating = "1";
+                    ratingStar2.setTag("unrated");
+                    ratingStar3.setTag("unrated");
+                    ratingStar4.setTag("unrated");
+                    ratingStar5.setTag("unrated");
+                }
+                else {
+
+                    ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
+                    rating = "2";
+                    ratingStar1.setTag("rated");
+                    ratingStar2.setTag("rated");
+                }
+            }
+        });
+
+        ratingStar3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (ratingStar3.getTag().equals("rated")){
+
+                    ratingStar3.setImageResource(R.drawable.vector__6_);
+                    ratingStar4.setImageResource(R.drawable.vector__6_);
+                    ratingStar5.setImageResource(R.drawable.vector__6_);
+                    rating = "2";
+                    ratingStar3.setTag("unrated");
+                    ratingStar4.setTag("unrated");
+                    ratingStar5.setTag("unrated");
+                }
+                else {
+
+                    ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar3.setImageResource(R.drawable.clarity_favorite_solid);
+                    rating = "3";
+                    ratingStar1.setTag("rated");
+                    ratingStar2.setTag("rated");
+                    ratingStar3.setTag("rated");
+                }
+            }
+        });
+
+        ratingStar4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (ratingStar4.getTag().equals("rated")){
+
+                    ratingStar4.setImageResource(R.drawable.vector__6_);
+                    ratingStar5.setImageResource(R.drawable.vector__6_);
+                    rating = "3";
+                    ratingStar4.setTag("unrated");
+                    ratingStar5.setTag("unrated");
+                }
+                else {
+
+                    ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar3.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar4.setImageResource(R.drawable.clarity_favorite_solid);
+                    rating = "4";
+                    ratingStar1.setTag("rated");
+                    ratingStar2.setTag("rated");
+                    ratingStar3.setTag("rated");
+                    ratingStar4.setTag("rated");
+                }
+            }
+        });
+
+        ratingStar5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (ratingStar5.getTag().equals("rated")){
+
+                    ratingStar5.setImageResource(R.drawable.vector__6_);
+                    rating = "4";
+
+                    ratingStar5.setTag("unrated");
+                }
+                else {
+
+                    ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar3.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar4.setImageResource(R.drawable.clarity_favorite_solid);
+                    ratingStar5.setImageResource(R.drawable.clarity_favorite_solid);
+                    rating = "5";
+                    ratingStar1.setTag("rated");
+                    ratingStar2.setTag("rated");
+                    ratingStar3.setTag("rated");
+                    ratingStar4.setTag("rated");
+                    ratingStar5.setTag("rated");
+                }
+            }
+        });
+
+        Log.d("rating", rating);
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.cancel();
+                Log.d("rating", rating);
             }
         });
 

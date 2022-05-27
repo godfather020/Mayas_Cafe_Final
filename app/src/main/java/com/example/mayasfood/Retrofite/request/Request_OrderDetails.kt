@@ -14,7 +14,7 @@ class Request_OrderDetails {
 
     @SerializedName("pickupAt"      ) var pickupAt      : String?               = null
 
-    @SerializedName("orderItems"    ) var orderItems    : ArrayList<OrderItems> = arrayListOf<OrderItems>()
+    @SerializedName("orderItems"    ) var orderItems    : ArrayList<OrderItems> = arrayListOf()
 
 
 }

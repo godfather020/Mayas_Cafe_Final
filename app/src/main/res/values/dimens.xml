@@ -5,13 +5,13 @@
     <dimen name="GetStart_Title">60sp</dimen>
     <dimen name="GetStart_SubTitle">27sp</dimen>
     <dimen name="GetStart_Heading">20sp</dimen>
-    <dimen name="GetStart_Button_txt">22sp</dimen>
+    <dimen name="GetStart_Button_txt">18sp</dimen>
     <dimen name="Register_title">33sp</dimen>
     <dimen name="Register_Subtitle">19sp</dimen>
     <dimen name="Register_EditTxt">16sp</dimen>
     <dimen name="Register_ButtonTxt">27sp</dimen>
     <dimen name="Register_skip">24sp</dimen>
-    <dimen name="Login_title">33sp</dimen>
+    <dimen name="Login_title">30sp</dimen>
     <dimen name="Login_Subtitle">19sp</dimen>
     <dimen name="Login_EditTxt">16sp</dimen>
     <dimen name="Login_Buttontxt">27sp</dimen>
@@ -34,5 +34,5 @@
     <dimen name="large_txt">18dp</dimen>
     <dimen name="extraLarge_txt">22dp</dimen>
     <dimen name="extraXl_txt">24dp</dimen>
-    <dimen name="Button_txt">22sp</dimen>
+    <dimen name="Button_txt">18sp</dimen>
 </resources>

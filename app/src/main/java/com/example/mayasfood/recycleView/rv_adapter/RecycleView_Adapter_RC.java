@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lottry.data.remote.retrofit.request.Request_addOrRemoveToFav;
@@ -21,6 +23,8 @@ import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.example.mayasfood.activity.singleItem;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.development.retrofit.RetrofitInstance;
+import com.example.mayasfood.fragments.SingleItem_frag;
+import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -289,17 +293,15 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         }
 
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.rcCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context, singleItem.class);
-                intent.putExtra("imagefood", temp.getFoodImg());
-                intent.putExtra("foodname", temp.getFoodName());
-                intent.putExtra("foodprice", temp.getFoodPrice());
-                intent.putExtra("fooddes", temp.getFoodHeading());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                Constants.productID = foodModels3.get(holder.getAdapterPosition()).getProductId();
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                Functions.loadFragment(activity.getSupportFragmentManager(), new SingleItem_frag(), R.id.frag_cont, false, "Single Item", null);
             }
         });
     }
@@ -319,6 +321,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         ImageView addToFav;
         ProgressBar loading;
         ImageButton addToCart;
+        CardView rcCard;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -334,6 +337,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             addToFav = itemView.findViewById(R.id.addToFav);
             loading = itemView.findViewById(R.id.loading_rest_rv);
             addToCart = itemView.findViewById(R.id.addToCart);
+            rcCard = itemView.findViewById(R.id.rc_card);
         }
     }
 }

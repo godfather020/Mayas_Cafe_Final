@@ -42,33 +42,13 @@ public class GetStart extends AppCompatActivity {
 
     private boolean isBackPressed = false;
     ArrayList<String> permission = new ArrayList<String>();
-    FirebaseAuth auth;
-    String token;
-    GetStart_ViewModel getStart_viewModel;
-    ViewModelProvider viewModelProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_start);
 
-        viewModelProvider = new ViewModelProvider(this);
-        getStart_viewModel = viewModelProvider.get(GetStart_ViewModel.class);
-
         Button getStart = findViewById(R.id.get_start);
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-
-        String userPhone = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_P, "empty");
-
-        token = FirebaseCloudMsg.getToken(this);
-
-        Log.d("tokenGS", token);
-
-        if(currentUser != null) {
-
-            Log.d("userPhoneC", Objects.requireNonNull(currentUser).getPhoneNumber());
-        }
 
         if (check_Permission()) {
             Log.d("permission", "granted");
@@ -76,46 +56,14 @@ public class GetStart extends AppCompatActivity {
             requestPermission();
         }
 
-        getStart_viewModel.sendDeviceInfo(this);
-
         getStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (getSharedPreferences("LogIn", MODE_PRIVATE).getBoolean("LogIn", false)){
-
-                    Log.d("userPhone", userPhone);
-
-                    if(currentUser != null) {
-
-                        if (currentUser.getPhoneNumber().equals(userPhone)) {
-
-                            Intent intent = new Intent(GetStart.this, DashBoard.class);
-                            startActivity(intent);
-                            finish();
-                        }
-
-                        else {
-
-                            Intent intent = new Intent(GetStart.this, Login.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                    else {
-
-                        Intent intent = new Intent(GetStart.this, Login.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-
-                else {
-
                     Intent intent = new Intent(GetStart.this, Login.class);
                     startActivity(intent);
                     finish();
-                }
+
             }
         });
     }
@@ -147,8 +95,8 @@ public class GetStart extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         int gallery1 =
                 ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int contact = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
-        int phone = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        //int contact = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
+        //int phone = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
         int recieveSms = ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
         if (camera != PackageManager.PERMISSION_GRANTED) {
             permission.add(Manifest.permission.CAMERA);
@@ -162,12 +110,12 @@ public class GetStart extends AppCompatActivity {
         if (gallery1 != PackageManager.PERMISSION_GRANTED) {
             permission.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
-        if (contact != PackageManager.PERMISSION_GRANTED) {
+        /*if (contact != PackageManager.PERMISSION_GRANTED) {
             permission.add(Manifest.permission.READ_CONTACTS);
         }
         if (phone != PackageManager.PERMISSION_GRANTED) {
             permission.add(Manifest.permission.READ_PHONE_STATE);
-        }
+        }*/
         if (recieveSms != PackageManager.PERMISSION_GRANTED){
             permission.add(Manifest.permission.RECEIVE_SMS);
         }

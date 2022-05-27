@@ -22,6 +22,10 @@
             android:title="@string/notification"
             android:icon="@drawable/notificationmenu"/>
         <item
+            android:id="@+id/shareApp"
+            android:title="Share App"
+            android:icon="@drawable/ic_baseline_share_24"/>
+        <item
             android:id="@+id/logoutNav"
             android:title="@string/logout"
             android:icon="@drawable/logoutmenu"/>

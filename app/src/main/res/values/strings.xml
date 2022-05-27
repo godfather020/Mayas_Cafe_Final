@@ -11,13 +11,13 @@
     <string name="GetStart_ButtonTxt">Get Start</string>
     <string name="Register_title">Create New \nAccount</string>
     <string name="Register_Subtitle">Join us and enjoy your food</string>
-    <string name="Register_userName">Enter your fullname or Email</string>
-    <string name="Register_userPhone">Enter your mobile number</string>
+    <string name="Register_userName">Enter fullname or Email</string>
+    <string name="Register_userPhone">Enter mobile number</string>
     <string name="Register_ButtonTxt">Sign Up</string>
     <string name="Register_Skip">Skip</string>
     <string name="Login_title">Login with \nMobile Number</string>
     <string name="Login_subTitle">We will send you a confirmation code</string>
-    <string name="Login_EditTxt">Enter your mobile number</string>
+    <string name="Login_EditTxt">Enter mobile number</string>
     <string name="Login_button_txt">Sign In</string>
     <string name="Login_newUser">New User ?</string>
     <string name="Login_signup">\tSignup</string>
@@ -201,10 +201,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="home">Home</string>
-    <string name="order">Order</string>
+    <string name="order">My Orders</string>
     <string name="offers">Offers</string>
     <string name="categories">Categories</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Notifications</string>
     <string name="logout">Logout</string>
     <string name="home_nav">Home</string>
     <string name="favorites">Favorites</string>

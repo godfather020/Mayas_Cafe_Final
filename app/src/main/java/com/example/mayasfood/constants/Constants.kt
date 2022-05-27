@@ -28,7 +28,7 @@ object Constants {
         internal const val CREATE_ORDER = "customer/Createorder"
         internal const val GET_ORDERS = "customer/Listorder"
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
-        internal const val TODAY_WINNERS = "v1/todaywinninglist"
+        internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
         internal var DEVICE_TOKEN = ""
 
     }
@@ -66,7 +66,7 @@ object Constants {
     @JvmField
     var add = 0
     @JvmField
-    var q = 1
+    var productID = ""
     @JvmField
     var cart_totalItems = 0
     @JvmField

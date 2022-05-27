@@ -147,7 +147,7 @@ class Login : AppCompatActivity() {
 
                 loading.visibility = View.GONE
 
-                Toast.makeText(applicationContext, "Verification Failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Number has been blocked. Please try after sometime.", Toast.LENGTH_LONG).show()
 
             }
 

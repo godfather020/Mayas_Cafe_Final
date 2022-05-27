@@ -73,6 +73,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     ImageButton close;
     public CircleImageView user_profile;
     TextView user_name_nav;
+    TextView user_num_nav;
     ActionBarDrawerToggle actionBarDrawerToggle;
     public BottomNavigationView bottomNavigationView;
     FirebaseAuth auth;
@@ -233,8 +234,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 close = findViewById(R.id.close_frag);
                 user_profile = findViewById(R.id.user_profile);
                 user_name_nav = findViewById(R.id.user_name_nav);
+                user_num_nav = findViewById(R.id.user_num_nav);
+
                 if (Constants.USER_NAME != null) {
                     user_name_nav.setText(Constants.USER_NAME);
+                    user_num_nav.setText(Constants.USER_PHONE);
                 }
 
                 close.setOnClickListener(new View.OnClickListener() {

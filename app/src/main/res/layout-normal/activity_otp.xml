@@ -27,7 +27,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/OTP_Title"
         android:textColor="@color/OTP_title"
-        android:textSize="@dimen/OTP_title"
+        android:textSize="@dimen/Login_title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,9 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_variablefont_wght"
+        android:textFontWeight="800"
         android:text="@string/OTP_subTitle"
-        android:textColor="@color/OTP_subtitle"
+        android:textColor="@color/Login_subTitle"
         android:textSize="@dimen/OTP_subTitle"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,14 +59,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
         <EditText
             android:id="@+id/otp1"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="6dp"
             android:elevation="4dp"
+            android:layout_margin="8dp"
             android:background="@drawable/custom_otp_edittext"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
@@ -83,9 +87,7 @@
             android:id="@+id/otp2"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="6dp"
+            android:layout_margin="8dp"
             android:background="@drawable/custom_otp_edittext"
             android:elevation="4dp"
             android:fontFamily="@font/montserrat_bold"
@@ -104,8 +106,7 @@
             android:id="@+id/otp3"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
+            android:layout_margin="8dp"
             android:background="@drawable/custom_otp_edittext"
             android:elevation="4dp"
             android:fontFamily="@font/montserrat_bold"
@@ -123,8 +124,7 @@
             android:id="@+id/otp4"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
+            android:layout_margin="8dp"
             android:background="@drawable/custom_otp_edittext"
             android:elevation="4dp"
             android:fontFamily="@font/montserrat_bold"
@@ -142,8 +142,7 @@
             android:id="@+id/otp5"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
+            android:layout_margin="8dp"
             android:background="@drawable/custom_otp_edittext"
             android:elevation="4dp"
             android:fontFamily="@font/montserrat_bold"
@@ -162,8 +161,7 @@
             android:id="@+id/otp6"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
+            android:layout_margin="8dp"
             android:background="@drawable/custom_otp_edittext"
             android:elevation="4dp"
             android:fontFamily="@font/montserrat_bold"
@@ -178,6 +176,8 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -185,10 +185,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_variablefont_wght"
         android:text="@string/OTP_resend"
-        android:textColor="@color/OTP_resend"
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textFontWeight="800"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +207,6 @@
         android:textAllCaps="false"
         android:textColor="@color/Button_txt"
         android:textSize="@dimen/Button_txt"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/otps" />

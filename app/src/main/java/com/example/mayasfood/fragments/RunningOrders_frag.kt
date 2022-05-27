@@ -97,10 +97,10 @@ class RunningOrders_frag : Fragment() {
 
                         Log.d("Time", createdTime + "   " + pickTime)
 
-                        if (it.getData()!!.ListOrderResponce!![i].orderStatus != "6" && it.getData()!!.ListOrderResponce!![i].orderStatus != "5"){
+                        if (it.getData()!!.ListOrderResponce!![i].orderStatus != "6" && it.getData()!!.ListOrderResponce!![i].orderStatus != "5" && it.getData()!!.ListOrderResponce!![i].cancelStatus != true){
 
                             runOrder_id.add(it.getData()!!.ListOrderResponce!![i].id.toString())
-                            runOrder_num.add(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
+                            runOrder_num.add(it.getData()!!.ListOrderResponce!![i].id.toString())
                             runOrder_status.add(it.getData()!!.ListOrderResponce!![i].orderStatus.toString())
                             runOrder_total.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
                             runOrder_quantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())

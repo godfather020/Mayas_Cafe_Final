@@ -19,7 +19,7 @@
     <color name="EditTxt_color">#B6000000</color>
     <color name="Register_skip">#363853</color>
     <color name="Login_Title">#363853</color>
-    <color name="Login_subTitle">#989BBD</color>
+    <color name="Login_subTitle">#000</color>
     <color name="Login_editTxt">#B6000000</color>
     <color name="Login_newUser">#82838B</color>
     <color name="Login_signUp">#F4511E</color>

@@ -16,6 +16,7 @@ import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
 import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,7 +41,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.paymentMethod = "CASE"
         requestOrderdetails.pickupAt = "26-05-2022 21:45:09"
 
-        Log.d("orderItem", requestOrderdetails.toalQuantity.toString())
+        Log.d("orderItem", requestOrderdetails.toString())
         Log.d("orderItem", requestOrderdetails.amount.toString())
 
         for (i in Constants.foodId.indices) {
@@ -61,7 +62,6 @@ class CheckOut_frag_ViewModel : ViewModel() {
             Log.d("orderItem", Constants.foodId[i].toString())
             Log.d("orderItem", requestOrderdetails.amount.toString())
 
-
             Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).totalAmount.toString())
             Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).noItems.toString())
             Log.d("orderItem", requestOrderdetails.orderItems!!.get(i).quantity.toString())
@@ -72,6 +72,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
         }
 
 
+        Log.d("orderItem12", requestOrderdetails.toString())
         auth = FirebaseAuth.getInstance()
 
         sendOrderDetailsAPI(requestOrderdetails)
