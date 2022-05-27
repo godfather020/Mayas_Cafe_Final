@@ -40,6 +40,9 @@ class SingleItem_frag : Fragment() {
     lateinit var singleItem_addToFav : ImageView
     lateinit var loading : ProgressBar
     lateinit var viewModel : SingleItem_viewModel
+    var itemAmount = ArrayList<String>()
+    var itemOfferAmt = ArrayList<String>()
+    var itemSize = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +103,10 @@ class SingleItem_frag : Fragment() {
 
                 if (it.getSuccess()!!) {
 
+                    itemAmount.clear()
+                    itemSize.clear()
+                    itemOfferAmt.clear()
+
                     singleItem_name.text = it.getData()!!.ProductResponce!!.productName.toString()
                     singleItem_des.text = it.getData()!!.ProductResponce!!.productDesc.toString()
 
@@ -107,6 +114,14 @@ class SingleItem_frag : Fragment() {
                         .into(singleItem_img)
 
                     singleItem_rating.text = it.getData()!!.ProductResponce!!.customerrating.toString()
+
+                    for (i in it.getData()!!.ProductResponce!!.Productprices!!.indices){
+
+                        itemAmount.add(it.getData()!!.ProductResponce!!.Productprices!![i].amount.toString())
+                        itemOfferAmt.add(it.getData()!!.ProductResponce!!.Productprices!![i].offerAmount.toString())
+                        itemSize.add(it.getData()!!.ProductResponce!!.Productprices!![i].productsize.toString())
+
+                    }
 
                     Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
                 }
