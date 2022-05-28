@@ -12,6 +12,7 @@ import com.example.mayasfood.Retrofite.request.Request_CategoryDetails
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,7 @@ class CategoryDetails_ViewModel : ViewModel() {
 
     lateinit var activity: Fragment
     lateinit var loading: ProgressBar
+    lateinit var auth : FirebaseAuth
 
     var commonResponse = MutableLiveData<Response_Common>()
 
@@ -30,6 +32,7 @@ class CategoryDetails_ViewModel : ViewModel() {
         val request_category: Request_CategoryDetails = Request_CategoryDetails()
         request_category.categoryId = categoryId
         request_category.branchId = branchId
+        auth = FirebaseAuth.getInstance()
 
         getCategoryDetailsAPI(request_category)
 
@@ -39,7 +42,15 @@ class CategoryDetails_ViewModel : ViewModel() {
     private fun getCategoryDetailsAPI(param: Request_CategoryDetails) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getFoodCategory(Constants.USER_TOKEN, param)
+        val retrofitData : Call<Response_Common>
+
+        if (auth.currentUser != null){
+
+            retrofitData = retrofitInstance.retrofit.getFoodCategory(Constants.USER_TOKEN, param)
+        }else {
+
+            retrofitData = retrofitInstance.retrofit.getFoodCategory("x-token",param)
+        }
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

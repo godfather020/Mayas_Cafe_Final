@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.smarteist:autoimageslider:1.4.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/94c2ac0f43b6e1aed2609c12392e0038/transformed/jetified-autoimageslider-1.4.0/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/94c2ac0f43b6e1aed2609c12392e0038/transformed/jetified-autoimageslider-1.4.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/94c2ac0f43b6e1aed2609c12392e0038/transformed/jetified-autoimageslider-1.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/598a138faa542df2e18359776193d1a6/transformed/jetified-autoimageslider-1.4.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/598a138faa542df2e18359776193d1a6/transformed/jetified-autoimageslider-1.4.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/598a138faa542df2e18359776193d1a6/transformed/jetified-autoimageslider-1.4.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/598a138faa542df2e18359776193d1a6/transformed/jetified-autoimageslider-1.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/598a138faa542df2e18359776193d1a6/transformed/jetified-autoimageslider-1.4.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/598a138faa542df2e18359776193d1a6/transformed/jetified-autoimageslider-1.4.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.smarteist/autoimageslider/1.4.0/a5aa7c44c7db046b4ab52c4cd1ed375bafd8ba8b/autoimageslider-1.4.0-javadoc.jar!/" />

@@ -33,4 +33,6 @@ class ProductResponce {
     @SerializedName("updatedAt"      ) var updatedAt      : String?                  = null
 
     @SerializedName("Productprices"  ) var Productprices  : List<Productprices>? = null
+
+    @SerializedName("favorite") var favorite  : Int? = null
 }

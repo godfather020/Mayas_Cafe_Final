@@ -9,16 +9,16 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/e27e947a2fd134a109106131c36dfdfc/transformed/jetified-firebase-installations-17.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/7aa1229a955a391068ef1d3760130d13/transformed/jetified-firebase-installations-17.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/17553199dcc91901c5506e29a5efe53a/transformed/jetified-firebase-installations-17.0.1/res" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/da5067b1330ed6c6fab9926ea672db5a/transformed/jetified-firebase-installations-17.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/da5067b1330ed6c6fab9926ea672db5a/transformed/jetified-firebase-installations-17.0.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/da5067b1330ed6c6fab9926ea672db5a/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/472d5f4fbe81731e5cc7770c4f3e5ec0/transformed/jetified-firebase-installations-17.0.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/472d5f4fbe81731e5cc7770c4f3e5ec0/transformed/jetified-firebase-installations-17.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/472d5f4fbe81731e5cc7770c4f3e5ec0/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/472d5f4fbe81731e5cc7770c4f3e5ec0/transformed/jetified-firebase-installations-17.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/472d5f4fbe81731e5cc7770c4f3e5ec0/transformed/jetified-firebase-installations-17.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/472d5f4fbe81731e5cc7770c4f3e5ec0/transformed/jetified-firebase-installations-17.0.1/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.firebase/firebase-installations/17.0.1/a5de27e8894c107c06e27ee0bfdf8c24216354a2/firebase-installations-17.0.1-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-installations/17.0.1/a5de27e8894c107c06e27ee0bfdf8c24216354a2/firebase-installations-17.0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

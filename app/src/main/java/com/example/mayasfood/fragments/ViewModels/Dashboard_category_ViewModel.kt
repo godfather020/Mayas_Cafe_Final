@@ -12,6 +12,7 @@ import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,11 +23,15 @@ class Dashboard_category_ViewModel: ViewModel() {
 
     var commonResponse = MutableLiveData<Response_Common>()
 
+    lateinit var auth : FirebaseAuth
+
     fun getDashboardData(activity: Fragment, branchId: String): MutableLiveData<Response_Common> {
 
         this.activity = activity
         val requestBranch: Request_Branch = Request_Branch()
         requestBranch.branchId = branchId
+
+        auth = FirebaseAuth.getInstance()
 
         getDashboardDataApi(requestBranch)
 
@@ -36,7 +41,15 @@ class Dashboard_category_ViewModel: ViewModel() {
     private fun getDashboardDataApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getDashboardItems(Constants.USER_TOKEN, param)
+        val retrofitData : Call<Response_Common>
+
+        if (auth.currentUser != null){
+
+            retrofitData = retrofitInstance.retrofit.getDashboardItems(Constants.USER_TOKEN, param)
+        }else {
+
+            retrofitData = retrofitInstance.retrofit.getDashboardItems("x-token",param)
+        }
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

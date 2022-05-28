@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="2"
+                    android:text="1"
                     android:textColor="@color/black"
                     android:textFontWeight="800"
                     android:textSize="14sp" />
@@ -144,7 +144,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
             <ImageView
-                android:id="@+id/singleO_start1"
+                android:id="@+id/singleO_start5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
@@ -154,13 +154,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
             <ImageView
-                android:id="@+id/singleO_start2"
+                android:id="@+id/singleO_start4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/vector__6_"
-                app:layout_constraintEnd_toStartOf="@+id/singleO_start1"
+                app:layout_constraintEnd_toStartOf="@+id/singleO_start5"
                 app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
             <ImageView
@@ -170,11 +170,11 @@
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/vector__6_"
-                app:layout_constraintEnd_toStartOf="@+id/singleO_start2"
+                app:layout_constraintEnd_toStartOf="@+id/singleO_start4"
                 app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
             <ImageView
-                android:id="@+id/singleO_start4"
+                android:id="@+id/singleO_start2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
@@ -184,13 +184,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
             <ImageView
-                android:id="@+id/singleO_start5"
+                android:id="@+id/singleO_start1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/vector__6_"
-                app:layout_constraintEnd_toStartOf="@+id/singleO_start4"
+                app:layout_constraintEnd_toStartOf="@+id/singleO_start2"
                 app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
             <TextView
@@ -330,6 +330,7 @@
         android:id="@+id/loading_singleItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

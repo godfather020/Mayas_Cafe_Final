@@ -1,20 +1,18 @@
 <component name="libraryTable">
   <library name="Gradle: de.hdodenhof:circleimageview:3.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/16c0e6d5508be1437a00fb90db28c200/transformed/jetified-circleimageview-3.1.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/16c0e6d5508be1437a00fb90db28c200/transformed/jetified-circleimageview-3.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/16c0e6d5508be1437a00fb90db28c200/transformed/jetified-circleimageview-3.1.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/edd06d872e019207c416b70ff8187a1b/transformed/jetified-circleimageview-3.1.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/edd06d872e019207c416b70ff8187a1b/transformed/jetified-circleimageview-3.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/edd06d872e019207c416b70ff8187a1b/transformed/jetified-circleimageview-3.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/edd06d872e019207c416b70ff8187a1b/transformed/jetified-circleimageview-3.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/edd06d872e019207c416b70ff8187a1b/transformed/jetified-circleimageview-3.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/edd06d872e019207c416b70ff8187a1b/transformed/jetified-circleimageview-3.1.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/de.hdodenhof/circleimageview/3.1.0/e33964c462b854162fee2bd3cd52889ef878df77/circleimageview-3.1.0-javadoc.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.hdodenhof/circleimageview/3.1.0/e33964c462b854162fee2bd3cd52889ef878df77/circleimageview-3.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/de.hdodenhof/circleimageview/3.1.0/e5635e59d66b172f3e99c6a7044dc9535c95d180/circleimageview-3.1.0-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.hdodenhof/circleimageview/3.1.0/e5635e59d66b172f3e99c6a7044dc9535c95d180/circleimageview-3.1.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

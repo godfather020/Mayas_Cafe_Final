@@ -17,11 +17,11 @@ interface Apis {
         @Body body: Request_Branch
     ):Call<Response_Common>
 
-    @Headers("Content-Type:application/json", "Accept:application/json")
+   /* @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.DASHBOARD)
     fun getDashboardItems(
         @Body body: Request_Branch
-    ):Call<Response_Common>
+    ):Call<Response_Common>*/
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.VERIFY)

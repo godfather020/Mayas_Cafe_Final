@@ -66,6 +66,7 @@ class Login : AppCompatActivity() {
 
         skip.setOnClickListener {
 
+            getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", false).apply()
             sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N , "Stranger")
 
             startActivity(Intent(this@Login, DashBoard::class.java))
@@ -147,8 +148,8 @@ class Login : AppCompatActivity() {
 
                 loading.visibility = View.GONE
 
-                Toast.makeText(applicationContext, "Number has been blocked. Please try after sometime.", Toast.LENGTH_LONG).show()
-
+                //Toast.makeText(applicationContext, "Number has been blocked. Please try after sometime.", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, e.toString(), Toast.LENGTH_LONG).show()
             }
 
             override fun onCodeSent(

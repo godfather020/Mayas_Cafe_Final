@@ -48,7 +48,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
     ArrayList<String> productId = new ArrayList<String>();
     String foodName = "";
     //int q = 1;
-    int i = 0;
+    //int i = 0;
 
     public RecycleView_Adapter_PF(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
@@ -132,12 +132,12 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
                 }
                 else {
 
-                        Constants.foodId.add(i, Integer.valueOf(foodModels2.get(holder.getLayoutPosition()).getProductId()));
-                        Constants.foodQuantity.add(i,1);
-                        Constants.foodImg.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodImg());
-                        Constants.foodName.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodName());
-                        Constants.foodPrice.add(i, Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
-                        i++;
+                        Constants.foodId.add(Integer.valueOf(foodModels2.get(holder.getLayoutPosition()).getProductId()));
+                        Constants.foodQuantity.add(1);
+                        Constants.foodImg.add(foodModels2.get(holder.getAdapterPosition()).getFoodImg());
+                        Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
+                        Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                        //i++;
                     }
             }
         });

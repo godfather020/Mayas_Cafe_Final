@@ -18,6 +18,7 @@ import com.example.mayasfood.fragments.ViewModels.CategoryDetails_ViewModel
 import com.example.mayasfood.fragments.ViewModels.Dashboard_category_ViewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
+import com.google.firebase.auth.FirebaseAuth
 
 
 class CategoryDetails_frag : Fragment() {
@@ -33,6 +34,7 @@ class CategoryDetails_frag : Fragment() {
     lateinit var viewModel : CategoryDetails_ViewModel
     lateinit var dashBoard: DashBoard
     lateinit var loading : ProgressBar
+    lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,8 @@ class CategoryDetails_frag : Fragment() {
         viewModel = ViewModelProvider(this).get(CategoryDetails_ViewModel::class.java)
 
         dashBoard = activity as DashBoard
+
+        auth = FirebaseAuth.getInstance()
 
         dashBoard.toolbar_const.setTitle(Constants.categoryName);
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
@@ -88,7 +92,12 @@ class CategoryDetails_frag : Fragment() {
                         foodImg.add(i, it.getData()!!.ListproductResponce!![i].productPic.toString())
                         foodPrice.add(i, it.getData()!!.ListproductResponce!![i].Productprices!![0].amount.toString())
                         foodRating.add(i, it.getData()!!.ListproductResponce!![i].customerrating.toString())
-                        foodIsFav.add(i , it.getData()!!.ListproductResponce!![i].favorite!!)
+                        if (auth.currentUser != null) {
+                            foodIsFav.add(i, it.getData()!!.ListproductResponce!![i].favorite!!)
+                        }
+                        else{
+                            foodIsFav.add(i, 0)
+                        }
                         foodId.add(i , it.getData()!!.ListproductResponce!![i].id.toString())
                     }
 

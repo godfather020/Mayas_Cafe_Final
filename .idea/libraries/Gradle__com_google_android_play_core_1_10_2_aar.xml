@@ -1,21 +1,20 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.android.play:core:1.10.2@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/629288cc0df81d57091616c2d8eca4cb/transformed/jetified-core-1.10.2/annotations.zip!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/629288cc0df81d57091616c2d8eca4cb/transformed/jetified-core-1.10.2/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/629288cc0df81d57091616c2d8eca4cb/transformed/jetified-core-1.10.2/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/629288cc0df81d57091616c2d8eca4cb/transformed/jetified-core-1.10.2/jars/classes.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/res" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/976d4e3b50b5f0e8b1da17be37d0f6e0/transformed/jetified-core-1.10.2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.play/core/1.10.2/4277e13cd9eeb426a0e054b384692dc03a510b9c/core-1.10.2-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.play/core/1.10.2/4277e13cd9eeb426a0e054b384692dc03a510b9c/core-1.10.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

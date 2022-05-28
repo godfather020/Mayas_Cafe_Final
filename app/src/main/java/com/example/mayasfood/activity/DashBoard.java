@@ -214,7 +214,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         if (auth.getCurrentUser() == null) {
 
-            navigationView.getMenu().getItem(5).setTitle("Login");
+            navigationView.getMenu().getItem(6).setTitle("Login");
 
         }
 
@@ -238,7 +238,16 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 if (Constants.USER_NAME != null) {
                     user_name_nav.setText(Constants.USER_NAME);
+
+                }
+
+                if (auth.getCurrentUser() != null){
+
                     user_num_nav.setText(Constants.USER_PHONE);
+                }
+                else {
+
+                    user_num_nav.setVisibility(View.GONE);
                 }
 
                 close.setOnClickListener(new View.OnClickListener() {
