@@ -70,9 +70,26 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
+            android:textColor="#2E2F30"
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textFontWeight="800"
             android:text="Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugia..." />
+
+        <TextView
+            android:id="@+id/today_rv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="05-25-2022"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_variablefont_wght"
+            android:textFontWeight="800"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            />
 
     </androidx.cardview.widget.CardView>
 

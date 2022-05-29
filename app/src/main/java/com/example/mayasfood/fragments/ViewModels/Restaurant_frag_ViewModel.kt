@@ -12,6 +12,7 @@ import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,7 @@ class Restaurant_frag_ViewModel : ViewModel() {
 
     lateinit var activity: Fragment
     lateinit var loading : ProgressBar
+    lateinit var auth : FirebaseAuth
 
     var commonResponse = MutableLiveData<Response_Common>()
 
@@ -30,6 +32,8 @@ class Restaurant_frag_ViewModel : ViewModel() {
         val requestBranch: Request_Branch = Request_Branch()
         requestBranch.branchId = branchId
 
+        auth = FirebaseAuth.getInstance()
+
         getRestaurantChoiceFoodApi(requestBranch)
 
         return commonResponse
@@ -38,7 +42,16 @@ class Restaurant_frag_ViewModel : ViewModel() {
     private fun getRestaurantChoiceFoodApi(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()
-        val retrofitData = retrofitInstance.retrofit.getRestaurantChoices(Constants.USER_TOKEN, param)
+        val retrofitData : Call<Response_Common>
+
+        if (auth.currentUser != null){
+
+            retrofitData = retrofitInstance.retrofit.getRestaurantChoices(Constants.USER_TOKEN, param)
+        }else {
+
+            retrofitData = retrofitInstance.retrofit.getRestaurantChoices("x-token",param)
+        }
+
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

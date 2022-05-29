@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
@@ -46,7 +47,6 @@ public class RecycleView_Adapter_N extends RecyclerView.Adapter<RecycleView_Adap
         holder.noti_body.setText(foodModels4.get(position).getFoodPrice());
         holder.notyTitle.setText(foodModels4.get(position).getFoodImg());
         holder.createdDate.setText(foodModels4.get(position).getStars());
-
 
         /*holder.copy_offer.setOnClickListener(new View.OnClickListener() {
             @Override

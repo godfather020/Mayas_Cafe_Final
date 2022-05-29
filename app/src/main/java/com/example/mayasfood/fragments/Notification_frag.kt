@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
@@ -18,6 +20,7 @@ import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_N
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_N2
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class Notification_frag : Fragment() {
 
@@ -34,6 +37,8 @@ class Notification_frag : Fragment() {
     var notificationPreviousTime = ArrayList<String>()
     var notificationPreviousTitle = ArrayList<String>()
     var notificationPreviousDate = ArrayList<String>()
+    var notificationToday_id = ArrayList<String>()
+    var notificationPrevious_id = ArrayList<String>()
     lateinit var  recyclerView: RecyclerView
     lateinit var recyclerView2: RecyclerView
     var today = 0
@@ -71,7 +76,57 @@ class Notification_frag : Fragment() {
 
         setUpNotifyView()
 
+
+
+        val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
+            ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT
+            ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                Toast.makeText(activity, "on Move", Toast.LENGTH_SHORT).show()
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                Toast.makeText(activity, "Notification removed", Toast.LENGTH_SHORT).show()
+                //Remove swiped item from list and notify the RecyclerView
+                val position = viewHolder.absoluteAdapterPosition
+                recycleView_models1.removeAt(position)
+                //val recycleView_adapter_N = RecycleView_Adapter_N(activity, recycleView_models)
+                val recycleView_adapter_N2 = RecycleView_Adapter_N2(activity, recycleView_models1)
+                recycleView_adapter_N2.notifyItemChanged(position)
+                //setUpNotifyView()
+                val notifyId = notificationPrevious_id.get(position)
+                Log.d("notifyID", notifyId)
+                removeNotification(notifyId)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView2)
+
         return view
+    }
+
+    private fun removeNotification(notifyId: String) {
+
+        viewModel.removeNotification(this, notifyId).observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.success!!){
+
+                    setUpNotifyView()
+
+                }
+            }
+
+        })
     }
 
     private fun setUpNotifyView() {
@@ -90,6 +145,8 @@ class Notification_frag : Fragment() {
                     notificationTodayTime.clear()
                     recycleView_models.clear()
                     recycleView_models1.clear()
+                    notificationPrevious_id.clear()
+                    notificationToday_id.clear()
 
                     //val dateTime = it.getData()!!.notifications!!.rows!![0].createdAt.toString()
 
@@ -146,6 +203,7 @@ class Notification_frag : Fragment() {
                             notificationTodayTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
                             notificationTodayTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
                             notificationTodayDate.add(createdDateAd)
+                            notificationToday_id.add(it.getData()!!.notifications!!.rows!![i].id.toString())
 
                         }
                         else{
@@ -155,6 +213,7 @@ class Notification_frag : Fragment() {
                             notificationPreviousTxt.add( it.getData()!!.notifications!!.rows!![i].description.toString())
                             notificationPreviousTitle.add(it.getData()!!.notifications!!.rows!![i].title.toString())
                             notificationPreviousDate.add(createdDateAd)
+                            notificationPrevious_id.add(it.getData()!!.notifications!!.rows!![i].id.toString())
                         }
                     }
 
@@ -177,12 +236,12 @@ class Notification_frag : Fragment() {
 
         for (i in notificationTodayTime.indices){
 
-            recycleView_models.add(RecycleView_Model(notificationTodayTime[i], notificationTodayTxt[i], notificationTodayTitle[i], notificationTodayDate[i]))
+            recycleView_models.add(RecycleView_Model(notificationTodayTime[i], notificationTodayTxt[i],notificationToday_id[i], notificationTodayTitle[i], notificationTodayDate[i]))
         }
 
         for (i in notificationPreviousTitle.indices){
 
-            recycleView_models1.add(RecycleView_Model(notificationPreviousTime[i], notificationPreviousTxt[i], notificationPreviousTitle[i], notificationPreviousDate[i]))
+            recycleView_models1.add(RecycleView_Model(notificationPreviousTime[i], notificationPreviousTxt[i],notificationPrevious_id[i], notificationPreviousTitle[i], notificationPreviousDate[i]))
         }
 
         val recycleView_adapter_N = RecycleView_Adapter_N(activity, recycleView_models)
@@ -190,6 +249,7 @@ class Notification_frag : Fragment() {
         recyclerView.adapter = recycleView_adapter_N
         recyclerView2.adapter = recycleView_adapter_N2
         recycleView_adapter_N.notifyDataSetChanged()
+        recycleView_adapter_N2.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

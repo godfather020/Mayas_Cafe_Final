@@ -3,6 +3,7 @@ package com.example.mayasfood.Retrofite.api
 import com.example.lottry.data.remote.retrofit.request.*
 import com.example.mayasfood.Retrofite.request.*
 import com.example.mayasfood.Retrofite.response.Response_Common
+import com.example.mayasfood.Retrofite.response.Response_Notification
 import com.example.mayasfood.constants.Constants
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -17,11 +18,12 @@ interface Apis {
         @Body body: Request_Branch
     ):Call<Response_Common>
 
-   /* @Headers("Content-Type:application/json", "Accept:application/json")
-    @POST(Constants.ApiConstant.DASHBOARD)
-    fun getDashboardItems(
-        @Body body: Request_Branch
-    ):Call<Response_Common>*/
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.REMOVE_NOTIFICATION)
+    fun removeNotification(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_notification
+    ):Call<Response_Notification>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.VERIFY)

@@ -29,6 +29,7 @@ object Constants {
         internal const val GET_ORDERS = "customer/Listorder"
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
+        internal const val REMOVE_NOTIFICATION = "customer/readNotification"
         internal var DEVICE_TOKEN = ""
 
     }

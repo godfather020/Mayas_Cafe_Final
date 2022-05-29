@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -31,9 +31,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_profile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="28dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="104dp"
             android:src="@drawable/mask_group_1"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="125dp"
+            android:layout_marginTop="115dp"
             android:fontFamily="@font/montserrat_bold"
             android:paddingRight="24dp"
             android:text="Stranger"
@@ -66,6 +66,19 @@
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_num_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat_variablefont_wght"
+            android:text="+9199999999"
+            android:textFontWeight="800"
+            app:layout_constraintStart_toEndOf="@+id/user_profile"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_nav" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

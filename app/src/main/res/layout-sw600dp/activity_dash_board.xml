@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/drawer"
-    android:background="@drawable/location"
+    android:background="@color/Screen_BG"
     android:layout_height="match_parent"
     tools:context=".activity.DashBoard">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginBottom="94dp"
+        android:paddingBottom="85dp"
+        android:backgroundTint="@color/Screen_BG"
         android:background="@drawable/custom_nav"
         app:headerLayout="@layout/header"
+        app:itemTextAppearance="@style/Style_TextView"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>
@@ -23,7 +25,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/nav"
@@ -33,12 +38,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <np.com.susanthapa.curved_bottom_navigation.CurvedBottomNavigationView
+            <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/chip_nav"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_rounded_bottom"
-                android:backgroundTint="#00FFFFFF"
+                android:layout_height="57dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/bottom_nav"
+                app:backgroundTint="@color/black"
+                app:itemIconTint="@color/custom_nav_icon_colors"
+                app:itemTextColor="@color/custom_nav_icon_colors"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+            <!--<np.com.susanthapa.curved_bottom_navigation.CurvedBottomNavigationView
+                android:id="@+id/chip_nav"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:elevation="8dp"
                 app:cbn_bg="@color/black"
                 app:cbn_fabBg="@color/black"
@@ -47,18 +62,18 @@
                 app:itemIconSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/frag_cont"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/nav"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/nav"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" >
+            app:layout_constraintStart_toStartOf="parent">
 
         </LinearLayout>
 
@@ -66,7 +81,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foregroundGravity="top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -78,17 +92,19 @@
                 android:paddingTop="8dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                app:title=""
+                android:title=""
                 app:titleTextColor="#00FFFFFF"
+                app:titleTextAppearance="@style/Style_TextView"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/group_8" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

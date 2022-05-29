@@ -40,7 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginStart="16dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_variablefont_wght"
+        android:textFontWeight="800"
         android:text="@string/Login_subTitle"
         android:textColor="@color/Login_subTitle"
         android:textSize="@dimen/Login_Subtitle"
@@ -68,18 +69,18 @@
             android:id="@+id/phoneNum"
             android:layout_width="0dp"
             android:layout_height="53dp"
-            android:drawableEnd="@drawable/icon_feather_phone_call"
+            android:drawableEnd="@drawable/eva_phone_call_outline"
             android:backgroundTint="#00FFFFFF"
             android:ems="10"
             android:hint="@string/Login_EditTxt"
             android:inputType="phone"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/montserrat_variablefont_wght"
             android:maxLength="13"
-            android:maxLines="1"
             android:textColor="@color/Login_editTxt"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
             android:textSize="@dimen/Login_EditTxt"
+            android:textFontWeight="800"
             android:padding="5dp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,12 +119,25 @@
         android:textAllCaps="false"
         android:textColor="@color/Button_txt"
         android:textSize="@dimen/Button_txt"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_txt" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="@dimen/Register_skip"
+        android:textColor="@color/Register_skip"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/sign_in"
@@ -155,6 +169,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
             app:layout_constraintStart_toEndOf="@+id/textView9" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <ProgressBar
+        android:id="@+id/loading_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

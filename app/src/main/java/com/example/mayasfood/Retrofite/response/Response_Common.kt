@@ -1,6 +1,5 @@
 package com.example.mayasfood.Retrofite.response
 
-import com.example.lottry.data.remote.retrofit.response.Response_Error
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
@@ -18,7 +17,7 @@ class Response_Common {
 
     @SerializedName("error")
     @Expose
-    private var error: Response_Error? = null
+    private var error: Response_Notification? = null
 
     @SerializedName("data")
     @Expose
@@ -54,11 +53,11 @@ class Response_Common {
 //        this.message = message
 //    }
 
-    fun getError(): Response_Error? {
+    fun getError(): Response_Notification? {
         return error
     }
 
-    fun setError(error: Response_Error?) {
+    fun setError(error: Response_Notification?) {
         this.error = error
     }
 
