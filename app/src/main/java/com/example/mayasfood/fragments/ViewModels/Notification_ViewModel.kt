@@ -11,6 +11,7 @@ import com.example.mayasfood.Retrofite.request.Request_notification
 import com.example.mayasfood.R
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.Retrofite.response.Response_Notification
+import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.development.retrofit.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,9 +52,9 @@ class Notification_ViewModel : ViewModel() {
     private fun removeNotificationAPI(param: Request_notification) {
 
         val retrofitInstance = RetrofitInstance()
-        //val retrofitData = retrofitInstance.retrofit.getNotificaiton(Constants.USER_TOKEN)
+        val retrofitData = retrofitInstance.retrofit.removeNotification(Constants.USER_TOKEN, param)
 
-        val retrofitData = retrofitInstance.retrofit.removeNotification("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6NTQsInBob25lTnVtYmVyIjoiKzkxNzAwMDEwNzg3NiIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjlUMDc6MTU6MjAuNjYyWiJ9LCJpYXQiOjE2NTM4MDg1MjB9.ut7rbdY-NlDANUJomlbRO5JFwCouktCcyoy7Rk9d6Hg", param)
+        //val retrofitData = retrofitInstance.retrofit.removeNotification("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6NTQsInBob25lTnVtYmVyIjoiKzkxNzAwMDEwNzg3NiIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjlUMDc6MTU6MjAuNjYyWiJ9LCJpYXQiOjE2NTM4MDg1MjB9.ut7rbdY-NlDANUJomlbRO5JFwCouktCcyoy7Rk9d6Hg", param)
 
         retrofitData.enqueue(object : Callback<Response_Notification?> {
             override fun onResponse(
@@ -84,9 +85,9 @@ class Notification_ViewModel : ViewModel() {
     private fun getNotificationDataApi() {
 
         val retrofitInstance = RetrofitInstance()
-        //val retrofitData = retrofitInstance.retrofit.getNotificaiton(Constants.USER_TOKEN)
+        val retrofitData = retrofitInstance.retrofit.getNotificaiton(Constants.USER_TOKEN)
 
-        val retrofitData = retrofitInstance.retrofit.getNotificaiton("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6NTQsInBob25lTnVtYmVyIjoiKzkxNzAwMDEwNzg3NiIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjlUMDc6MTU6MjAuNjYyWiJ9LCJpYXQiOjE2NTM4MDg1MjB9.ut7rbdY-NlDANUJomlbRO5JFwCouktCcyoy7Rk9d6Hg")
+        //val retrofitData = retrofitInstance.retrofit.getNotificaiton("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6NTQsInBob25lTnVtYmVyIjoiKzkxNzAwMDEwNzg3NiIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjlUMDc6MTU6MjAuNjYyWiJ9LCJpYXQiOjE2NTM4MDg1MjB9.ut7rbdY-NlDANUJomlbRO5JFwCouktCcyoy7Rk9d6Hg")
 
         retrofitData.enqueue(object : Callback<Response_Common?> {
             override fun onResponse(

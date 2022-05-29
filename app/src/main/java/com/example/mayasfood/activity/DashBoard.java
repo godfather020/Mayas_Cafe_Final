@@ -411,17 +411,17 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         } else if (id == R.id.notification) {
 
-            //if (auth.getCurrentUser() != null) {
+            if (auth.getCurrentUser() != null) {
                 Constants.currentFrag = "N";
                 toolbar_const.getMenu().getItem(1).setVisible(false);
                 navigationView.setCheckedItem(R.id.notificationNav);
                 bottomNavigationView.setVisibility(View.GONE);
                 Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
-          // }
-          //  else {
+           }
+            else {
                 
-             //   dialog("Please Login/Register to see notifications.");
-          //  }
+                dialog("Please Login/Register to see notifications.");
+            }
 
             //Toast.makeText(getApplicationContext(), "notification", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.cart) {

@@ -107,8 +107,40 @@ class Notification_frag : Fragment() {
             }
         }
 
+        val simpleItemTouchCallback1: ItemTouchHelper.SimpleCallback = object :
+            ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT
+            ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                Toast.makeText(activity, "on Move", Toast.LENGTH_SHORT).show()
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                Toast.makeText(activity, "Notification removed", Toast.LENGTH_SHORT).show()
+                //Remove swiped item from list and notify the RecyclerView
+                val position = viewHolder.absoluteAdapterPosition
+                recycleView_models.removeAt(position)
+                //val recycleView_adapter_N = RecycleView_Adapter_N(activity, recycleView_models)
+                val recycleView_adapter_N = RecycleView_Adapter_N2(activity, recycleView_models)
+                recycleView_adapter_N.notifyItemChanged(position)
+                //setUpNotifyView()
+                val notifyId = notificationToday_id.get(position)
+                Log.d("notifyID", notifyId)
+                removeNotification(notifyId)
+            }
+        }
+
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView2)
+
+        val itemTouchHelper1 = ItemTouchHelper(simpleItemTouchCallback1)
+        itemTouchHelper1.attachToRecyclerView(recyclerView)
 
         return view
     }
