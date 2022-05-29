@@ -19,6 +19,7 @@ import com.example.mayasfood.fragments.ViewModels.popular_frag_ViewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
+import com.google.firebase.auth.FirebaseAuth
 
 
 class Restarant_choice_frag : Fragment() {
@@ -34,6 +35,7 @@ class Restarant_choice_frag : Fragment() {
     lateinit var loading : ProgressBar
     lateinit var viewModel: Restaurant_frag_ViewModel
     lateinit var dashBoard : DashBoard
+    lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,8 @@ class Restarant_choice_frag : Fragment() {
         viewModel = ViewModelProvider(this).get(Restaurant_frag_ViewModel::class.java)
 
         dashBoard = activity as DashBoard
+
+        auth = FirebaseAuth.getInstance()
 
         dashBoard.toolbar_const.setTitle("Restaurant Choices")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
@@ -106,7 +110,13 @@ class Restarant_choice_frag : Fragment() {
 
                         restaurantFoodId.add(i , it.getData()!!.ListrestaurantproductResponce!![i].id.toString())
 
+                        if (auth.currentUser !=null){
                         restaurantFoodIsFav.add(i , it.getData()!!.ListrestaurantproductResponce!![i].favorite!!)
+                        }
+                        else{
+
+                            restaurantFoodIsFav.add(i , 0)
+                        }
 
 
                     }

@@ -20,6 +20,7 @@ import com.example.mayasfood.fragments.ViewModels.popular_frag_ViewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
+import com.google.firebase.auth.FirebaseAuth
 
 
 class popular_frag : Fragment() {
@@ -35,6 +36,7 @@ class popular_frag : Fragment() {
     var popularFoodId = ArrayList<String>()
     lateinit var viewModel: popular_frag_ViewModel
     lateinit var dashBoard : DashBoard
+    lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,8 @@ class popular_frag : Fragment() {
         viewModel = ViewModelProvider(this).get(popular_frag_ViewModel::class.java)
 
         dashBoard = activity as DashBoard
+
+        auth = FirebaseAuth.getInstance()
 
         dashBoard.toolbar_const.setTitle("Popular Food")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
@@ -106,7 +110,20 @@ class popular_frag : Fragment() {
 
                         popularFoodId.add(i, it.getData()!!.ListpopularproductResponce!![i].id.toString())
 
-                        popularFoodIsFav.add(i , it.getData()!!.ListpopularproductResponce!![i].favorite!!)
+                        if (auth.currentUser != null) {
+
+                            popularFoodIsFav.add(
+                                i,
+                                it.getData()!!.ListpopularproductResponce!![i].favorite!!
+                            )
+                        }
+                        else{
+
+                            popularFoodIsFav.add(
+                                i,
+                                0
+                            )
+                        }
 
                     }
 

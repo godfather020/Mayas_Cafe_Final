@@ -51,6 +51,7 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-sw600dp/activity_otp.xml" value="0.1875" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-sw600dp/activity_registration.xml" value="0.1875" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-sw600dp/activity_splash.xml" value="0.1875" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-sw600dp/offers_rv.xml" value="0.183125" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/cart_details_rv.xml" value="0.19537037037037036" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/fragment_check_out_frag.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/fragment_dashboard_frag.xml" value="0.25" />
@@ -91,7 +92,7 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/header.xml" value="0.33472803347280333" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/item.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/main_activity.xml" value="0.25" />
-        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/offers_rv.xml" value="0.25" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/offers_rv.xml" value="0.183125" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/past_order_rv.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/popular_food_rv.xml" value="0.4" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/restaurant_choice_rv.xml" value="0.4" />
