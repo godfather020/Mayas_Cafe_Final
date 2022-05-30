@@ -226,8 +226,10 @@ class OTP : AppCompatActivity() {
 
     private fun verifyCode(code: String) {
 
-        val phoneAuthCredential : PhoneAuthCredential = PhoneAuthProvider.getCredential(verificationId, code)
-        signInByCredentials(phoneAuthCredential)
+            val phoneAuthCredential: PhoneAuthCredential =
+                PhoneAuthProvider.getCredential(verificationId, code)
+            signInByCredentials(phoneAuthCredential)
+
     }
 
     private fun signInByCredentials(phoneAuthCredential: PhoneAuthCredential) {

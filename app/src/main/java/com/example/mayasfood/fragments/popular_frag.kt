@@ -2,13 +2,10 @@ package com.example.mayasfood.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.GridLayout
+import android.view.*
 import android.widget.ProgressBar
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
+import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.popular_frag_ViewModel
+import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.google.firebase.auth.FirebaseAuth
 
@@ -37,6 +35,8 @@ class popular_frag : Fragment() {
     lateinit var viewModel: popular_frag_ViewModel
     lateinit var dashBoard : DashBoard
     lateinit var auth : FirebaseAuth
+    lateinit var search : MenuItem
+    lateinit var recycleView_adapter: RecycleView_Adapter_PF
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +60,23 @@ class popular_frag : Fragment() {
         dashBoard.toolbar_const.setTitle("Popular Food")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item!!.itemId == R.id.search){
+
+
+                }
+                return true
+            }
+
+        })
+
         recyclerView = view.findViewById(R.id.popular_rv)
         loading = view.findViewById(R.id.loading_pop)
         loading.visibility = View.VISIBLE
+
+        setHasOptionsMenu(true)
 
         val layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 
@@ -161,11 +175,44 @@ class popular_frag : Fragment() {
 
 
 
-        val recycleView_adapter = RecycleView_Adapter_PF(activity, recycleView_models)
+        recycleView_adapter = RecycleView_Adapter_PF(activity, recycleView_models)
 
         recyclerView.adapter = recycleView_adapter
 
         recycleView_adapter.notifyDataSetChanged()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        search = menu.findItem(R.id.search)
+        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                recycleView_adapter.filter.filter(newText)
+                return false
+            }
+        })
+    }
+
+    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id = item.itemId
+
+        if (id == R.id.search) {
+            Constants.currentFrag = "S"
+            //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
+
+        }
+
+        return super.onOptionsItemSelected(item)
+    }*/
 
 }

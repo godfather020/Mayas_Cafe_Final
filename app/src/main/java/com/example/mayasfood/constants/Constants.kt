@@ -30,6 +30,7 @@ object Constants {
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
         internal const val REMOVE_NOTIFICATION = "customer/readNotification"
+        internal const val CANCEL_ORDER = "customer/Cancelorder"
         internal var DEVICE_TOKEN = ""
 
     }
@@ -65,9 +66,13 @@ object Constants {
     @JvmField
     var categoryName = ""
     @JvmField
+    var singleFoodName = ""
+    @JvmField
     var add = 0
     @JvmField
     var productID = ""
+    @JvmField
+    var notifyCount = 0
     @JvmField
     var cart_totalItems = 0
     @JvmField

@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.lottry.data.remote.retrofit.request.Request_addOrRemoveToFav;
 import com.example.mayasfood.R;
 import com.example.mayasfood.Retrofite.response.Response_Common;
+import com.example.mayasfood.activity.DashBoard;
 import com.example.mayasfood.activity.singleItem;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.development.retrofit.RetrofitInstance;
@@ -30,23 +33,27 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Adapter_RC.MyViewHolder> {
+public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Adapter_RC.MyViewHolder> implements Filterable {
 
     Context context;
     ArrayList<RecycleView_Model> foodModels3;
     FirebaseAuth auth;
     String foodName;
+    List<RecycleView_Model> foodModelAll;
     int i = 0;
 
     public RecycleView_Adapter_RC(Context context, ArrayList<RecycleView_Model> foodModels3){
         this.context = context;
         this.foodModels3 = foodModels3;
+        this.foodModelAll = new ArrayList<>(foodModels3);
         auth = FirebaseAuth.getInstance();
     }
 
@@ -109,7 +116,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
 
                 if (Constants.foodName.contains(foodModels3.get(holder.getAdapterPosition()).getFoodName())) {
 
@@ -120,18 +127,22 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
                             Log.d("foodQ", String.valueOf(q + 1));
                             //Constants.foodQuantity.add(j, 1 + Constants.q);
                             Constants.foodQuantity.set(j, q + 1);
+                            Constants.cart_totalItems = Constants.foodId.size();
                         }
                     }
                 }
                 else {
 
-                    //Constants.foodId.add(i, )
-                    Constants.foodQuantity.add(i,1);
-                    Constants.foodImg.add(i,foodModels3.get(holder.getAdapterPosition()).getFoodImg());
-                    Constants.foodName.add(i,foodModels3.get(holder.getAdapterPosition()).getFoodName());
-                    Constants.foodPrice.add(i, Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getFoodPrice())));
-                    i++;
+                    Constants.foodId.add(Integer.valueOf(foodModels3.get(holder.getLayoutPosition()).getProductId()));
+                    Constants.foodQuantity.add(1);
+                    Constants.foodImg.add(foodModels3.get(holder.getAdapterPosition()).getFoodImg());
+                    Constants.foodName.add(foodModels3.get(holder.getAdapterPosition()).getFoodName());
+                    Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getFoodPrice())));
+                    Constants.cart_totalItems = Constants.foodId.size();
                 }
+                DashBoard activity = (DashBoard) view.getContext();
+                activity.card_count.setVisibility(View.VISIBLE);
+                activity.setCartCounter();
             }
         });
 
@@ -299,6 +310,8 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
                 Constants.productID = foodModels3.get(holder.getAdapterPosition()).getProductId();
 
+                Constants.singleFoodName = foodModels3.get(holder.getAdapterPosition()).getFoodName();
+
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
                 Functions.loadFragment(activity.getSupportFragmentManager(), new SingleItem_frag(), R.id.frag_cont, false, "Single Item", null);
@@ -311,6 +324,48 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         //Number of Items you want to display
         return foodModels3.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+
+            ArrayList<RecycleView_Model> filteredList = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()){
+
+                filteredList.addAll(foodModelAll);
+            }
+            else {
+
+                for (RecycleView_Model filterData : foodModelAll) {
+
+                    if (filterData.getFoodName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+
+                        filteredList.add(filterData);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+            foodModels3.clear();
+            foodModels3.addAll((Collection<? extends RecycleView_Model>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         //grabbing the views from rv_column.xml

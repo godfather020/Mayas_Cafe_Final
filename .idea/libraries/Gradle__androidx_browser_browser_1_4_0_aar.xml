@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.browser:browser:1.4.0@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/annotations.zip!/" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/203d8e4a1fba17df58874c4b79696d27/transformed/browser-1.4.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/42225cca0891459a8c016135c17b1279/transformed/browser-1.4.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/203d8e4a1fba17df58874c4b79696d27/transformed/browser-1.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/203d8e4a1fba17df58874c4b79696d27/transformed/browser-1.4.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/203d8e4a1fba17df58874c4b79696d27/transformed/browser-1.4.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

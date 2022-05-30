@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.databinding:databinding-runtime:7.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2dbe760b6cc9ec2ca5f1aec989e2d585/transformed/databinding-runtime-7.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2dbe760b6cc9ec2ca5f1aec989e2d585/transformed/databinding-runtime-7.1.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2dbe760b6cc9ec2ca5f1aec989e2d585/transformed/databinding-runtime-7.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2dbe760b6cc9ec2ca5f1aec989e2d585/transformed/databinding-runtime-7.1.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2dbe760b6cc9ec2ca5f1aec989e2d585/transformed/databinding-runtime-7.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2dbe760b6cc9ec2ca5f1aec989e2d585/transformed/databinding-runtime-7.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/867e876df485baa54b99c7dcb9695d6e/transformed/databinding-runtime-7.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/867e876df485baa54b99c7dcb9695d6e/transformed/databinding-runtime-7.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/867e876df485baa54b99c7dcb9695d6e/transformed/databinding-runtime-7.1.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

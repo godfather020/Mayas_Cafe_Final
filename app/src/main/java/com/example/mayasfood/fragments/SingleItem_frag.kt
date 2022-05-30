@@ -1,5 +1,6 @@
 package com.example.mayasfood.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -64,6 +65,9 @@ class SingleItem_frag : Fragment() {
         viewModel = ViewModelProvider(this).get(SingleItem_viewModel::class.java)
 
         dashBoard = activity as DashBoard
+
+        dashBoard.toolbar_const.setTitle(Constants.singleFoodName)
+        dashBoard.toolbar_const.setTitleTextColor(Color.BLACK)
 
         dashBoard.bottomNavigationView.visibility = View.GONE
 
@@ -151,7 +155,7 @@ class SingleItem_frag : Fragment() {
 
         singleItem_addToCart.setOnClickListener {
 
-            Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
 
             if (Constants.foodName.contains(
                     singleItem_name.text
@@ -166,6 +170,7 @@ class SingleItem_frag : Fragment() {
                         Log.d("foodQ", (q + 1).toString())
                         //Constants.foodQuantity.add(j, 1 + Constants.q);
                         Constants.foodQuantity[j] = q + 1
+                        dashBoard.setCartCounter()
                     }
                 }
             } else {
@@ -178,11 +183,36 @@ class SingleItem_frag : Fragment() {
                 Constants.foodImg.add(productImg)
                 Constants.foodName.add(singleItem_name.text.toString())
                 Constants.foodPrice.add(Integer.valueOf(singleItem_price.text.toString().substring(1,singleItem_price.text.length)))
-
+                Constants.cart_totalItems = Constants.foodId.size
             }
+            dashBoard.card_count.visibility = View.VISIBLE
+            dashBoard.setCartCounter()
+        }
+
+        singleItem_addToFav.setOnClickListener {
+
+            addOrRemoveFav()
         }
 
         return view
+    }
+
+    private fun addOrRemoveFav() {
+
+        viewModel.addOrRemoveFav(this, Constants.productID, "1", singleItem_addToFav).observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.getSuccess()!!){
+
+                    Toast.makeText(activity, "Added to Faverite", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+
+        })
+
     }
 
     private fun getProductSize(size: String) {
@@ -279,11 +309,11 @@ class SingleItem_frag : Fragment() {
 
                         if (it.getData()!!.ProductResponce!!.favorite == 1){
 
-                            singleItem_addToFav.setImageResource(R.drawable.clarity_favorite_solid)
+                            singleItem_addToFav.setImageResource(R.drawable.red_heart)
                         }
                         else{
 
-                            singleItem_addToFav.setImageResource(R.drawable.vector__6_)
+                            singleItem_addToFav.setImageResource(R.drawable.bi_heart)
                         }
                     }
                     else{
@@ -301,7 +331,7 @@ class SingleItem_frag : Fragment() {
 
                     }
 
-                    Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()
                 }
 
                 loading.visibility = View.GONE

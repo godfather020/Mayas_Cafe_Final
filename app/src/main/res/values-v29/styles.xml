@@ -11,6 +11,6 @@
     <style name="Style_TextView">
         <item name="fontFamily">@font/montserrat_variablefont_wght</item>
         <item name="android:textFontWeight">800</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

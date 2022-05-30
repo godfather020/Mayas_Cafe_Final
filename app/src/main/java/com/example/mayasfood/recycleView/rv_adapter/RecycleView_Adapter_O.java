@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,15 +25,19 @@ import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class RecycleView_Adapter_O extends RecyclerView.Adapter<RecycleView_Adapter_O.MyViewHolder> {
+public class RecycleView_Adapter_O extends RecyclerView.Adapter<RecycleView_Adapter_O.MyViewHolder> implements Filterable {
 
     Context context;
     ArrayList<RecycleView_Model> foodModels4;
+    List<RecycleView_Model> foodModelAll;
 
     public RecycleView_Adapter_O(Context context, ArrayList<RecycleView_Model> foodModels4){
         this.context = context;
         this.foodModels4 = foodModels4;
+        this.foodModelAll = new ArrayList<>(foodModels4);
     }
 
     @NonNull
@@ -84,6 +90,48 @@ public class RecycleView_Adapter_O extends RecyclerView.Adapter<RecycleView_Adap
         //Number of Items you want to display
         return foodModels4.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+
+            ArrayList<RecycleView_Model> filteredList = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()){
+
+                filteredList.addAll(foodModelAll);
+            }
+            else {
+
+                for (RecycleView_Model filterData : foodModelAll) {
+
+                    if (filterData.getFoodName().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+
+                        filteredList.add(filterData);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+            foodModels4.clear();
+            foodModels4.addAll((Collection<? extends RecycleView_Model>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         //grabbing the views from rv_column.xml

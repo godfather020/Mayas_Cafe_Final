@@ -4,6 +4,7 @@ import com.example.lottry.data.remote.retrofit.request.*
 import com.example.mayasfood.Retrofite.request.*
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.Retrofite.response.Response_Notification
+import com.example.mayasfood.Retrofite.response.Response_cancelOrder
 import com.example.mayasfood.constants.Constants
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -117,13 +118,12 @@ interface Apis {
         @Body body: Request_Branch
     ):Call<Response_Common>
 
-    /*@Headers("Content-Type:application/json", "Accept:application/json")
-    @FormUrlEncoded
-    @POST(Constant.ApiConstant.SET_PROFILE_IMAGE)
-    fun setProfileImg(
-        @Header (Constant.sharedPrefrencesConstant.X_TOKEN) x_tocken: String,
-        @Part image: String
-    ):Call<Response_Common>*/
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.CANCEL_ORDER)
+    fun cancelOrder(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN) x_tocken: String,
+        @Body body: Request_cancelOrder
+    ):Call<Response_cancelOrder>
 
     @Multipart
     @POST(Constants.ApiConstant.SET_PROFILE_IMAGE)

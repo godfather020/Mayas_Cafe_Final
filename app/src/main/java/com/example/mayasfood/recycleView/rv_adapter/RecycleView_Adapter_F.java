@@ -88,7 +88,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show();
 
                 if (Constants.foodName.contains(foodModels2.get(holder.getAdapterPosition()).getFoodName())) {
 
@@ -99,18 +99,22 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                             Log.d("foodQ", String.valueOf(q + 1));
                             //Constants.foodQuantity.add(j, 1 + Constants.q);
                             Constants.foodQuantity.set(j, q + 1);
+                            Constants.cart_totalItems = Constants.foodId.size();
                         }
                     }
                 }
                 else {
 
-                    //Constants.foodId.add(i, )
-                    Constants.foodQuantity.add(i,1);
-                    Constants.foodImg.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodImg());
-                    Constants.foodName.add(i,foodModels2.get(holder.getAdapterPosition()).getFoodName());
-                    Constants.foodPrice.add(i, Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
-                    i++;
+                    Constants.foodId.add(Integer.valueOf(foodModels2.get(holder.getLayoutPosition()).getProductId()));
+                    Constants.foodQuantity.add(1);
+                    Constants.foodImg.add(foodModels2.get(holder.getAdapterPosition()).getFoodImg());
+                    Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
+                    Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                    Constants.cart_totalItems = Constants.foodId.size();
                 }
+                DashBoard activity = (DashBoard) view.getContext();
+                activity.card_count.setVisibility(View.VISIBLE);
+                activity.setCartCounter();
             }
         });
 
@@ -257,6 +261,8 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             public void onClick(View view) {
 
                 Constants.productID = foodModels2.get(holder.getAdapterPosition()).getProductId();
+
+                Constants.singleFoodName = foodModels2.get(holder.getAdapterPosition()).getFoodName();
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
 

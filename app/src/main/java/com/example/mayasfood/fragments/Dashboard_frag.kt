@@ -5,20 +5,19 @@ import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
+import android.widget.Toolbar
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
-import com.example.mayasfood.Retrofite.request.Request_Branch
 import com.example.mayasfood.Retrofite.response.ListcouponResponce
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.ViewPagerAdapter.SliderAdapter
 import com.example.mayasfood.ViewPagerAdapter.SliderData
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
-import com.example.mayasfood.development.retrofit.RetrofitInstance
 import com.example.mayasfood.fragments.ViewModels.Dashboard_frag_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
@@ -27,9 +26,6 @@ import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
 import com.google.firebase.auth.FirebaseAuth
 import com.smarteist.autoimageslider.SliderView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class Dashboard_frag : Fragment() {
@@ -65,6 +61,9 @@ class Dashboard_frag : Fragment() {
     var favProductId = ArrayList<String>()
     //var commonResponse = ArrayList<Response_Common>()
     lateinit var auth : FirebaseAuth
+    lateinit var notify_count : TextView
+    lateinit var cart_count : TextView
+    lateinit var card_count : CardView
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
     var url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg"
@@ -95,6 +94,20 @@ class Dashboard_frag : Fragment() {
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object : androidx.appcompat.widget.Toolbar.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item!!.itemId == R.id.search){
+
+                    Functions.loadFragment(fragmentManager,  Search_frag(), R.id.frag_cont, false, "Search", null);
+                }
+
+                return true
+            }
+
+
+        })
 
         auth = FirebaseAuth.getInstance()
 
@@ -151,9 +164,30 @@ class Dashboard_frag : Fragment() {
             //Functions.loadFragment(fragmentManager,  Offers_frag(), R.id.frag_cont, true, "All Offers", null)
         }
 
+        getNotificationCount()
+
         //setDashboardView()
 
         return v
+    }
+
+    private fun getNotificationCount() {
+
+        viewModel.getNotificationData(this).observe(viewLifecycleOwner, Observer {
+
+            if (it!=null){
+
+                if (it.getSuccess()!!){
+
+                    Constants.notifyCount = it.getData()!!.notifications!!.count!!
+
+                    notify_count.text = Constants.notifyCount.toString()
+                    Log.d("notifyC", Constants.notifyCount.toString())
+                    cart_count.text = Constants.cart_totalItems.toString()
+                }
+            }
+
+        })
     }
 
     private fun setDashboardView() {
@@ -373,21 +407,41 @@ class Dashboard_frag : Fragment() {
         menu.getItem(1).setVisible(true)
         menu.getItem(2).setVisible(true)
         dashBoard.navigationView.setCheckedItem(R.id.homeNav)
-        //dashBoard.bottomNavigationView.selectedItemId = R.id.bottom_nav_category
+
+        val notifyMenuItem = menu.findItem(R.id.notification)
+        val cartMenuItem = menu.findItem(R.id.cart)
+
+        val actionView2 : View = cartMenuItem.actionView
+
+        val actionView: View = notifyMenuItem.getActionView()
+
+
+
+        if (actionView != null) {
+            //bell = actionView.findViewById<ImageView>(R.id.bell)
+            notify_count = actionView.findViewById(R.id.notify_count)
+            Log.d("notifyC", Constants.notifyCount.toString())
+            //notify_count.setText(Constants.notifyCount.toString())
+        }
+
+        if (actionView2!=null){
+
+            cart_count = actionView2.findViewById(R.id.cart_count)
+            card_count = actionView2.findViewById(R.id.card_count)
+        }
+
+        if (cart_count.text.equals("0")){
+
+            card_count.visibility = View.GONE
+        }
+        else{
+
+            card_count.visibility = View.VISIBLE
+        }
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.notification ->
-                //item.setVisible(false)
-
-            R.id.search ->
-               //item.setVisible(false)
-            else -> {}
-        }
-        return false
-    }*/
 
     fun clearArrayList(){
 
@@ -411,4 +465,6 @@ class Dashboard_frag : Fragment() {
         restaurantFoodIsFav.clear()
 
     }
+
+
 }

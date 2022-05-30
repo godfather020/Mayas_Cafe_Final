@@ -12,16 +12,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lottry.data.remote.retrofit.request.Request_cancelOrder;
 import com.example.mayasfood.R;
+import com.example.mayasfood.Retrofite.request.Request_Branch;
+import com.example.mayasfood.Retrofite.response.Response_Common;
+import com.example.mayasfood.Retrofite.response.Response_cancelOrder;
+import com.example.mayasfood.activity.DashBoard;
 import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.development.retrofit.RetrofitInstance;
 import com.example.mayasfood.fragments.Orders_Single_item_frag;
+import com.example.mayasfood.fragments.RunningOrders_frag;
 import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.squareup.picasso.Picasso;
@@ -29,15 +38,22 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Adapter_RO.MyViewHolder>{
 
     Context context;
     ArrayList<RecycleView_Model> foodModels4;
+    Boolean isCancelled = false;
+    Dialog dialog;
+    RunningOrders_frag runningOrders_frag;
 
-    public RecycleView_Adapter_RO(Context context, ArrayList<RecycleView_Model> foodModels4){
+    public RecycleView_Adapter_RO(Context context, ArrayList<RecycleView_Model> foodModels4, RunningOrders_frag runningOrders_frag){
         this.context = context;
         this.foodModels4 = foodModels4;
+        this.runningOrders_frag = runningOrders_frag;
     }
 
     @NonNull
@@ -108,7 +124,7 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
                 }
                 else {
 
-                    showCancelDialog();
+                    showCancelDialog(holder.getAdapterPosition());
                 }
 
             }
@@ -131,9 +147,9 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
 
     }
 
-    private void showCancelDialog() {
+    private void showCancelDialog(int adapterPosition) {
 
-        Dialog dialog = new Dialog(context);
+        dialog = new Dialog(context);
         dialog.setCancelable(false);
 
         AppCompatActivity activity = (AppCompatActivity) context;
@@ -163,11 +179,53 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.cancel();
+
+                cancelOrder(foodModels4.get(adapterPosition).getOrder_id(), userNameE.getText().toString());
+
             }
         });
 
         dialog.show();
+    }
+
+    private void cancelOrder(String order_id, String reason) {
+
+        Request_cancelOrder request_cancelOrder = new Request_cancelOrder();
+
+        request_cancelOrder.setBranchId("1");
+        request_cancelOrder.setCancelReason(reason);
+        request_cancelOrder.setOrderId(order_id);
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        Call<Response_cancelOrder> retrofitData = retrofitInstance.getRetrofit().cancelOrder(Constants.USER_TOKEN, request_cancelOrder);
+
+        retrofitData.enqueue(new Callback<Response_cancelOrder>() {
+            @Override
+            public void onResponse(@NonNull Call<Response_cancelOrder> call, @NonNull Response<Response_cancelOrder> response) {
+
+                if (response.isSuccessful()){
+
+                    isCancelled = true;
+
+                     Toast.makeText(context, "Order Cancelled", Toast.LENGTH_SHORT).show();
+                     dialog.cancel();
+                     runningOrders_frag.getOrderDetails();
+
+                }
+                else {
+
+                    isCancelled = false;
+
+                    Toast.makeText(context, "Order Not Cancelled", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_cancelOrder> call, Throwable t) {
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void showPickUpDialog() {

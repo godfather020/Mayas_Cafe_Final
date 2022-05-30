@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +27,8 @@ class Offers_frag : Fragment() {
     lateinit var offers_frag_viewModel : Offers_frag_viewModel
     lateinit var recyclerView: RecyclerView
     lateinit var loading : ProgressBar
+    lateinit var search : MenuItem
+    lateinit var recycleView_adapter : RecycleView_Adapter_O
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,18 @@ class Offers_frag : Fragment() {
         dashBoard.toolbar_const.setTitle("All Offers");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
+
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item!!.itemId == R.id.search){
+
+
+                }
+                return true
+            }
+
+        })
 
         setHasOptionsMenu(true)
 
@@ -80,7 +95,7 @@ class Offers_frag : Fragment() {
                         recycleView_models.add(RecycleView_Model(offers_txt[i], offers_img[i], offers_code[i]))
                     }
 
-                    val recycleView_adapter = RecycleView_Adapter_O(activity, recycleView_models)
+                    recycleView_adapter = RecycleView_Adapter_O(activity, recycleView_models)
                     recyclerView.adapter = recycleView_adapter
                     recycleView_adapter.notifyDataSetChanged()
 
@@ -103,5 +118,20 @@ class Offers_frag : Fragment() {
         menu.getItem(2).setVisible(false)
 
         dashBoard.navigationView.setCheckedItem(R.id.offersNav)
+
+        search = menu.findItem(R.id.search)
+        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                recycleView_adapter.filter.filter(newText)
+                return false
+            }
+        })
     }
 }

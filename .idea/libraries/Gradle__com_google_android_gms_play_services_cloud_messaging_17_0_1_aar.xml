@@ -10,15 +10,17 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2b4ad309cf49bef58b8fe87adb788eeb/transformed/jetified-play-services-cloud-messaging-17.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/b0d3cb2b64ab9b57774fec5e3c86aed4/transformed/jetified-play-services-cloud-messaging-17.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2b3eccc8ea549b7737a04efb490c0124/transformed/jetified-play-services-cloud-messaging-17.0.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/55d765bebc16fc9b0e39b4ba347ac2f3/transformed/jetified-play-services-cloud-messaging-17.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/55d765bebc16fc9b0e39b4ba347ac2f3/transformed/jetified-play-services-cloud-messaging-17.0.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/55d765bebc16fc9b0e39b4ba347ac2f3/transformed/jetified-play-services-cloud-messaging-17.0.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/55d765bebc16fc9b0e39b4ba347ac2f3/transformed/jetified-play-services-cloud-messaging-17.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/55d765bebc16fc9b0e39b4ba347ac2f3/transformed/jetified-play-services-cloud-messaging-17.0.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/55d765bebc16fc9b0e39b4ba347ac2f3/transformed/jetified-play-services-cloud-messaging-17.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/52dd14a605c5aa77156bf5cad0c340f0/transformed/jetified-play-services-cloud-messaging-17.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/52dd14a605c5aa77156bf5cad0c340f0/transformed/jetified-play-services-cloud-messaging-17.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/52dd14a605c5aa77156bf5cad0c340f0/transformed/jetified-play-services-cloud-messaging-17.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-cloud-messaging/17.0.1/5b54e40c89bf1882a551b10312acdf03dcf34e82/play-services-cloud-messaging-17.0.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-cloud-messaging/17.0.1/5b54e40c89bf1882a551b10312acdf03dcf34e82/play-services-cloud-messaging-17.0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

@@ -85,7 +85,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_const"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,8 +99,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

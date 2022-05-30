@@ -79,7 +79,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
         else {
 
             holder.runOrder_status.setText("Canceled");
-            holder.runOrder_status.setTextColor(context.getColorStateList(R.color.accepted));
+            holder.runOrder_status.setTextColor(context.getColorStateList(R.color.Login_signUp));
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.GONE);
             holder.star3.setVisibility(View.GONE);

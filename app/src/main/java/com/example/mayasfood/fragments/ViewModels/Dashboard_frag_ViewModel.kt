@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class Dashboard_frag_ViewModel : ViewModel() {
     lateinit var loading: ProgressBar
 
     var commonResponse = MutableLiveData<Response_Common>()
+    var commonResponse1 = MutableLiveData<Response_Common>()
 
     fun getDashboardData(activity: Fragment, branchId: String, loading: ProgressBar): MutableLiveData<Response_Common> {
 
@@ -76,6 +78,48 @@ class Dashboard_frag_ViewModel : ViewModel() {
                 Toast.makeText(activity.requireContext(), t.toString(), Toast.LENGTH_SHORT).show()
             }
         })
+    }
 
+    fun getNotificationData(activity: Fragment): MutableLiveData<Response_Common> {
+
+        this.activity = activity
+
+        //this.loading = loading.findViewById(R.id.loading_notify)
+
+        getNotificationDataApi()
+
+        return commonResponse1
+    }
+
+    private fun getNotificationDataApi() {
+
+        val retrofitInstance = RetrofitInstance()
+        val retrofitData = retrofitInstance.retrofit.getNotificaiton(Constants.USER_TOKEN)
+
+        //val retrofitData =
+        //    retrofitInstance.retrofit.getNotificaiton("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6NTQsInBob25lTnVtYmVyIjoiKzkxNzAwMDEwNzg3NiIsImNyZWF0ZWRBdCI6IjIwMjItMDUtMjlUMDc6MTU6MjAuNjYyWiJ9LCJpYXQiOjE2NTM4MDg1MjB9.ut7rbdY-NlDANUJomlbRO5JFwCouktCcyoy7Rk9d6Hg")
+
+        retrofitData.enqueue(object : Callback<Response_Common?> {
+            override fun onResponse(
+                call: Call<Response_Common?>,
+                response: Response<Response_Common?>
+            ) {
+                if (response.isSuccessful) {
+
+                    commonResponse1.value = response.body()
+
+                    Log.d("Dashboard", "success")
+                    //Toast.makeText(activity.context, "Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    //loading.visibility = View.GONE
+                    Log.d("Dashboard", "failed")
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common?>, t: Throwable) {
+                Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
+                //loading.visibility = View.GONE
+            }
+        })
     }
 }

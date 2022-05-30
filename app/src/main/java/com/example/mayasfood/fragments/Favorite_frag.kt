@@ -127,7 +127,7 @@ class Favorite_frag : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        menu.getItem(0).setVisible(true)
+        menu.getItem(0).setVisible(false)
         menu.getItem(1).setVisible(true)
         menu.getItem(2).setVisible(true)
         dashBoard.navigationView.setCheckedItem(R.id.invisibleNav)

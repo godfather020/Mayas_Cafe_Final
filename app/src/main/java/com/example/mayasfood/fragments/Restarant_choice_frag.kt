@@ -2,11 +2,10 @@ package com.example.mayasfood.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,6 +35,8 @@ class Restarant_choice_frag : Fragment() {
     lateinit var viewModel: Restaurant_frag_ViewModel
     lateinit var dashBoard : DashBoard
     lateinit var auth : FirebaseAuth
+    lateinit var search : MenuItem
+    lateinit var recycleView_adapter : RecycleView_Adapter_RC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +60,18 @@ class Restarant_choice_frag : Fragment() {
         dashBoard.toolbar_const.setTitle("Restaurant Choices")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item!!.itemId == R.id.search){
+
+
+                }
+                return true
+            }
+
+        })
+
         recyclerView = view.findViewById(R.id.restaurant_rv)
         loading = view.findViewById(R.id.loading_rest)
         loading.visibility = View.VISIBLE
@@ -66,6 +79,8 @@ class Restarant_choice_frag : Fragment() {
         val layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 
         recyclerView.layoutManager = layoutManager
+
+        setHasOptionsMenu(true)
 
         setRestFoodView()
 
@@ -149,12 +164,29 @@ class Restarant_choice_frag : Fragment() {
 
         }
 
-        val recycleView_adapter = RecycleView_Adapter_RC(activity, recycleView_models)
+        recycleView_adapter  = RecycleView_Adapter_RC(activity, recycleView_models)
 
         recyclerView.adapter = recycleView_adapter
 
         recycleView_adapter.notifyDataSetChanged()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
 
+        search = menu.findItem(R.id.search)
+        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                recycleView_adapter.filter.filter(newText)
+                return false
+            }
+        })
+    }
 }

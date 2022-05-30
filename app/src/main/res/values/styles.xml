@@ -11,7 +11,7 @@
     </style>
     <style name="Style_TextView">
         <item name="fontFamily">@font/montserrat_bold</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
     <style name="Style_ToolTextView">
         <item name="fontFamily">@font/montserrat_bold</item>

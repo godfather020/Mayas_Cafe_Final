@@ -3,10 +3,15 @@ package com.example.mayasfood.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
@@ -35,6 +40,8 @@ import android.widget.Toast;
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil;
 import com.example.mayasfood.FirebaseCloudMsg;
 import com.example.mayasfood.R;
+import com.example.mayasfood.Retrofite.response.Response_Common;
+import com.example.mayasfood.activity.ViewModels.Dashboard_ViewModel;
 import com.example.mayasfood.activity.ViewModels.GetStart_ViewModel;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.Category_frag;
@@ -79,8 +86,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     FirebaseAuth auth;
     String userProfile;
     SharedPreferencesUtil sharedPreferencesUtil;
-    GetStart_ViewModel getStart_viewModel;
     ViewModelProvider viewModelProvider;
+    MenuItem notifyMenuItem;
+    MenuItem cartMenuItem;
+    ImageView bell, cart;
+    TextView notify_count, cart_count;
+    Dashboard_ViewModel dashboard_viewModel;
+    public CardView card_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +105,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         auth = FirebaseAuth.getInstance();
 
         viewModelProvider = new ViewModelProvider(this);
-        getStart_viewModel = viewModelProvider.get(GetStart_ViewModel.class);
+        dashboard_viewModel = viewModelProvider.get(Dashboard_ViewModel.class);
 
         sharedPreferencesUtil = new SharedPreferencesUtil(this);
 
@@ -383,6 +395,66 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar, menu);
 
+        notifyMenuItem = menu.findItem(R.id.notification);
+        cartMenuItem = menu.findItem(R.id.cart);
+
+        View actionView = notifyMenuItem.getActionView();
+        View actionView2 = cartMenuItem.getActionView();
+
+        if (actionView2 != null){
+
+            cart = actionView2.findViewById(R.id.cart_img);
+            cart_count = actionView2.findViewById(R.id.cart_count);
+            card_count = actionView2.findViewById(R.id.card_count);
+        }
+
+        if (actionView!=null){
+
+            bell = actionView.findViewById(R.id.bell);
+            notify_count = actionView.findViewById(R.id.notify_count);
+        }
+        cart_count.setText(String.valueOf(Constants.cart_totalItems));
+
+        if (cart_count.getText().toString().equals("0")){
+
+            card_count.setVisibility(View.GONE);
+        }
+        else {
+            card_count.setVisibility(View.VISIBLE);
+        }
+
+        notify_count.setText(String.valueOf(Constants.notifyCount));
+        Log.d("notifyC", String.valueOf(Constants.notifyCount));
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Constants.currentFrag = "C";
+                bottomNavigationView.setVisibility(View.GONE);
+                toolbar_const.getMenu().getItem(2).setVisible(false);
+                Functions.loadFragment(getSupportFragmentManager(), new CheckOut_frag(), R.id.frag_cont, false, "CheckOut", null);
+            }
+        });
+
+        bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (auth.getCurrentUser() != null) {
+                    Constants.currentFrag = "N";
+                    toolbar_const.getMenu().getItem(1).setVisible(false);
+                    navigationView.setCheckedItem(R.id.notificationNav);
+                    bottomNavigationView.setVisibility(View.GONE);
+                    Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
+                }
+                else {
+
+                    dialog("Please Login/Register to see notifications.");
+                }
+            }
+        });
+
         if (Constants.currentFrag.equals("N")){
 
             menu.getItem(1).setVisible(true);
@@ -403,11 +475,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         int id = item.getItemId();
 
         if (id == R.id.search) {
-            Constants.currentFrag = "S";
-            bottomNavigationView.setVisibility(View.GONE);
-            toolbar_const.getMenu().getItem(0).setVisible(false);
+            //Constants.currentFrag = "S";
+           // bottomNavigationView.setVisibility(View.GONE);
+            //toolbar_const.getMenu().getItem(0).setVisible(false);
             //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
-            Functions.loadFragment(getSupportFragmentManager(), new Search_frag(), R.id.frag_cont, false, "Search", null);
+            //Functions.loadFragment(getSupportFragmentManager(), new Search_frag(), R.id.frag_cont, false, "Search", null);
 
         } else if (id == R.id.notification) {
 
@@ -694,5 +766,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
+    public void setCartCounter(){
 
+        cart_count.setText(String.valueOf(Constants.cart_totalItems));
+    }
 }

@@ -5,15 +5,16 @@
         android:title="Search"
         android:id="@+id/search"
         android:icon="@drawable/akar_icons_search"
-        app:showAsAction="always"/>
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
     <item
-        android:title="notification"
         android:id="@+id/notification"
-        android:icon="@drawable/mi_notification"
-        app:showAsAction="always"/>
+        app:actionLayout="@layout/bell_count"
+        app:showAsAction="always"
+        android:title="Notification" />
     <item
         android:title="Cart"
         android:id="@+id/cart"
-        android:icon="@drawable/cart"
+        app:actionLayout="@layout/cart_count"
         app:showAsAction="always"/>
 </menu>

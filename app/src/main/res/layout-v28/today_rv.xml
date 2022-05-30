@@ -70,7 +70,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:textColor="#2E2F30"
+            android:textColor="#303030"
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textFontWeight="800"
             android:text="Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugia..." />

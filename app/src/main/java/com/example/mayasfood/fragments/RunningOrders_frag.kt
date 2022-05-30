@@ -68,7 +68,7 @@ class RunningOrders_frag : Fragment() {
         return view
     }
 
-    private fun getOrderDetails() {
+    public fun getOrderDetails() {
 
         viewModel.getAllOrders(this, "1", loading).observe(viewLifecycleOwner, Observer {
 
@@ -168,7 +168,7 @@ class RunningOrders_frag : Fragment() {
 
         //recycleView_models.add(RecycleView_Model("#242525224", "$20", "10:45\npm", "06:30\npm", "1", "Accepted", "27 April 2022", "27cc7c762c9f5b70acf082961f43edcf"))
 
-        val recycleView_adapter_RO = RecycleView_Adapter_RO(activity, recycleView_models)
+        val recycleView_adapter_RO = RecycleView_Adapter_RO(activity, recycleView_models, this)
         recyclerView.adapter = recycleView_adapter_RO
         recycleView_adapter_RO.notifyDataSetChanged()
     }
