@@ -350,7 +350,7 @@ class OTP : AppCompatActivity() {
     }
 
     private fun sendVerificationCode(phoneNumber: String) {
-
+        loading.visibility = View.GONE
         mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {

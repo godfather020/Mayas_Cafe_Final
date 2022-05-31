@@ -24,13 +24,13 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bi_heart"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_margin="8dp"
-                />
+                android:background="@drawable/bi_heart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/foodimage1"
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Green Salad"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -113,20 +113,31 @@
                 android:layout_marginStart="28dp"
                 />
 
-
             <TextView
                 android:id="@+id/food_price1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="$5"
-                android:textSize="@dimen/Rest_choice_price"
-                android:textFontWeight="800"
                 android:textColor="@color/Rest_choice_price"
+                android:textFontWeight="800"
+                android:textSize="@dimen/Rest_choice_price"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ogPrice" />
+
+            <TextView
+                android:id="@+id/ogPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/OPrice"
+                android:layout_marginBottom="18dp"
+                android:layout_marginStart="8dp"
+                android:textColor="#DD2C00"
+                android:textSize="12sp"
+                android:fontFamily="@font/montserrat_medium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

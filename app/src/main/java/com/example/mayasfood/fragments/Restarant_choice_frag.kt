@@ -31,6 +31,7 @@ class Restarant_choice_frag : Fragment() {
     var restaurantFoodRating = ArrayList<String>()
     var restaurantFoodId = ArrayList<String>()
     var restaurantFoodIsFav = ArrayList<Int>()
+    var restaurantOfferAmt = ArrayList<String>()
     lateinit var loading : ProgressBar
     lateinit var viewModel: Restaurant_frag_ViewModel
     lateinit var dashBoard : DashBoard
@@ -101,6 +102,7 @@ class Restarant_choice_frag : Fragment() {
                     restaurantFoodRating.clear()
                     restaurantFoodId.clear()
                     restaurantFoodIsFav.clear()
+                    restaurantOfferAmt.clear()
 
                     Log.d("indice", it.getData()!!.ListrestaurantproductResponce!!.indices.toString())
 
@@ -132,7 +134,14 @@ class Restarant_choice_frag : Fragment() {
 
                             restaurantFoodIsFav.add(i , 0)
                         }
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount != null){
 
+                            restaurantOfferAmt.add(i , it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount.toString())
+                        }
+                        else{
+
+                            restaurantOfferAmt.add(i , "0")
+                        }
 
                     }
                     loading.visibility = View.GONE
@@ -148,6 +157,7 @@ class Restarant_choice_frag : Fragment() {
         for (i in restaurantFoodName.indices) {
             recycleView_models.add(
                 RecycleView_Model(
+                    restaurantOfferAmt[i],
                     restaurantFoodName[i],
                     restaurantFoodPrice[i],
                     restaurantFoodId[i],

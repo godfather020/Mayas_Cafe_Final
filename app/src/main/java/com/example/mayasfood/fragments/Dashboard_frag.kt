@@ -45,6 +45,7 @@ class Dashboard_frag : Fragment() {
     var popularFoodPrice = ArrayList<String>()
     var popularFoodImg = ArrayList<String>()
     var popularFoodIsFav = ArrayList<Int>()
+    var popularOfferAmt = ArrayList<String>()
     var restaurantFoodName = ArrayList<String>()
     var restaurantFoodPrice = ArrayList<String>()
     var restaurantFoodImg = ArrayList<String>()
@@ -52,6 +53,7 @@ class Dashboard_frag : Fragment() {
     var popularFoodRating = ArrayList<String>()
     var restaurantFoodRating = ArrayList<String>()
     var restaurantFoodIsFav = ArrayList<Int>()
+    var restaurantOfferAmt = ArrayList<String>()
     lateinit var recyclerView : RecyclerView
     lateinit var recyclerView3 : RecyclerView
     lateinit var recyclerView2 : RecyclerView
@@ -93,6 +95,7 @@ class Dashboard_frag : Fragment() {
         homeResList =ArrayList<ListcouponResponce>()
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
+        dashBoard.toolbar_const.setNavigationIcon(R.drawable.menubar)
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
 
         dashBoard.toolbar_const.setOnMenuItemClickListener(object : androidx.appcompat.widget.Toolbar.OnMenuItemClickListener{
@@ -270,6 +273,14 @@ class Dashboard_frag : Fragment() {
                                 0
                             )
                         }
+                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount != null){
+
+                            popularOfferAmt.add(i, it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount.toString())
+                        }
+                        else{
+
+                            popularOfferAmt.add(i , "0")
+                        }
                     }
 
                     for (i in it.getData()!!.ListrestaurantproductResponce!!.indices) {
@@ -308,6 +319,15 @@ class Dashboard_frag : Fragment() {
                             )
 
                         }
+
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount != null){
+
+                            restaurantOfferAmt.add(i , it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount.toString())
+                        }
+                        else {
+
+                            restaurantOfferAmt.add(i, "0")
+                        }
                     }
 
                     for (i in it.getData()!!.ListcategoryResponce!!.indices) {
@@ -343,6 +363,7 @@ class Dashboard_frag : Fragment() {
         for (i in popularFoodName.indices) {
             recycleView_models1.add(
                 RecycleView_Model(
+                    popularOfferAmt[i],
                     popularFoodName[i],
                     popularFoodPrice[i],
                     popularFoodId[i],
@@ -362,6 +383,7 @@ class Dashboard_frag : Fragment() {
         for (i in restaurantFoodName.indices) {
             recycleView_models2.add(
                 RecycleView_Model(
+                    restaurantOfferAmt[i],
                     restaurantFoodName[i],
                     restaurantFoodPrice[i],
                     restaurantFoodId[i],
@@ -396,6 +418,7 @@ class Dashboard_frag : Fragment() {
         //viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
         setDashboardView()
         loading.visibility = View.VISIBLE
+        dashBoard.toolbar_const.setNavigationIcon(R.drawable.menubar)
         //setHasOptionsMenu(true)
 
     }
@@ -463,6 +486,8 @@ class Dashboard_frag : Fragment() {
         restaurantFoodId.clear()
         popularFoodIsFav.clear()
         restaurantFoodIsFav.clear()
+        popularOfferAmt.clear()
+        restaurantOfferAmt.clear()
 
     }
 

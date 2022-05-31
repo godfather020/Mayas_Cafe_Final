@@ -92,8 +92,7 @@ class Login : AppCompatActivity() {
                 getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, phoneNumber).apply()
                 loading.visibility = View.VISIBLE
 
-
-                    sendVerificationCode(phoneNumber)
+                sendVerificationCode(phoneNumber)
 
             } else {
                 Toast.makeText(this@Login, "Check Information", Toast.LENGTH_SHORT).show()

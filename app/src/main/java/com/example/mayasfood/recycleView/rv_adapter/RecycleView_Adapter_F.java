@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
     ArrayList<RecycleView_Model> foodModels2;
     FirebaseAuth auth;
     int i = 0;
+    String foodName = "";
 
     public RecycleView_Adapter_F(Context context, ArrayList<RecycleView_Model> foodModels2){
         this.context = context;
@@ -109,7 +111,12 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                     Constants.foodQuantity.add(1);
                     Constants.foodImg.add(foodModels2.get(holder.getAdapterPosition()).getFoodImg());
                     Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
-                    Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                    if (foodModels2.get(position).getOfferAmt() != "0") {
+                        Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getOfferAmt())));
+                    }
+                    else {
+                        Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                    }
                     Constants.cart_totalItems = Constants.foodId.size();
                 }
                 DashBoard activity = (DashBoard) view.getContext();
@@ -201,14 +208,33 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             }
         });
 
-        holder.name.setText(foodModels2.get(position).getFoodName());
+        if (foodModels2.get(position).getFoodName().length() > 18){
+
+            foodName = foodModels2.get(position).getFoodName().substring(0, 18) + "...";
+        }
+        else {
+
+            foodName = foodModels2.get(position).getFoodName();
+        }
+
+        holder.name.setText(foodName);
 
         Picasso.get()
                 .load(Constants.UserProduct_Path + foodModels2.get(position).getFoodImg())
                 .into(holder.imageView);
 
         //holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
-        holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
+        if (foodModels2.get(position).getOfferAmt() != "0") {
+            holder.orgPrice.setVisibility(View.VISIBLE);
+            holder.orgPrice.setText("$" + foodModels2.get(position).getFoodPrice());
+            holder.orgPrice.setPaintFlags(holder.orgPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.price.setText("$"+foodModels2.get(position).getOfferAmt());
+        }
+        else {
+            holder.orgPrice.setVisibility(View.GONE);
+            holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
+        }
+
 
         if (foodModels2.get(position).getStars().matches("^[0]") || foodModels2.get(position).getStars().matches("^[0][.]") || foodModels2.get(position).getStars().matches("^[1][.][12345]")){
 
@@ -281,7 +307,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
         //grabbing the views from rv_column.xml
 
         ImageView imageView, star1, star2, star3, star4, star5;
-        TextView name, price;
+        TextView name, price, orgPrice;
         ImageView addToFav;
         ImageButton addToCart;
         CardView favCard;
@@ -300,6 +326,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             addToFav = itemView.findViewById(R.id.addToFav);
             addToCart = itemView.findViewById(R.id.addToCart);
             favCard = itemView.findViewById(R.id.pfCard);
+            orgPrice = itemView.findViewById(R.id.orgPrice);
         }
     }
 

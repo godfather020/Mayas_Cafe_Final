@@ -30,6 +30,7 @@ class popular_frag : Fragment() {
     var popularFoodImg = ArrayList<String>()
     var popularFoodRating = ArrayList<String>()
     var popularFoodIsFav = ArrayList<Int>()
+    var popularOfferAmt = ArrayList<String>()
     lateinit var loading : ProgressBar
     var popularFoodId = ArrayList<String>()
     lateinit var viewModel: popular_frag_ViewModel
@@ -102,6 +103,7 @@ class popular_frag : Fragment() {
                     recycleView_models.clear()
                     popularFoodId.clear()
                     popularFoodIsFav.clear()
+                    popularOfferAmt.clear()
 
                     for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
 
@@ -138,7 +140,14 @@ class popular_frag : Fragment() {
                                 0
                             )
                         }
+                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount != null){
 
+                            popularOfferAmt.add(i , it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount.toString())
+                        }
+                        else {
+
+                            popularOfferAmt.add(i , "0")
+                        }
                     }
 
                     loading.visibility = View.GONE
@@ -157,6 +166,7 @@ class popular_frag : Fragment() {
         for (i in popularFoodName.indices) {
             recycleView_models.add(
                 RecycleView_Model(
+                    popularOfferAmt[i],
                     popularFoodName[i],
                     popularFoodPrice[i],
                     popularFoodId[i],

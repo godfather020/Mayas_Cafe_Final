@@ -24,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/notify_card"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:backgroundTint="@color/Login_signUp"
@@ -35,7 +36,7 @@
                 android:id="@+id/notify_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="0"
                 android:layout_gravity="center"
                 android:textColor="@color/white"

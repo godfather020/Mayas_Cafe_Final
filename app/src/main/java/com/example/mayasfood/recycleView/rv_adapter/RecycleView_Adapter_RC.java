@@ -2,6 +2,7 @@ package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -137,7 +138,12 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
                     Constants.foodQuantity.add(1);
                     Constants.foodImg.add(foodModels3.get(holder.getAdapterPosition()).getFoodImg());
                     Constants.foodName.add(foodModels3.get(holder.getAdapterPosition()).getFoodName());
-                    Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getFoodPrice())));
+                    if (foodModels3.get(position).getOfferAmt() != "0") {
+                        Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getOfferAmt())));
+                    }
+                    else {
+                        Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getFoodPrice())));
+                    }
                     Constants.cart_totalItems = Constants.foodId.size();
                 }
                 DashBoard activity = (DashBoard) view.getContext();
@@ -246,7 +252,16 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         Log.d("RCImg",Constants.UserProduct_Path + foodModels3.get(position).getFoodImg() );
 
         //holder.imageView.setImageResource(foodModels3.get(position).getFoodImg());
-        holder.price.setText("$"+foodModels3.get(position).getFoodPrice());
+        if (foodModels3.get(position).getOfferAmt() != "0") {
+            holder.orgPrice.setVisibility(View.VISIBLE);
+            holder.orgPrice.setText("$" + foodModels3.get(position).getFoodPrice());
+            holder.orgPrice.setPaintFlags(holder.orgPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.price.setText("$"+foodModels3.get(position).getOfferAmt());
+        }
+        else {
+            holder.orgPrice.setVisibility(View.GONE);
+            holder.price.setText("$"+foodModels3.get(position).getFoodPrice());
+        }
 
         if (foodModels3.get(position).getStars().matches("^[0]") || foodModels3.get(position).getStars().matches("^[0][.]") || foodModels3.get(position).getStars().matches("^[1][.][12345]")){
 
@@ -372,7 +387,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
         ImageView star1, star2, star3, star4, star5;
         CircleImageView imageView;
-        TextView name, price;
+        TextView name, price, orgPrice;
         ImageView addToFav;
         ProgressBar loading;
         ImageButton addToCart;
@@ -393,6 +408,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
             loading = itemView.findViewById(R.id.loading_rest_rv);
             addToCart = itemView.findViewById(R.id.addToCart);
             rcCard = itemView.findViewById(R.id.rc_card);
+            orgPrice = itemView.findViewById(R.id.orgPrice);
         }
     }
 }

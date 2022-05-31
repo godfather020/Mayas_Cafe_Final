@@ -12,21 +12,31 @@
         android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/Screen_BG"
-        app:layout_constraintVertical_bias="1.0">
+        android:background="@color/Screen_BG">
 
         <ImageButton
             android:id="@+id/close_frag"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/close"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/ic_baseline_arrow_back_24"
             android:elevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="Back"
+            android:fontFamily="@font/montserrat_bold12"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            app:layout_constraintStart_toEndOf="@+id/close_frag"
             app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -34,7 +44,7 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginTop="90dp"
             android:src="@drawable/mask_group_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,8 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="115dp"
-            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/montserrat_medium"
             android:paddingRight="24dp"
             android:text="Stranger"
             android:textColor="@color/Login_Title"

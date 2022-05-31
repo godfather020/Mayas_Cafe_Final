@@ -1,11 +1,10 @@
 package com.example.mayasfood.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,11 +29,14 @@ class CategoryDetails_frag : Fragment() {
     var foodRating = ArrayList<String>()
     var foodIsFav = ArrayList<Int>()
     var foodId = ArrayList<String>()
+    var foodOfferAmt = ArrayList<String>()
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var viewModel : CategoryDetails_ViewModel
     lateinit var dashBoard: DashBoard
     lateinit var loading : ProgressBar
     lateinit var auth : FirebaseAuth
+    lateinit var search : MenuItem
+    lateinit var recycleView_adapter : RecycleView_Adapter_PF
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,9 +63,23 @@ class CategoryDetails_frag : Fragment() {
         loading = view.findViewById(R.id.loading_catDetails)
         loading.visibility = View.VISIBLE
 
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item!!.itemId == R.id.search){
+
+
+                }
+                return true
+            }
+
+        })
+
         recyclerView = view.findViewById(R.id.category_details_rv)
         val layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
+
+        setHasOptionsMenu(true)
 
         setUpCategoryView()
 
@@ -85,6 +101,7 @@ class CategoryDetails_frag : Fragment() {
                     foodIsFav.clear()
                     foodId.clear()
                     recycleView_models.clear()
+                    foodOfferAmt.clear()
 
                     for(i in it.getData()!!.ListproductResponce!!.indices){
 
@@ -97,6 +114,15 @@ class CategoryDetails_frag : Fragment() {
                         }
                         else{
                             foodIsFav.add(i, 0)
+                        }
+
+                        if(it.getData()!!.ListproductResponce!![i].Productprices!![0].offerAmount != null){
+
+                            foodOfferAmt.add(i , it.getData()!!.ListproductResponce!![i].Productprices!![0].offerAmount.toString())
+                        }
+                        else{
+
+                            foodOfferAmt.add(i , "0")
                         }
                         foodId.add(i , it.getData()!!.ListproductResponce!![i].id.toString())
                     }
@@ -115,6 +141,7 @@ class CategoryDetails_frag : Fragment() {
 
             recycleView_models.add(
                 RecycleView_Model(
+                    foodOfferAmt[i],
                     foodName[i],
                     foodPrice[i],
                     foodId[i],
@@ -127,10 +154,27 @@ class CategoryDetails_frag : Fragment() {
 
 
 
-        val recycleView_adapter = RecycleView_Adapter_PF(activity, recycleView_models)
+        recycleView_adapter = RecycleView_Adapter_PF(activity, recycleView_models)
         recyclerView.adapter = recycleView_adapter
         recycleView_adapter.notifyDataSetChanged()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
 
+        search = menu.findItem(R.id.search)
+        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                recycleView_adapter.filter.filter(newText)
+                return false
+            }
+        })
+    }
 }

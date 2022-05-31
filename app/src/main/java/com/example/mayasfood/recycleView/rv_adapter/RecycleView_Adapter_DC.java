@@ -122,7 +122,7 @@ public class RecycleView_Adapter_DC extends RecyclerView.Adapter<RecycleView_Ada
             holder.name.setTextColor(context.getColorStateList(R.color.Food_category_txt));
         }
 
-        if (!Constants.categoryId.equals("") && Constants.onetTime == 1) {
+        if (!Constants.categoryId.equals("") )/*&& Constants.onetTime == 1)*/ {
 
             Log.d("DC", "iN");
 

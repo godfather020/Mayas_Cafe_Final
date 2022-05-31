@@ -13,7 +13,7 @@
         android:textSize="24sp"
         android:layout_margin="16dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_medium"
         android:layout_gravity="center"
         android:gravity="center"/>
 

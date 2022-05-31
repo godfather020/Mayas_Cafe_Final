@@ -1,6 +1,7 @@
 package com.example.mayasfood.fragments
 
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -43,10 +44,12 @@ class SingleItem_frag : Fragment() {
     lateinit var loading : ProgressBar
     lateinit var viewModel : SingleItem_viewModel
     var itemAmount = ArrayList<String>()
+    var offerAmount = ArrayList<String>()
     var itemOfferAmt = ArrayList<String>()
     var itemSize = ArrayList<String>()
     lateinit var auth: FirebaseAuth
     var productImg = ""
+    lateinit var orgPrice : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +69,7 @@ class SingleItem_frag : Fragment() {
 
         dashBoard = activity as DashBoard
 
-        dashBoard.toolbar_const.setTitle(Constants.singleFoodName)
+        dashBoard.toolbar_const.setTitle("Product Details")
         dashBoard.toolbar_const.setTitleTextColor(Color.BLACK)
 
         dashBoard.bottomNavigationView.visibility = View.GONE
@@ -93,6 +96,7 @@ class SingleItem_frag : Fragment() {
         singleItem_rating = view.findViewById(R.id.singleO_rating)
         singleItem_total = view.findViewById(R.id.singleO_totalPrice)
         singleItem_addToFav = view.findViewById(R.id.singleO_addToFav)
+        orgPrice = view.findViewById(R.id.orgPrice)
         loading = view.findViewById(R.id.loading_singleItem)
         loading.visibility = View.VISIBLE
 
@@ -209,8 +213,6 @@ class SingleItem_frag : Fragment() {
 
                 }
             }
-
-
         })
 
     }
@@ -226,9 +228,18 @@ class SingleItem_frag : Fragment() {
                     singleItem_radio_s.isEnabled = true
                     singleItem_radio_s.isChecked = true
 
-                    singleItem_price.text = "$"+itemAmount[i]
+                    orgPrice.text = "$"+itemAmount[i]
+                    singleItem_price.text = "$"+offerAmount[i]
+                    orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    var productPrice = "0"
 
-                    val productPrice = itemAmount[i]
+                    if (offerAmount.size != 0){
+                        productPrice = offerAmount[i]
+                    }
+                    else {
+                        productPrice = itemAmount[i]
+                    }
+
                     val itemCount = singleItem_num.text.toString()
 
                     singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
@@ -245,9 +256,18 @@ class SingleItem_frag : Fragment() {
                     singleItem_radio_r.isEnabled = true
                     singleItem_radio_r.isChecked = true
 
-                    singleItem_price.text = "$"+itemAmount[i]
+                    orgPrice.text = "$"+itemAmount[i]
+                    singleItem_price.text = "$"+offerAmount[i]
+                    orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                    val productPrice = itemAmount[i]
+                    var productPrice = "0"
+
+                    if (offerAmount.size != 0){
+                        productPrice = offerAmount[i]
+                    }
+                    else {
+                        productPrice = itemAmount[i]
+                    }
                     val itemCount = singleItem_num.text.toString()
 
                     singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
@@ -264,9 +284,18 @@ class SingleItem_frag : Fragment() {
                     singleItem_radio_l.isEnabled = true
                     singleItem_radio_l.isChecked = true
 
-                    singleItem_price.text = "$"+itemAmount[i]
+                    orgPrice.text = "$"+itemAmount[i]
+                    singleItem_price.text = "$"+offerAmount[i]
+                    orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                    val productPrice = itemAmount[i]
+                    var productPrice = "0"
+
+                    if (offerAmount.size != 0){
+                        productPrice = offerAmount[i]
+                    }
+                    else {
+                        productPrice = itemAmount[i]
+                    }
                     val itemCount = singleItem_num.text.toString()
 
                     singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
@@ -295,6 +324,7 @@ class SingleItem_frag : Fragment() {
                     itemAmount.clear()
                     itemSize.clear()
                     itemOfferAmt.clear()
+                    offerAmount.clear()
 
                     singleItem_name.text = it.getData()!!.ProductResponce!!.productName.toString()
                     singleItem_des.text = it.getData()!!.ProductResponce!!.productDesc.toString()
@@ -325,6 +355,15 @@ class SingleItem_frag : Fragment() {
 
                     for (i in it.getData()!!.ProductResponce!!.Productprices!!.indices){
 
+                        if (it.getData()!!.ProductResponce!!.Productprices!![i].offerAmount != null) {
+
+                            offerAmount.add(it.getData()!!.ProductResponce!!.Productprices!![i].offerAmount.toString())
+                            orgPrice.visibility = View.VISIBLE
+                        }
+                        else{
+
+                            orgPrice.visibility = View.GONE
+                        }
                         itemAmount.add(it.getData()!!.ProductResponce!!.Productprices!![i].amount.toString())
                         itemOfferAmt.add(it.getData()!!.ProductResponce!!.Productprices!![i].offerAmount.toString())
                         itemSize.add(it.getData()!!.ProductResponce!!.Productprices!![i].productsize.toString())
@@ -408,9 +447,18 @@ class SingleItem_frag : Fragment() {
                 singleItem_radio_r.isEnabled = false
                 singleItem_radio_l.isEnabled = false
 
-                singleItem_price.text = "$"+itemAmount[0]
+                orgPrice.text = "$"+itemAmount[0]
+                singleItem_price.text = "$"+offerAmount[0]
+                orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                val productPrice = itemAmount[0]
+                var productPrice = "0"
+
+                if (offerAmount.size != 0){
+                    productPrice = offerAmount[0]
+                }
+                else {
+                    productPrice = itemAmount[0]
+                }
                 val itemCount = singleItem_num.text.toString()
 
                 singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
@@ -423,9 +471,18 @@ class SingleItem_frag : Fragment() {
                 singleItem_radio_s.isEnabled = false
                 singleItem_radio_l.isEnabled = false
 
-                singleItem_price.text = "$"+itemAmount[0]
+                orgPrice.text = "$"+itemAmount[0]
+                singleItem_price.text = "$"+offerAmount[0]
+                orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                val productPrice = itemAmount[0]
+                var productPrice = "0"
+
+                if (offerAmount.size != 0){
+                    productPrice = offerAmount[0]
+                }
+                else {
+                    productPrice = itemAmount[0]
+                }
                 val itemCount = singleItem_num.text.toString()
 
                 singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
@@ -438,9 +495,18 @@ class SingleItem_frag : Fragment() {
                 singleItem_radio_s.isEnabled = false
                 singleItem_radio_r.isEnabled = false
 
-                singleItem_price.text = "$"+itemAmount[0]
+                orgPrice.text = "$"+itemAmount[0]
+                singleItem_price.text = "$"+offerAmount[0]
+                orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                val productPrice = itemAmount[0]
+                var productPrice = "0"
+
+                if (offerAmount.size != 0){
+                    productPrice = offerAmount[0]
+                }
+                else {
+                    productPrice = itemAmount[0]
+                }
                 val itemCount = singleItem_num.text.toString()
 
                 singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()

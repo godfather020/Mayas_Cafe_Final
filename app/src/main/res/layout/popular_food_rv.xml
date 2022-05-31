@@ -59,7 +59,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Papper Shrimp"
                 android:textColor="@color/Popular_title"
                 android:textStyle="bold"
@@ -129,14 +131,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="$12"
-                android:textFontWeight="800"
                 android:textColor="@color/Popular_rate"
-                android:textStyle="bold"
+                android:textFontWeight="800"
                 android:textSize="@dimen/Popular_food_price"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/orgPrice" />
+
+            <TextView
+                android:id="@+id/orgPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/OPrice"
+                android:textFontWeight="800"
+                android:textColor="#DD2C00"
+                android:textStyle="bold"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
+
 
             <ImageButton
                 android:id="@+id/addToCart"

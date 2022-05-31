@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Screen_BG"
+    android:backgroundTint="@color/Screen_BG"
     tools:context=".fragments.Search_frag">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:elevation="8dp"
+        android:drawableRight="@drawable/search_anim"
+        android:padding="16sp"
+        android:hint="Search your favorite dishes"
+        android:fontFamily="@font/montserrat_variablefont_wght"
+        android:textColor="@color/black"
+        android:textFontWeight="800"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

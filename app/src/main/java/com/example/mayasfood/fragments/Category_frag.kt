@@ -1,10 +1,8 @@
 package com.example.mayasfood.fragments
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.*
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -48,6 +46,8 @@ class Category_frag : Fragment() {
 
         loading = v.findViewById(R.id.loading_mainCat)
         loading.visibility = View.VISIBLE
+
+        setHasOptionsMenu(true)
 
         recyclerView = v.findViewById(R.id.main_cat_rv)
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -108,5 +108,11 @@ class Category_frag : Fragment() {
     override fun onResume() {
         super.onResume()
         setUpMainCategory()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        menu.getItem(0).setVisible(false)
     }
 }

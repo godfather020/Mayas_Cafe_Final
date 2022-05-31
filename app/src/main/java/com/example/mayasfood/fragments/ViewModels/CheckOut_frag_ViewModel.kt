@@ -38,8 +38,8 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.branchId = branchId
         requestOrderdetails.toalQuantity = Constants.cart_totalItems.toString()
         requestOrderdetails.amount = Constants.total.toString()
-        requestOrderdetails.paymentMethod = "CASE"
-        requestOrderdetails.pickupAt = "26-05-2022 21:45:09"
+        requestOrderdetails.paymentMethod = "CASH"
+        requestOrderdetails.pickupAt = "31-05-2022 22:45:09"
 
         Log.d("orderItem", requestOrderdetails.toString())
         Log.d("orderItem", requestOrderdetails.amount.toString())
@@ -57,7 +57,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
 
             //orderItems.addAll(i , listOf(orderItems1))
 
-            requestOrderdetails.orderItems.add(orderItems1)
+            requestOrderdetails.orderItems.add(i, orderItems1)
 
             Log.d("orderItem", Constants.foodId[i].toString())
             Log.d("orderItem", requestOrderdetails.amount.toString())

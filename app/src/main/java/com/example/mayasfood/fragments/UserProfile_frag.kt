@@ -1,10 +1,13 @@
 package com.example.mayasfood.fragments
 
+import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -22,6 +25,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -59,6 +63,11 @@ class UserProfile_frag : Fragment() {
     lateinit var changePro: ImageButton
     lateinit var cancelUpdate : Button
     lateinit var loading : ProgressBar
+    private val REQUEST_EXTERNAL_STORAGE = 1
+    private val PERMISSIONS_STORAGE = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +77,9 @@ class UserProfile_frag : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_user_profile_frag, container, false)
 
         dashBoard = activity as DashBoard
+
+        dashBoard.toolbar_const.setTitle("My Profile")
+        dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         val builder = VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
@@ -195,8 +207,12 @@ class UserProfile_frag : Fragment() {
                         .into(userImage)
 
                     userName.setText(it.getData()!!.user!!.userName.toString())
-                    userEmail.setText(it.getData()!!.user!!.email.toString())
-                    userAddress.setText(it.getData()!!.user!!.address.toString())
+                    if(it.getData()!!.user!!.email != null) {
+                        userEmail.setText(it.getData()!!.user!!.email.toString())
+                    }
+                    if (it.getData()!!.user!!.address != null) {
+                        userAddress.setText(it.getData()!!.user!!.address.toString())
+                    }
                     userPhone.setText(it.getData()!!.user!!.phoneNumber.toString())
 
                     loading.visibility = View.GONE
@@ -302,6 +318,7 @@ class UserProfile_frag : Fragment() {
                 uploadImgPath = photoFile!!.absolutePath
 
             } else if (requestCode == 2) {
+                verifyStoragePermissions(requireActivity())
                 val selectedImage = data!!.data
                 val filePath = arrayOf(MediaStore.Images.Media.DATA)
                 val c: Cursor =
@@ -425,6 +442,20 @@ class UserProfile_frag : Fragment() {
             Picasso.get().load(uri).into(pImageView)
         } catch (e: java.lang.Exception) {
             Log.e("LoadBitmapByPicasso", e.message!!)
+        }
+    }
+
+    public fun verifyStoragePermissions(activity : Activity) {
+        // Check if we have write permission
+        val permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                activity,
+                PERMISSIONS_STORAGE,
+                REQUEST_EXTERNAL_STORAGE
+            );
         }
     }
 

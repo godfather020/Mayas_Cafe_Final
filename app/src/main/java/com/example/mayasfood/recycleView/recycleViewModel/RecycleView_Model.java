@@ -13,7 +13,7 @@ public class RecycleView_Model {
     private int foodImg1, isFav;
     private String runOrder_num , runOrder_total, runOrder_pickup, runOrder_create, runOrder_Quantity, runOrder_status,
             runOrder_date, orderRating, orderComment, order_id;
-    String runOrder_img;
+    String runOrder_img, offerAmt;
 
     public RecycleView_Model(String orderId ,String runOrder_num, String runOrder_total, String runOrder_pickup, String runOrder_create, String runOrder_Quantity, String runOrder_status, String runOrder_date, String runOrder_img) {
         this.runOrder_num = runOrder_num;
@@ -47,12 +47,31 @@ public class RecycleView_Model {
         this.foodImg1 = foodImg;
     }
 
+    public RecycleView_Model(String offerAmt, String foodName, String foodPrice, String productId, String foodImg, String stars) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.productId = productId;
+        this.foodImg = foodImg;
+        this.stars = stars;
+        this.offerAmt = offerAmt;
+    }
+
     public RecycleView_Model(String foodName, String foodPrice, String productId, String foodImg, String stars) {
         this.foodName = foodName;
         this.foodPrice = foodPrice;
         this.productId = productId;
         this.foodImg = foodImg;
         this.stars = stars;
+    }
+
+    public RecycleView_Model(String offerAmt, String foodName, String foodPrice, String productId, String foodImg, String stars, int isFav) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.productId = productId;
+        this.foodImg = foodImg;
+        this.stars = stars;
+        this.isFav = isFav;
+        this.offerAmt = offerAmt;
     }
 
     public RecycleView_Model(String foodName, String foodPrice, String productId, String foodImg, String stars, int isFav) {
@@ -241,6 +260,14 @@ public class RecycleView_Model {
 
     public String getOrderComment() {
         return orderComment;
+    }
+
+    public String getOfferAmt() {
+        return offerAmt;
+    }
+
+    public void setOfferAmt(String offerAmt) {
+        this.offerAmt = offerAmt;
     }
 
     public void setOrderComment(String orderComment) {

@@ -81,6 +81,8 @@ class Dashboard_Category_frag : Fragment() {
                 if (it.getSuccess()!!){
 
                     categoryName.clear()
+                    recycleView_models.clear()
+                    categoryId.clear()
 
                     for (i in it.getData()!!.ListcategoryResponce!!.indices) {
 

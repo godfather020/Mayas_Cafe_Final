@@ -32,6 +32,7 @@ class Favorite_frag : Fragment() {
     var foodImg = ArrayList<String>()
     var foodRating = ArrayList<String>()
     var foodId = ArrayList<String>()
+    var foodOfferAmt = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,6 +78,7 @@ class Favorite_frag : Fragment() {
                     foodRating.clear()
                     recycleView_models.clear()
                     foodId.clear()
+                    foodOfferAmt.clear()
 
                     for (i in it.getData()!!.FavoriteListResponce!!.indices){
 
@@ -85,6 +87,12 @@ class Favorite_frag : Fragment() {
                         foodPrice.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].amount.toString())
                         foodRating.add(it.getData()!!.FavoriteListResponce!![i].Product!!.customerrating.toString())
                         foodId.add(it.getData()!!.FavoriteListResponce!![i].productId.toString())
+                        if (it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].offerAmount != null) {
+                            foodOfferAmt.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].offerAmount.toString())
+                        }
+                        else{
+                            foodOfferAmt.add("0")
+                        }
                     }
 
                 }
@@ -102,6 +110,7 @@ class Favorite_frag : Fragment() {
         for (i in foodName.indices) {
             recycleView_models.add(
                 RecycleView_Model(
+                    foodOfferAmt[i],
                     foodName[i],
                     foodPrice[i],
                     foodId[i],

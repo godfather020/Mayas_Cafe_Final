@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Green Salad"
                 android:textColor="@color/Rest_choice_txt"
                 android:textSize="@dimen/Popular_food_title"
@@ -114,22 +114,35 @@
                 android:layout_marginStart="28dp"
                 />
 
+            <TextView
+                android:id="@+id/orgPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/OPrice"
+                android:textFontWeight="800"
+                android:textColor="#DD2C00"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/food_price1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="$5"
-                android:textSize="@dimen/Rest_choice_price"
-                android:textFontWeight="800"
                 android:textColor="@color/Rest_choice_price"
+                android:textFontWeight="800"
+                android:textSize="@dimen/Rest_choice_price"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/orgPrice" />
 
             <ImageButton
                 android:id="@+id/addToCart"

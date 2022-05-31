@@ -2,28 +2,30 @@ package com.example.mayasfood.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
-import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
-import com.example.mayasfood.Retrofite.request.Request_OrderDetails
 import com.example.mayasfood.activity.DashBoard
-import com.example.mayasfood.activity.Login
 import com.example.mayasfood.constants.Constants
 import com.example.mayasfood.fragments.ViewModels.CheckOut_frag_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
+
 
 class CheckOut_frag : Fragment() {
 
@@ -47,6 +49,7 @@ class CheckOut_frag : Fragment() {
     lateinit var cart_empty_btn : Button
     lateinit var viewModel : CheckOut_frag_ViewModel
     lateinit var dashBoard: DashBoard
+    lateinit var barCodeImg : ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -111,6 +114,7 @@ class CheckOut_frag : Fragment() {
 
             loading.visibility = View.VISIBLE
             sendOrder()
+            showBarCode()
         }
 
         cart_empty_btn.setOnClickListener {
@@ -119,6 +123,60 @@ class CheckOut_frag : Fragment() {
         }
 
         return view
+    }
+
+    private fun showBarCode() {
+
+        val dialog = Dialog(requireContext())
+        dialog.setCancelable(false)
+
+        val activity = context as AppCompatActivity
+
+        val view = activity.layoutInflater.inflate(R.layout.barcode_popup, null)
+
+        dialog.setContentView(view)
+        /*if (dialog.window != null) {
+            dialog.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }*/
+
+        barCodeImg = view.findViewById(R.id.order_barcode1)
+        val closeQr = view.findViewById<Button>(R.id.close_qr)
+
+        val writer = QRCodeWriter()
+        try {
+            val bitMatrix = writer.encode(
+                "OrderId:" + "#345456535",
+                BarcodeFormat.QR_CODE,
+                512,
+                512
+            )
+            val width = 512
+            val height = 512
+            val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    if (bitMatrix[x, y].toInt() == 0) bmp.setPixel(
+                        x,
+                        y,
+                        resources.getColor(R.color.Register_Title)
+                        //Color.BLACK
+                    ) else bmp.setPixel(x, y, Color.WHITE)
+                }
+            }
+            barCodeImg.setImageBitmap(bmp)
+        } catch (e: WriterException) {
+            //Log.e("QR ERROR", ""+e);
+        }
+
+        closeQr.setOnClickListener {
+
+            dialog.cancel()
+        }
+
+        dialog.show()
     }
 
     private fun sendOrder() {

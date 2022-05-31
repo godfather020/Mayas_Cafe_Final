@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_medium"
         android:text="Favorite Food"
         android:textColor="@color/Register_Title"
         android:textSize="31sp"

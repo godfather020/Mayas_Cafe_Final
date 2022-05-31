@@ -92,7 +92,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     ImageView bell, cart;
     TextView notify_count, cart_count;
     Dashboard_ViewModel dashboard_viewModel;
-    public CardView card_count;
+    public CardView card_count, notify_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +131,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         setUpToolbar();
 
+        toolbar_const.setNavigationIcon(R.drawable.menubar);
         Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
 
         bottomNavigationView = findViewById(R.id.chip_nav);
@@ -376,9 +377,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 } else {
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                    actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                    //actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                     getSupportActionBar().setDisplayShowHomeEnabled(true);
+                    toolbar_const.setNavigationIcon(R.drawable.menubar);
                     actionBarDrawerToggle.syncState();
                     toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
                         @Override
@@ -412,6 +414,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
             bell = actionView.findViewById(R.id.bell);
             notify_count = actionView.findViewById(R.id.notify_count);
+            notify_card = actionView.findViewById(R.id.notify_card);
         }
         cart_count.setText(String.valueOf(Constants.cart_totalItems));
 
@@ -423,8 +426,17 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             card_count.setVisibility(View.VISIBLE);
         }
 
+
         notify_count.setText(String.valueOf(Constants.notifyCount));
         Log.d("notifyC", String.valueOf(Constants.notifyCount));
+
+        if (notify_count.getText().toString().equals("0")){
+
+            notify_card.setVisibility(View.GONE);
+        }
+        else {
+            notify_card.setVisibility(View.VISIBLE);
+        }
 
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -566,6 +578,15 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 }
                 break;
 
+            case R.id.shareApp:
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Hey, download this app!");
+                startActivity(shareIntent);
+                break;
+
             case R.id.invisibleNav:
                 navigationView.setCheckedItem(R.id.invisibleNav);
                 break;
@@ -635,9 +656,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 } else {
                     drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                    actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+                    //actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                     getSupportActionBar().setDisplayShowHomeEnabled(true);
+                    toolbar_const.setNavigationIcon(R.drawable.menubar);
                     actionBarDrawerToggle.syncState();
                     toolbar_const.setNavigationOnClickListener(new View.OnClickListener() {
                         @Override

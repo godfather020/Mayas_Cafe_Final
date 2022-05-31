@@ -1,6 +1,7 @@
 package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,7 +145,12 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
                         Constants.foodQuantity.add(1);
                         Constants.foodImg.add(foodModels2.get(holder.getAdapterPosition()).getFoodImg());
                         Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
-                        Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                        if (foodModels2.get(position).getOfferAmt() != "0") {
+                            Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getOfferAmt())));
+                        }
+                        else {
+                            Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
+                        }
                         //i++;
                     Constants.cart_totalItems = Constants.foodId.size();
 
@@ -253,7 +259,18 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
                 .into(holder.imageView);
 
         //holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
-        holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
+
+        if (foodModels2.get(position).getOfferAmt() != "0") {
+            holder.orgPrice.setVisibility(View.VISIBLE);
+            holder.orgPrice.setText("$" + foodModels2.get(position).getFoodPrice());
+            holder.orgPrice.setPaintFlags(holder.orgPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.price.setText("$"+foodModels2.get(position).getOfferAmt());
+        }
+        else {
+            holder.orgPrice.setVisibility(View.GONE);
+            holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
+        }
+
 
         if (foodModels2.get(position).getStars().matches("^[0]") || foodModels2.get(position).getStars().matches("^[0][.]") || foodModels2.get(position).getStars().matches("^[1][.][12345]")){
 
@@ -392,7 +409,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         ImageView  star1, star2, star3, star4, star5;
         CircleImageView imageView;
-        TextView name, price;
+        TextView name, price, orgPrice;
         ImageView addToFav;
         CheckBox isFav;
         ProgressBar loading;
@@ -418,6 +435,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             loading = itemView.findViewById(R.id.loading_pop_rv);
             addToCart = itemView.findViewById(R.id.addToCart);
             pfCard = itemView.findViewById(R.id.pfCard);
+            orgPrice = itemView.findViewById(R.id.orgPrice);
 
             //getFavList();
 

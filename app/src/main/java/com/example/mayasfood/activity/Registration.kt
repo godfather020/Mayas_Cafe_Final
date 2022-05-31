@@ -129,7 +129,7 @@ class Registration : AppCompatActivity() {
 
                 //sendOTP(user_phone!!)
 
-                viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, androidx.lifecycle.Observer { it ->
+                viewModel.registerUser(this, user_phone!!, user_name!!).observe(this, Observer { it ->
 
                     if(it!=null){
 
@@ -149,12 +149,12 @@ class Registration : AppCompatActivity() {
 
                                         getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", true).apply()
 
-                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it.getData()!!.phoneNumber).apply()
-                                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N , it.getData()!!.result!!.userName)
-                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it.getData()!!.userName).apply()
-                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.profilePic).apply()
-                                        //getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.X_TOKEN, it.getData()!!.token).apply()
-                                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_I, it.getData()!!.result!!.profilePic)
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_P, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_P, it1.getData()!!.phoneNumber).apply()
+                                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_N , it1.getData()!!.result!!.userName)
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_N, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_N, it1.getData()!!.userName).apply()
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.USER_I, it1.getData()!!.profilePic).apply()
+                                        getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).edit().putString(Constants.sharedPrefrencesConstant.X_TOKEN, it1.getData()!!.token).apply()
+                                        sharedPreferencesUtil.saveString(Constants.sharedPrefrencesConstant.USER_I, it1.getData()!!.result!!.profilePic)
                                             val intent: Intent = Intent(this@Registration, DashBoard::class.java)
                                             //intent.putExtra("getOtp", "1")
                                             startActivity(intent)
