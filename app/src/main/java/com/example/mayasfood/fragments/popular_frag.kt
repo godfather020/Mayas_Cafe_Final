@@ -31,6 +31,7 @@ class popular_frag : Fragment() {
     var popularFoodRating = ArrayList<String>()
     var popularFoodIsFav = ArrayList<Int>()
     var popularOfferAmt = ArrayList<String>()
+    var popularFoodSize = ArrayList<String>()
     lateinit var loading : ProgressBar
     var popularFoodId = ArrayList<String>()
     lateinit var viewModel: popular_frag_ViewModel
@@ -104,6 +105,7 @@ class popular_frag : Fragment() {
                     popularFoodId.clear()
                     popularFoodIsFav.clear()
                     popularOfferAmt.clear()
+                    popularFoodSize.clear()
 
                     for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
 
@@ -148,6 +150,28 @@ class popular_frag : Fragment() {
 
                             popularOfferAmt.add(i , "0")
                         }
+                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!!.size == 1){
+
+                            popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
+                        }
+                        else{
+
+                            for (j in it.getData()!!.ListpopularproductResponce!![i].Productprices!!.indices) {
+
+                                if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![j].productsize.equals(
+                                        "M"
+                                    )
+                                ) {
+                                    popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![j].productsize.toString())
+                                }
+                            }
+
+                            if (popularFoodSize.isEmpty()){
+
+                                popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
+                            }
+
+                        }
                     }
 
                     loading.visibility = View.GONE
@@ -166,6 +190,7 @@ class popular_frag : Fragment() {
         for (i in popularFoodName.indices) {
             recycleView_models.add(
                 RecycleView_Model(
+                    popularFoodSize[i],
                     popularOfferAmt[i],
                     popularFoodName[i],
                     popularFoodPrice[i],

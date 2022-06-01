@@ -30,6 +30,7 @@ class CategoryDetails_frag : Fragment() {
     var foodIsFav = ArrayList<Int>()
     var foodId = ArrayList<String>()
     var foodOfferAmt = ArrayList<String>()
+    var foodSize = ArrayList<String>()
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var viewModel : CategoryDetails_ViewModel
     lateinit var dashBoard: DashBoard
@@ -102,6 +103,7 @@ class CategoryDetails_frag : Fragment() {
                     foodId.clear()
                     recycleView_models.clear()
                     foodOfferAmt.clear()
+                    foodSize.clear()
 
                     for(i in it.getData()!!.ListproductResponce!!.indices){
 
@@ -109,6 +111,7 @@ class CategoryDetails_frag : Fragment() {
                         foodImg.add(i, it.getData()!!.ListproductResponce!![i].productPic.toString())
                         foodPrice.add(i, it.getData()!!.ListproductResponce!![i].Productprices!![0].amount.toString())
                         foodRating.add(i, it.getData()!!.ListproductResponce!![i].customerrating.toString())
+                        foodId.add(i , it.getData()!!.ListproductResponce!![i].id.toString())
                         if (auth.currentUser != null) {
                             foodIsFav.add(i, it.getData()!!.ListproductResponce!![i].favorite!!)
                         }
@@ -124,7 +127,28 @@ class CategoryDetails_frag : Fragment() {
 
                             foodOfferAmt.add(i , "0")
                         }
-                        foodId.add(i , it.getData()!!.ListproductResponce!![i].id.toString())
+                        if (it.getData()!!.ListproductResponce!![i].Productprices!!.size == 1){
+
+                            foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
+                        }
+                        else{
+
+                            for (j in it.getData()!!.ListproductResponce!![i].Productprices!!.indices) {
+
+                                if (it.getData()!!.ListproductResponce!![i].Productprices!![j].productsize.equals(
+                                        "M"
+                                    )
+                                ) {
+                                    foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![j].productsize.toString())
+                                }
+                            }
+
+                            if (foodSize.isEmpty()){
+
+                                foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
+                            }
+
+                        }
                     }
 
                     loading.visibility = View.GONE
@@ -141,6 +165,7 @@ class CategoryDetails_frag : Fragment() {
 
             recycleView_models.add(
                 RecycleView_Model(
+                    foodSize[i],
                     foodOfferAmt[i],
                     foodName[i],
                     foodPrice[i],

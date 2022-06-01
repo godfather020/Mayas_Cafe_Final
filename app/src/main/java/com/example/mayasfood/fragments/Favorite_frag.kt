@@ -33,6 +33,7 @@ class Favorite_frag : Fragment() {
     var foodRating = ArrayList<String>()
     var foodId = ArrayList<String>()
     var foodOfferAmt = ArrayList<String>()
+    var foodSize = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,6 +80,7 @@ class Favorite_frag : Fragment() {
                     recycleView_models.clear()
                     foodId.clear()
                     foodOfferAmt.clear()
+                    foodSize.clear()
 
                     for (i in it.getData()!!.FavoriteListResponce!!.indices){
 
@@ -92,6 +94,28 @@ class Favorite_frag : Fragment() {
                         }
                         else{
                             foodOfferAmt.add("0")
+                        }
+                        if (it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices.size == 1){
+
+                            foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].productsize.toString())
+                        }
+                        else{
+
+                            for (j in it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices.indices) {
+
+                                if (it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[j].productsize.equals(
+                                        "M"
+                                    )
+                                ) {
+                                    foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[j].productsize.toString())
+                                }
+                            }
+
+                            if (foodSize.isEmpty()){
+
+                                foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].productsize.toString())
+                            }
+
                         }
                     }
 
@@ -110,6 +134,7 @@ class Favorite_frag : Fragment() {
         for (i in foodName.indices) {
             recycleView_models.add(
                 RecycleView_Model(
+                    foodSize[i],
                     foodOfferAmt[i],
                     foodName[i],
                     foodPrice[i],

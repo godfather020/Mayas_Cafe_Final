@@ -64,6 +64,16 @@ public class RecycleView_Model {
         this.offerAmt = offerAmt;
     }
 
+    public RecycleView_Model(String foodSize, String offerAmt, String foodName, String foodPrice, String productId, String foodImg, String stars) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.productId = productId;
+        this.foodImg = foodImg;
+        this.stars = stars;
+        this.offerAmt = offerAmt;
+        this.foodSize = foodSize;
+    }
+
     public RecycleView_Model(String foodName, String foodPrice, String productId, String foodImg, String stars) {
         this.foodName = foodName;
         this.foodPrice = foodPrice;

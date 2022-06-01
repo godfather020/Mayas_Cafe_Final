@@ -32,6 +32,7 @@ class Restarant_choice_frag : Fragment() {
     var restaurantFoodId = ArrayList<String>()
     var restaurantFoodIsFav = ArrayList<Int>()
     var restaurantOfferAmt = ArrayList<String>()
+    var restaurantFoodSize = ArrayList<String>()
     lateinit var loading : ProgressBar
     lateinit var viewModel: Restaurant_frag_ViewModel
     lateinit var dashBoard : DashBoard
@@ -103,6 +104,7 @@ class Restarant_choice_frag : Fragment() {
                     restaurantFoodId.clear()
                     restaurantFoodIsFav.clear()
                     restaurantOfferAmt.clear()
+                    restaurantFoodSize.clear()
 
                     Log.d("indice", it.getData()!!.ListrestaurantproductResponce!!.indices.toString())
 
@@ -142,6 +144,28 @@ class Restarant_choice_frag : Fragment() {
 
                             restaurantOfferAmt.add(i , "0")
                         }
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1){
+
+                            restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
+                        }
+                        else{
+
+                            for (j in it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.indices) {
+
+                                if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![j].productsize.equals(
+                                        "M"
+                                    )
+                                ) {
+                                    restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![j].productsize.toString())
+                                }
+                            }
+
+                            if (restaurantFoodSize.isEmpty()){
+
+                                restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
+                            }
+
+                        }
 
                     }
                     loading.visibility = View.GONE
@@ -157,6 +181,7 @@ class Restarant_choice_frag : Fragment() {
         for (i in restaurantFoodName.indices) {
             recycleView_models.add(
                 RecycleView_Model(
+                    restaurantFoodSize[i],
                     restaurantOfferAmt[i],
                     restaurantFoodName[i],
                     restaurantFoodPrice[i],
