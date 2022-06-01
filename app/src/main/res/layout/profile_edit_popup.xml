@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/userEdit_card"
             android:layout_gravity="center"
-            android:layout_width="match_parent"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="16dp"
+
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/close_dialog"
@@ -46,7 +53,7 @@
 
         <EditText
             android:id="@+id/userEdit_name"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_margin="28dp"
             android:background="@drawable/custom_edit_text"
@@ -84,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
 

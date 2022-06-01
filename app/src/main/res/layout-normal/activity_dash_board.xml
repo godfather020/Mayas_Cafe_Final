@@ -93,6 +93,7 @@
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:title=""
+                app:menu="@menu/toolbar"
                 app:titleTextColor="#00FFFFFF"
                 app:titleTextAppearance="@style/Style_TextView"
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24"

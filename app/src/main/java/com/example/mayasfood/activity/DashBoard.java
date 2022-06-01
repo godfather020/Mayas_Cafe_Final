@@ -90,7 +90,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     MenuItem notifyMenuItem;
     MenuItem cartMenuItem;
     ImageView bell, cart;
-    TextView notify_count, cart_count;
+    public TextView notify_count, cart_count;
     Dashboard_ViewModel dashboard_viewModel;
     public CardView card_count, notify_card;
 
@@ -153,7 +153,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         item.setEnabled(true);
                         item.setCheckable(true);
                         toolbar_const.getMenu().getItem(0).setVisible(true);
-                        toolbar_const.getMenu().getItem(2).setVisible(true);
+                        toolbar_const.getMenu().getItem(3).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
                         Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(),R.id.frag_cont, true, "Category", null);
                         return true;
@@ -161,7 +161,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     case R.id.bottom_nav_favorie:
                         navigationView.setCheckedItem(R.id.invisibleNav);
                         toolbar_const.getMenu().getItem(0).setVisible(true);
-                        toolbar_const.getMenu().getItem(2).setVisible(true);
+                        toolbar_const.getMenu().getItem(3).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
 
                         if (auth.getCurrentUser()!=null) {
@@ -177,7 +177,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     case R.id.bottom_nav_orders:
                         navigationView.setCheckedItem(R.id.orderNav);
                         toolbar_const.getMenu().getItem(0).setVisible(false);
-                        toolbar_const.getMenu().getItem(2).setVisible(false);
+                        toolbar_const.getMenu().getItem(3).setVisible(false);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
                         if (auth.getCurrentUser()!=null) {
 
@@ -192,7 +192,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                     case R.id.bottom_nav_discount:
                         navigationView.setCheckedItem(R.id.offersNav);
                         toolbar_const.getMenu().getItem(0).setVisible(true);
-                        toolbar_const.getMenu().getItem(2).setVisible(false);
+                        toolbar_const.getMenu().getItem(3).setVisible(false);
                         toolbar_const.getMenu().getItem(1).setVisible(false);
                         Functions.loadFragment(getSupportFragmentManager(), new Offers_frag(),R.id.frag_cont, true, "Offers", null);
                         return true;
@@ -201,7 +201,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         navigationView.setCheckedItem(R.id.categoriesNav);
                         //toolbar_const.setTitle("");
                         toolbar_const.getMenu().getItem(0).setVisible(true);
-                        toolbar_const.getMenu().getItem(2).setVisible(true);
+                        toolbar_const.getMenu().getItem(3).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
                         Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "DashBoard", null );
                         return true;
@@ -467,6 +467,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             }
         });
 
+        menu.getItem(2).setVisible(false);
+
         if (Constants.currentFrag.equals("N")){
 
             menu.getItem(1).setVisible(true);
@@ -477,7 +479,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         }
         else {
 
-            menu.getItem(2).setVisible(true);
+            menu.getItem(3).setVisible(true);
         }
         return true;
     }
@@ -511,7 +513,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.cart) {
             Constants.currentFrag = "C";
             bottomNavigationView.setVisibility(View.GONE);
-            toolbar_const.getMenu().getItem(2).setVisible(false);
+            toolbar_const.getMenu().getItem(3).setVisible(false);
             Functions.loadFragment(getSupportFragmentManager(), new CheckOut_frag(), R.id.frag_cont, false, "CheckOut", null);
             //Toast.makeText(getApplicationContext(), "Cart", Toast.LENGTH_SHORT).show();
         }

@@ -111,7 +111,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                     Constants.foodQuantity.add(1);
                     Constants.foodImg.add(foodModels2.get(holder.getAdapterPosition()).getFoodImg());
                     Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
-                    if (foodModels2.get(position).getOfferAmt() != "0") {
+                    if (foodModels2.get(holder.getAdapterPosition()).getOfferAmt() != "0") {
                         Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getOfferAmt())));
                     }
                     else {

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -141,6 +142,7 @@ class CheckOut_frag : Fragment() {
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }*/
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         barCodeImg = view.findViewById(R.id.order_barcode1)
         val closeQr = view.findViewById<Button>(R.id.close_qr)
@@ -269,7 +271,7 @@ class CheckOut_frag : Fragment() {
 
         menu.getItem(0).setVisible(false)
         menu.getItem(1).setVisible(true)
-        menu.getItem(2).setVisible(false)
+        menu.getItem(3).setVisible(false)
 
         super.onCreateOptionsMenu(menu, inflater)
 

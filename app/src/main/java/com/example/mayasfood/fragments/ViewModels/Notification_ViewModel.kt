@@ -24,6 +24,7 @@ class Notification_ViewModel : ViewModel() {
 
     var commonResponse = MutableLiveData<Response_Common>()
     var commonResponse1 = MutableLiveData<Response_Notification>()
+    var commonResponse2 = MutableLiveData<Response_Notification>()
 
     fun getNotificationData(activity: Fragment, loading : ProgressBar): MutableLiveData<Response_Common> {
 
@@ -47,6 +48,50 @@ class Notification_ViewModel : ViewModel() {
         removeNotificationAPI(request_notification)
 
         return commonResponse1
+    }
+
+    fun removeAllNotifications(activity: Fragment): MutableLiveData<Response_Notification>{
+
+        this.activity = activity
+
+        loading.visibility = View.VISIBLE
+
+        removeAllNotificationAPI()
+
+        return commonResponse2
+    }
+
+    private fun removeAllNotificationAPI() {
+
+        val retrofitInstance = RetrofitInstance()
+        val retrofitData = retrofitInstance.retrofit.removeAllNotification(Constants.USER_TOKEN)
+
+        retrofitData.enqueue(object : Callback<Response_Notification?> {
+            override fun onResponse(
+                call: Call<Response_Notification?>,
+                response: Response<Response_Notification?>
+            ) {
+                if (response.isSuccessful) {
+
+                    commonResponse2.value = response.body()
+                    loading.visibility = View.GONE
+                    Log.d("Dashboard", "success")
+                    Toast.makeText(activity.requireContext(), "Success", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    // loading.visibility = View.GONE
+                    Log.d("Dashboard", "failed")
+                    loading.visibility = View.GONE
+                    Toast.makeText(activity.requireContext(), response.message(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Notification?>, t: Throwable) {
+                Toast.makeText(activity.requireContext(), t.toString(), Toast.LENGTH_SHORT).show()
+                //   loading.visibility = View.GONE
+                loading.visibility = View.GONE
+            }
+        })
     }
 
     private fun removeNotificationAPI(param: Request_notification) {

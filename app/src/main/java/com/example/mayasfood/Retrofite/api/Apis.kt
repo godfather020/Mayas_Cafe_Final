@@ -27,6 +27,12 @@ interface Apis {
     ):Call<Response_Notification>
 
     @Headers("Content-Type:application/json", "Accept:application/json")
+    @GET(Constants.ApiConstant.REMOVE_ALL_NOTIFICATION)
+    fun removeAllNotification(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String
+    ):Call<Response_Notification>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
     @POST(Constants.ApiConstant.VERIFY)
     fun getVerifyOtp(
         @Body body: Request_Verify

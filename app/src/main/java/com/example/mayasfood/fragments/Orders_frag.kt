@@ -86,7 +86,7 @@ class Orders_frag : Fragment() {
 
         menu.getItem(0).setVisible(false)
         menu.getItem(1).setVisible(true)
-        menu.getItem(2).setVisible(false)
+        menu.getItem(3).setVisible(false)
         dashBoard.navigationView.setCheckedItem(R.id.orderNav)
     }
 }

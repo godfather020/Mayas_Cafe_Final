@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,12 +158,14 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
         View view =activity.getLayoutInflater().inflate(R.layout.profile_edit_popup, null);
 
         dialog.setContentView(view);
-        if (dialog.getWindow() != null) {
+       /* if (dialog.getWindow() != null) {
             dialog.getWindow().setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
-        }
+        }*/
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         ImageView close = view.findViewById(R.id.close_dialog);
                 Button update = view.findViewById(R.id.userEdit_update);

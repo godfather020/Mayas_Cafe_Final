@@ -2,6 +2,8 @@ package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -193,12 +195,14 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
         View view =activity.getLayoutInflater().inflate(R.layout.rating_comment_dialog, null);
 
         dialog.setContentView(view);
-        if (dialog.getWindow() != null) {
+        /*if (dialog.getWindow() != null) {
             dialog.getWindow().setLayout(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
-        }
+        }*/
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         ImageView ratingStar1 = view.findViewById(R.id.rating_star1);
         ImageView ratingStar2 = view.findViewById(R.id.rating_star2);

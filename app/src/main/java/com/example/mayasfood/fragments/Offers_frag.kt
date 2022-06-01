@@ -116,6 +116,7 @@ class Offers_frag : Fragment() {
         menu.getItem(0).setVisible(true)
         menu.getItem(1).setVisible(false)
         menu.getItem(2).setVisible(false)
+        menu.getItem(3).setVisible(false)
 
         dashBoard.navigationView.setCheckedItem(R.id.offersNav)
 

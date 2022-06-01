@@ -1,5 +1,7 @@
 package com.example.mayasfood.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -163,7 +165,7 @@ class Favorite_frag : Fragment() {
 
         menu.getItem(0).setVisible(false)
         menu.getItem(1).setVisible(true)
-        menu.getItem(2).setVisible(true)
+        menu.getItem(3).setVisible(true)
         dashBoard.navigationView.setCheckedItem(R.id.invisibleNav)
     }
 }

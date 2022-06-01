@@ -189,6 +189,11 @@ class Dashboard_frag : Fragment() {
                     notify_count.text = Constants.notifyCount.toString()
                     Log.d("notifyC", Constants.notifyCount.toString())
                     cart_count.text = Constants.cart_totalItems.toString()
+                    dashBoard.notify_count.text = Constants.notifyCount.toString()
+                    if (!notify_count.text.equals("0")){
+
+                        dashBoard.notify_card.visibility = View.VISIBLE
+                    }
                 }
             }
 
@@ -477,7 +482,7 @@ class Dashboard_frag : Fragment() {
 
         menu.getItem(0).setVisible(true)
         menu.getItem(1).setVisible(true)
-        menu.getItem(2).setVisible(true)
+        menu.getItem(3).setVisible(true)
         dashBoard.navigationView.setCheckedItem(R.id.homeNav)
 
         val notifyMenuItem = menu.findItem(R.id.notification)

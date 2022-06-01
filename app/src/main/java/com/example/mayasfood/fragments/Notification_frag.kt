@@ -1,11 +1,14 @@
 package com.example.mayasfood.fragments
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -62,6 +65,17 @@ class Notification_frag : Fragment() {
 
         dashBoard.toolbar_const.setTitle("My Notification");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+            override fun onMenuItemClick(item: MenuItem?): Boolean {
+
+                if (item!!.itemId == R.id.clearAll){
+
+                    dialog("Do you want to clear all Notifications?")
+                }
+                return true
+            }
+        })
 
         setHasOptionsMenu(true)
 
@@ -303,6 +317,41 @@ class Notification_frag : Fragment() {
 
         menu.getItem(1).setVisible(false)
         menu.getItem(0).setVisible(false)
+        menu.getItem(2).setVisible(true)
+
+    }
+
+    private fun dialog(msg: String) {
+
+        val builder = AlertDialog.Builder(context)
+        builder.setCancelable(false)
+        builder.setTitle(msg)
+        builder.setPositiveButton(
+            "Yes"
+        ) { dialogInterface, i ->
+
+            clearAllNotifications()
+        }
+        builder.setNegativeButton(
+            "No"
+        ) { dialogInterface, i -> dialogInterface.dismiss() }
+        val alertDialog: Dialog = builder.create()
+        alertDialog.show()
+    }
+
+    private fun clearAllNotifications() {
+
+        viewModel.removeAllNotifications(this).observe(viewLifecycleOwner, Observer {
+
+            if (it != null){
+
+                if (it.success!!){
+
+                    setUpNotifyView()
+                }
+            }
+
+        })
     }
 
 }
