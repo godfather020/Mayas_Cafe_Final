@@ -9,20 +9,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Orders_frag">
 
-    <TextView
-        android:id="@+id/tab_click_2"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/orders_tab" />
-
-    <TextView
-        android:id="@+id/tab_click_1"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/orders_tab" />
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/orders_tab"
         android:layout_width="match_parent"
@@ -31,7 +17,7 @@
         android:layout_marginTop="8dp"
         app:tabTextAppearance="@style/Style_TabText"
         app:tabGravity="center"
-        app:tabMode="scrollable"
+        app:tabMode="fixed"
         android:background="#F5F9FE"
         app:tabIndicator="@drawable/custom_tab_layout"
         app:tabIndicatorColor="@color/Tab_Button"
@@ -46,6 +32,10 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpSample"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orders_tab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,19 +1,16 @@
 package com.example.mayasfood.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
 import com.google.android.material.tabs.TabLayout
-import net.raquezha.buttonindicator.ButtonIndicator
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 
 class Orders_frag : Fragment() {
@@ -43,9 +40,6 @@ class Orders_frag : Fragment() {
 
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
 
-        tab_click_1 = view.findViewById(R.id.tab_click_1)
-        tab_click_2 = view.findViewById(R.id.tab_click_2)
-
         setHasOptionsMenu(true)
 
         val adapter = CustomViewAdapter(childFragmentManager)
@@ -57,7 +51,14 @@ class Orders_frag : Fragment() {
 
         indicator.setupWithViewPager(vpSample)
 
+        indicator.setOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                vpSample.setCurrentItem(tab.position)
+            }
 
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
             /*Log.d(
                 "tab", "out1"
             )
