@@ -26,11 +26,12 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/drawable/profilemenu.xml" value="0.1695" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/drawable/tabler_discount_2_anim.xml" value="0.1695" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_get_start.xml" value="0.25" />
-        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_login.xml" value="0.20521590423257802" />
-        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_otp.xml" value="0.6" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_otp.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_registration.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-large/activity_splash.xml" value="0.6" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-night/activity_get_start.xml" value="0.25" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-normal-v28/activity_get_start.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-normal-v28/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-normal/activity_dash_board.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-normal/activity_get_start.xml" value="0.25" />
@@ -50,8 +51,10 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-sw600dp/activity_splash.xml" value="0.1875" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/cart_details_rv.xml" value="0.4" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/fragment_dashboard_frag.xml" value="0.25" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/today_rv.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-v28/yesterday_rv.xml" value="0.4" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-xlarge/activity_get_start.xml" value="0.37395833333333334" />
-        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-xlarge/activity_login.xml" value="0.37395833333333334" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-xlarge/activity_login.xml" value="0.15260416666666668" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-xlarge/activity_otp.xml" value="0.37395833333333334" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-xlarge/activity_registration.xml" value="0.37395833333333334" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout-xlarge/activity_splash.xml" value="0.37395833333333334" />
@@ -64,6 +67,8 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/activity_single_item.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/all_popular_food_rv.xml" value="0.4" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/barcode_popup.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/cart_count.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/checkout.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/food_categories_rv.xml" value="0.536" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/fragment_category_frag.xml" value="0.25" />
@@ -84,6 +89,8 @@
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/popular_food_rv.xml" value="0.4" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/restaurant_choice_rv.xml" value="0.4" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/single_item.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/today_rv.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/layout/yesterday_rv.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/menu/bottom_nav.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Users/91881/AndroidStudioProjects/Mayas_Cafe_Final/app/src/main/res/menu/toolbar.xml" value="0.25" />

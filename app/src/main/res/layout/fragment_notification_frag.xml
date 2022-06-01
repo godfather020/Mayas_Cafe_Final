@@ -28,7 +28,7 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:text="Today's"
                 android:textColor="#363853"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:text="Previous"
                 android:textColor="#363853"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/today_rv" />

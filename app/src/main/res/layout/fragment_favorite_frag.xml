@@ -16,7 +16,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="Favorite Food"
         android:textColor="@color/Register_Title"
-        android:textSize="31sp"
+        android:textSize="31dp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

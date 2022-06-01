@@ -146,7 +146,7 @@
             app:ccp_autoDetectCountry="true"
             app:ccp_defaultNameCode="US"
             app:ccp_showFlag="false"
-            app:ccp_textSize="12sp"
+            app:ccp_textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/phoneNum_r"
             app:layout_constraintStart_toStartOf="parent"

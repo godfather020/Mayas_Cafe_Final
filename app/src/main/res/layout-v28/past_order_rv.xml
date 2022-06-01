@@ -42,7 +42,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="#457485451"
                 android:textColor="@color/Register_Title"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintStart_toEndOf="@+id/past_order_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,7 +56,7 @@
                 android:textAlignment="center"
                 android:textColor="#12971F"
                 android:textFontWeight="800"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +71,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pastOrder_status" />
 
@@ -98,7 +98,7 @@
                 android:text="Placed at :"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/past_order_img"
                 app:layout_constraintTop_toBottomOf="@+id/pastOrder_num" />
 
@@ -111,7 +111,7 @@
                 android:layout_marginStart="8dp"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/past_order_img"
                 app:layout_constraintTop_toBottomOf="@+id/pastOrder_time_txt" />
 
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Total"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/pastOrder_total"
                 app:layout_constraintTop_toBottomOf="@+id/pastOrder_date" />
 
@@ -147,7 +147,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="$16"
                 android:textColor="#E80937"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pastOrder_date" />
 
@@ -164,7 +164,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 

@@ -37,7 +37,7 @@
         android:layout_margin="4dp"
         android:fontFamily="@font/ntailu"
         android:text="Looking for a new summer Food? Get 25% off our new Recipe. Place an order before April 25 2022 "
-        android:textSize="12sp"
+        android:textSize="12dp"
         android:textStyle="normal"
         android:textColor="#82838B"
         app:layout_constraintStart_toStartOf="parent"

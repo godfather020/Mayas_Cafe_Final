@@ -99,7 +99,7 @@
             app:ccp_defaultNameCode="US"
             app:ccpDialog_textColor="@color/Login_editTxt"
             app:ccp_contentColor="@color/Login_editTxt"
-            app:ccp_textSize="16sp"
+            app:ccp_textSize="16dp"
             android:background="@drawable/custom_edit_text"
             app:ccp_autoDetectCountry="true"
             app:ccp_showFlag="false" />

@@ -58,7 +58,7 @@
             android:fontFamily="@font/ntailu"
             android:text="Hi"
             android:textColor="@color/Login_Title"
-            android:textSize="24sp"
+            android:textSize="24dp"
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toTopOf="parent" />-->
@@ -73,7 +73,7 @@
             android:paddingRight="24dp"
             android:text="Stranger"
             android:textColor="@color/Login_Title"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/user_profile"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -125,7 +125,7 @@
                 android:textFontWeight="800"
                 android:textColor="#DD2C00"
                 android:textStyle="bold"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 

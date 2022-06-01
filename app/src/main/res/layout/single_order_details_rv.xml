@@ -39,7 +39,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Jerk Jackfruit"
                 android:textColor="@color/Register_Title"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintStart_toEndOf="@+id/singleOrder_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +52,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Qty : 2"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/singleOrder_img"
                 app:layout_constraintTop_toBottomOf="@+id/singleOrder_name" />
 
@@ -65,7 +65,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="$20"
                 android:textColor="#E80937"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

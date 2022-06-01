@@ -32,21 +32,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textFontWeight="800"
         android:text="@string/OTP_subTitle"
         android:textColor="@color/Login_subTitle"
+        android:textFontWeight="800"
         android:textSize="@dimen/OTP_subTitle"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/otps"

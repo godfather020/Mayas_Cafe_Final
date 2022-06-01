@@ -48,7 +48,7 @@
             android:text="07:30\nAM"
             android:elevation="8dp"
             android:fontFamily="@font/montserrat_semibold"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:textAlignment="center"
             android:textColor="#363853" />
 
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Maya's Garden"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="#363853"
             android:layout_marginTop="16dp"
             android:layout_marginStart="100dp"
@@ -66,10 +66,10 @@
 
         <TextView
             android:id="@+id/notiyes_body"
-            android:layout_width="230dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugia..."
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textFontWeight="800"
             android:textColor="@color/black"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="05-25-2022"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="12dp"
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textFontWeight="800"
             android:layout_marginStart="20dp"

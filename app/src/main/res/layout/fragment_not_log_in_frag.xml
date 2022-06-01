@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Please Login/Register to access this."
-        android:textSize="24sp"
+        android:textSize="24dp"
         android:layout_margin="16dp"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat_medium"

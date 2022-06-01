@@ -42,7 +42,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="#457485451"
                 android:textColor="@color/Register_Title"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 app:layout_constraintStart_toEndOf="@+id/single_order_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +57,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +71,7 @@
                 android:text="Number of Items  5"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="12sp"
+                android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/single_order_img"
                 app:layout_constraintTop_toBottomOf="@+id/singleOrder_num" />
 
@@ -89,7 +89,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -103,7 +103,7 @@
                 android:text="Placed at"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:layout_constraintStart_toEndOf="@+id/singleOrder_time"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -120,7 +120,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textFontWeight="800"
-                android:textSize="11sp"
+                android:textSize="11dp"
                 app:layout_constraintEnd_toStartOf="@+id/singleOrder_pick_txt"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -134,7 +134,7 @@
                 android:layout_marginEnd="42dp"
                 android:textColor="@color/black"
                 android:textFontWeight="800"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
