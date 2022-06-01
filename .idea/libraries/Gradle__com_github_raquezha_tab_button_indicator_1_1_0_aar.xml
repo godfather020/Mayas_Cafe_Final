@@ -1,9 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.raquezha:tab-button-indicator:1.1.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/35fcb58c0a06fbc5b8db2414cec06c0a/transformed/jetified-tab-button-indicator-1.1.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/35fcb58c0a06fbc5b8db2414cec06c0a/transformed/jetified-tab-button-indicator-1.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/35fcb58c0a06fbc5b8db2414cec06c0a/transformed/jetified-tab-button-indicator-1.1.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3cb81174c1c2f9360bb5aa1ea4cd34af/transformed/jetified-tab-button-indicator-1.1.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3cb81174c1c2f9360bb5aa1ea4cd34af/transformed/jetified-tab-button-indicator-1.1.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3cb81174c1c2f9360bb5aa1ea4cd34af/transformed/jetified-tab-button-indicator-1.1.0/AndroidManifest.xml" />

@@ -74,7 +74,7 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 .load(Constants.UserProduct_Path + foodModels.get(position).getFoodHeading())
                 .into(holder.food_img);
 
-        holder.foodItems.setText("Quantity x"+String.valueOf(foodModels.get(position).getFoodImg1()));
+        holder.foodItems.setText("Size "+String.valueOf(foodModels.get(position).getFoodSize()));
         holder.foodCount.setText(String.valueOf(foodModels.get(position).getFoodImg1()));
 
         holder.foodPrice.setText("$"+Integer.valueOf(foodModels.get(position).getFoodPrice())*foodModels.get(position).getFoodImg1());
@@ -93,6 +93,7 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 Constants.foodImg.remove(holder.getAdapterPosition());
                 Constants.foodPrice.remove(holder.getAdapterPosition());
                 Constants.foodQuantity.remove(holder.getAdapterPosition());
+                Constants.foodSize.remove(holder.getAdapterPosition());
 
                 Constants.cart_totalItems -= 1;
 

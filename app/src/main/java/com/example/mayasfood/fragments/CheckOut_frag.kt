@@ -229,7 +229,7 @@ class CheckOut_frag : Fragment() {
         }
 
         for (i in Constants.foodName.indices) {
-            recycleView_models.add(RecycleView_Model(Constants.foodName[i], Constants.foodImg[i], Constants.foodPrice[i].toString(), Constants.foodQuantity[i]))
+            recycleView_models.add(RecycleView_Model(Constants.foodSize[i], Constants.foodName[i], Constants.foodImg[i], Constants.foodPrice[i].toString(), Constants.foodQuantity[i]))
 
             Log.d("indiimage1", Constants.foodName[i] + Constants.foodImg[i] + Constants.foodPrice[i].toString() + Constants.foodQuantity[i])
 
@@ -301,6 +301,7 @@ class CheckOut_frag : Fragment() {
         Constants.foodQuantity.clear()
         Constants.foodPrice.clear()
         Constants.foodImg.clear()
+        Constants.foodSize.clear()
 
         Constants.subTotal = 0
 

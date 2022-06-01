@@ -47,7 +47,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
         for (i in Constants.foodId.indices) {
 
             //val orderItems = ArrayList<OrderItems>()
-            val orderItems1 = OrderItems(Constants.foodId[i].toString(), Constants.foodPrice[i].toString(), "M", Constants.foodQuantity[i].toString(), "1")
+            val orderItems1 = OrderItems(Constants.foodId[i].toString(), Constants.foodPrice[i].toString(), Constants.foodSize[i], Constants.foodQuantity[i].toString(), "1")
 
             /*orderItems1.noItems = Constants.foodQuantity[i].toString()
             orderItems1.productId = Constants.foodId[i].toString()
@@ -57,7 +57,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
 
             //orderItems.addAll(i , listOf(orderItems1))
 
-            requestOrderdetails.orderItems.add(i, orderItems1)
+            requestOrderdetails.orderItems.add(orderItems1)
 
             Log.d("orderItem", Constants.foodId[i].toString())
             Log.d("orderItem", requestOrderdetails.amount.toString())

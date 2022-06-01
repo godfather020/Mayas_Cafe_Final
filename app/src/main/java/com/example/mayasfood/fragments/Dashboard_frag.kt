@@ -46,6 +46,7 @@ class Dashboard_frag : Fragment() {
     var popularFoodImg = ArrayList<String>()
     var popularFoodIsFav = ArrayList<Int>()
     var popularOfferAmt = ArrayList<String>()
+    var popularFoodSize = ArrayList<String>()
     var restaurantFoodName = ArrayList<String>()
     var restaurantFoodPrice = ArrayList<String>()
     var restaurantFoodImg = ArrayList<String>()
@@ -54,6 +55,7 @@ class Dashboard_frag : Fragment() {
     var restaurantFoodRating = ArrayList<String>()
     var restaurantFoodIsFav = ArrayList<Int>()
     var restaurantOfferAmt = ArrayList<String>()
+    var restaurantFoodSize = ArrayList<String>()
     lateinit var recyclerView : RecyclerView
     lateinit var recyclerView3 : RecyclerView
     lateinit var recyclerView2 : RecyclerView
@@ -281,6 +283,28 @@ class Dashboard_frag : Fragment() {
 
                             popularOfferAmt.add(i , "0")
                         }
+                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!!.size == 1){
+
+                            popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
+                        }
+                        else{
+
+                            for (j in it.getData()!!.ListpopularproductResponce!![i].Productprices!!.indices) {
+
+                                if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![j].productsize.equals(
+                                        "M"
+                                    )
+                                ) {
+                                    popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![j].productsize.toString())
+                                }
+                            }
+
+                            if (popularFoodSize.isEmpty()){
+
+                                popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
+                            }
+
+                        }
                     }
 
                     for (i in it.getData()!!.ListrestaurantproductResponce!!.indices) {
@@ -328,6 +352,29 @@ class Dashboard_frag : Fragment() {
 
                             restaurantOfferAmt.add(i, "0")
                         }
+
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1){
+
+                            restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
+                        }
+                        else{
+
+                            for (j in it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.indices) {
+
+                                if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![j].productsize.equals(
+                                        "M"
+                                    )
+                                ) {
+                                    restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![j].productsize.toString())
+                                }
+                            }
+
+                            if (restaurantFoodSize.isEmpty()){
+
+                                restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
+                            }
+
+                        }
                     }
 
                     for (i in it.getData()!!.ListcategoryResponce!!.indices) {
@@ -363,6 +410,7 @@ class Dashboard_frag : Fragment() {
         for (i in popularFoodName.indices) {
             recycleView_models1.add(
                 RecycleView_Model(
+                    popularFoodSize[i],
                     popularOfferAmt[i],
                     popularFoodName[i],
                     popularFoodPrice[i],
@@ -383,6 +431,7 @@ class Dashboard_frag : Fragment() {
         for (i in restaurantFoodName.indices) {
             recycleView_models2.add(
                 RecycleView_Model(
+                    restaurantFoodSize[i],
                     restaurantOfferAmt[i],
                     restaurantFoodName[i],
                     restaurantFoodPrice[i],

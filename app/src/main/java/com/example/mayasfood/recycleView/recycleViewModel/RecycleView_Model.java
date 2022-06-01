@@ -12,7 +12,7 @@ public class RecycleView_Model {
     private String foodImg, stars;
     private int foodImg1, isFav;
     private String runOrder_num , runOrder_total, runOrder_pickup, runOrder_create, runOrder_Quantity, runOrder_status,
-            runOrder_date, orderRating, orderComment, order_id;
+            runOrder_date, orderRating, orderComment, order_id, foodSize;
     String runOrder_img, offerAmt;
 
     public RecycleView_Model(String orderId ,String runOrder_num, String runOrder_total, String runOrder_pickup, String runOrder_create, String runOrder_Quantity, String runOrder_status, String runOrder_date, String runOrder_img) {
@@ -47,6 +47,14 @@ public class RecycleView_Model {
         this.foodImg1 = foodImg;
     }
 
+    public RecycleView_Model(String foodSize, String foodName, String foodHeading, String foodPrice, int foodImg) {
+        this.foodName = foodName;
+        this.foodHeading = foodHeading;
+        this.foodPrice = foodPrice;
+        this.foodImg1 = foodImg;
+        this.foodSize = foodSize;
+    }
+
     public RecycleView_Model(String offerAmt, String foodName, String foodPrice, String productId, String foodImg, String stars) {
         this.foodName = foodName;
         this.foodPrice = foodPrice;
@@ -62,6 +70,17 @@ public class RecycleView_Model {
         this.productId = productId;
         this.foodImg = foodImg;
         this.stars = stars;
+    }
+
+    public RecycleView_Model(String foodSize, String offerAmt, String foodName, String foodPrice, String productId, String foodImg, String stars, int isFav) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.productId = productId;
+        this.foodImg = foodImg;
+        this.stars = stars;
+        this.isFav = isFav;
+        this.offerAmt = offerAmt;
+        this.foodSize = foodSize;
     }
 
     public RecycleView_Model(String offerAmt, String foodName, String foodPrice, String productId, String foodImg, String stars, int isFav) {
@@ -132,6 +151,14 @@ public class RecycleView_Model {
 
     public void setRunOrder_pickup(String runOrder_pickup) {
         this.runOrder_pickup = runOrder_pickup;
+    }
+
+    public String getFoodSize() {
+        return foodSize;
+    }
+
+    public void setFoodSize(String foodSize) {
+        this.foodSize = foodSize;
     }
 
     public String getRunOrder_create() {

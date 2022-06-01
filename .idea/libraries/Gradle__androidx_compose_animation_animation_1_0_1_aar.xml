@@ -1,16 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.compose.animation:animation:1.0.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/cdbd3617df8fe12e3221953c97eedd65/transformed/jetified-animation-1.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/cdbd3617df8fe12e3221953c97eedd65/transformed/jetified-animation-1.0.1/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/cdbd3617df8fe12e3221953c97eedd65/transformed/jetified-animation-1.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3e37d83f14b846d4c9fe76adaefd3a76/transformed/jetified-animation-1.0.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/3e37d83f14b846d4c9fe76adaefd3a76/transformed/jetified-animation-1.0.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/3e37d83f14b846d4c9fe76adaefd3a76/transformed/jetified-animation-1.0.1/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.compose.animation/animation/1.0.1/e6e8324157b87ff500fa6e0de4a9272f5bdc37ba/animation-1.0.1-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.animation/animation/1.0.1/e6e8324157b87ff500fa6e0de4a9272f5bdc37ba/animation-1.0.1-sources.jar!/" />
     </SOURCES>
   </library>

@@ -11,15 +11,12 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/b607eb4b56521579beeb162567ebf21b/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/494c80a0a3c2faba7283dbe8baa8f74d/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/60c48dda7fde1665af5275bb15fc9386/transformed/jetified-play-services-stats-17.0.2/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5835879e08b315af5b1bba6a140f2612/transformed/jetified-play-services-stats-17.0.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5835879e08b315af5b1bba6a140f2612/transformed/jetified-play-services-stats-17.0.2/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5835879e08b315af5b1bba6a140f2612/transformed/jetified-play-services-stats-17.0.2/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-stats/17.0.2/c0d58b8efa926b2c607984c54fb3d274490badd1/play-services-stats-17.0.2-javadoc.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-stats/17.0.2/c0d58b8efa926b2c607984c54fb3d274490badd1/play-services-stats-17.0.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />

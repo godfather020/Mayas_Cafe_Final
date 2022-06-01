@@ -50,6 +50,8 @@ class SingleItem_frag : Fragment() {
     lateinit var auth: FirebaseAuth
     var productImg = ""
     lateinit var orgPrice : TextView
+    var foodSize = ""
+    var sameFood = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,29 +162,45 @@ class SingleItem_frag : Fragment() {
         singleItem_addToCart.setOnClickListener {
 
             //Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
+            val size = Constants.foodName.size
 
             if (Constants.foodName.contains(
                     singleItem_name.text
-                )
+                ) && Constants.foodSize.contains(foodSize)
             ) {
                 for (j in Constants.foodName.indices) {
                     if (Constants.foodName[j].matches(
                             Regex(singleItem_name.text.toString())
-                        )
+                        ) && Constants.foodSize[j].matches(Regex(foodSize))
                     ) {
                         val q = Constants.foodQuantity[j]
                         Log.d("foodQ", (q + 1).toString())
                         //Constants.foodQuantity.add(j, 1 + Constants.q);
                         Constants.foodQuantity[j] = q + 1
                         dashBoard.setCartCounter()
+                        //sameFood = 1
                     }
                 }
+                /*if (size == Constants.foodName.size){
+
+                    Constants.foodId.add(
+                        Integer.valueOf(Constants.productID)
+                    )
+                    val itemCount = singleItem_num.text.toString()
+                    Constants.foodSize.add(foodSize)
+                    Constants.foodQuantity.add(itemCount.toInt())
+                    Constants.foodImg.add(productImg)
+                    Constants.foodName.add(singleItem_name.text.toString())
+                    Constants.foodPrice.add(Integer.valueOf(singleItem_price.text.toString().substring(1,singleItem_price.text.length)))
+                    Constants.cart_totalItems = Constants.foodId.size
+                }*/
+
             } else {
                 Constants.foodId.add(
                     Integer.valueOf(Constants.productID)
                 )
                 val itemCount = singleItem_num.text.toString()
-
+                Constants.foodSize.add(foodSize)
                 Constants.foodQuantity.add(itemCount.toInt())
                 Constants.foodImg.add(productImg)
                 Constants.foodName.add(singleItem_name.text.toString())
@@ -241,7 +259,7 @@ class SingleItem_frag : Fragment() {
                     }
 
                     val itemCount = singleItem_num.text.toString()
-
+                    foodSize = "S"
                     singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
                 }
                 else{
@@ -269,7 +287,7 @@ class SingleItem_frag : Fragment() {
                         productPrice = itemAmount[i]
                     }
                     val itemCount = singleItem_num.text.toString()
-
+                    foodSize = "M"
                     singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
                 }
                 else{
@@ -297,7 +315,7 @@ class SingleItem_frag : Fragment() {
                         productPrice = itemAmount[i]
                     }
                     val itemCount = singleItem_num.text.toString()
-
+                    foodSize = "L"
                     singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
                 }
                 else{
@@ -439,6 +457,8 @@ class SingleItem_frag : Fragment() {
 
             val size = itemSize.get(0)
 
+        Log.d("size", size)
+
             if (size.equals("S")) {
 
                 singleItem_radio_s.isChecked = true
@@ -460,7 +480,7 @@ class SingleItem_frag : Fragment() {
                     productPrice = itemAmount[0]
                 }
                 val itemCount = singleItem_num.text.toString()
-
+                foodSize = "S"
                 singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
 
             } else if (size.equals("M")) {
@@ -484,7 +504,7 @@ class SingleItem_frag : Fragment() {
                     productPrice = itemAmount[0]
                 }
                 val itemCount = singleItem_num.text.toString()
-
+                foodSize = "M"
                 singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
 
             } else {
@@ -508,12 +528,70 @@ class SingleItem_frag : Fragment() {
                     productPrice = itemAmount[0]
                 }
                 val itemCount = singleItem_num.text.toString()
-
+                foodSize = "L"
                 singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
 
             }
 
         if (itemSize.size > 1){
+
+            if (itemSize.size == 2){
+                val size = itemSize.get(1)
+                if (size.equals("M")) {
+
+                    singleItem_radio_s.isChecked = false
+                    singleItem_radio_r.isChecked = true
+                    singleItem_radio_l.isChecked = false
+                    singleItem_radio_s.isEnabled = false
+                    singleItem_radio_l.isEnabled = false
+
+                    orgPrice.text = "$"+itemAmount[1]
+                    singleItem_price.text = "$"+offerAmount[1]
+                    orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+                    var productPrice = "0"
+
+                    if (offerAmount.size != 0){
+                        productPrice = offerAmount[1]
+                    }
+                    else {
+                        productPrice = itemAmount[1]
+                    }
+                    val itemCount = singleItem_num.text.toString()
+                    foodSize = "M"
+                    singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
+
+                }
+            }
+            else{
+
+                val size = itemSize.get(2)
+                if (size.equals("M")) {
+                    Log.d("size", size)
+                    singleItem_radio_s.isChecked = false
+                    singleItem_radio_r.isChecked = true
+                    singleItem_radio_l.isChecked = false
+                    singleItem_radio_s.isEnabled = false
+                    singleItem_radio_l.isEnabled = false
+
+                    orgPrice.text = "$"+itemAmount[2]
+                    singleItem_price.text = "$"+offerAmount[2]
+                    orgPrice.paintFlags = orgPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+                    var productPrice = "0"
+
+                    if (offerAmount.size != 0){
+                        productPrice = offerAmount[2]
+                    }
+                    else {
+                        productPrice = itemAmount[2]
+                    }
+                    val itemCount = singleItem_num.text.toString()
+                    foodSize = "M"
+                    singleItem_total.text = "$"+(productPrice.toInt() * itemCount.toInt()).toString()
+
+                }
+            }
 
             singleItem_radio_s.isEnabled = true
             singleItem_radio_r.isEnabled = true

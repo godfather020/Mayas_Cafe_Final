@@ -123,7 +123,7 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
 
                     for (int j =0 ; j < Constants.foodName.size(); j++){
 
-                        if (Constants.foodName.get(j).matches(foodModels3.get(holder.getAdapterPosition()).getFoodName())){
+                        if (Constants.foodName.get(j).matches(foodModels3.get(holder.getAdapterPosition()).getFoodName()) && Constants.foodSize.get(j).matches(foodModels3.get(holder.getAdapterPosition()).getFoodSize())){
                             int q = Constants.foodQuantity.get(j);
                             Log.d("foodQ", String.valueOf(q + 1));
                             //Constants.foodQuantity.add(j, 1 + Constants.q);
@@ -133,12 +133,12 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
                     }
                 }
                 else {
-
+                    Constants.foodSize.add(foodModels3.get(holder.getAdapterPosition()).getFoodSize());
                     Constants.foodId.add(Integer.valueOf(foodModels3.get(holder.getLayoutPosition()).getProductId()));
                     Constants.foodQuantity.add(1);
                     Constants.foodImg.add(foodModels3.get(holder.getAdapterPosition()).getFoodImg());
                     Constants.foodName.add(foodModels3.get(holder.getAdapterPosition()).getFoodName());
-                    if (foodModels3.get(position).getOfferAmt() != "0") {
+                    if (foodModels3.get(holder.getAdapterPosition()).getOfferAmt() != "0") {
                         Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels3.get(holder.getAdapterPosition()).getOfferAmt())));
                     }
                     else {

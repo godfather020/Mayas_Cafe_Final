@@ -86,6 +86,8 @@ object Constants {
     @JvmField
     var foodQuantity = ArrayList<Int>()
     @JvmField
+    var foodSize = ArrayList<String>()
+    @JvmField
     var foodId = ArrayList<Int>()
     @JvmField
     var subTotal = 0
