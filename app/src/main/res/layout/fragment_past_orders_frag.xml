@@ -7,12 +7,39 @@
     android:layout_marginTop="62dp"
     tools:context=".fragments.PastOrders_frag">
 
+    <ImageView
+        android:id="@+id/noPast_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/ordermenu"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/noPast_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noPast_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="You don't have any Past Orders"
+        android:textColor="@color/black"
+        android:textSize="22dp"
+        android:visibility="gone"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pastOrder_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:paddingBottom="20dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

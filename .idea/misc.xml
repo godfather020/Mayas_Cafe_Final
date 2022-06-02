@@ -123,6 +123,7 @@
         <entry key="app/src/main/res/drawable/medium.xml" value="0.2895" />
         <entry key="app/src/main/res/drawable/medium__1_.xml" value="0.2895" />
         <entry key="app/src/main/res/drawable/medium__2_.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/medium__4_.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/medium_l_on.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/medium_off.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/medium_r_on.xml" value="0.2065" />
@@ -135,6 +136,7 @@
         <entry key="app/src/main/res/drawable/rectangle_117.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/rectangle_117__1_.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/search_anim.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/slide_up_anim.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/trash_2.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/vector__3_.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/vector__6_.xml" value="0.178" />
@@ -151,11 +153,11 @@
         <entry key="app/src/main/res/layout-small/activity_login.xml" value="1.2070484581497798" />
         <entry key="app/src/main/res/layout-sw600dp/activity_login.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout-v28/cart_details_rv.xml" value="0.45952677459526775" />
-        <entry key="app/src/main/res/layout-v28/fragment_check_out_frag.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-v28/fragment_check_out_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout-v28/fragment_dashboard_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout-v28/fragment_search_frag.xml" value="0.284375" />
         <entry key="app/src/main/res/layout-v28/fragment_user_profile_frag.xml" value="0.28541666666666665" />
-        <entry key="app/src/main/res/layout-v28/header.xml" value="0.9" />
+        <entry key="app/src/main/res/layout-v28/header.xml" value="1.1" />
         <entry key="app/src/main/res/layout-v28/past_order_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout-v28/running_order_rv.xml" value="0.3558341369334619" />
         <entry key="app/src/main/res/layout-v28/today_rv.xml" value="0.5" />
@@ -167,6 +169,8 @@
         <entry key="app/src/main/res/layout/bell_count.xml" value="1.1" />
         <entry key="app/src/main/res/layout/cart_count.xml" value="1.5" />
         <entry key="app/src/main/res/layout/cart_details_rv.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/checkout_time_payment.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/custom_item_add_toast.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_details_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_category_frag.xml" value="0.2864583333333333" />

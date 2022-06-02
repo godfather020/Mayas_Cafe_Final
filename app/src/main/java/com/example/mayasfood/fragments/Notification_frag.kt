@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -45,8 +46,11 @@ class Notification_frag : Fragment() {
     var notificationPrevious_id = ArrayList<String>()
     lateinit var  recyclerView: RecyclerView
     lateinit var recyclerView2: RecyclerView
+    lateinit var noNoty_txt : TextView
+    lateinit var noNoty_img : ImageView
     var today = 0
     var previous = 0
+    var noNoty = 1
     lateinit var today_txt: TextView
     lateinit var yesterday_txt : TextView
     lateinit var recycleView_adapter_N : RecycleView_Adapter_N
@@ -65,6 +69,9 @@ class Notification_frag : Fragment() {
 
         dashBoard.toolbar_const.setTitle("My Notification");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+
+        noNoty_img = view.findViewById(R.id.noNoty_img)
+        noNoty_txt = view.findViewById(R.id.noNoty_txt)
 
         dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
             override fun onMenuItemClick(item: MenuItem?): Boolean {
@@ -202,6 +209,23 @@ class Notification_frag : Fragment() {
                     notificationPrevious_id.clear()
                     notificationToday_id.clear()
 
+                    if (it.getData()!!.notifications!!.rows!!.isEmpty()){
+
+                        noNoty_txt.visibility = View.VISIBLE
+                        noNoty_img.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+                        recyclerView2.visibility = View.GONE
+                        noNoty = 1
+                    }
+                    else{
+
+                        noNoty_txt.visibility = View.GONE
+                        noNoty_img.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                        recyclerView2.visibility = View.VISIBLE
+                        noNoty = 0
+                    }
+
                     //val dateTime = it.getData()!!.notifications!!.rows!![0].createdAt.toString()
 
                     val todayDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
@@ -317,7 +341,13 @@ class Notification_frag : Fragment() {
 
         menu.getItem(1).setVisible(false)
         menu.getItem(0).setVisible(false)
-        menu.getItem(2).setVisible(true)
+        
+        if (noNoty == 1) {
+            menu.getItem(2).setVisible(true)
+        }
+        else{
+            menu.getItem(2).setVisible(false)
+        }
 
     }
 

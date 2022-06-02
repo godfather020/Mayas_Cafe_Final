@@ -5,7 +5,9 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,6 +22,7 @@ import com.example.mayasfood.fragments.ViewModels.Favorite_frag_ViewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_F
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
+import kotlin.time.Duration.Companion.milliseconds
 
 
 class Favorite_frag : Fragment() {
@@ -29,6 +32,8 @@ class Favorite_frag : Fragment() {
     lateinit var loading : ProgressBar
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var recyclerView : RecyclerView
+    lateinit var noFav_img : ImageView
+    lateinit var noFav_text : TextView
     var foodName = ArrayList<String>()
     var foodPrice = ArrayList<String>()
     var foodImg = ArrayList<String>()
@@ -50,6 +55,8 @@ class Favorite_frag : Fragment() {
 
         dashBoard.toolbar_const.setTitle("My Favorites");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
+        noFav_text = view.findViewById(R.id.noFav_txt)
+        noFav_img = view.findViewById(R.id.noFav_img)
 
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
         loading = view.findViewById(R.id.loading_fav)
@@ -83,6 +90,19 @@ class Favorite_frag : Fragment() {
                     foodId.clear()
                     foodOfferAmt.clear()
                     foodSize.clear()
+
+                    if (it.getData()!!.FavoriteListResponce!!.isEmpty()){
+
+                        noFav_img.visibility = View.VISIBLE
+                        noFav_text.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+                    }
+                    else{
+
+                        noFav_img.visibility = View.GONE
+                        noFav_text.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                    }
 
                     for (i in it.getData()!!.FavoriteListResponce!!.indices){
 

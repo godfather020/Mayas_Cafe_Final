@@ -60,6 +60,7 @@ public class GetStart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                getSharedPreferences("GetStartFirst", MODE_PRIVATE).edit().putBoolean("FirstTime", true).apply();
                     Intent intent = new Intent(GetStart.this, Login.class);
                     startActivity(intent);
                     finish();

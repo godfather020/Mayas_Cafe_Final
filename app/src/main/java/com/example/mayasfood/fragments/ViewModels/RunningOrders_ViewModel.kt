@@ -40,6 +40,21 @@ class RunningOrders_ViewModel : ViewModel() {
         return commonResponse
     }
 
+    fun getAllOrders(activity : Fragment, branchId : String): MutableLiveData<Response_Common> {
+
+        this.activity = activity
+
+        //this.loading = loading.findViewById(R.id.loading_runOrder)
+
+        val requestBranch : Request_Branch = Request_Branch()
+
+        requestBranch.branchId = branchId;
+
+        getAllOrdersAPI(requestBranch)
+
+        return commonResponse
+    }
+
     private fun getAllOrdersAPI(param: Request_Branch) {
 
         val retrofitInstance = RetrofitInstance()

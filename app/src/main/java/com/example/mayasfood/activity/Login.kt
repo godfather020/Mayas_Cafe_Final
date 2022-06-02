@@ -10,7 +10,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
 import com.example.mayasfood.R
@@ -25,7 +24,6 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.hbb20.CountryCodePicker
 import com.hbb20.CountryCodePicker.OnCountryChangeListener
 import java.util.concurrent.TimeUnit
-import kotlin.system.exitProcess
 
 class Login : AppCompatActivity() {
     private var isBackPressed = false
@@ -63,6 +61,15 @@ class Login : AppCompatActivity() {
         Log.d("cc", Constants.cc)
 
         sharedPreferencesUtil = SharedPreferencesUtil(this)
+
+        if(getSharedPreferences("GetStartFirst", MODE_PRIVATE).getBoolean("FirstTime", false)){
+
+            back_img.visibility = View.GONE
+        }
+        else{
+
+            back_img.visibility = View.VISIBLE
+        }
 
         skip.setOnClickListener {
 
@@ -123,7 +130,7 @@ class Login : AppCompatActivity() {
 
                 code = credential.smsCode
 
-                if (null == credential) {
+                if (null == credential.smsCode) {
                     //loginUser()
 
                     Log.d("OTP0", "null")
@@ -176,7 +183,7 @@ class Login : AppCompatActivity() {
 
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber)      // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setTimeout(30L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
             .build()

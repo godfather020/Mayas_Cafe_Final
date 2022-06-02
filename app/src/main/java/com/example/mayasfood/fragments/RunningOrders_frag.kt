@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +28,9 @@ class RunningOrders_frag : Fragment() {
     lateinit var  recyclerView: RecyclerView
     lateinit var viewModel : RunningOrders_ViewModel
     lateinit var loading : ProgressBar
+    lateinit var noOrders_img : ImageView
+    lateinit var noOrder_txt : TextView
+    var noOrders = 1
     var runOrder_num = ArrayList<String>()
     var runOrder_total = ArrayList<String>()
     var runOrder_pickup = ArrayList<String>()
@@ -54,6 +59,8 @@ class RunningOrders_frag : Fragment() {
 
         loading = view.findViewById(R.id.loading_runOrder)
         loading.visibility = View.VISIBLE
+        noOrders_img = view.findViewById(R.id.noOrder_img)
+        noOrder_txt = view.findViewById(R.id.noOrder_txt)
 
         recyclerView = view.findViewById(R.id.runOrder_rv)
 
@@ -108,12 +115,25 @@ class RunningOrders_frag : Fragment() {
                             runOrder_pickup.add(pickTime)
                             runOrder_createdAt.add(createdTime)
                             runOrder_date.add(createdDate)
+                            noOrders = 0
 
                         }
 
                     }
 
                     loading.visibility = View.GONE
+                    if(noOrders == 1){
+
+                        recyclerView.visibility = View.GONE
+                        noOrder_txt.visibility = View.VISIBLE
+                        noOrders_img.visibility = View.VISIBLE
+                    }
+                    else{
+
+                        recyclerView.visibility = View.VISIBLE
+                        noOrder_txt.visibility = View.GONE
+                        noOrders_img.visibility = View.GONE
+                    }
                 }
 
                 setUpRvModel()

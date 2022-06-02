@@ -18,8 +18,8 @@
 
         <ImageButton
             android:id="@+id/close_frag"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_margin="16dp"
             android:backgroundTint="@color/black"
             android:background="@drawable/ic_baseline_arrow_back_24"
@@ -30,12 +30,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="21dp"
             android:text="Back"
             android:fontFamily="@font/montserrat_bold12"
             android:textColor="@color/black"
-            android:textSize="22dp"
+            android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/close_frag"
             app:layout_constraintTop_toTopOf="parent" />
 

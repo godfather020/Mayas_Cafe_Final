@@ -54,11 +54,12 @@
             android:exported="false" />
         <activity
             android:name=".activity.OTP"
-            android:exported="false" >
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.Registration"
             android:exported="false"

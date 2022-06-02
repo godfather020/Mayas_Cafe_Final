@@ -2,12 +2,17 @@ package com.example.mayasfood.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.Settings
+import android.provider.Telephony
+import android.telephony.SmsMessage
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -15,6 +20,7 @@ import android.view.VerifiedInputEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.lottry.utils.shared_prefrence.SharedPreferencesUtil
@@ -29,6 +35,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import java.util.*
 import java.util.concurrent.TimeUnit
+import java.util.regex.Pattern
 
 class OTP : AppCompatActivity() {
 
@@ -54,7 +61,7 @@ class OTP : AppCompatActivity() {
     lateinit var userPhone : String
     lateinit var viewModel : OTP_ViewModel
     lateinit var loading : ProgressBar
-    lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    //lateinit var mCallback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var auth : FirebaseAuth
     lateinit var sharedPreferencesUtil: SharedPreferencesUtil
 
@@ -95,6 +102,8 @@ class OTP : AppCompatActivity() {
 
         countdownTimer()
 
+        receiveSms()
+
         auth = FirebaseAuth.getInstance()
 
         //val code = intent.getStringExtra("code").toString()
@@ -121,6 +130,7 @@ class OTP : AppCompatActivity() {
                 if (otp6.getText().toString().length > 0) {
                     val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(otp6.getWindowToken(), 0)
+                    //this@OTP.submit.callOnClick()
                 }
             }
         })
@@ -351,7 +361,7 @@ class OTP : AppCompatActivity() {
 
     private fun sendVerificationCode(phoneNumber: String) {
         loading.visibility = View.GONE
-        mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        val mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
@@ -401,7 +411,7 @@ class OTP : AppCompatActivity() {
                 verificationId: String,
                 token: PhoneAuthProvider.ForceResendingToken
             ) {
-
+                Log.d("user", "codeSent")
                 loading.visibility = View.GONE
 
                 /*val intent: Intent = Intent(this@Login, OTP::class.java)
@@ -410,9 +420,11 @@ class OTP : AppCompatActivity() {
             }
         }
 
+        Log.d("userPh", phoneNumber)
+
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber)      // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setTimeout(30L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this)                 // Activity (for callback binding)
             .setCallbacks(mCallback)          // OnVerificationStateChangedCallbacks
             .build()
@@ -431,6 +443,62 @@ class OTP : AppCompatActivity() {
         Toast.makeText(this@OTP, "Press again to exit", Toast.LENGTH_SHORT).show()
         isBackPressed = true
         Handler().postDelayed({ isBackPressed = false }, 2000)
+    }
+
+    private fun receiveSms() {
+        val br = object : BroadcastReceiver(){
+            @RequiresApi(Build.VERSION_CODES.N)
+            override fun onReceive(context: Context?, intent: Intent?) {
+
+                resend.visibility = View.GONE
+                timer.visibility = View.GONE
+
+                for (sms : SmsMessage in Telephony.Sms.Intents.getMessagesFromIntent(intent)){
+                    //Toast.makeText(applicationContext,sms.displayMessageBody, Toast.LENGTH_LONG).show()
+                    val smsBody = sms.messageBody
+                    Log.d("msgBody", smsBody)
+                    getOtpFromMessage(smsBody)
+                    //val getOtp = smsBody.split("Your OTP: ").toTypedArray()[1]
+                    //Log.d("otp", getOtp)
+                    //setOtp(getOtp)
+                }
+            }
+        }
+        registerReceiver(br, IntentFilter("android.provider.Telephony.SMS_RECEIVED"))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun getOtpFromMessage(message: String) {
+        // This will match any 4 digit number in the message
+        val pattern = Pattern.compile("(|^)\\d{6}")
+        val matcher = pattern.matcher(message)
+        if (matcher.find()) {
+            Log.d("Otp", matcher.group(0))
+            //setOtp(otp = matcher.group(0))
+            val code =  matcher.group(0)
+
+            val sotp1 = code!!.substring(0, 1)
+            Log.d("o1", sotp1)
+            val sotp2 = code.substring(1, 2)
+            Log.d("o2", sotp2)
+            val sotp3 = code.substring(2, 3)
+            Log.d("o3", sotp3)
+            val sotp4 = code.substring(3, 4)
+            Log.d("o4", sotp4)
+            val sotp5 = code.substring(4, 5)
+            Log.d("o5", sotp5)
+            val sotp6 = code.substring(5)
+            Log.d("o6", sotp6)
+
+            otp1.setText(sotp1)
+            otp2.setText(sotp2)
+            otp3.setText(sotp3)
+            otp4.setText(sotp4)
+            otp5.setText(sotp5)
+            otp6.setText(sotp6)
+
+            //this.submit.callOnClick()
+        }
     }
 
 }

@@ -2,12 +2,13 @@ package com.example.mayasfood.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.graphics.Bitmap
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.animation.TranslateAnimation
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -16,19 +17,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.borax12.materialdaterangepicker.time.RadialPickerLayout
+import com.borax12.materialdaterangepicker.time.TimePickerDialog
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
+import com.example.mayasfood.constants.CustomTimePicker
 import com.example.mayasfood.fragments.ViewModels.CheckOut_frag_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
-import com.google.zxing.BarcodeFormat
-import com.google.zxing.WriterException
-import com.google.zxing.qrcode.QRCodeWriter
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.lang.reflect.Field
+import java.util.*
 
 
-class CheckOut_frag : Fragment() {
+class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
+    android.app.TimePickerDialog.OnTimeSetListener {
 
     lateinit var checkOut_TotalItems : TextView
     lateinit var checkOut_subTotal : TextView
@@ -51,6 +56,9 @@ class CheckOut_frag : Fragment() {
     lateinit var viewModel : CheckOut_frag_ViewModel
     lateinit var dashBoard: DashBoard
     lateinit var barCodeImg : ImageView
+    lateinit var pickUp : TextView
+    lateinit var timePicker : TimePicker
+    var mIs24HourView  = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,6 +89,7 @@ class CheckOut_frag : Fragment() {
         cart_empty_txt = view.findViewById(R.id.cart_empty_txt)
         cart_empty_btn = view.findViewById(R.id.cart_empty_btn)
         loading = view.findViewById(R.id.loading_checkOut)
+
 
         dashBoard.toolbar_const.setTitle("My Cart")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
@@ -113,9 +122,25 @@ class CheckOut_frag : Fragment() {
 
         checkOut.setOnClickListener {
 
-            loading.visibility = View.VISIBLE
-            sendOrder()
+            //loading.visibility = View.VISIBLE
+            //sendOrder()
             showBarCode()
+            //dashBoard.toolbar_const.visibility = View.GONE
+            //view.slideUp(1000)
+            // Prepare the View for the animation
+            //view1.setAlpha(0.0f);
+
+            /*val animate = TranslateAnimation(
+                0F,  // fromXDelta
+                0F,  // toXDelta
+                view.height.toFloat(),  // fromYDelta
+                0F
+            ) // toYDelta
+
+            animate.duration = 500
+            animate.fillAfter = true
+            view1.startAnimation(animate)*/
+
         }
 
         cart_empty_btn.setOnClickListener {
@@ -133,18 +158,49 @@ class CheckOut_frag : Fragment() {
 
         val activity = context as AppCompatActivity
 
-        val view = activity.layoutInflater.inflate(R.layout.barcode_popup, null)
+        val view = activity.layoutInflater.inflate(R.layout.checkout_time_payment, null)
 
         dialog.setContentView(view)
+
+        dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation;
         /*if (dialog.window != null) {
             dialog.window!!.setLayout(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         }*/
+        dialog.window!!.setGravity(Gravity.BOTTOM)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        barCodeImg = view.findViewById(R.id.order_barcode1)
+        val close_btn = view.findViewById<Button>(R.id.close_btn)
+        pickUp = view.findViewById(R.id.pickup_time)
+
+
+        close_btn.setOnClickListener {
+
+            dialog.cancel()
+        }
+
+        pickUp.setOnClickListener {
+
+            //CustomTimePickerDialog(requireContext(), this@CheckOut_frag, 12, 60, false)
+
+            val customTimePicker : CustomTimePicker = CustomTimePicker(requireContext(), this@CheckOut_frag, 12, 60, false)
+
+            customTimePicker.show()
+            //customTimePicker.onAttachedToWindow()
+
+            /*val now: Calendar = Calendar.getInstance()
+            val tpd: TimePickerDialog = TimePickerDialog.newInstance(
+                this@CheckOut_frag,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                false
+            )
+            tpd.show((activity as DashBoard).fragmentManager, "TimePicker")*/
+        }
+
+        /*barCodeImg = view.findViewById(R.id.order_barcode1)
         val closeQr = view.findViewById<Button>(R.id.close_qr)
 
         val writer = QRCodeWriter()
@@ -176,7 +232,7 @@ class CheckOut_frag : Fragment() {
         closeQr.setOnClickListener {
 
             dialog.cancel()
-        }
+        }*/
 
         dialog.show()
     }
@@ -309,4 +365,93 @@ class CheckOut_frag : Fragment() {
 
         setUpModelRv()
     }
+
+    override fun onTimeSet(
+        view: RadialPickerLayout?,
+        hourOfDay: Int,
+        minute: Int,
+        hourOfDayEnd: Int,
+        minuteEnd: Int
+    ) {
+        val hourString = if (hourOfDay < 10) "0$hourOfDay" else "" + hourOfDay
+        val minuteString = if (minute < 10) "0$minute" else "" + minute
+        val hourStringEnd = if (hourOfDayEnd < 10) "0$hourOfDayEnd" else "" + hourOfDayEnd
+        val minuteStringEnd = if (minuteEnd < 10) "0$minuteEnd" else "" + minuteEnd
+        val time =
+            "You picked the following time: From - " + hourString + "h" + minuteString + " To - " + hourStringEnd + "h" + minuteStringEnd
+
+        pickUp.setText(time)
+
+    }
+
+    fun CustomTimePickerDialog(
+        context: Context?, callBack: android.app.TimePickerDialog.OnTimeSetListener?,
+        hourOfDay: Int, minute: Int, is24HourView: Boolean
+    ) {
+        //super(context, context, hourOfDay, minute, is24HourView)
+        mIs24HourView = is24HourView
+    }
+
+    fun onAttachedToWindow() {
+
+        super.onAttach(requireContext())
+        //super.onAttachedToWindow()
+        try {
+            val classForid = Class.forName("com.android.internal.R\$id")
+            val timePickerField: Field = classForid.getField("timePicker")
+            this.timePicker = requireView().findViewById(
+                timePickerField
+                    .getInt(null)
+            ) as TimePicker
+            val field: Field = classForid.getField("hour")
+            val mHourSpinner = timePicker
+                .findViewById(field.getInt(null)) as NumberPicker
+            if (mIs24HourView) {
+                mHourSpinner.minValue = 2
+                mHourSpinner.maxValue = 20
+            } else {
+                val amPm1: Field = classForid.getField("amPm")
+                mHourSpinner.minValue = 2
+                val amPm = timePicker
+                    .findViewById(amPm1.getInt(null)) as NumberPicker
+                amPm.setOnValueChangedListener { np1, oldVal, newVal ->
+                    if (newVal == 0) { // case AM
+                        mHourSpinner.minValue = 2
+                        mHourSpinner.maxValue = 12
+                    } else { // case PM
+                        mHourSpinner.minValue = 1
+                        mHourSpinner.maxValue = 8
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
+    fun View.slideUp(duration: Int = 500) {
+        visibility = View.VISIBLE
+        val animate = TranslateAnimation(0f, 0f, this.height.toFloat(), 0f)
+        animate.duration = duration.toLong()
+        animate.fillAfter = true
+        this.startAnimation(animate)
+    }
+
+    fun View.slideDown(duration: Int = 500) {
+        visibility = View.VISIBLE
+        val animate = TranslateAnimation(0f, 0f, 0f, this.height.toFloat())
+        animate.duration = duration.toLong()
+        animate.fillAfter = true
+        this.startAnimation(animate)
+    }
+
+    override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
+
+        val hourString = p1.toString()
+        val minuteString = p2.toString()
+
+        pickUp.setText(hourString + ":" + minuteString)
+    }
 }
+

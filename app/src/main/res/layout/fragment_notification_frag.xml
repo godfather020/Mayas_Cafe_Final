@@ -7,10 +7,35 @@
     android:backgroundTint="#F0E5E5"
     tools:context=".fragments.Notification_frag">
 
+    <ImageView
+        android:id="@+id/noNoty_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/notificationmenu"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/noNoty_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noNoty_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="You don't have any Notification's"
+        android:textColor="@color/black"
+        android:textSize="22dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,6 +65,7 @@
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="22dp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/today_txt"
@@ -67,6 +93,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="22dp"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -71,7 +71,11 @@ public class Splash extends AppCompatActivity {
 
                 Log.d("userPhone", userPhone);
 
-                if (currentUser != null) {
+                Intent intent = new Intent(Splash.this, DashBoard.class);
+                startActivity(intent);
+                finish();
+
+                /*if (currentUser != null) {
 
                     if (currentUser.getPhoneNumber().equals(userPhone)) {
 
@@ -89,11 +93,18 @@ public class Splash extends AppCompatActivity {
                     Intent intent = new Intent(Splash.this, GetStart.class);
                     startActivity(intent);
                     finish();
-                }
+                }*/
             }
             else {
 
-                intent = new Intent(Splash.this, GetStart.class);
+                if (getSharedPreferences("GetStartFirst", MODE_PRIVATE).getBoolean("FirstTime", false)){
+
+                    intent = new Intent(Splash.this, Login.class);
+                }
+                else {
+
+                    intent = new Intent(Splash.this, GetStart.class);
+                }
                 startActivity(intent);
                 finish();
             }

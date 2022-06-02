@@ -1,5 +1,7 @@
 package com.example.mayasfood.fragments
 
+import android.app.Application
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
@@ -16,6 +18,7 @@ import com.example.mayasfood.fragments.ViewModels.SingleItem_viewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import rx.schedulers.Schedulers.test
 
 
 class SingleItem_frag : Fragment() {
@@ -52,6 +55,7 @@ class SingleItem_frag : Fragment() {
     lateinit var orgPrice : TextView
     var foodSize = ""
     var sameFood = 0
+    lateinit var layout: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +70,15 @@ class SingleItem_frag : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view : View =  inflater.inflate(R.layout.fragment_single_item_frag, container, false)
+
+
+       /* val inflater = layoutInflater
+
+         layout = inflater.inflate(
+            R.layout.custom_item_add_toast,
+            view.findViewById(R.id.custom_toast) as ViewGroup?
+        )*/
+
 
         viewModel = ViewModelProvider(this).get(SingleItem_viewModel::class.java)
 
@@ -605,7 +618,8 @@ class SingleItem_frag : Fragment() {
 
         menu.getItem(0).setVisible(false)
         menu.getItem(1).setVisible(false)
-        menu.getItem(2).setVisible(true)
+        menu.getItem(2).setVisible(false)
+        menu.getItem(3).setVisible(true)
     }
 
 }

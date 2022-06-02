@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +29,8 @@ class PastOrders_frag : Fragment() {
     lateinit var  recyclerView: RecyclerView
     lateinit var viewModel : PastOrders_ViewModel
     lateinit var loading : ProgressBar
+    lateinit var noPast_img : ImageView
+    lateinit var noPast_txt : TextView
     var pastOrder_num = ArrayList<String>()
     var pastOrder_quantity = ArrayList<String>()
     var pastOrder_total = ArrayList<String>()
@@ -56,6 +60,8 @@ class PastOrders_frag : Fragment() {
         recyclerView = view.findViewById(R.id.pastOrder_rv)
         loading = view.findViewById(R.id.loading_past)
         loading.visibility = View.VISIBLE
+        noPast_img = view.findViewById(R.id.noPast_img)
+        noPast_txt = view.findViewById(R.id.noPast_txt)
 
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
@@ -77,6 +83,19 @@ class PastOrders_frag : Fragment() {
                 if (it.getSuccess()!!){
 
                     clearArrayLists()
+
+                    if (it.getData()!!.ListOrderResponce!!.isEmpty()){
+
+                        noPast_txt.visibility = View.VISIBLE
+                        noPast_img.visibility = View.VISIBLE
+                        recyclerView.visibility = View.GONE
+                    }
+                    else{
+
+                        noPast_txt.visibility = View.GONE
+                        noPast_img.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
+                    }
 
                     val sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
 
