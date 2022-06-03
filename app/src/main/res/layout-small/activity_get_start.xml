@@ -17,7 +17,7 @@
         android:textAlignment="center"
         android:textColor="@color/GetStart_Title"
         android:textSize="@dimen/GetStart_Title"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,8 +31,8 @@
         android:textAlignment="center"
         android:textColor="@color/GetStart_SubTitle"
         android:textSize="@dimen/GetStart_SubTitle"
-        android:textFontWeight="400"
-        android:textStyle="bold"
+
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -42,13 +42,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
+        android:fontFamily="@font/montserrat_light"
         android:text="@string/GetStart_Heading"
         android:textAlignment="center"
         android:textColor="@color/GetStart_Heading"
         android:textSize="@dimen/GetStart_Heading"
-        android:textFontWeight="600"
-        android:textStyle="normal"
+
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />

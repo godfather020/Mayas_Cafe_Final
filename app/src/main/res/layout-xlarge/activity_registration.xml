@@ -23,7 +23,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="96dp"
         android:src="@drawable/mask_group_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,12 +52,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Register_title"
+        android:text="Create New \nAccount"
         android:textColor="@color/Register_Title"
         android:textSize="@dimen/Login_title"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileImg_r" />
 
@@ -67,12 +67,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textFontWeight="800"
-        android:text="@string/Register_Subtitle"
+        android:fontFamily="@font/montserrat_light"
+        android:text="Join us and enjoy your food"
         android:textColor="@color/Login_subTitle"
+
         android:textSize="@dimen/Register_Subtitle"
-        android:textStyle="normal"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -87,16 +87,16 @@
         android:background="@drawable/custom_edit_text"
         android:drawableRight="@drawable/icon_feather_user"
         android:elevation="2dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:hint="@string/Register_userName"
+        android:fontFamily="@font/montserrat_light"
+        android:hint="Enter fullname or Email"
         android:maxLines="1"
         android:padding="16dp"
         android:textColor="@color/EditTxt_color"
-        android:textFontWeight="800"
+
         android:textSize="@dimen/Register_EditTxt"
-        android:textStyle="normal"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -122,16 +122,16 @@
             android:drawableEnd="@drawable/eva_phone_call_outline"
             android:ems="10"
             android:paddingEnd="20dp"
-            android:hint="@string/Register_userPhone"
+            android:hint="Enter mobile number"
             android:inputType="phone"
             android:maxLength="13"
             android:maxLines="1"
             android:padding="16dp"
             android:textColor="@color/EditTxt_color"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:textFontWeight="800"
+            android:fontFamily="@font/montserrat_light"
+
             android:textSize="@dimen/Register_EditTxt"
-            android:textStyle="normal"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -159,15 +159,15 @@
         android:id="@+id/signUp"
         android:layout_width="294dp"
         android:layout_height="45dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Register_ButtonTxt"
-        android:textAllCaps="false"
         android:elevation="8dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Sign Up"
+        android:textAllCaps="false"
         android:textColor="@color/Button_txt"
         android:textSize="@dimen/Button_txt"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_txt_r" />
@@ -181,7 +181,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/Register_skip"
         android:textSize="@dimen/Register_skip"
-        android:textStyle="normal"
+
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp"

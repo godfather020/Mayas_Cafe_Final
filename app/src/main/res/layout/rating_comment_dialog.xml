@@ -42,11 +42,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
+        android:fontFamily="@font/montserrat_light"
         android:text="Please rate your food"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textFontWeight="800"
+
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

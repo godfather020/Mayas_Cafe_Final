@@ -94,12 +94,14 @@ class Orders_frag : Fragment() {
                         if(it.getData()!!.ListOrderResponce!!.isEmpty()){
 
                             indicator.visibility = View.GONE
+                            vpSample.visibility = View.GONE
                             noOrder_txt.visibility = View.VISIBLE
                             noOrder_img.visibility = View.VISIBLE
                         }
                         else{
 
                             indicator.visibility = View.VISIBLE
+                            vpSample.visibility = View.VISIBLE
                             noOrder_txt.visibility = View.GONE
                             noOrder_img.visibility = View.GONE
                         }

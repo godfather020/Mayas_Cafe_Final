@@ -55,7 +55,7 @@
                 android:text="Accepted"
                 android:textAlignment="center"
                 android:textColor="#12971F"
-                android:textFontWeight="800"
+
                 android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -66,11 +66,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="28dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="27 April 2022"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/runOrder_status" />
@@ -81,10 +81,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Number of Items  5"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 app:layout_constraintStart_toEndOf="@+id/run_order_img"
                 app:layout_constraintTop_toBottomOf="@+id/runOrder_num" />
 
@@ -95,13 +95,13 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/ellipse_54"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:gravity="center"
                 android:text="10:45\nam"
                 android:elevation="8dp"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="11dp"
                 app:layout_constraintStart_toEndOf="@+id/run_order_img"
                 app:layout_constraintTop_toBottomOf="@+id/runOrder_quantity" />
@@ -112,10 +112,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="26dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Placed at"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="14dp"
                 app:layout_constraintStart_toEndOf="@+id/runOrder_time"
                 app:layout_constraintTop_toBottomOf="@+id/runOrder_quantity" />
@@ -127,12 +127,12 @@
                 android:layout_margin="16dp"
                 android:elevation="8dp"
                 android:background="@drawable/ellipse_54__1_"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:gravity="center"
                 android:text="11:00\nam"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textFontWeight="800"
+
                 android:textSize="11dp"
                 app:layout_constraintStart_toEndOf="@+id/runOrder_time_txt"
                 app:layout_constraintTop_toBottomOf="@+id/runOrder_quantity" />
@@ -143,10 +143,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="26dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Pickup at"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="14dp"
                 app:layout_constraintStart_toEndOf="@+id/runOrder_pickup"
                 app:layout_constraintTop_toBottomOf="@+id/runOrder_quantity" />
@@ -193,12 +193,12 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/custom_order_details_btn"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:gravity="center"
                 android:text="Cancel"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="13dp"
                 android:layout_marginStart="110dp"
                 app:layout_constraintStart_toStartOf="parent"

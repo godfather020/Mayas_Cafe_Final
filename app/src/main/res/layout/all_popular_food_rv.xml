@@ -53,7 +53,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/Rest_choice_txt"
                 android:textSize="@dimen/Rest_choice_title"
-                android:textStyle="bold"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodimage1" />
@@ -122,9 +122,9 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="$5"
                 android:textColor="@color/Rest_choice_price"
-                android:textFontWeight="800"
+
                 android:textSize="@dimen/Rest_choice_price"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ogPrice" />
 

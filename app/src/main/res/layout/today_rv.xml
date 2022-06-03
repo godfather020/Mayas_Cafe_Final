@@ -49,7 +49,7 @@
             android:textAlignment="center"
             android:textColor="#363853"
             android:textSize="12dp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/noty_title"
@@ -71,8 +71,8 @@
             android:layout_marginBottom="8dp"
             android:textSize="12dp"
             android:textColor="#303030"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:textFontWeight="800"
+            android:fontFamily="@font/montserrat_light"
+
             android:text="Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugia..." />
 
         <TextView
@@ -82,8 +82,8 @@
             android:text="05-25-2022"
             android:textColor="@color/black"
             android:textSize="12dp"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:textFontWeight="800"
+            android:fontFamily="@font/montserrat_light"
+
             android:layout_marginStart="20dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"

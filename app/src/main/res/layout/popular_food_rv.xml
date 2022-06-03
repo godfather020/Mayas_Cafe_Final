@@ -62,9 +62,8 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Papper Shrimp"
+                android:text="Papper Shrimpa19"
                 android:textColor="@color/Popular_title"
-                android:textStyle="bold"
                 android:textSize="@dimen/Popular_food_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,9 +133,9 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="$12"
                 android:textColor="@color/Popular_rate"
-                android:textFontWeight="800"
+
                 android:textSize="@dimen/Popular_food_price"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/orgPrice" />
 
@@ -148,9 +147,9 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/OPrice"
-                android:textFontWeight="800"
+
                 android:textColor="#DD2C00"
-                android:textStyle="bold"
+
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>

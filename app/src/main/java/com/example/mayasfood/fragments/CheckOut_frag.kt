@@ -5,11 +5,13 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.view.animation.TranslateAnimation
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -27,8 +29,10 @@ import com.example.mayasfood.fragments.ViewModels.CheckOut_frag_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.lang.reflect.Field
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -163,76 +167,89 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         dialog.setContentView(view)
 
         dialog.window!!.attributes.windowAnimations = R.style.DialogAnimation;
-        /*if (dialog.window != null) {
+        if (dialog.window != null) {
             dialog.window!!.setLayout(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
-        }*/
+        }
         dialog.window!!.setGravity(Gravity.BOTTOM)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val close_btn = view.findViewById<Button>(R.id.close_btn)
         pickUp = view.findViewById(R.id.pickup_time)
+        val checkTotal = view.findViewById<TextView>(R.id.checkout_total)
+        val checkSubTotal = view.findViewById<TextView>(R.id.checkout_subtotal)
+        val checkTax = view.findViewById<TextView>(R.id.checkout_tax)
+        val checkDiscount_txt = view.findViewById<TextView>(R.id.textView35)
+        val checkDiscount = view.findViewById<TextView>(R.id.textView37)
 
+        checkDiscount.visibility = View.GONE
+        checkDiscount_txt.visibility = View.GONE
+
+        checkSubTotal.setText(checkOut_subTotal.text.toString())
+        checkTax.setText(checkout_tax.text.toString())
+        checkTotal.setText(checkout_Total.text.toString())
 
         close_btn.setOnClickListener {
 
             dialog.cancel()
         }
 
+
+
+        var sH= 0
+        var sM = 0
+        val calendar : Calendar = Calendar.getInstance()
+        //val todayDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+        val currentTime = SimpleDateFormat("hh:mm aa", Locale.getDefault()).format(Date())
+        val cH = calendar.get(Calendar.HOUR_OF_DAY)
+        val cM = calendar.get(Calendar.MINUTE)
+
         pickUp.setOnClickListener {
 
             //CustomTimePickerDialog(requireContext(), this@CheckOut_frag, 12, 60, false)
 
-            val customTimePicker : CustomTimePicker = CustomTimePicker(requireContext(), this@CheckOut_frag, 12, 60, false)
+            val timePicker : android.app.TimePickerDialog = android.app.TimePickerDialog(requireContext(), object : android.app.TimePickerDialog.OnTimeSetListener{
+                @RequiresApi(Build.VERSION_CODES.P)
+                override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
 
-            customTimePicker.show()
-            //customTimePicker.onAttachedToWindow()
+                    sH = p1
+                    sM = p2
 
-            /*val now: Calendar = Calendar.getInstance()
-            val tpd: TimePickerDialog = TimePickerDialog.newInstance(
-                this@CheckOut_frag,
-                now.get(Calendar.HOUR_OF_DAY),
-                now.get(Calendar.MINUTE),
-                false
-            )
-            tpd.show((activity as DashBoard).fragmentManager, "TimePicker")*/
-        }
+                    val todayDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+                    val calendar1 : Calendar = Calendar.getInstance()
+                    val sDate = todayDate
+                    val strings : List<String> = sDate.split(Regex("-"))
+                    val sDay = strings[0].toInt()
 
-        /*barCodeImg = view.findViewById(R.id.order_barcode1)
-        val closeQr = view.findViewById<Button>(R.id.close_qr)
+                    calendar1.set(Calendar.DAY_OF_MONTH, sDay)
+                    calendar1.set(Calendar.HOUR_OF_DAY, sH)
+                    calendar1.set(Calendar.MINUTE, sM)
 
-        val writer = QRCodeWriter()
-        try {
-            val bitMatrix = writer.encode(
-                "OrderId:" + "#345456535",
-                BarcodeFormat.QR_CODE,
-                512,
-                512
-            )
-            val width = 512
-            val height = 512
-            val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-            for (x in 0 until width) {
-                for (y in 0 until height) {
-                    if (bitMatrix[x, y].toInt() == 0) bmp.setPixel(
-                        x,
-                        y,
-                        resources.getColor(R.color.Register_Title)
-                        //Color.BLACK
-                    ) else bmp.setPixel(x, y, Color.WHITE)
+                    if (calendar1.timeInMillis == Calendar.getInstance().timeInMillis){
+
+                        Toast.makeText(activity, "Please select a future time", Toast.LENGTH_SHORT).show()
+
+                        pickUp.setText("Pick Time")
+                    }
+                    else if (calendar1.timeInMillis > Calendar.getInstance().timeInMillis+1800000){
+
+                        pickUp.setText(android.text.format.DateFormat.format("hh:mm aa", calendar1))
+
+                    }
+                    else{
+
+                        Toast.makeText(activity, "Please select a future time", Toast.LENGTH_SHORT).show()
+                        pickUp.setText("Pick Time")
+                    }
                 }
-            }
-            barCodeImg.setImageBitmap(bmp)
-        } catch (e: WriterException) {
-            //Log.e("QR ERROR", ""+e);
+
+            }, cH, cM, false)
+
+            timePicker.show()
+
         }
-
-        closeQr.setOnClickListener {
-
-            dialog.cancel()
-        }*/
 
         dialog.show()
     }

@@ -18,125 +18,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="460dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Login_title"
+        android:layout_marginStart="32dp"
+
+        android:fontFamily="@font/montserrat_bold12"
+        android:text="Login With \nMobile Number"
         android:textColor="@color/Login_Title"
-        android:textSize="54dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:text="@string/Login_subTitle"
-        android:textColor="@color/Login_subTitle"
-        android:textFontWeight="800"
-        android:textSize="34dp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/phone_txt"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/custom_edit_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        android:layout_marginStart="24dp"
-        android:elevation="2dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8">
-
-        <EditText
-            android:id="@+id/phoneNum"
-            android:layout_width="0dp"
-            android:layout_height="53dp"
-            android:drawableEnd="@drawable/eva_phone_call_outline"
-            android:backgroundTint="#00FFFFFF"
-            android:ems="10"
-            android:hint="@string/Login_EditTxt"
-            android:inputType="phone"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:maxLength="13"
-            android:textColor="@color/Login_editTxt"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:textSize="28dp"
-            android:textFontWeight="800"
-            android:padding="5dp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cc"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.hbb20.CountryCodePicker
-            android:id="@+id/cc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/phoneNum"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:ccp_defaultNameCode="US"
-            app:ccpDialog_textColor="@color/Login_editTxt"
-            app:ccp_contentColor="@color/Login_editTxt"
-            app:ccp_textSize="28dp"
-            android:background="@drawable/custom_edit_text"
-            app:ccp_autoDetectCountry="true"
-            app:ccp_showFlag="false" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/sign_in"
-        android:layout_width="350dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="44dp"
-        android:background="@drawable/custom_button"
-        android:elevation="8dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Login_button_txt"
-        android:textAllCaps="false"
-        android:textColor="@color/Button_txt"
-        android:textSize="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_txt" />
-
-    <TextView
-        android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Skip"
-        android:fontFamily="@font/montserrat_medium"
-        android:textSize="34dp"
-        android:textColor="@color/Register_skip"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:textSize="@dimen/Login_title"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -166,11 +59,112 @@
             android:text="@string/Login_signup"
             android:textColor="@color/Login_signUp"
             android:textSize="@dimen/Login_newUserSignup"
-            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
             app:layout_constraintStart_toEndOf="@+id/textView9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="We will send you a confirmation code"
+        android:textColor="#989BBD"
+
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/phone_txt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/phone_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/custom_edit_text"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/phoneNum"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            android:backgroundTint="#00FFFFFF"
+            android:drawableEnd="@drawable/la_phone_volume"
+            android:ems="10"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="@string/Login_EditTxt"
+            android:inputType="phone"
+            android:maxLength="13"
+            android:padding="5dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/Login_editTxt"
+            android:textSize="@dimen/Login_EditTxt"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cc"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/cc"
+            style="@style/Style_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"
+            app:ccpDialog_textColor="@color/Login_editTxt"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_contentColor="@color/Login_editTxt"
+            app:ccp_defaultNameCode="US"
+            app:ccp_showFlag="false"
+            app:ccp_textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/phoneNum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/sign_in"
+        android:layout_width="294dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="116dp"
+        android:background="@drawable/custom_button"
+        android:elevation="8dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/Login_button_txt"
+        android:textAllCaps="false"
+        android:textColor="@color/Button_txt"
+        android:textSize="@dimen/Button_txt"
+        app:layout_constraintBottom_toTopOf="@+id/skip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Skip"
+        android:textColor="@color/Register_skip"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/loading_bar"

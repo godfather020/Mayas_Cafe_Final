@@ -41,7 +41,7 @@
             android:id="@+id/notiyes_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+
             android:gravity="center"
             android:layout_margin="16dp"
             android:background="@drawable/ellipse_32"
@@ -70,8 +70,8 @@
             android:layout_height="wrap_content"
             android:text="Fusce sed congue leo. Praesent eleifend,ipsum a bibendum feugia..."
             android:textSize="12dp"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:textFontWeight="800"
+            android:fontFamily="@font/montserrat_light"
+
             android:textColor="@color/black"
             android:layout_marginStart="100dp"
             android:layout_marginTop="40dp"
@@ -85,8 +85,8 @@
             android:text="05-25-2022"
             android:textColor="@color/black"
             android:textSize="12dp"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:textFontWeight="800"
+            android:fontFamily="@font/montserrat_light"
+
             android:layout_marginStart="20dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"

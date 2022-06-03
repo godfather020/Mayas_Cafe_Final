@@ -20,10 +20,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImg_r"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="556dp"
         android:src="@drawable/mask_group_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,10 +54,10 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Register_title"
+        android:text="Create New \nAccount"
         android:textColor="@color/Register_Title"
-        android:textSize="54dp"
-        android:textStyle="bold"
+        android:textSize="@dimen/Login_title"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileImg_r" />
 
@@ -67,33 +67,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textFontWeight="800"
-        android:text="@string/Register_Subtitle"
+        android:fontFamily="@font/montserrat_light"
+        android:text="Join us and enjoy your food"
         android:textColor="@color/Login_subTitle"
-        android:textSize="34dp"
-        android:textStyle="normal"
+
+        android:textSize="@dimen/Register_Subtitle"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/userName_r"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="53dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textFontWeight="800"
+        android:fontFamily="@font/montserrat_light"
+
         android:background="@drawable/custom_edit_text"
         android:drawableRight="@drawable/icon_feather_user"
         android:elevation="2dp"
-        android:hint="@string/Register_userName"
+        android:hint="Enter fullname or Email"
         android:padding="16dp"
         android:maxLines="1"
         android:textColor="@color/EditTxt_color"
-        android:textSize="24dp"
-        android:textStyle="normal"
+        android:textSize="@dimen/Register_EditTxt"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,21 +117,21 @@
         <EditText
             android:id="@+id/phoneNum_r"
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="53dp"
             android:backgroundTint="#00FFFFFF"
             android:drawableEnd="@drawable/eva_phone_call_outline"
             android:ems="10"
             android:paddingEnd="20dp"
-            android:hint="@string/Register_userPhone"
+            android:hint="Enter mobile number"
             android:inputType="phone"
             android:maxLength="13"
             android:maxLines="1"
             android:padding="16dp"
             android:textColor="@color/EditTxt_color"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:textFontWeight="800"
-            android:textSize="24dp"
-            android:textStyle="normal"
+            android:fontFamily="@font/montserrat_light"
+
+            android:textSize="@dimen/Register_EditTxt"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -146,7 +146,7 @@
             app:ccp_autoDetectCountry="true"
             app:ccp_defaultNameCode="US"
             app:ccp_showFlag="false"
-            app:ccp_textSize="12dp"
+            app:ccp_textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/phoneNum_r"
             app:layout_constraintStart_toStartOf="parent"
@@ -157,17 +157,17 @@
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="350dp"
-        android:layout_height="65dp"
+        android:layout_width="294dp"
+        android:layout_height="45dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Register_ButtonTxt"
+        android:text="Sign Up"
         android:textAllCaps="false"
         android:elevation="8dp"
         android:textColor="@color/Button_txt"
-        android:textSize="28dp"
-        android:textStyle="bold"
+        android:textSize="@dimen/Button_txt"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_txt_r" />
@@ -181,7 +181,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/Register_skip"
         android:textSize="@dimen/Register_skip"
-        android:textStyle="normal"
+
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp"

@@ -19,11 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="524dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="@string/Splash_title"
+            android:text="Maya's"
             android:textAlignment="center"
             android:textColor="@color/Splash_Title"
             android:textSize="@dimen/Splash_title"
-            android:textStyle="bold"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="@string/Splash_Subtitle"
+            android:text="Garden &amp; Juice Bar"
             android:textAlignment="center"
             android:textColor="@color/Splash_Title"
             android:textSize="@dimen/Splash_Subtitle"
-            android:textStyle="normal"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -48,13 +48,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/montserrat_variablefont_wght"
-            android:text="@string/GetStart_Heading"
+            android:fontFamily="@font/montserrat_light"
+            android:text="Cooking our dishes with love for you"
             android:textAlignment="center"
             android:textColor="@color/Splash_Title"
             android:textSize="@dimen/GetStart_Heading"
-            android:textFontWeight="600"
-            android:textStyle="normal"
+
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="App Current v1.0.0"
+            android:text="App Current Version 1.0.0"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:fontFamily="@font/montserrat_medium"

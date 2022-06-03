@@ -41,7 +41,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:textSize="10dp"
-                android:textStyle="bold"
+
                 app:layout_constraintEnd_toEndOf="@+id/bell"
                 app:layout_constraintTop_toTopOf="@+id/bell" />
 

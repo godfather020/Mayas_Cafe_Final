@@ -33,11 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="74dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/montserrat_variablefont_wght"
+            android:fontFamily="@font/montserrat_light"
             android:text="Breakfast"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textFontWeight="800"
+
             android:textSize="18sp" />
 
         <ImageView

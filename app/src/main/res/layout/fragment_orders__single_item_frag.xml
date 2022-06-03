@@ -52,11 +52,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="28dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="27 April 2022"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -67,10 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Number of Items  5"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/single_order_img"
                 app:layout_constraintTop_toBottomOf="@+id/singleOrder_num" />
@@ -83,12 +83,12 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/ellipse_54"
                 android:elevation="8dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:gravity="center"
                 android:text="10:45\nam"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="11dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -99,10 +99,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="27dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Placed at"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="14dp"
                 app:layout_constraintStart_toEndOf="@+id/singleOrder_time"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -114,12 +114,12 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/ellipse_54__1_"
                 android:elevation="8dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:gravity="center"
                 android:text="11:00\nam"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textFontWeight="800"
+
                 android:textSize="11dp"
                 app:layout_constraintEnd_toStartOf="@+id/singleOrder_pick_txt"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -129,11 +129,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Pickup at"
                 android:layout_marginEnd="42dp"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />

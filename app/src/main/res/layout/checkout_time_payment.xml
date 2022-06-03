@@ -12,28 +12,199 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cart_card"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="Subtotal"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/checkout_subtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="44dp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="$6.00"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView30"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="Discount"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="Tax"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="$1.00"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:layout_marginEnd="44dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkout_subtotal" />
+
+                <TextView
+                    android:id="@+id/checkout_tax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="44dp"
+                    android:fontFamily="@font/montserrat_light"
+                    android:text="$1.00"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView32"
+                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:background="@drawable/line_21__1_"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkout_tax" />
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Total Price"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+                <TextView
+                    android:id="@+id/checkout_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="44dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="$6.00"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView33"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+                <!--<Button
+                    android:id="@+id/checkout_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/custom_button"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:text="CheckOut"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+-->
+                <!--<TextView
+                    android:id="@+id/checkout_clearAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="28dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Clear Cart"
+                    android:textColor="#DD2C00"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <RadioGroup
             android:id="@+id/radioGroup2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:orientation="horizontal"
+            android:checkedButton="@id/pickUp_order"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/cart_card">
 
             <RadioButton
+                android:id="@+id/pickUp_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="14dp"
-                android:checked="true"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="PickUp Order"
                 android:textSize="16dp" />
 
             <RadioButton
+                android:id="@+id/getItDelivered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="14dp"
@@ -47,10 +218,11 @@
             android:id="@+id/textView31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="Receiving Time"
+            android:textAlignment="center"
             android:textColor="@color/Register_Title"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,12 +243,15 @@
             android:id="@+id/pickup_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="18dp"
+            android:clickable="true"
+            android:elevation="8dp"
             android:fontFamily="@font/montserrat_medium"
-            android:text="12.50 AM"
-            android:textColor="@color/Register_Title"
-            android:textSize="14dp"
+            android:text="Pick Time"
+            android:textColor="@color/pickup"
+            android:textSize="22dp"
+            android:timePickerMode="spinner"
             android:visibility="visible"
             app:layout_constraintStart_toEndOf="@+id/textView31"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
@@ -85,15 +260,28 @@
             android:id="@+id/close_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="28dp"
             android:text="Close"
-            android:layout_marginTop="28dp"
+            android:textSize="18dp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/montserrat_medium"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pickup_time"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
+
+        <Button
+            android:id="@+id/final_checkOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="CheckOut"
+            android:textAllCaps="false"
+            android:layout_margin="28dp"
+            android:textSize="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

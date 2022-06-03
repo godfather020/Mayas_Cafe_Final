@@ -36,7 +36,7 @@
                 android:text="categories"
                 android:textColor="@color/Food_category_txt"
                 android:textSize="@dimen/Food_Category"
-                android:textStyle="bold"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

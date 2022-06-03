@@ -7,8 +7,6 @@ import android.widget.NumberPicker;
 import android.widget.TimePicker;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CustomTimePicker extends TimePickerDialog {
 
@@ -19,8 +17,9 @@ public class CustomTimePicker extends TimePickerDialog {
         private TimePicker timePicker;
 
         public CustomTimePicker(Context context, OnTimeSetListener lisner,
-                                      int hourOfDay, int minute, boolean is24HourView) {
+                                int hourOfDay, int minute, TimePicker mTimePicker, boolean is24HourView) {
                 super(context, lisner, hourOfDay, minute, is24HourView);
+                this.mTimePicker = mTimePicker;
                 mIs24HourView = is24HourView;
         }
 

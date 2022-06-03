@@ -22,15 +22,13 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="280dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/Login_title"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="320dp"
+
+        android:fontFamily="@font/montserrat_bold12"
+        android:text="Login With \nMobile Number"
         android:textColor="@color/Login_Title"
-        android:textSize="@dimen/Login_title"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        android:textSize="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,18 +36,15 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textFontWeight="800"
-        android:text="@string/Login_subTitle"
-        android:textColor="@color/Login_subTitle"
-        android:textSize="@dimen/Login_Subtitle"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="We will send you a confirmation code"
+        android:textColor="#989BBD"
+        android:textSize="15dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/phone_txt"
@@ -74,15 +69,15 @@
             android:ems="10"
             android:hint="@string/Login_EditTxt"
             android:inputType="phone"
-            android:fontFamily="@font/montserrat_variablefont_wght"
+            android:fontFamily="@font/montserrat_regular"
             android:maxLength="13"
             android:textColor="@color/Login_editTxt"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
             android:textSize="@dimen/Login_EditTxt"
-            android:textFontWeight="800"
+
             android:padding="5dp"
-            android:textStyle="normal"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cc"
@@ -99,7 +94,8 @@
             app:ccp_defaultNameCode="US"
             app:ccpDialog_textColor="@color/Login_editTxt"
             app:ccp_contentColor="@color/Login_editTxt"
-            app:ccp_textSize="16dp"
+            app:ccp_textSize="16sp"
+            style="@style/Style_TextView"
             android:background="@drawable/custom_edit_text"
             app:ccp_autoDetectCountry="true"
             app:ccp_showFlag="false" />
@@ -122,20 +118,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_txt" />
-
-    <TextView
-        android:id="@+id/skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Skip"
-        android:fontFamily="@font/montserrat_medium"
-        android:textSize="@dimen/Register_skip"
-        android:textColor="@color/Register_skip"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
 
     <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -165,11 +147,24 @@
             android:text="@string/Login_signup"
             android:textColor="@color/Login_signUp"
             android:textSize="@dimen/Login_newUserSignup"
-            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
             app:layout_constraintStart_toEndOf="@+id/textView9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Skip"
+        android:textColor="@color/Register_skip"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in" />
 
     <ProgressBar
         android:id="@+id/loading_bar"

@@ -130,7 +130,7 @@ class OTP : AppCompatActivity() {
                 if (otp6.getText().toString().length > 0) {
                     val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(otp6.getWindowToken(), 0)
-                    //this@OTP.submit.callOnClick()
+                    this@OTP.submit.callOnClick()
                 }
             }
         })
@@ -497,7 +497,7 @@ class OTP : AppCompatActivity() {
             otp5.setText(sotp5)
             otp6.setText(sotp6)
 
-            //this.submit.callOnClick()
+            this.submit.callOnClick()
         }
     }
 

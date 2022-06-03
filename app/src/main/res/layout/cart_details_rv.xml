@@ -51,11 +51,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_variablefont_wght"
+                android:fontFamily="@font/montserrat_light"
                 android:text="Items x1"
                 android:textSize="12dp"
                 android:textColor="@color/black"
-                android:textFontWeight="800"
+
                 app:layout_constraintStart_toEndOf="@+id/cart_food_img"
                 app:layout_constraintTop_toBottomOf="@+id/cart_food_name" />
 
@@ -87,7 +87,7 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:text="2"
                     android:textColor="@color/black"
-                    android:textFontWeight="800"
+
                     android:textSize="14dp" />
 
                 <ImageView
