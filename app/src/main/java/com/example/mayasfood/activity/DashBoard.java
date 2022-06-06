@@ -89,6 +89,8 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     ViewModelProvider viewModelProvider;
     MenuItem notifyMenuItem;
     MenuItem cartMenuItem;
+    MenuItem clearAll;
+    TextView clearAll_txt;
     ImageView bell, cart;
     public TextView notify_count, cart_count;
     Dashboard_ViewModel dashboard_viewModel;
@@ -399,9 +401,17 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         notifyMenuItem = menu.findItem(R.id.notification);
         cartMenuItem = menu.findItem(R.id.cart);
+        clearAll = menu.findItem(R.id.clearAll);
+
+        View actionView3 = clearAll.getActionView();
 
         View actionView = notifyMenuItem.getActionView();
         View actionView2 = cartMenuItem.getActionView();
+
+        if (actionView3 != null){
+
+            clearAll_txt = actionView3.findViewById(R.id.clearAll_txt);
+        }
 
         if (actionView2 != null){
 

@@ -79,7 +79,7 @@
     <EditText
         android:id="@+id/userName_r"
         android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
@@ -117,7 +117,7 @@
         <EditText
             android:id="@+id/phoneNum_r"
             android:layout_width="0dp"
-            android:layout_height="53dp"
+            android:layout_height="50dp"
             android:backgroundTint="#00FFFFFF"
             android:drawableEnd="@drawable/eva_phone_call_outline"
             android:ems="10"

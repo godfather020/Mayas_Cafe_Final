@@ -13,10 +13,11 @@
         app:showAsAction="always"
         android:title="Notification" />
     <item
-        android:title="Clear All"
         android:id="@+id/clearAll"
         android:visible="false"
-        app:showAsAction="always"/>
+        app:actionLayout="@layout/clear_all_toolbar"
+        app:showAsAction="always"
+        android:title="Clear All" />
     <item
         android:title="Cart"
         android:id="@+id/cart"

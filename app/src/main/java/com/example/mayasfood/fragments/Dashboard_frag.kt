@@ -171,7 +171,7 @@ class Dashboard_frag : Fragment() {
 
         getNotificationCount()
 
-        //setDashboardView()
+        setDashboardView()
 
         return v
     }
@@ -470,8 +470,8 @@ class Dashboard_frag : Fragment() {
         Log.d("life", "resume")
         Log.d("lifer", Constants.onetTime.toString())
         //viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
-        setDashboardView()
-        loading.visibility = View.VISIBLE
+        //setDashboardView()
+        //loading.visibility = View.VISIBLE
         dashBoard.toolbar_const.setNavigationIcon(R.drawable.menubar)
         //setHasOptionsMenu(true)
 

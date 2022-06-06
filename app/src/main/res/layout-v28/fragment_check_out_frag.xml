@@ -382,7 +382,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:paddingStart="32dp"
                 android:paddingEnd="32dp"
-                android:text="CheckOut"
+                android:text="Continue"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="17dp"

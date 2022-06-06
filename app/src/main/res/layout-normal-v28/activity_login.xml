@@ -96,7 +96,7 @@
         <EditText
             android:id="@+id/phoneNum"
             android:layout_width="0dp"
-            android:layout_height="53dp"
+            android:layout_height="50dp"
             android:backgroundTint="#00FFFFFF"
             android:drawableEnd="@drawable/la_phone_volume"
             android:ems="10"
@@ -150,7 +150,6 @@
         android:textSize="@dimen/Button_txt"
         app:layout_constraintBottom_toTopOf="@+id/skip"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

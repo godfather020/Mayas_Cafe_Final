@@ -163,6 +163,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         val close_btn = view.findViewById<Button>(R.id.close_btn)
         val checkOut = view.findViewById<Button>(R.id.final_checkOut)
         pickUp = view.findViewById(R.id.pickup_time)
+        val time = view.findViewById<ImageButton>(R.id.timePick_img)
         val checkTotal = view.findViewById<TextView>(R.id.checkout_total)
         val checkSubTotal = view.findViewById<TextView>(R.id.checkout_subtotal)
         val checkTax = view.findViewById<TextView>(R.id.checkout_tax)
@@ -170,6 +171,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         val checkDiscount = view.findViewById<TextView>(R.id.textView37)
         val pickup_radio = view.findViewById<RadioButton>(R.id.pickUp_order)
         val deliver_radio = view.findViewById<RadioButton>(R.id.getItDelivered)
+        val timePick_txt = view.findViewById<TextView>(R.id.timePick_txt)
 
         checkDiscount.visibility = View.GONE
         checkDiscount_txt.visibility = View.GONE
@@ -181,6 +183,25 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         close_btn.setOnClickListener {
 
             dialog.cancel()
+        }
+
+        if (pickup_radio.isChecked){
+
+            timePick_txt.text = "PickUp Time"
+        }
+        else{
+
+            timePick_txt.text = "Delivery Time"
+        }
+
+        pickup_radio.setOnClickListener {
+
+            timePick_txt.text = "PickUp Time"
+        }
+
+        deliver_radio.setOnClickListener {
+
+            timePick_txt.text = "Delivery Time"
         }
 
         checkOut.setOnClickListener {
@@ -220,7 +241,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         val cH = calendar.get(Calendar.HOUR_OF_DAY)
         val cM = calendar.get(Calendar.MINUTE)
 
-        pickUp.setOnClickListener {
+        time.setOnClickListener {
 
             val timePicker = android.app.TimePickerDialog(requireContext(),AlertDialog.THEME_HOLO_LIGHT, object : android.app.TimePickerDialog.OnTimeSetListener{
                 @RequiresApi(Build.VERSION_CODES.P)
@@ -239,23 +260,26 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
                     calendar1.set(Calendar.HOUR_OF_DAY, sH)
                     calendar1.set(Calendar.MINUTE, sM)
 
-                    if (calendar1.timeInMillis == Calendar.getInstance().timeInMillis){
+                    Log.d("currentHou", calendar1.get(Calendar.HOUR_OF_DAY).toString())
+                    Log.d("currentHou", calendar1.get(Calendar.MINUTE).toString())
+
+                    if (calendar1.timeInMillis == Calendar.getInstance().timeInMillis || calendar1.timeInMillis < Calendar.getInstance().timeInMillis){
 
                         Toast.makeText(activity, "Please select a future time", Toast.LENGTH_SHORT).show()
 
-                        pickUp.setText("Pick Time")
+                        //pickUp.setText("Please Select Time")
                     }
-                    else if (calendar1.timeInMillis > Calendar.getInstance().timeInMillis+1800000){
+                    else if (calendar1.timeInMillis > Calendar.getInstance().timeInMillis+1800000 && calendar1.get(Calendar.HOUR_OF_DAY) < 22 && calendar1.get(Calendar.HOUR_OF_DAY) > 8){
 
                         sPickupTime = android.text.format.DateFormat.format("HH:mm:ss", calendar1).toString()
 
                         pickUp.setText(android.text.format.DateFormat.format("hh:mm aa", calendar1))
 
                     }
-                    else{
+                    else if(calendar1.get(Calendar.HOUR_OF_DAY) >= 22 || calendar1.get(Calendar.HOUR_OF_DAY) <= 8){
 
-                        Toast.makeText(activity, "Please select a future time", Toast.LENGTH_SHORT).show()
-                        pickUp.setText("Pick Time")
+                        Toast.makeText(activity, "Please select a time between 8:00 Am to 10:00 Pm", Toast.LENGTH_SHORT).show()
+                        //pickUp.setText("Please Select Time")
                     }
                 }
 
@@ -360,7 +384,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
         menu.getItem(0).setVisible(false)
-        menu.getItem(1).setVisible(true)
+        menu.getItem(1).setVisible(false)
         menu.getItem(3).setVisible(false)
 
         super.onCreateOptionsMenu(menu, inflater)

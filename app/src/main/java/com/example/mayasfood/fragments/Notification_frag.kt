@@ -51,6 +51,7 @@ class Notification_frag : Fragment() {
     var today = 0
     var previous = 0
     var noNoty = 1
+    lateinit var clearAll : TextView
     lateinit var today_txt: TextView
     lateinit var yesterday_txt : TextView
     lateinit var recycleView_adapter_N : RecycleView_Adapter_N
@@ -67,7 +68,7 @@ class Notification_frag : Fragment() {
 
         dashBoard = activity as DashBoard
 
-        dashBoard.toolbar_const.setTitle("My Notification");
+        dashBoard.toolbar_const.setTitle("My Notification's");
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
         noNoty_img = view.findViewById(R.id.noNoty_img)
@@ -78,7 +79,7 @@ class Notification_frag : Fragment() {
 
                 if (item!!.itemId == R.id.clearAll){
 
-                    dialog("Do you want to clear all Notifications?")
+                    dialog("Do you want to clear all notifications?")
                 }
                 return true
             }
@@ -341,12 +342,29 @@ class Notification_frag : Fragment() {
 
         menu.getItem(1).setVisible(false)
         menu.getItem(0).setVisible(false)
+        menu.getItem(3).setVisible(false)
+
+        val clearMenuItem = menu.findItem(R.id.clearAll)
+
+        val actionView: View = clearMenuItem.getActionView()
+
+        if (actionView != null) {
+            //bell = actionView.findViewById<ImageView>(R.id.bell)
+            clearAll = actionView.findViewById(R.id.clearAll_txt)
+
+            //notify_count.setText(Constants.notifyCount.toString())
+        }
         
         if (noNoty == 1) {
             menu.getItem(2).setVisible(true)
         }
         else{
             menu.getItem(2).setVisible(false)
+        }
+
+        clearAll.setOnClickListener {
+
+            dialog("Do you want to clear all notifications?")
         }
 
     }
