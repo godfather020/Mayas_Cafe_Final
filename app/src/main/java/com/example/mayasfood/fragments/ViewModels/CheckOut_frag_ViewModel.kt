@@ -29,7 +29,13 @@ class CheckOut_frag_ViewModel : ViewModel() {
 
     var commonResponse = MutableLiveData<Response_Common>()
 
-    fun sendOrderDetails(activity: Fragment, branchId: String, loading: ProgressBar): MutableLiveData<Response_Common> {
+    fun sendOrderDetails(
+        activity: Fragment,
+        branchId: String,
+        loading: ProgressBar,
+        pickUpDateTime: String,
+        paymentMethod: String
+    ): MutableLiveData<Response_Common> {
 
         this.activity = activity
         this.loading = loading.findViewById(R.id.loading_checkOut)
@@ -38,8 +44,8 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.branchId = branchId
         requestOrderdetails.toalQuantity = Constants.cart_totalItems.toString()
         requestOrderdetails.amount = Constants.total.toString()
-        requestOrderdetails.paymentMethod = "CASH"
-        requestOrderdetails.pickupAt = "31-05-2022 22:45:09"
+        requestOrderdetails.paymentMethod = paymentMethod
+        requestOrderdetails.pickupAt = pickUpDateTime
 
         Log.d("orderItem", requestOrderdetails.toString())
         Log.d("orderItem", requestOrderdetails.amount.toString())
@@ -96,7 +102,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
                     commonResponse.value = response.body()
 
                     Log.d("Dashboard", "success")
-                    Toast.makeText(activity.requireContext(), commonResponse.value!!.message, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(activity.requireContext(), commonResponse.value!!.message, Toast.LENGTH_SHORT).show();
                 }
                 else{
                     loading.visibility = View.GONE

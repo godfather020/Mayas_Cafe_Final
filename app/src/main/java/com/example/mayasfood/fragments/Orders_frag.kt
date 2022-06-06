@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -31,6 +32,8 @@ class Orders_frag : Fragment() {
     lateinit var loading : ProgressBar
     lateinit var noOrder_img : ImageView
     lateinit var noOrder_txt : TextView
+    lateinit var cart_count : TextView
+    lateinit var card_count : CardView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,6 +123,26 @@ class Orders_frag : Fragment() {
         menu.getItem(1).setVisible(true)
         menu.getItem(3).setVisible(false)
         dashBoard.navigationView.setCheckedItem(R.id.orderNav)
+
+        val cartMenuItem = menu.findItem(R.id.cart)
+
+        val actionView2 : View = cartMenuItem.actionView
+
+        if (actionView2!=null){
+
+            cart_count = actionView2.findViewById(R.id.cart_count)
+            card_count = actionView2.findViewById(R.id.card_count)
+        }
+
+        if (cart_count.text.equals("0")){
+
+            card_count.visibility = View.GONE
+        }
+        else{
+
+            card_count.visibility = View.VISIBLE
+        }
+
     }
 }
 

@@ -24,15 +24,12 @@ import com.borax12.materialdaterangepicker.time.TimePickerDialog
 import com.example.mayasfood.R
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
-import com.example.mayasfood.constants.CustomTimePicker
 import com.example.mayasfood.fragments.ViewModels.CheckOut_frag_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
 import java.lang.reflect.Field
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -63,6 +60,9 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     lateinit var pickUp : TextView
     lateinit var timePicker : TimePicker
     var mIs24HourView  = true
+    var sDate = ""
+    var sPickupTime = ""
+    lateinit var dialog : Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -126,24 +126,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
         checkOut.setOnClickListener {
 
-            //loading.visibility = View.VISIBLE
-            //sendOrder()
             showBarCode()
-            //dashBoard.toolbar_const.visibility = View.GONE
-            //view.slideUp(1000)
-            // Prepare the View for the animation
-            //view1.setAlpha(0.0f);
-
-            /*val animate = TranslateAnimation(
-                0F,  // fromXDelta
-                0F,  // toXDelta
-                view.height.toFloat(),  // fromYDelta
-                0F
-            ) // toYDelta
-
-            animate.duration = 500
-            animate.fillAfter = true
-            view1.startAnimation(animate)*/
 
         }
 
@@ -157,7 +140,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
     private fun showBarCode() {
 
-        val dialog = Dialog(requireContext())
+        dialog = Dialog(requireContext())
+
         dialog.setCancelable(false)
 
         val activity = context as AppCompatActivity
@@ -177,12 +161,15 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val close_btn = view.findViewById<Button>(R.id.close_btn)
+        val checkOut = view.findViewById<Button>(R.id.final_checkOut)
         pickUp = view.findViewById(R.id.pickup_time)
         val checkTotal = view.findViewById<TextView>(R.id.checkout_total)
         val checkSubTotal = view.findViewById<TextView>(R.id.checkout_subtotal)
         val checkTax = view.findViewById<TextView>(R.id.checkout_tax)
         val checkDiscount_txt = view.findViewById<TextView>(R.id.textView35)
         val checkDiscount = view.findViewById<TextView>(R.id.textView37)
+        val pickup_radio = view.findViewById<RadioButton>(R.id.pickUp_order)
+        val deliver_radio = view.findViewById<RadioButton>(R.id.getItDelivered)
 
         checkDiscount.visibility = View.GONE
         checkDiscount_txt.visibility = View.GONE
@@ -196,7 +183,34 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
             dialog.cancel()
         }
 
+        checkOut.setOnClickListener {
 
+            if (!pickUp.text.equals("Pick Time")){
+
+                var paymentMethod = "CASH"
+                Log.d("pickUp", sPickupTime)
+                Log.d("pickUp", sDate)
+                Log.d("pickUp", sDate+" "+sPickupTime)
+
+                val pickUpDateTime = sDate+" "+sPickupTime
+
+                if (pickup_radio.isChecked){
+
+                    paymentMethod = "CASH"
+                }
+                else{
+
+                    paymentMethod = "ONLINE"
+                }
+
+                sendOrder(pickUpDateTime, paymentMethod)
+            }
+            else{
+
+                pickUp.requestFocus()
+                pickUp.error = "Please specify a time"
+            }
+        }
 
         var sH= 0
         var sM = 0
@@ -208,9 +222,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
         pickUp.setOnClickListener {
 
-            //CustomTimePickerDialog(requireContext(), this@CheckOut_frag, 12, 60, false)
-
-            val timePicker : android.app.TimePickerDialog = android.app.TimePickerDialog(requireContext(), object : android.app.TimePickerDialog.OnTimeSetListener{
+            val timePicker = android.app.TimePickerDialog(requireContext(),AlertDialog.THEME_HOLO_LIGHT, object : android.app.TimePickerDialog.OnTimeSetListener{
                 @RequiresApi(Build.VERSION_CODES.P)
                 override fun onTimeSet(p0: TimePicker?, p1: Int, p2: Int) {
 
@@ -219,7 +231,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
                     val todayDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
                     val calendar1 : Calendar = Calendar.getInstance()
-                    val sDate = todayDate
+                    sDate = todayDate
                     val strings : List<String> = sDate.split(Regex("-"))
                     val sDay = strings[0].toInt()
 
@@ -234,6 +246,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
                         pickUp.setText("Pick Time")
                     }
                     else if (calendar1.timeInMillis > Calendar.getInstance().timeInMillis+1800000){
+
+                        sPickupTime = android.text.format.DateFormat.format("HH:mm:ss", calendar1).toString()
 
                         pickUp.setText(android.text.format.DateFormat.format("hh:mm aa", calendar1))
 
@@ -254,20 +268,23 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         dialog.show()
     }
 
-    private fun sendOrder() {
+    private fun sendOrder(pickUpDateTime: String, paymentMethod: String) {
 
-       viewModel.sendOrderDetails(this, "1", loading).observe(viewLifecycleOwner, Observer {
+       viewModel.sendOrderDetails(this, "1", loading, pickUpDateTime, paymentMethod).observe(viewLifecycleOwner, Observer {
 
            if (it != null){
 
                if(it.getSuccess()!!){
 
                    Toast.makeText(activity, "Order Placed Successfully", Toast.LENGTH_SHORT).show()
-
+                   Constants.cart_totalItems = 0
+                   clearCart()
+                   dialog.cancel()
+                   Functions.loadFragment(fragmentManager, Orders_frag(), R.id.frag_cont, true, "Running Orders", null)
+                   dashBoard.bottomNavigationView.selectedItemId = R.id.bottom_nav_orders
                    loading.visibility = View.GONE
                }
            }
-
        })
     }
 
@@ -377,6 +394,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         Constants.foodPrice.clear()
         Constants.foodImg.clear()
         Constants.foodSize.clear()
+        Constants.foodId.clear()
 
         Constants.subTotal = 0
 
@@ -400,52 +418,6 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         pickUp.setText(time)
 
     }
-
-    fun CustomTimePickerDialog(
-        context: Context?, callBack: android.app.TimePickerDialog.OnTimeSetListener?,
-        hourOfDay: Int, minute: Int, is24HourView: Boolean
-    ) {
-        //super(context, context, hourOfDay, minute, is24HourView)
-        mIs24HourView = is24HourView
-    }
-
-    fun onAttachedToWindow() {
-
-        super.onAttach(requireContext())
-        //super.onAttachedToWindow()
-        try {
-            val classForid = Class.forName("com.android.internal.R\$id")
-            val timePickerField: Field = classForid.getField("timePicker")
-            this.timePicker = requireView().findViewById(
-                timePickerField
-                    .getInt(null)
-            ) as TimePicker
-            val field: Field = classForid.getField("hour")
-            val mHourSpinner = timePicker
-                .findViewById(field.getInt(null)) as NumberPicker
-            if (mIs24HourView) {
-                mHourSpinner.minValue = 2
-                mHourSpinner.maxValue = 20
-            } else {
-                val amPm1: Field = classForid.getField("amPm")
-                mHourSpinner.minValue = 2
-                val amPm = timePicker
-                    .findViewById(amPm1.getInt(null)) as NumberPicker
-                amPm.setOnValueChangedListener { np1, oldVal, newVal ->
-                    if (newVal == 0) { // case AM
-                        mHourSpinner.minValue = 2
-                        mHourSpinner.maxValue = 12
-                    } else { // case PM
-                        mHourSpinner.minValue = 1
-                        mHourSpinner.maxValue = 8
-                    }
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
 
     fun View.slideUp(duration: Int = 500) {
         visibility = View.VISIBLE

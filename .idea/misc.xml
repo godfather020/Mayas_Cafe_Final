@@ -186,7 +186,7 @@
         <entry key="app/src/main/res/layout/bell_count.xml" value="1.1" />
         <entry key="app/src/main/res/layout/cart_count.xml" value="1.5" />
         <entry key="app/src/main/res/layout/cart_details_rv.xml" value="0.284375" />
-        <entry key="app/src/main/res/layout/checkout_time_payment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/checkout_time_payment.xml" value="0.23428815733219324" />
         <entry key="app/src/main/res/layout/custom_item_add_toast.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_details_frag.xml" value="0.2864583333333333" />
