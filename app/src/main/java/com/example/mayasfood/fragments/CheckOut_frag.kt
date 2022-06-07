@@ -63,6 +63,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     var sDate = ""
     var sPickupTime = ""
     lateinit var dialog : Dialog
+    var orderID = ""
+    var paymentMethod = "CASH"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -206,9 +208,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
         checkOut.setOnClickListener {
 
-            if (!pickUp.text.equals("Pick Time")){
+            if (pickUp.text.isNotEmpty()){
 
-                var paymentMethod = "CASH"
                 Log.d("pickUp", sPickupTime)
                 Log.d("pickUp", sDate)
                 Log.d("pickUp", sDate+" "+sPickupTime)
@@ -300,16 +301,62 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
                if(it.getSuccess()!!){
 
-                   Toast.makeText(activity, "Order Placed Successfully", Toast.LENGTH_SHORT).show()
-                   Constants.cart_totalItems = 0
-                   clearCart()
+                   orderID = it.getData()!!.id.toString()
+                   //Toast.makeText(activity, "Order Placed Successfully", Toast.LENGTH_SHORT).show()
+
                    dialog.cancel()
-                   Functions.loadFragment(fragmentManager, Orders_frag(), R.id.frag_cont, true, "Running Orders", null)
-                   dashBoard.bottomNavigationView.selectedItemId = R.id.bottom_nav_orders
+                   showOrderSuccessDialog()
                    loading.visibility = View.GONE
                }
            }
        })
+    }
+
+    private fun showOrderSuccessDialog() {
+
+        val orderDialog = Dialog(requireContext())
+
+        orderDialog.setCancelable(false)
+
+        val activity = context as AppCompatActivity
+
+        val view = activity.layoutInflater.inflate(R.layout.order_confirm_dialog, null)
+
+        orderDialog.setContentView(view)
+
+        orderDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation;
+        if (orderDialog.window != null) {
+            orderDialog.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+        orderDialog.window!!.setGravity(Gravity.CENTER)
+        orderDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val goToOrders = view.findViewById<Button>(R.id.go_to_orders)
+        val orderId = view.findViewById<TextView>(R.id.orderId)
+        val orderAmt = view.findViewById<TextView>(R.id.orderAmt)
+        val payMethod = view.findViewById<TextView>(R.id.payMethod)
+
+        orderAmt.text = checkout_Total.text.toString()
+        orderId.text = "#"+orderID
+        payMethod.text = paymentMethod
+
+        Constants.cart_totalItems = 0
+        clearCart()
+        setUpModelRv()
+
+        goToOrders.setOnClickListener {
+
+
+            Functions.loadFragment(fragmentManager, Orders_frag(), R.id.frag_cont, true, "Running Orders", null)
+            dashBoard.bottomNavigationView.selectedItemId = R.id.bottom_nav_orders
+            orderDialog.cancel()
+
+        }
+
+        orderDialog.show()
     }
 
     public fun setUpModelRv() {
