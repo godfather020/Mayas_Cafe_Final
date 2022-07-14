@@ -100,6 +100,8 @@ class Dashboard_frag : Fragment() {
         dashBoard.toolbar_const.setNavigationIcon(R.drawable.menubar)
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
 
+        Log.d("isLogin", Constants.isLogin.toString())
+
         dashBoard.toolbar_const.setOnMenuItemClickListener(object : androidx.appcompat.widget.Toolbar.OnMenuItemClickListener{
             override fun onMenuItemClick(item: MenuItem?): Boolean {
 
@@ -266,7 +268,7 @@ class Dashboard_frag : Fragment() {
                             i,
                             it.getData()!!.ListpopularproductResponce!![i].id.toString()
                         )
-                        if (auth.currentUser!=null) {
+                        if (auth.currentUser != null || Constants.isLogin != false) {
 
                             popularFoodIsFav.add(
                                 i,
@@ -335,7 +337,7 @@ class Dashboard_frag : Fragment() {
                             it.getData()!!.ListrestaurantproductResponce!![i].id.toString()
                         )
 
-                        if (auth.currentUser != null) {
+                        if (auth.currentUser != null || Constants.isLogin != false) {
                             restaurantFoodIsFav.add(
                                 i,
                                 it.getData()!!.ListrestaurantproductResponce!![i].favorite!!

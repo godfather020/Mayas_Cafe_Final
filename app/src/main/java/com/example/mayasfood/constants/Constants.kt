@@ -53,6 +53,8 @@ object Constants {
     @JvmField
     var USER_NAME = "Stranger"
     @JvmField
+    var isLogin = false
+    @JvmField
     var USER_PHONE = ""
     @JvmField
     var USER_TOKEN = ""

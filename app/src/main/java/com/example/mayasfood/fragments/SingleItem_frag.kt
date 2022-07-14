@@ -1,6 +1,5 @@
 package com.example.mayasfood.fragments
 
-import android.app.Application
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
@@ -18,7 +17,6 @@ import com.example.mayasfood.fragments.ViewModels.SingleItem_viewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import rx.schedulers.Schedulers.test
 
 
 class SingleItem_frag : Fragment() {
@@ -56,6 +54,7 @@ class SingleItem_frag : Fragment() {
     var foodSize = ""
     var sameFood = 0
     lateinit var layout: View
+    var isLogin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +89,9 @@ class SingleItem_frag : Fragment() {
         dashBoard.bottomNavigationView.visibility = View.GONE
 
         auth = FirebaseAuth.getInstance()
+
+      isLogin =
+            requireContext().getSharedPreferences("LogIn", Context.MODE_PRIVATE).getBoolean("LogIn", false)
 
         singleItem_img = view.findViewById(R.id.singleO_foodImg)
         singleItem_comment = view.findViewById(R.id.singleO_comments)
@@ -366,7 +368,7 @@ class SingleItem_frag : Fragment() {
 
                     singleItem_rating.text = it.getData()!!.ProductResponce!!.customerrating.toString()
 
-                    if (auth.currentUser != null){
+                    if (auth.currentUser != null || isLogin != false){
 
                         if (it.getData()!!.ProductResponce!!.favorite == 1){
 

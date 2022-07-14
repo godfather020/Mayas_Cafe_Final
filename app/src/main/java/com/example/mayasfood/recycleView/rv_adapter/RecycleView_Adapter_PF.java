@@ -96,7 +96,9 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
 
         Log.d("rcPN", foodModels2.get(position).getFoodName());
 
-        if (auth.getCurrentUser() == null){
+        boolean isLogin = context.getSharedPreferences("LogIn", Context.MODE_PRIVATE).getBoolean("LogIn", false);
+
+        if (auth.getCurrentUser() == null && isLogin == false){
 
             holder.addToFav.setVisibility(View.GONE);
         }
@@ -105,7 +107,7 @@ public class RecycleView_Adapter_PF extends RecyclerView.Adapter<RecycleView_Ada
             holder.addToFav.setVisibility(View.VISIBLE);
         }
 
-        if (auth.getCurrentUser() != null) {
+        if (auth.getCurrentUser() != null || isLogin != false) {
 
             if (tempFood.get(holder.getAdapterPosition()).getIsFav() == 1) {
 

@@ -44,7 +44,7 @@ class Restaurant_frag_ViewModel : ViewModel() {
         val retrofitInstance = RetrofitInstance()
         val retrofitData : Call<Response_Common>
 
-        if (auth.currentUser != null){
+        if (auth.currentUser != null || Constants.isLogin != false){
 
             retrofitData = retrofitInstance.retrofit.getRestaurantChoices(Constants.USER_TOKEN, param)
         }else {

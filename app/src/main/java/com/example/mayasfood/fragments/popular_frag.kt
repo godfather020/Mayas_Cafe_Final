@@ -39,6 +39,7 @@ class popular_frag : Fragment() {
     lateinit var auth : FirebaseAuth
     lateinit var search : MenuItem
     lateinit var recycleView_adapter: RecycleView_Adapter_PF
+    var isLogin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +59,7 @@ class popular_frag : Fragment() {
         dashBoard = activity as DashBoard
 
         auth = FirebaseAuth.getInstance()
+        isLogin = dashBoard.getSharedPreferences("LogIn", 0).getBoolean("LogIn", false)
 
         dashBoard.toolbar_const.setTitle("Popular Food")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
@@ -128,7 +130,7 @@ class popular_frag : Fragment() {
 
                         popularFoodId.add(i, it.getData()!!.ListpopularproductResponce!![i].id.toString())
 
-                        if (auth.currentUser != null) {
+                        if (auth.currentUser != null || isLogin != false) {
 
                             popularFoodIsFav.add(
                                 i,

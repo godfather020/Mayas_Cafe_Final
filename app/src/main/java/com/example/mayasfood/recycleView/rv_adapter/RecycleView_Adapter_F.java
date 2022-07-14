@@ -42,7 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Adapter_F.MyViewHolder>{
+public class RecycleView_Adapter_F extends RecyclerView.Adapter<RecycleView_Adapter_F.MyViewHolder> {
 
     Context context;
     ArrayList<RecycleView_Model> foodModels2;
@@ -50,7 +50,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
     int i = 0;
     String foodName = "";
 
-    public RecycleView_Adapter_F(Context context, ArrayList<RecycleView_Model> foodModels2){
+    public RecycleView_Adapter_F(Context context, ArrayList<RecycleView_Model> foodModels2) {
         this.context = context;
         this.foodModels2 = foodModels2;
         auth = FirebaseAuth.getInstance();
@@ -73,11 +73,12 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
 
         Log.d("rcPN", foodModels2.get(position).getFoodName());
 
-        if (auth.getCurrentUser() == null){
+        boolean isLogin = context.getSharedPreferences("LogIn", Context.MODE_PRIVATE).getBoolean("LogIn", false);
+
+        if (auth.getCurrentUser() == null && isLogin == false) {
 
             holder.addToFav.setVisibility(View.GONE);
-        }
-        else {
+        } else {
 
             holder.addToFav.setVisibility(View.VISIBLE);
         }
@@ -94,9 +95,9 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
 
                 if (Constants.foodName.contains(foodModels2.get(holder.getAdapterPosition()).getFoodName())) {
 
-                    for (int j =0 ; j < Constants.foodName.size(); j++){
+                    for (int j = 0; j < Constants.foodName.size(); j++) {
 
-                        if (Constants.foodName.get(j).matches(foodModels2.get(holder.getAdapterPosition()).getFoodName()) && Constants.foodSize.get(j).matches(foodModels2.get(holder.getAdapterPosition()).getFoodSize())){
+                        if (Constants.foodName.get(j).matches(foodModels2.get(holder.getAdapterPosition()).getFoodName()) && Constants.foodSize.get(j).matches(foodModels2.get(holder.getAdapterPosition()).getFoodSize())) {
                             int q = Constants.foodQuantity.get(j);
                             Log.d("foodQ", String.valueOf(q + 1));
                             //Constants.foodQuantity.add(j, 1 + Constants.q);
@@ -104,8 +105,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                             Constants.cart_totalItems = Constants.foodId.size();
                         }
                     }
-                }
-                else {
+                } else {
                     Constants.foodSize.add(foodModels2.get(holder.getAdapterPosition()).getFoodSize());
                     Constants.foodId.add(Integer.valueOf(foodModels2.get(holder.getLayoutPosition()).getProductId()));
                     Constants.foodQuantity.add(1);
@@ -113,8 +113,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                     Constants.foodName.add(foodModels2.get(holder.getAdapterPosition()).getFoodName());
                     if (foodModels2.get(holder.getAdapterPosition()).getOfferAmt() != "0") {
                         Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getOfferAmt())));
-                    }
-                    else {
+                    } else {
                         Constants.foodPrice.add(Integer.valueOf(Integer.valueOf(foodModels2.get(holder.getAdapterPosition()).getFoodPrice())));
                     }
                     Constants.cart_totalItems = Constants.foodId.size();
@@ -150,9 +149,9 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                             @Override
                             public void onResponse(@NonNull Call<Response_Common> call, @NonNull Response<Response_Common> response) {
 
-                                if (response.isSuccessful()){
+                                if (response.isSuccessful()) {
 
-                                    if (response.body().getData().getProductId() != null){
+                                    if (response.body().getData().getProductId() != null) {
 
                                         Log.d("ProductR", response.body().getData().getProductId().toString());
 
@@ -162,8 +161,7 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
 
                                         holder.addToFav.setImageResource(R.drawable.red_heart);
 
-                                    }
-                                    else {
+                                    } else {
 
                                         Constants.add = 0;
                                         holder.addToFav.setImageResource(R.drawable.bi_heart);
@@ -172,14 +170,13 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
                                         notifyItemChanged(holder.getAdapterPosition());
                                         notifyItemRemoved(holder.getAdapterPosition());*/
 
-                                            foodModels2.remove(holder.getAdapterPosition());
-                                            notifyItemRemoved(holder.getAdapterPosition());
-                                            notifyItemRangeChanged(holder.getAdapterPosition(), foodModels2.size());
+                                        foodModels2.remove(holder.getAdapterPosition());
+                                        notifyItemRemoved(holder.getAdapterPosition());
+                                        notifyDataSetChanged();
 
                                     }
 
-                                }
-                                else {
+                                } else {
                                     Constants.add = 0;
                                     holder.addToFav.setImageResource(R.drawable.bi_heart);
                                     Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -208,11 +205,10 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             }
         });
 
-        if (foodModels2.get(position).getFoodName().length() > 18){
+        if (foodModels2.get(position).getFoodName().length() > 18) {
 
             foodName = foodModels2.get(position).getFoodName().substring(0, 18) + "...";
-        }
-        else {
+        } else {
 
             foodName = foodModels2.get(position).getFoodName();
         }
@@ -228,15 +224,14 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             holder.orgPrice.setVisibility(View.VISIBLE);
             holder.orgPrice.setText("$" + foodModels2.get(position).getFoodPrice());
             holder.orgPrice.setPaintFlags(holder.orgPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            holder.price.setText("$"+foodModels2.get(position).getOfferAmt());
-        }
-        else {
+            holder.price.setText("$" + foodModels2.get(position).getOfferAmt());
+        } else {
             holder.orgPrice.setVisibility(View.GONE);
-            holder.price.setText("$"+foodModels2.get(position).getFoodPrice());
+            holder.price.setText("$" + foodModels2.get(position).getFoodPrice());
         }
 
 
-        if (foodModels2.get(position).getStars().matches("^[0]") || foodModels2.get(position).getStars().matches("^[0][.]") || foodModels2.get(position).getStars().matches("^[1][.][12345]")){
+        if (foodModels2.get(position).getStars().matches("^[0]") || foodModels2.get(position).getStars().matches("^[0][.]") || foodModels2.get(position).getStars().matches("^[1][.][12345]")) {
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.GONE);
@@ -244,36 +239,28 @@ public class RecycleView_Adapter_F  extends RecyclerView.Adapter<RecycleView_Ada
             holder.star4.setVisibility(View.GONE);
             holder.star5.setVisibility(View.GONE);
 
-        }
-
-        else if (foodModels2.get(position).getStars().matches("^[1][.][6789]") ||foodModels2.get(position).getStars().matches("^[2][.][1234]")){
+        } else if (foodModels2.get(position).getStars().matches("^[1][.][6789]") || foodModels2.get(position).getStars().matches("^[2][.][1234]")) {
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.VISIBLE);
             holder.star3.setVisibility(View.VISIBLE);
             holder.star4.setVisibility(View.GONE);
             holder.star5.setVisibility(View.GONE);
-        }
-
-        else if (foodModels2.get(position).getStars().matches("^[2][.][6789]") || foodModels2.get(position).getStars().matches("^[3][.][1234]")){
+        } else if (foodModels2.get(position).getStars().matches("^[2][.][6789]") || foodModels2.get(position).getStars().matches("^[3][.][1234]")) {
 
             holder.star1.setVisibility(View.GONE);
             holder.star2.setVisibility(View.VISIBLE);
             holder.star3.setVisibility(View.VISIBLE);
             holder.star4.setVisibility(View.VISIBLE);
             holder.star5.setVisibility(View.GONE);
-        }
-
-        else if (foodModels2.get(position).getStars().matches("^[3][.][6789]") || foodModels2.get(position).getStars().matches("^[4][.][12345]")){
+        } else if (foodModels2.get(position).getStars().matches("^[3][.][6789]") || foodModels2.get(position).getStars().matches("^[4][.][12345]")) {
 
             holder.star1.setVisibility(View.VISIBLE);
             holder.star2.setVisibility(View.VISIBLE);
             holder.star3.setVisibility(View.VISIBLE);
             holder.star4.setVisibility(View.VISIBLE);
             holder.star5.setVisibility(View.GONE);
-        }
-
-        else {
+        } else {
 
             holder.star1.setVisibility(View.VISIBLE);
             holder.star2.setVisibility(View.VISIBLE);

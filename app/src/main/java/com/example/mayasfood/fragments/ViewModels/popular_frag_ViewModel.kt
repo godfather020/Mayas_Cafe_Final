@@ -46,7 +46,7 @@ class popular_frag_ViewModel: ViewModel() {
 
         val retrofitData : Call<Response_Common>
 
-        if (auth.currentUser != null){
+        if (auth.currentUser != null || Constants.isLogin != false){
 
             retrofitData = retrofitInstance.retrofit.getPopularFood(Constants.USER_TOKEN, param)
         }else {

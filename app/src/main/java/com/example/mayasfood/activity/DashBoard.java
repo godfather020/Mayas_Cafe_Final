@@ -92,6 +92,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
     MenuItem clearAll;
     TextView clearAll_txt;
     ImageView bell, cart;
+    Boolean isLogin = false;
     public TextView notify_count, cart_count;
     Dashboard_ViewModel dashboard_viewModel;
     public CardView card_count, notify_card;
@@ -119,11 +120,14 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         Constants.USER_TOKEN = getSharedPreferences(Constants.sharedPrefrencesConstant.X_TOKEN, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.X_TOKEN, "");
         //userProfile = getSharedPreferences(Constants.sharedPrefrencesConstant.USER_I, MODE_PRIVATE).getString(Constants.sharedPrefrencesConstant.USER_I, "default.png");
         userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
+        isLogin = getSharedPreferences("LogIn", MODE_PRIVATE).getBoolean("LogIn", false);
+
+        Constants.isLogin = isLogin;
 
         Constants.USER_NAME = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_N);
 
 
-        if(userProfile != null) {
+        if (userProfile != null) {
             Log.d("userProfile", userProfile);
         }
         Log.d("userToken", Constants.USER_TOKEN);
@@ -134,7 +138,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         setUpToolbar();
 
         toolbar_const.setNavigationIcon(R.drawable.menubar);
-        Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null );
+        Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "DashBoard", null);
 
         bottomNavigationView = findViewById(R.id.chip_nav);
 
@@ -146,7 +150,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
 
                     case R.id.bottom_nav_category:
                         navigationView.setCheckedItem(R.id.homeNav);
@@ -157,7 +161,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(3).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
-                        Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(),R.id.frag_cont, true, "Category", null);
+                        Functions.loadFragment(getSupportFragmentManager(), new Dashboard_frag(), R.id.frag_cont, true, "Category", null);
                         return true;
 
                     case R.id.bottom_nav_favorie:
@@ -166,26 +170,26 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         toolbar_const.getMenu().getItem(3).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
 
-                        if (auth.getCurrentUser()!=null) {
+                        if (auth.getCurrentUser() != null || isLogin != false) {
 
                             Functions.loadFragment(getSupportFragmentManager(), new Favorite_frag(), R.id.frag_cont, true, "Favorites", null);
-                        }
-                        else {
+                        } else {
 
                             Functions.loadFragment(getSupportFragmentManager(), new NotLogIn_frag(), R.id.frag_cont, true, "Faveroties", null);
                         }
                         return true;
 
                     case R.id.bottom_nav_orders:
+
                         navigationView.setCheckedItem(R.id.orderNav);
                         toolbar_const.getMenu().getItem(0).setVisible(false);
                         toolbar_const.getMenu().getItem(3).setVisible(false);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
-                        if (auth.getCurrentUser()!=null) {
+
+                        if (auth.getCurrentUser() != null || isLogin != false) {
 
                             Functions.loadFragment(getSupportFragmentManager(), new Orders_frag(), R.id.frag_cont, true, "Orders", null);
-                        }
-                        else{
+                        } else {
 
                             Functions.loadFragment(getSupportFragmentManager(), new NotLogIn_frag(), R.id.frag_cont, true, "Faveroties", null);
                         }
@@ -196,7 +200,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(3).setVisible(false);
                         toolbar_const.getMenu().getItem(1).setVisible(false);
-                        Functions.loadFragment(getSupportFragmentManager(), new Offers_frag(),R.id.frag_cont, true, "Offers", null);
+                        Functions.loadFragment(getSupportFragmentManager(), new Offers_frag(), R.id.frag_cont, true, "Offers", null);
                         return true;
 
                     case R.id.invisible:
@@ -205,7 +209,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                         toolbar_const.getMenu().getItem(0).setVisible(true);
                         toolbar_const.getMenu().getItem(3).setVisible(true);
                         toolbar_const.getMenu().getItem(1).setVisible(true);
-                        Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "DashBoard", null );
+                        Functions.loadFragment(getSupportFragmentManager(), new Category_frag(), R.id.frag_cont, false, "DashBoard", null);
                         return true;
 
                 }
@@ -227,7 +231,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         navigationView.setCheckedItem(R.id.homeNav);
 
-        if (auth.getCurrentUser() == null) {
+        if (auth.getCurrentUser() == null && isLogin == false) {
 
             navigationView.getMenu().getItem(6).setTitle("Login");
 
@@ -239,7 +243,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 toolbar_const,
                 R.string.app_name,
                 R.string.app_name
-        ){
+        ) {
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -256,11 +260,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 }
 
-                if (auth.getCurrentUser() != null){
+                if (auth.getCurrentUser() != null || isLogin != false) {
 
                     user_num_nav.setText(Constants.USER_PHONE);
-                }
-                else {
+                } else {
 
                     user_num_nav.setVisibility(View.GONE);
                 }
@@ -277,7 +280,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                 userProfile = sharedPreferencesUtil.getString(Constants.sharedPrefrencesConstant.USER_I);
 
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null || isLogin != false) {
 
                     if (userProfile != null) {
 
@@ -295,15 +298,14 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
                         //user_profile.setImageBitmap(bitmap);
                     }
-                }
-                else {
+                } else {
 
                     Picasso.get()
                             .load(R.drawable.mask_group_1)
                             .into(user_profile);
                 }
 
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null || isLogin != false) {
 
                     user_profile.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -408,19 +410,19 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         View actionView = notifyMenuItem.getActionView();
         View actionView2 = cartMenuItem.getActionView();
 
-        if (actionView3 != null){
+        if (actionView3 != null) {
 
             clearAll_txt = actionView3.findViewById(R.id.clearAll_txt);
         }
 
-        if (actionView2 != null){
+        if (actionView2 != null) {
 
             cart = actionView2.findViewById(R.id.cart_img);
             cart_count = actionView2.findViewById(R.id.cart_count);
             card_count = actionView2.findViewById(R.id.card_count);
         }
 
-        if (actionView!=null){
+        if (actionView != null) {
 
             bell = actionView.findViewById(R.id.bell);
             notify_count = actionView.findViewById(R.id.notify_count);
@@ -428,11 +430,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         }
         cart_count.setText(String.valueOf(Constants.cart_totalItems));
 
-        if (cart_count.getText().toString().equals("0")){
+        if (cart_count.getText().toString().equals("0")) {
 
             card_count.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             card_count.setVisibility(View.VISIBLE);
         }
 
@@ -440,11 +441,10 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         notify_count.setText(String.valueOf(Constants.notifyCount));
         Log.d("notifyC", String.valueOf(Constants.notifyCount));
 
-        if (notify_count.getText().toString().equals("0")){
+        if (notify_count.getText().toString().equals("0")) {
 
             notify_card.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             notify_card.setVisibility(View.VISIBLE);
         }
 
@@ -463,14 +463,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
             @Override
             public void onClick(View view) {
 
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null || isLogin != false) {
                     Constants.currentFrag = "N";
                     toolbar_const.getMenu().getItem(1).setVisible(false);
                     navigationView.setCheckedItem(R.id.notificationNav);
                     bottomNavigationView.setVisibility(View.GONE);
                     Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
-                }
-                else {
+                } else {
 
                     dialog("Please Login/Register to see notifications.");
                 }
@@ -479,15 +478,13 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         menu.getItem(2).setVisible(false);
 
-        if (Constants.currentFrag.equals("N")){
+        if (Constants.currentFrag.equals("N")) {
 
             menu.getItem(1).setVisible(true);
-        }
-        else if (Constants.currentFrag.equals("S")){
+        } else if (Constants.currentFrag.equals("S")) {
 
             menu.getItem(0).setVisible(true);
-        }
-        else {
+        } else {
 
             menu.getItem(3).setVisible(true);
         }
@@ -500,22 +497,22 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
         if (id == R.id.search) {
             //Constants.currentFrag = "S";
-           // bottomNavigationView.setVisibility(View.GONE);
+            // bottomNavigationView.setVisibility(View.GONE);
             //toolbar_const.getMenu().getItem(0).setVisible(false);
             //Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_SHORT).show();
             //Functions.loadFragment(getSupportFragmentManager(), new Search_frag(), R.id.frag_cont, false, "Search", null);
 
         } else if (id == R.id.notification) {
 
-            if (auth.getCurrentUser() != null) {
+            if (auth.getCurrentUser() != null || isLogin != false) {
+
                 Constants.currentFrag = "N";
                 toolbar_const.getMenu().getItem(1).setVisible(false);
                 navigationView.setCheckedItem(R.id.notificationNav);
                 bottomNavigationView.setVisibility(View.GONE);
                 Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
-           }
-            else {
-                
+            } else {
+
                 dialog("Please Login/Register to see notifications.");
             }
 
@@ -578,13 +575,12 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
             case R.id.notificationNav:
 
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null || isLogin != false) {
 
                     navigationView.setCheckedItem(R.id.notificationNav);
                     bottomNavigationView.setVisibility(View.GONE);
                     Functions.loadFragment(getSupportFragmentManager(), new Notification_frag(), R.id.frag_cont, false, "Notification", null);
-                }
-                else {
+                } else {
 
                     dialog("Please Login/Register to see notifications.");
                 }
@@ -605,12 +601,11 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
             case R.id.logoutNav:
 
-                if (auth.getCurrentUser() != null) {
+                if (auth.getCurrentUser() != null || isLogin != false) {
 
                     dialog("Do you want to logout?");
 
-                }
-                else {
+                } else {
 
                     dialog("Do you want to login?");
 
@@ -689,18 +684,18 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
     public static Bitmap getBitmapFromURL(String src) {
         try {
-            Log.e("src",src);
+            Log.e("src", src);
             URL url = new URL(src);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.connect();
             InputStream input = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            Log.e("Bitmap","returned");
+            Log.e("Bitmap", "returned");
             return myBitmap;
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("Exception",e.getMessage());
+            Log.e("Exception", e.getMessage());
             return null;
         }
     }
@@ -717,7 +712,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         }
     }
 
-    public  Bitmap rotateImageIfRequired(String imagePath) {
+    public Bitmap rotateImageIfRequired(String imagePath) {
         int degrees = 0;
 
         try {
@@ -768,7 +763,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
         return bitmap;
     }
 
-    private void dialog(String msg){
+    private void dialog(String msg) {
 
         drawerLayout.closeDrawer(GravityCompat.START);
         AlertDialog.Builder builder = new AlertDialog.Builder(DashBoard.this);
@@ -782,6 +777,9 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
                 auth.signOut();
 
                 getSharedPreferences("LogIn", MODE_PRIVATE).edit().putBoolean("LogIn", false).apply();
+
+                Constants.isLogin = false;
+
                 startActivity(new Intent(DashBoard.this, Login.class));
                 finish();
             }
@@ -800,7 +798,7 @@ public class DashBoard extends AppCompatActivity implements NavigationView.OnNav
 
     }
 
-    public void setCartCounter(){
+    public void setCartCounter() {
 
         cart_count.setText(String.valueOf(Constants.cart_totalItems));
     }

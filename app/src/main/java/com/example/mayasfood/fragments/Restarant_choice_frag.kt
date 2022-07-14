@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 class Restarant_choice_frag : Fragment() {
 
     var recycleView_models = ArrayList<RecycleView_Model>()
-    lateinit var recyclerView : RecyclerView
+    lateinit var recyclerView: RecyclerView
     var restaurantFoodName = ArrayList<String>()
     var restaurantFoodPrice = ArrayList<String>()
     var restaurantFoodImg = ArrayList<String>()
@@ -33,12 +33,13 @@ class Restarant_choice_frag : Fragment() {
     var restaurantFoodIsFav = ArrayList<Int>()
     var restaurantOfferAmt = ArrayList<String>()
     var restaurantFoodSize = ArrayList<String>()
-    lateinit var loading : ProgressBar
+    lateinit var loading: ProgressBar
     lateinit var viewModel: Restaurant_frag_ViewModel
-    lateinit var dashBoard : DashBoard
-    lateinit var auth : FirebaseAuth
-    lateinit var search : MenuItem
-    lateinit var recycleView_adapter : RecycleView_Adapter_RC
+    lateinit var dashBoard: DashBoard
+    lateinit var auth: FirebaseAuth
+    lateinit var search: MenuItem
+    lateinit var recycleView_adapter: RecycleView_Adapter_RC
+    var isLogin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,21 +52,23 @@ class Restarant_choice_frag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view : View = inflater.inflate(R.layout.fragment_restarant_choice_frag, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_restarant_choice_frag, container, false)
 
         viewModel = ViewModelProvider(this).get(Restaurant_frag_ViewModel::class.java)
 
         dashBoard = activity as DashBoard
 
         auth = FirebaseAuth.getInstance()
+        isLogin = dashBoard.getSharedPreferences("LogIn", 0).getBoolean("LogIn", false)
 
         dashBoard.toolbar_const.setTitle("Restaurant Choices")
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
 
-        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object :
+            Toolbar.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
 
-                if (item!!.itemId == R.id.search){
+                if (item!!.itemId == R.id.search) {
 
 
                 }
@@ -78,7 +81,8 @@ class Restarant_choice_frag : Fragment() {
         loading = view.findViewById(R.id.loading_rest)
         loading.visibility = View.VISIBLE
 
-        val layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
+        val layoutManager =
+            GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 
         recyclerView.layoutManager = layoutManager
 
@@ -93,9 +97,9 @@ class Restarant_choice_frag : Fragment() {
 
         viewModel.getRestaurantChoiceFood(this, "1", loading).observe(viewLifecycleOwner, Observer {
 
-            if (it != null){
+            if (it != null) {
 
-                if (it.getSuccess()!!){
+                if (it.getSuccess()!!) {
 
                     restaurantFoodName.clear()
                     restaurantFoodImg.clear()
@@ -106,7 +110,10 @@ class Restarant_choice_frag : Fragment() {
                     restaurantOfferAmt.clear()
                     restaurantFoodSize.clear()
 
-                    Log.d("indice", it.getData()!!.ListrestaurantproductResponce!!.indices.toString())
+                    Log.d(
+                        "indice",
+                        it.getData()!!.ListrestaurantproductResponce!!.indices.toString()
+                    )
 
                     for (i in it.getData()!!.ListrestaurantproductResponce!!.indices) {
 
@@ -127,28 +134,35 @@ class Restarant_choice_frag : Fragment() {
                             it.getData()!!.ListrestaurantproductResponce!![i].systemrating.toString()
                         )
 
-                        restaurantFoodId.add(i , it.getData()!!.ListrestaurantproductResponce!![i].id.toString())
+                        restaurantFoodId.add(
+                            i,
+                            it.getData()!!.ListrestaurantproductResponce!![i].id.toString()
+                        )
 
-                        if (auth.currentUser !=null){
-                        restaurantFoodIsFav.add(i , it.getData()!!.ListrestaurantproductResponce!![i].favorite!!)
-                        }
-                        else{
+                        if (auth.currentUser != null || isLogin != false) {
 
-                            restaurantFoodIsFav.add(i , 0)
-                        }
-                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount != null){
+                            restaurantFoodIsFav.add(
+                                i,
+                                it.getData()!!.ListrestaurantproductResponce!![i].favorite!!
+                            )
+                        } else {
 
-                            restaurantOfferAmt.add(i , it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount.toString())
+                            restaurantFoodIsFav.add(i, 0)
                         }
-                        else{
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount != null) {
 
-                            restaurantOfferAmt.add(i , "0")
+                            restaurantOfferAmt.add(
+                                i,
+                                it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount.toString()
+                            )
+                        } else {
+
+                            restaurantOfferAmt.add(i, "0")
                         }
-                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1){
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1) {
 
                             restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
-                        }
-                        else{
+                        } else {
 
                             for (j in it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.indices) {
 
@@ -160,7 +174,7 @@ class Restarant_choice_frag : Fragment() {
                                 }
                             }
 
-                            if (restaurantFoodSize.isEmpty()){
+                            if (restaurantFoodSize.isEmpty()) {
 
                                 restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
                             }
@@ -199,7 +213,7 @@ class Restarant_choice_frag : Fragment() {
 
         }
 
-        recycleView_adapter  = RecycleView_Adapter_RC(activity, recycleView_models)
+        recycleView_adapter = RecycleView_Adapter_RC(activity, recycleView_models)
 
         recyclerView.adapter = recycleView_adapter
 
@@ -210,7 +224,8 @@ class Restarant_choice_frag : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
         search = menu.findItem(R.id.search)
-        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+        val searchView: androidx.appcompat.widget.SearchView =
+            search.actionView as androidx.appcompat.widget.SearchView
 
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {

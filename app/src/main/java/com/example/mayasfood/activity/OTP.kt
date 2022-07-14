@@ -298,7 +298,7 @@ class OTP : AppCompatActivity() {
             } else {
 
                 loading.visibility = View.GONE
-                Toast.makeText(applicationContext, "OTP not match", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(applicationContext, "OTP not match", Toast.LENGTH_SHORT).show()
             }
         }
     }
