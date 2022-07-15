@@ -118,8 +118,11 @@
         <entry key="app/src/main/res/drawable/ellipse_54.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/ellipse_54__1_.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/eva_phone_call_outline.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/favorite.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/favorite_no.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/homemenu.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/la_phone_volume.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/line_22.xml" value="0.178" />

@@ -104,7 +104,7 @@ class SingleItem_viewModel : ViewModel() {
         val retrofitInstance = RetrofitInstance()
         val retrofitData : Call<Response_Common>
 
-        if (auth.currentUser != null){
+        if (auth.currentUser != null || Constants.isLogin != null){
 
             retrofitData = retrofitInstance.retrofit.getProductDetail(Constants.USER_TOKEN, param)
         }else {

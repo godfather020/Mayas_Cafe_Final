@@ -53,7 +53,7 @@ class Favorite_frag : Fragment() {
 
         dashBoard = activity as DashBoard
 
-        dashBoard.toolbar_const.setTitle("My Favorites");
+        dashBoard.toolbar_const.title = "My Favorites";
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
         noFav_text = view.findViewById(R.id.noFav_txt)
         noFav_img = view.findViewById(R.id.noFav_img)
