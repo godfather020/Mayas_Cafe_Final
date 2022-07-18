@@ -24,6 +24,7 @@ import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_C
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PF
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
+import com.example.mayasfood.shared_prefrence.TinyDB
 import com.google.firebase.auth.FirebaseAuth
 import com.smarteist.autoimageslider.SliderView
 
@@ -101,6 +102,39 @@ class Dashboard_frag : Fragment() {
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
 
         Log.d("isLogin", Constants.isLogin.toString())
+
+        val tinyDB = TinyDB(dashBoard)
+
+        val foodName : ArrayList<String> =  tinyDB.getListString("foodName")
+        val foodSize : ArrayList<String> = tinyDB.getListString("foodSize")
+        val foodImg : ArrayList<String> = tinyDB.getListString("foodImg")
+        val foodPrice : ArrayList<Int> = tinyDB.getListInt("foodPrice")
+        val foodQuantity : ArrayList<Int> = tinyDB.getListInt("foodQuantity")
+        val foodId : ArrayList<Int> = tinyDB.getListInt("foodId")
+        val cartCount = tinyDB.getInt("cartCount")
+
+        if (foodName != null){
+
+            Constants.foodId.clear()
+            Constants.foodSize.clear()
+            Constants.foodImg.clear()
+            Constants.foodPrice.clear()
+            Constants.foodQuantity.clear()
+            Constants.foodName.clear()
+            Constants.cart_totalItems = cartCount
+
+            for (i in foodName.indices){
+
+                Constants.foodName.add(foodName[i])
+                Constants.foodSize.add(foodSize[i])
+                Constants.foodImg.add(foodImg[i])
+                Constants.foodPrice.add(foodPrice[i])
+                Constants.foodQuantity.add(foodQuantity[i])
+                Constants.foodId.add(foodId[i])
+
+                Log.d("food", foodName[i] +" "+foodId[i]+" "+foodImg[i]+" "+foodSize[i]+" "+foodPrice[i]+" "+foodQuantity[i])
+            }
+        }
 
         dashBoard.toolbar_const.setOnMenuItemClickListener(object : androidx.appcompat.widget.Toolbar.OnMenuItemClickListener{
             override fun onMenuItemClick(item: MenuItem?): Boolean {

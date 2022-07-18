@@ -28,7 +28,9 @@ import com.example.mayasfood.fragments.ViewModels.CheckOut_frag_ViewModel
 import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
+import com.example.mayasfood.shared_prefrence.TinyDB
 import java.lang.reflect.Field
+import java.lang.reflect.Modifier
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,6 +67,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     lateinit var dialog : Dialog
     var orderID = ""
     var paymentMethod = "CASH"
+    lateinit var tinyDB : TinyDB
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,6 +81,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         dashBoard = activity as DashBoard
 
         setHasOptionsMenu(true)
+
+        tinyDB = TinyDB(dashBoard)
 
         checkOut_TotalItems = view.findViewById(R.id.checkout_totallItems)
         clear_cart = view.findViewById(R.id.checkout_clearAll)
@@ -391,6 +396,13 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
             cart_empty_btn.visibility = View.GONE
         }
 
+        tinyDB.putListInt("foodId", Constants.foodId)
+        tinyDB.putListString("foodSize", Constants.foodSize)
+        tinyDB.putListString("foodName", Constants.foodName)
+        tinyDB.putListString("foodImg", Constants.foodImg)
+        tinyDB.putListInt("foodPrice", Constants.foodPrice)
+        tinyDB.putListInt("foodQuantity", Constants.foodQuantity)
+
         for (i in Constants.foodName.indices) {
             recycleView_models.add(RecycleView_Model(Constants.foodSize[i], Constants.foodName[i], Constants.foodImg[i], Constants.foodPrice[i].toString(), Constants.foodQuantity[i]))
 
@@ -399,6 +411,9 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         }
 
         Constants.cart_totalItems = Constants.foodName.size
+
+        tinyDB.putInt("cartCount", Constants.cart_totalItems)
+
         checkOut_TotalItems.setText( "Total Items " + Constants.cart_totalItems.toString())
 
             for (i in Constants.foodPrice.indices){
@@ -466,8 +481,9 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         Constants.foodImg.clear()
         Constants.foodSize.clear()
         Constants.foodId.clear()
-
         Constants.subTotal = 0
+
+        tinyDB.clear()
 
         setUpModelRv()
     }

@@ -21,6 +21,7 @@ import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.CategoryDetails_frag;
 import com.example.mayasfood.fragments.CheckOut_frag;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.example.mayasfood.shared_prefrence.TinyDB;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -35,11 +36,13 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
     int row_index = -1;
     String foodName = "";
     CheckOut_frag fragment;
+    TinyDB tinyDB;
 
     public RecycleView_Adapter_CO(Context context, ArrayList<RecycleView_Model> foodModels, CheckOut_frag fragment) {
         this.context = context;
         this.foodModels = foodModels;
         this.fragment = fragment;
+        tinyDB = new TinyDB(context.getApplicationContext());
     }
 
     @NonNull
@@ -55,6 +58,8 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
     @Override
     public void onBindViewHolder(@NonNull RecycleView_Adapter_CO.MyViewHolder holder, int position) {
         //Assigning values to the views we created
+        tinyDB = new TinyDB(context.getApplicationContext());
+
         final RecycleView_Model temp = foodModels.get(position);
 
         if (foodModels.get(position).getFoodName().length() > 25){
@@ -97,6 +102,14 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
 
                 Constants.cart_totalItems -= 1;
 
+                tinyDB.putListInt("foodId", Constants.foodId);
+                tinyDB.putListString("foodSize", Constants.foodSize);
+                tinyDB.putListString("foodName", Constants.foodName);
+                tinyDB.putListString("foodImg", Constants.foodImg);
+                tinyDB.putListInt("foodPrice", Constants.foodPrice);
+                tinyDB.putListInt("foodQuantity", Constants.foodQuantity);
+                tinyDB.putInt("cartCount", Constants.cart_totalItems);
+
                 foodModels.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
                 notifyItemRangeChanged(holder.getAdapterPosition(), foodModels.size());
@@ -114,6 +127,8 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 int q = Constants.foodQuantity.get(holder.getAdapterPosition());
 
                 Constants.foodQuantity.set(holder.getAdapterPosition(), q +1);
+
+                tinyDB.putListInt("foodQuantity", Constants.foodQuantity);
 
                 fragment.setUpModelRv();
             }
@@ -134,6 +149,8 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 else {
 
                     Constants.foodQuantity.set(holder.getAdapterPosition(), q - 1);
+
+                    tinyDB.putListInt("foodQuantity", Constants.foodQuantity);
                 }
                 fragment.setUpModelRv();
             }
