@@ -1,5 +1,6 @@
 package com.example.mayasfood.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -15,6 +16,10 @@ import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.fragments.ViewModels.Offers_frag_viewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_O
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 class Offers_frag : Fragment() {
@@ -24,11 +29,11 @@ class Offers_frag : Fragment() {
     val offers_img = ArrayList<String>()
     val offers_txt = ArrayList<String>()
     val offers_code = ArrayList<String>()
-    lateinit var offers_frag_viewModel : Offers_frag_viewModel
+    lateinit var offers_frag_viewModel: Offers_frag_viewModel
     lateinit var recyclerView: RecyclerView
-    lateinit var loading : ProgressBar
-    lateinit var search : MenuItem
-    lateinit var recycleView_adapter : RecycleView_Adapter_O
+    lateinit var loading: ProgressBar
+    lateinit var search: MenuItem
+    lateinit var recycleView_adapter: RecycleView_Adapter_O
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +49,11 @@ class Offers_frag : Fragment() {
         dashBoard.toolbar_const.setTitleTextColor(resources.getColor(R.color.black))
         dashBoard.bottomNavigationView.visibility = View.VISIBLE
 
-        dashBoard.toolbar_const.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener{
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object :
+            Toolbar.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
 
-                if (item!!.itemId == R.id.search){
+                if (item!!.itemId == R.id.search) {
 
 
                 }
@@ -73,41 +79,85 @@ class Offers_frag : Fragment() {
 
     private fun getCoupons() {
 
-        offers_frag_viewModel.getAllCoupons(this, "1", loading).observe(viewLifecycleOwner, Observer {
+        offers_frag_viewModel.getAllCoupons(this, "1", loading)
+            .observe(viewLifecycleOwner, Observer {
 
-            if (it != null){
+                if (it != null) {
 
-                if (it.getSuccess()!!){
+                    if (it.getSuccess()!!) {
 
-                    offers_img.clear()
-                    offers_txt.clear()
-                    offers_code.clear()
+                        offers_img.clear()
+                        offers_txt.clear()
+                        offers_code.clear()
 
-                    for (i in it.getData()!!.ListcouponResponce!!.indices){
+                        for (i in it.getData()!!.ListcouponResponce!!.indices) {
 
-                        offers_img.add(i , it.getData()!!.ListcouponResponce!![i].bannerImage.toString())
-                        offers_txt.add(i , it.getData()!!.ListcouponResponce!![i].title.toString()+" "+it.getData()!!.ListcouponResponce!![i].desc
-                                + " CODE :- " +it.getData()!!.ListcouponResponce!![i].code)
-                        offers_code.add(i , it.getData()!!.ListcouponResponce!![i].code.toString())
+                            val dateFormat: DateFormat =
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    SimpleDateFormat(
+                                        "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
+                                        Locale.getDefault()
+                                    )
+                                } else {
+                                    TODO("VERSION.SDK_INT < N")
+                                }
+                            val date =
+                                dateFormat.parse(it.getData()!!.ListcouponResponce!![i].stopAt.toString())
+
+                            val formatter: DateFormat =
+                                SimpleDateFormat("dd-MM-yyyy") //If you need time just put specific format for time like 'HH:mm:ss'
+
+                            val dateStr = formatter.format(date)
+
+                            val valid_until = dateStr
+                            val sdf = SimpleDateFormat("dd-MM-yyyy")
+                            var strDate: Date? = null
+                            try {
+                                strDate = sdf.parse(valid_until)
+                            } catch (e: ParseException) {
+                                e.printStackTrace()
+                            }
+
+                            if (it.getData()!!.ListcouponResponce!![i].status != false && !Date().after(
+                                    strDate
+                                )
+                            ) {
+
+                                offers_img.add(
+                                    it.getData()!!.ListcouponResponce!![i].bannerImage.toString()
+                                )
+                                offers_txt.add(
+                                    it.getData()!!.ListcouponResponce!![i].title.toString() + " " + it.getData()!!.ListcouponResponce!![i].desc
+                                            + " CODE :- " + it.getData()!!.ListcouponResponce!![i].code
+                                )
+                                offers_code.add(
+                                    it.getData()!!.ListcouponResponce!![i].code.toString()
+                                )
+                            }
+                        }
+
+                        for (i in offers_txt.indices) {
+                            recycleView_models.add(
+                                RecycleView_Model(
+                                    offers_txt[i],
+                                    offers_img[i],
+                                    offers_code[i]
+                                )
+                            )
+                        }
+
+                        recycleView_adapter = RecycleView_Adapter_O(activity, recycleView_models)
+                        recyclerView.adapter = recycleView_adapter
+                        recycleView_adapter.notifyDataSetChanged()
+
+                        loading.visibility = View.GONE
+                    } else {
+
+                        Log.d("failure", "Failed")
                     }
 
-                    for (i in offers_txt.indices) {
-                        recycleView_models.add(RecycleView_Model(offers_txt[i], offers_img[i], offers_code[i]))
-                    }
-
-                    recycleView_adapter = RecycleView_Adapter_O(activity, recycleView_models)
-                    recyclerView.adapter = recycleView_adapter
-                    recycleView_adapter.notifyDataSetChanged()
-
-                    loading.visibility = View.GONE
                 }
-                else{
-
-                    Log.d("failure", "Failed")
-                }
-
-            }
-        })
+            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -121,7 +171,8 @@ class Offers_frag : Fragment() {
         dashBoard.navigationView.setCheckedItem(R.id.offersNav)
 
         search = menu.findItem(R.id.search)
-        val searchView : androidx.appcompat.widget.SearchView = search.actionView as androidx.appcompat.widget.SearchView
+        val searchView: androidx.appcompat.widget.SearchView =
+            search.actionView as androidx.appcompat.widget.SearchView
 
         searchView.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {

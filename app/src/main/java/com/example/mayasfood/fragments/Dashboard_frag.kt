@@ -1,5 +1,6 @@
 package com.example.mayasfood.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -9,6 +10,7 @@ import android.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mayasfood.R
@@ -27,6 +29,11 @@ import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_RC
 import com.example.mayasfood.shared_prefrence.TinyDB
 import com.google.firebase.auth.FirebaseAuth
 import com.smarteist.autoimageslider.SliderView
+import java.text.DateFormat
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Dashboard_frag : Fragment() {
@@ -35,7 +42,7 @@ class Dashboard_frag : Fragment() {
     lateinit var see_offers: TextView
     lateinit var see_popular: TextView
     lateinit var see_restchoice: TextView
-    lateinit var userName : TextView
+    lateinit var userName: TextView
     val commonResponse = MutableLiveData<Response_Common>()
     lateinit var viewModel: Dashboard_frag_ViewModel
     lateinit var sliderView: SliderView
@@ -57,18 +64,19 @@ class Dashboard_frag : Fragment() {
     var restaurantFoodIsFav = ArrayList<Int>()
     var restaurantOfferAmt = ArrayList<String>()
     var restaurantFoodSize = ArrayList<String>()
-    lateinit var recyclerView : RecyclerView
-    lateinit var recyclerView3 : RecyclerView
-    lateinit var recyclerView2 : RecyclerView
+    lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView3: RecyclerView
+    lateinit var recyclerView2: RecyclerView
     lateinit var homeResList: ArrayList<ListcouponResponce>
-    lateinit var loading : ProgressBar
+    lateinit var loading: ProgressBar
     var notResumed = false
     var favProductId = ArrayList<String>()
+
     //var commonResponse = ArrayList<Response_Common>()
-    lateinit var auth : FirebaseAuth
-    lateinit var notify_count : TextView
-    lateinit var cart_count : TextView
-    lateinit var card_count : CardView
+    lateinit var auth: FirebaseAuth
+    lateinit var notify_count: TextView
+    lateinit var cart_count: TextView
+    lateinit var card_count: CardView
 
     var url1 = "https://i.postimg.cc/2Sq6C4V8/002-1.png"
     var url2 = "https://i.postimg.cc/FFMd1CXk/001-1-1.jpg"
@@ -95,7 +103,7 @@ class Dashboard_frag : Fragment() {
         //viewModel.getDashboardData(this, "1").observe(viewLifecycleOwner, dataObserver)
         viewModel = ViewModelProvider(this).get(Dashboard_frag_ViewModel::class.java)
 
-        homeResList =ArrayList<ListcouponResponce>()
+        homeResList = ArrayList<ListcouponResponce>()
         dashBoard = (activity as DashBoard)
         dashBoard.toolbar_const.title = ""
         dashBoard.toolbar_const.setNavigationIcon(R.drawable.menubar)
@@ -105,15 +113,15 @@ class Dashboard_frag : Fragment() {
 
         val tinyDB = TinyDB(dashBoard)
 
-        val foodName : ArrayList<String> =  tinyDB.getListString("foodName")
-        val foodSize : ArrayList<String> = tinyDB.getListString("foodSize")
-        val foodImg : ArrayList<String> = tinyDB.getListString("foodImg")
-        val foodPrice : ArrayList<Int> = tinyDB.getListInt("foodPrice")
-        val foodQuantity : ArrayList<Int> = tinyDB.getListInt("foodQuantity")
-        val foodId : ArrayList<Int> = tinyDB.getListInt("foodId")
+        val foodName: ArrayList<String> = tinyDB.getListString("foodName")
+        val foodSize: ArrayList<String> = tinyDB.getListString("foodSize")
+        val foodImg: ArrayList<String> = tinyDB.getListString("foodImg")
+        val foodPrice: ArrayList<Int> = tinyDB.getListInt("foodPrice")
+        val foodQuantity: ArrayList<Int> = tinyDB.getListInt("foodQuantity")
+        val foodId: ArrayList<Int> = tinyDB.getListInt("foodId")
         val cartCount = tinyDB.getInt("cartCount")
 
-        if (foodName != null){
+        if (foodName != null) {
 
             Constants.foodId.clear()
             Constants.foodSize.clear()
@@ -123,7 +131,7 @@ class Dashboard_frag : Fragment() {
             Constants.foodName.clear()
             Constants.cart_totalItems = cartCount
 
-            for (i in foodName.indices){
+            for (i in foodName.indices) {
 
                 Constants.foodName.add(foodName[i])
                 Constants.foodSize.add(foodSize[i])
@@ -132,16 +140,27 @@ class Dashboard_frag : Fragment() {
                 Constants.foodQuantity.add(foodQuantity[i])
                 Constants.foodId.add(foodId[i])
 
-                Log.d("food", foodName[i] +" "+foodId[i]+" "+foodImg[i]+" "+foodSize[i]+" "+foodPrice[i]+" "+foodQuantity[i])
+                Log.d(
+                    "food",
+                    foodName[i] + " " + foodId[i] + " " + foodImg[i] + " " + foodSize[i] + " " + foodPrice[i] + " " + foodQuantity[i]
+                )
             }
         }
 
-        dashBoard.toolbar_const.setOnMenuItemClickListener(object : androidx.appcompat.widget.Toolbar.OnMenuItemClickListener{
+        dashBoard.toolbar_const.setOnMenuItemClickListener(object :
+            androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
             override fun onMenuItemClick(item: MenuItem?): Boolean {
 
-                if (item!!.itemId == R.id.search){
+                if (item!!.itemId == R.id.search) {
 
-                    Functions.loadFragment(fragmentManager,  Search_frag(), R.id.frag_cont, false, "Search", null);
+                    Functions.loadFragment(
+                        fragmentManager,
+                        Search_frag(),
+                        R.id.frag_cont,
+                        false,
+                        "Search",
+                        null
+                    );
                 }
 
                 return true
@@ -189,13 +208,27 @@ class Dashboard_frag : Fragment() {
         see_popular.setOnClickListener {
 
             dashBoard.bottomNavigationView.visibility = View.GONE
-            Functions.loadFragment(fragmentManager, popular_frag(), R.id.frag_cont, false, "Popular Food", null)
+            Functions.loadFragment(
+                fragmentManager,
+                popular_frag(),
+                R.id.frag_cont,
+                false,
+                "Popular Food",
+                null
+            )
         }
 
         see_restchoice.setOnClickListener {
 
             dashBoard.bottomNavigationView.visibility = View.GONE
-            Functions.loadFragment(fragmentManager, Restarant_choice_frag(), R.id.frag_cont, false, "Restaurant Choices", null)
+            Functions.loadFragment(
+                fragmentManager,
+                Restarant_choice_frag(),
+                R.id.frag_cont,
+                false,
+                "Restaurant Choices",
+                null
+            )
         }
 
         see_offers.setOnClickListener {
@@ -216,9 +249,9 @@ class Dashboard_frag : Fragment() {
 
         viewModel.getNotificationData(this).observe(viewLifecycleOwner, Observer {
 
-            if (it!=null){
+            if (it != null) {
 
-                if (it.getSuccess()!!){
+                if (it.getSuccess()!!) {
 
                     Constants.notifyCount = it.getData()!!.notifications!!.count!!
 
@@ -226,7 +259,7 @@ class Dashboard_frag : Fragment() {
                     Log.d("notifyC", Constants.notifyCount.toString())
                     cart_count.text = Constants.cart_totalItems.toString()
                     dashBoard.notify_count.text = Constants.notifyCount.toString()
-                    if (!notify_count.text.equals("0")){
+                    if (!notify_count.text.equals("0")) {
 
                         dashBoard.notify_card.visibility = View.VISIBLE
                     }
@@ -252,12 +285,44 @@ class Dashboard_frag : Fragment() {
 
                         Log.d("indice", i.toString())
 
-                        ListcouponResponce = it.getData()!!.ListcouponResponce!![i]
+                        val dateFormat: DateFormat =
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                SimpleDateFormat(
+                                    "yyyy-MM-dd'T'HH:mm:ss.SSSXXX",
+                                    Locale.getDefault()
+                                )
+                            } else {
+                                TODO("VERSION.SDK_INT < N")
+                            }
+                        val date =
+                            dateFormat.parse(it.getData()!!.ListcouponResponce!![i].stopAt.toString())
+
+                        val formatter: DateFormat =
+                            SimpleDateFormat("dd-MM-yyyy") //If you need time just put specific format for time like 'HH:mm:ss'
+
+                        val dateStr = formatter.format(date)
+
+                        val valid_until = dateStr
+                        val sdf = SimpleDateFormat("dd-MM-yyyy")
+                        var strDate: Date? = null
+                        try {
+                            strDate = sdf.parse(valid_until)
+                        } catch (e: ParseException) {
+                            e.printStackTrace()
+                        }
+
+                        if (it.getData()!!.ListcouponResponce!![i].status != false && !Date().after(
+                                strDate
+                            )
+                        ) {
+
+                            ListcouponResponce = it.getData()!!.ListcouponResponce!![i]
 
 
-                        var bannerImage = it.getData()!!.ListcouponResponce!![i].name
+                            var bannerImage = it.getData()!!.ListcouponResponce!![i].name
 
-                        homeResList.add(ListcouponResponce)
+                            homeResList.add(ListcouponResponce)
+                        }
 
                     }
                     for (i in homeResList.indices) {
@@ -308,27 +373,27 @@ class Dashboard_frag : Fragment() {
                                 i,
                                 it.getData()!!.ListpopularproductResponce!![i].favorite!!
                             )
-                        }
-                        else{
+                        } else {
 
                             popularFoodIsFav.add(
                                 i,
                                 0
                             )
                         }
-                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount != null){
+                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount != null) {
 
-                            popularOfferAmt.add(i, it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount.toString())
-                        }
-                        else{
+                            popularOfferAmt.add(
+                                i,
+                                it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].offerAmount.toString()
+                            )
+                        } else {
 
-                            popularOfferAmt.add(i , "0")
+                            popularOfferAmt.add(i, "0")
                         }
-                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!!.size == 1){
+                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!!.size == 1) {
 
                             popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
-                        }
-                        else{
+                        } else {
 
                             for (j in it.getData()!!.ListpopularproductResponce!![i].Productprices!!.indices) {
 
@@ -340,7 +405,7 @@ class Dashboard_frag : Fragment() {
                                 }
                             }
 
-                            if (popularFoodSize.isEmpty()){
+                            if (popularFoodSize.isEmpty()) {
 
                                 popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
                             }
@@ -376,8 +441,7 @@ class Dashboard_frag : Fragment() {
                                 i,
                                 it.getData()!!.ListrestaurantproductResponce!![i].favorite!!
                             )
-                        }
-                        else{
+                        } else {
                             restaurantFoodIsFav.add(
                                 i,
                                 0
@@ -385,20 +449,21 @@ class Dashboard_frag : Fragment() {
 
                         }
 
-                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount != null){
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount != null) {
 
-                            restaurantOfferAmt.add(i , it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount.toString())
-                        }
-                        else {
+                            restaurantOfferAmt.add(
+                                i,
+                                it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].offerAmount.toString()
+                            )
+                        } else {
 
                             restaurantOfferAmt.add(i, "0")
                         }
 
-                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1){
+                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1) {
 
                             restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
-                        }
-                        else{
+                        } else {
 
                             for (j in it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.indices) {
 
@@ -410,7 +475,7 @@ class Dashboard_frag : Fragment() {
                                 }
                             }
 
-                            if (restaurantFoodSize.isEmpty()){
+                            if (restaurantFoodSize.isEmpty()) {
 
                                 restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
                             }
@@ -490,7 +555,6 @@ class Dashboard_frag : Fragment() {
         }
 
 
-
         val recycleView_adapter = RecycleView_Adapter_C(activity, recycleView_models)
         val recycleView_adapter_pf = RecycleView_Adapter_PF(activity, recycleView_models1)
         val recycleView_adapter_rc = RecycleView_Adapter_RC(activity, recycleView_models2)
@@ -524,7 +588,7 @@ class Dashboard_frag : Fragment() {
         val notifyMenuItem = menu.findItem(R.id.notification)
         val cartMenuItem = menu.findItem(R.id.cart)
 
-        val actionView2 : View = cartMenuItem.actionView
+        val actionView2: View = cartMenuItem.actionView
 
         val actionView: View = notifyMenuItem.getActionView()
 
@@ -537,17 +601,16 @@ class Dashboard_frag : Fragment() {
             //notify_count.setText(Constants.notifyCount.toString())
         }
 
-        if (actionView2!=null){
+        if (actionView2 != null) {
 
             cart_count = actionView2.findViewById(R.id.cart_count)
             card_count = actionView2.findViewById(R.id.card_count)
         }
 
-        if (cart_count.text.equals("0")){
+        if (cart_count.text.equals("0")) {
 
             card_count.visibility = View.GONE
-        }
-        else{
+        } else {
 
             card_count.visibility = View.VISIBLE
         }
@@ -556,7 +619,7 @@ class Dashboard_frag : Fragment() {
     }
 
 
-    fun clearArrayList(){
+    fun clearArrayList() {
 
         recycleView_models.clear()
         recycleView_models1.clear()
