@@ -120,7 +120,7 @@ class Orders_Single_item_frag : Fragment() {
                             singleOrder_pickup.setText(pickTime)
                             singleOrder_createdAt.setText(createdTime)
                             singleOrder_date.setText(createdDate)
-                            singleOrder_num.setText(it.getData()!!.ListOrderResponce!![i].transactionId.toString())
+                            singleOrder_num.setText("#"+Constants.singleID)
                             singleOrder_quantity.setText("Number of items "+it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
                             singleOrder_total.setText("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())
 
