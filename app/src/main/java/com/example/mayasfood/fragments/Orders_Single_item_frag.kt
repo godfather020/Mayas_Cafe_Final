@@ -120,20 +120,20 @@ class Orders_Single_item_frag : Fragment() {
                             singleOrder_pickup.setText(pickTime)
                             singleOrder_createdAt.setText(createdTime)
                             singleOrder_date.setText(createdDate)
-                            singleOrder_num.setText("#"+Constants.singleID)
+                            singleOrder_num.setText("Order Id - #"+Constants.singleID)
                             singleOrder_quantity.setText("Number of items "+it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
                             singleOrder_total.setText("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())
 
-                            Picasso.get().load(Constants.UserProduct_Path+ it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                            Picasso.get().load(Constants.UserProduct_Path+ it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
                                 .into(singleOrder_img)
 
                             for (j in it.getData()!!.ListOrderResponce!![i].Orderlists!!.indices) {
 
                                 //singleItem_name.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j])
-                                singleItem_name.add("Samosa")
+                                singleItem_name.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Product!!.productName.toString())
                                   singleItem_total.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].totalAmount.toString())
                                 singleItem_qty.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].noItems.toString())
-                                singleItem_img.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Productprice!!.productPic.toString())
+                                singleItem_img.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Product!!.productPic.toString())
                             }
 
                         }

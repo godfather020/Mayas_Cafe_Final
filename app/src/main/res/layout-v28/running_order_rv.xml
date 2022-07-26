@@ -42,7 +42,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="#457485451"
                 android:textColor="@color/Register_Title"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@+id/run_order_img"
                 app:layout_constraintTop_toTopOf="parent" />
 

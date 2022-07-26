@@ -17,10 +17,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
 import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.fragments.Orders_Single_item_frag;
+import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.squareup.picasso.Picasso;
 
@@ -55,7 +58,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
         final RecycleView_Model temp = foodModels4.get(position);
 
-        holder.runOrder_num.setText("#"+foodModels4.get(position).getRunOrder_num());
+        holder.runOrder_num.setText("Order Id - #"+foodModels4.get(position).getRunOrder_num());
         holder.runOrder_total.setText("$"+foodModels4.get(position).getRunOrder_total());
         holder.runOrder_Quantity.setText("Number of Items "+foodModels4.get(position).getRunOrder_Quantity());
         //holder.runOrder_status.setText(foodModels4.get(position).getRunOrder_status());
@@ -180,6 +183,20 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
                 showRatingDialog();
 
+            }
+        });
+
+        holder.pastOrderCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                Constants.singleID = foodModels4.get(holder.getAdapterPosition()).getRunOrder_num();
+
+                Log.d("SingleId", Constants.singleID);
+
+                Functions.loadFragment(activity.getSupportFragmentManager(), new Orders_Single_item_frag(), R.id.frag_cont, false, "Single Order", null);
             }
         });
 
@@ -392,6 +409,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
         CircleImageView runOrder_img;
         AppCompatButton runOrder_btn;
         ImageView star1, star2, star3, star4, star5;
+        CardView pastOrderCard;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -411,6 +429,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             star3 = itemView.findViewById(R.id.pastOrder_star3);
             star4 = itemView.findViewById(R.id.pastOrder_star4);
             star5 = itemView.findViewById(R.id.pastOrder_star5);
+            pastOrderCard = itemView.findViewById(R.id.pastOrder_card);
 
         }
     }

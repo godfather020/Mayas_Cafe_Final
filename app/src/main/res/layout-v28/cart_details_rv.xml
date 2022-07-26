@@ -28,6 +28,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/do_011318_alc_kapoleichinese_lt001_file_shrimp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

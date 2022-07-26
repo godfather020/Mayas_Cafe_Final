@@ -71,6 +71,7 @@ class Dashboard_frag : Fragment() {
     lateinit var loading: ProgressBar
     var notResumed = false
     var favProductId = ArrayList<String>()
+    lateinit var noOffers : TextView
 
     //var commonResponse = ArrayList<Response_Common>()
     lateinit var auth: FirebaseAuth
@@ -182,6 +183,8 @@ class Dashboard_frag : Fragment() {
         }
 
         loading = v.findViewById(R.id.progress_bar)
+        noOffers = v.findViewById(R.id.noOffers)
+
         loading.visibility = View.VISIBLE
 
         //setDashboardView()
@@ -325,25 +328,37 @@ class Dashboard_frag : Fragment() {
                         }
 
                     }
-                    for (i in homeResList.indices) {
 
-                        sliderDataArrayList.add(
-                            SliderData(
-                                Constants.UserCoupon_Path + homeResList.get(
-                                    i
-                                ).bannerImage
+                    if(homeResList.isNotEmpty()) {
+
+                        sliderView.visibility = View.VISIBLE
+                        noOffers.visibility = View.GONE
+
+                        for (i in homeResList.indices) {
+
+                            sliderDataArrayList.add(
+                                SliderData(
+                                    Constants.UserCoupon_Path + homeResList.get(
+                                        i
+                                    ).bannerImage
+                                )
                             )
-                        )
 
+                        }
+
+                        val adapter = SliderAdapter(context, sliderDataArrayList)
+                        sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
+                        sliderView.setSliderAdapter(adapter)
+                        sliderView.scrollTimeInSec = 3
+
+                        sliderView.isAutoCycle = true
+                        sliderView.startAutoCycle()
                     }
+                    else{
 
-                    val adapter = SliderAdapter(context, sliderDataArrayList)
-                    sliderView.autoCycleDirection = SliderView.LAYOUT_DIRECTION_LTR
-                    sliderView.setSliderAdapter(adapter)
-                    sliderView.scrollTimeInSec = 3
-
-                    sliderView.isAutoCycle = true
-                    sliderView.startAutoCycle()
+                        sliderView.visibility = View.GONE
+                        noOffers.visibility = View.VISIBLE
+                    }
 
                     for (i in it.getData()!!.ListpopularproductResponce!!.indices) {
 

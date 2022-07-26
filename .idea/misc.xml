@@ -207,7 +207,7 @@
         <entry key="app/src/main/res/layout/fragment_not_log_in_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_notification_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_offers_frag.xml" value="0.2864583333333333" />
-        <entry key="app/src/main/res/layout/fragment_orders__single_item_frag.xml" value="0.28541666666666665" />
+        <entry key="app/src/main/res/layout/fragment_orders__single_item_frag.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/fragment_orders_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_past_orders_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_popular_frag.xml" value="0.2864583333333333" />
@@ -221,6 +221,7 @@
         <entry key="app/src/main/res/layout/nav_category_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/nav_category_rv.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/offers_rv.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/order_cancel_dialog.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/order_confirm_dialog.xml" value="0.2334330910645575" />
         <entry key="app/src/main/res/layout/past_order_rv.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/popular_food_rv.xml" value="0.4682741116751269" />

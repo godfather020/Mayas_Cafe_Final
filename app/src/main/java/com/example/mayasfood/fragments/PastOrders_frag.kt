@@ -125,7 +125,7 @@ class PastOrders_frag : Fragment() {
                            pastOrder_status.add(it.getData()!!.ListOrderResponce!![i].orderStatus.toString())
                             pastOrder_total.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
                             pastOrder_quantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
-                            pastOrder_img.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                            pastOrder_img.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
                             //pastO.add(pickTime)
                             pastOrder_createdAt.add(createdDate+"-"+createdTime)
                             pastOrder_date.add(pickupDate+" "+pickedTime)

@@ -111,7 +111,7 @@ class RunningOrders_frag : Fragment() {
                             runOrder_status.add(it.getData()!!.ListOrderResponce!![i].orderStatus.toString())
                             runOrder_total.add(it.getData()!!.ListOrderResponce!![i].amount.toString())
                             runOrder_quantity.add(it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
-                            runOrder_img.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Productprice!!.productPic.toString())
+                            runOrder_img.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
                             runOrder_pickup.add(pickTime)
                             runOrder_createdAt.add(createdTime)
                             runOrder_date.add(createdDate)
