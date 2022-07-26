@@ -256,7 +256,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
                     sH = p1
                     sM = p2
 
-                    val todayDate = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+                    val todayDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
                     val calendar1 : Calendar = Calendar.getInstance()
                     sDate = todayDate
                     val strings : List<String> = sDate.split(Regex("-"))

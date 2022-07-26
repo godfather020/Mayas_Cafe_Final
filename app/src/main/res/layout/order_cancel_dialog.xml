@@ -59,22 +59,19 @@
             android:background="@drawable/custom_edit_text"
             android:elevation="8dp"
             android:gravity="start"
-            android:fontFamily="@font/montserrat_light"
+            android:fontFamily="@font/montserrat_medium"
             android:hint="Enter Your Reason"
             android:inputType="textMultiLine"
             android:maxLines="10"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:paddingTop="8dp"
-            android:textColor="#C4C4C4"
-
-            android:textSize="13dp"
-
+            android:textColor="@color/black"
+            android:textSize="15dp"
             app:layout_constraintBottom_toTopOf="@+id/userEdit_update"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
 
         <Button
             android:id="@+id/userEdit_update"

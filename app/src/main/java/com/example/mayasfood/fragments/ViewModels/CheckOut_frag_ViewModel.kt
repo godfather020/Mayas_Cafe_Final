@@ -50,7 +50,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.toalQuantity = Constants.cart_totalItems.toString()
         requestOrderdetails.amount = Constants.total.toString()
         requestOrderdetails.paymentMethod = paymentMethod
-        requestOrderdetails.pickupAt = pickUpDateTime
+        requestOrderdetails.pickupAt = pickUpDateTime.toString()
 
         //Log.d("orderItem", requestOrderdetails.toString())
         //Log.d("orderItem", requestOrderdetails.amount.toString())
@@ -59,7 +59,7 @@ class CheckOut_frag_ViewModel : ViewModel() {
 
             Log.d("orderId", Constants.foodId[i].toString())
             Log.d("orderPrice", Constants.foodPrice[i].toString())
-            Log.d("orderSize", Constants.foodSize[i])
+            Log.d("orderSize", Constants.foodSize[i].toString())
             Log.d("orderQty", Constants.foodQuantity[i].toString())
 
             val orderItems1 = OrderItems(

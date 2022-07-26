@@ -2,7 +2,6 @@ package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -19,15 +18,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lottry.data.remote.retrofit.request.Request_cancelOrder;
 import com.example.mayasfood.R;
-import com.example.mayasfood.Retrofite.request.Request_Branch;
-import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.example.mayasfood.Retrofite.response.Response_cancelOrder;
-import com.example.mayasfood.activity.DashBoard;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.development.retrofit.RetrofitInstance;
 import com.example.mayasfood.fragments.Orders_Single_item_frag;
@@ -155,7 +150,7 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
 
         AppCompatActivity activity = (AppCompatActivity) context;
 
-        View view =activity.getLayoutInflater().inflate(R.layout.profile_edit_popup, null);
+        View view =activity.getLayoutInflater().inflate(R.layout.order_cancel_dialog, null);
 
         dialog.setContentView(view);
        /* if (dialog.getWindow() != null) {

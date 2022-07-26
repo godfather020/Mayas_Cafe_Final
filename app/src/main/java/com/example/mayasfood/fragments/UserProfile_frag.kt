@@ -227,7 +227,7 @@ class UserProfile_frag : Fragment() {
         var dialog = Dialog(requireContext());
         dialog.setCancelable(false);
 
-        var view = this.layoutInflater.inflate(R.layout.profile_edit_popup, null)
+        var view = this.layoutInflater.inflate(R.layout.order_cancel_dialog, null)
 
         dialog.setContentView(view);
         if (dialog.getWindow() != null) {
