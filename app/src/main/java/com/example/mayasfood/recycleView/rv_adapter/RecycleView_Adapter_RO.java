@@ -2,6 +2,7 @@ package com.example.mayasfood.recycleView.rv_adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
@@ -29,6 +30,10 @@ import com.example.mayasfood.fragments.Orders_Single_item_frag;
 import com.example.mayasfood.fragments.RunningOrders_frag;
 import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.ByteMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -82,6 +87,7 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
 
             holder.runOrder_status.setText("Pending");
             holder.runOrder_btn.setVisibility(View.VISIBLE);
+            holder.runOrder_btn.setText("Cancel");
             holder.runOrder_status.setTextColor(context.getColorStateList(R.color.pending));
         }
         else if (foodModels4.get(position).getRunOrder_status().equals("1")){
@@ -98,9 +104,14 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
         }
         else if (foodModels4.get(position).getRunOrder_status().equals("3")){
 
-            holder.runOrder_status.setText("Packed");
+            /*holder.runOrder_status.setText("Packed");
             holder.runOrder_btn.setVisibility(View.GONE);
-            holder.runOrder_status.setTextColor(context.getColorStateList(R.color.prepared));
+            holder.runOrder_status.setTextColor(context.getColorStateList(R.color.prepared));*/
+
+            holder.runOrder_status.setText("Ready To Pickup");
+            holder.runOrder_btn.setVisibility(View.VISIBLE);
+            holder.runOrder_btn.setText("PickUp Order");
+            holder.runOrder_status.setTextColor(context.getColorStateList(R.color.pickup));
         }
         else {
 
@@ -114,9 +125,11 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                if (foodModels4.get(holder.getAbsoluteAdapterPosition()).getRunOrder_status().equals("4")){
+                int status = Integer.parseInt(foodModels4.get(holder.getAbsoluteAdapterPosition()).getRunOrder_status());
 
-                    showPickUpDialog();
+                if (status >= 3){
+
+                    showPickUpDialog(holder.getAbsoluteAdapterPosition());
                 }
                 else {
 
@@ -226,7 +239,57 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
         });
     }
 
-    private void showPickUpDialog() {
+    private void showPickUpDialog(int position) {
+
+        dialog = new Dialog(context);
+        dialog.setCancelable(true);
+
+        AppCompatActivity activity = (AppCompatActivity) context;
+
+        View view =activity.getLayoutInflater().inflate(R.layout.barcode_popup, null);
+
+        dialog.setContentView(view);
+       /* if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }*/
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        ImageView orderBarcode = view.findViewById(R.id.order_barcode1);
+        Button closeQr = view.findViewById(R.id.close_qr);
+
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            ByteMatrix bitMatrix = writer.encode(foodModels4.get(position).getOrder_id()+" "+foodModels4.get(position).getRunOrder_pickup(), BarcodeFormat.QR_CODE, 512, 512);
+            int width = 512;
+            int height = 512;
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    if (bitMatrix.get(x, y)==0)
+                        bmp.setPixel(x, y, Color.BLACK);
+                    else
+                        bmp.setPixel(x, y, Color.WHITE);
+                }
+            }
+            orderBarcode.setImageBitmap(bmp);
+        } catch (WriterException e) {
+            //Log.e("QR ERROR", ""+e);
+
+        }
+
+        closeQr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
