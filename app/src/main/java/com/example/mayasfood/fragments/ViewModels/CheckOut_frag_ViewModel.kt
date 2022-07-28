@@ -33,7 +33,9 @@ class CheckOut_frag_ViewModel : ViewModel() {
         branchId: String,
         loading: ProgressBar,
         pickUpDateTime: String,
-        paymentMethod: String
+        paymentMethod: String,
+        transactionId : String,
+        paymentStatus : Int
     ): MutableLiveData<Response_Common> {
 
         this.activity = activity
@@ -50,6 +52,8 @@ class CheckOut_frag_ViewModel : ViewModel() {
         requestOrderdetails.toalQuantity = Constants.cart_totalItems.toString()
         requestOrderdetails.amount = Constants.total.toString()
         requestOrderdetails.paymentMethod = paymentMethod
+        requestOrderdetails.transactionId = transactionId
+        requestOrderdetails.paymentStatus = paymentStatus
         requestOrderdetails.pickupAt = pickUpDateTime.toString()
 
         //Log.d("orderItem", requestOrderdetails.toString())

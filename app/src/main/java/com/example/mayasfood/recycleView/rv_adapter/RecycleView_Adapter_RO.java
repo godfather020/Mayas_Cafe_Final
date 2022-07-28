@@ -263,7 +263,7 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
 
         QRCodeWriter writer = new QRCodeWriter();
         try {
-            ByteMatrix bitMatrix = writer.encode(foodModels4.get(position).getOrder_id()+" "+foodModels4.get(position).getRunOrder_pickup(), BarcodeFormat.QR_CODE, 512, 512);
+            ByteMatrix bitMatrix = writer.encode(foodModels4.get(position).getOrder_id()+" "+foodModels4.get(position).getRunOrder_date()+" "+foodModels4.get(position).getRunOrder_pickup(), BarcodeFormat.QR_CODE, 512, 512);
             int width = 512;
             int height = 512;
             Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);

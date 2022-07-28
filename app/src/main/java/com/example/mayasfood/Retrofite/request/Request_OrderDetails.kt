@@ -16,5 +16,7 @@ class Request_OrderDetails {
 
     @SerializedName("orderItems") var orderItems    : ArrayList<OrderItems> = arrayListOf()
 
+    @SerializedName("transactionId") var transactionId : String?               = null
 
+    @SerializedName("paymentStatus") var paymentStatus : Int?               = null
 }

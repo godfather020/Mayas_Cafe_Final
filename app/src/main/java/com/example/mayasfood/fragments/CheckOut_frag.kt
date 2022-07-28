@@ -1,10 +1,13 @@
 package com.example.mayasfood.fragments
 
+import android.R.attr
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -29,10 +32,9 @@ import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
 import com.example.mayasfood.shared_prefrence.TinyDB
-import java.lang.reflect.Field
-import java.lang.reflect.Modifier
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
@@ -61,6 +63,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     lateinit var barCodeImg : ImageView
     lateinit var pickUp : TextView
     lateinit var timePicker : TimePicker
+    lateinit var payCash : RadioButton
+    lateinit var payUPI : RadioButton
     var mIs24HourView  = true
     var sDate = ""
     var sPickupTime = ""
@@ -68,6 +72,9 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     var orderID = ""
     var paymentMethod = "CASH"
     lateinit var tinyDB : TinyDB
+    var pickUpDateTimeUPI = ""
+    var timeStamp:String? = null
+    var paymentStatus = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,6 +107,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         cart_empty_txt = view.findViewById(R.id.cart_empty_txt)
         cart_empty_btn = view.findViewById(R.id.cart_empty_btn)
         loading = view.findViewById(R.id.loading_checkOut)
+
 
 
         dashBoard.toolbar_const.setTitle("My Cart")
@@ -179,6 +187,8 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         val pickup_radio = view.findViewById<RadioButton>(R.id.pickUp_order)
         val deliver_radio = view.findViewById<RadioButton>(R.id.getItDelivered)
         val timePick_txt = view.findViewById<TextView>(R.id.timePick_txt)
+        payUPI = view.findViewById(R.id.payUPI)
+        payCash = view.findViewById(R.id.payCash)
 
         checkDiscount.visibility = View.GONE
         checkDiscount_txt.visibility = View.GONE
@@ -215,22 +225,44 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
             if (pickUp.text.isNotEmpty()){
 
-                Log.d("pickUp", sPickupTime)
-                Log.d("pickUp", sDate)
-                Log.d("pickUp", sDate+" "+sPickupTime)
+                if(payUPI.isChecked){
 
-                val pickUpDateTime = sDate+" "+sPickupTime
+                    timeStamp =
+                        TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()).toString()+"UPI"
 
-                if (pickup_radio.isChecked){
+                    pickUpDateTimeUPI = sDate + " " + sPickupTime
 
-                    paymentMethod = "CASH"
+                    paymentMethod = "UPI"
+
+                    val UPI =
+                        "upi://pay?pa=7000107876@hdfcbank&pn=Merchant%20Name&am=1&cu=INR&mode=02&orgid=000000&tn=Maya's%20Cafe%20&%20Restaurant&tr=$timeStamp"
+
+                    val intent = Intent()
+                    intent.action = Intent.ACTION_VIEW
+                    intent.data = Uri.parse(UPI)
+                    val chooser = Intent.createChooser(intent, "Pay with...")
+                    startActivityForResult(chooser, 1, null)
                 }
-                else{
+                else {
 
-                    paymentMethod = "ONLINE"
+                    Log.d("pickUp", sPickupTime)
+                    Log.d("pickUp", sDate)
+                    Log.d("pickUp", sDate + " " + sPickupTime)
+
+                    val pickUpDateTime = sDate + " " + sPickupTime
+
+                    if (pickup_radio.isChecked) {
+
+                        paymentMethod = "CASH"
+                    } else {
+
+                        paymentMethod = "ONLINE"
+                    }
+
+                    paymentStatus = 0
+
+                    sendOrder(pickUpDateTime, paymentMethod)
                 }
-
-                sendOrder(pickUpDateTime, paymentMethod)
             }
             else{
 
@@ -300,7 +332,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
     private fun sendOrder(pickUpDateTime: String, paymentMethod: String) {
 
-       viewModel.sendOrderDetails(this, "1", loading, pickUpDateTime, paymentMethod).observe(viewLifecycleOwner, Observer {
+       viewModel.sendOrderDetails(this, "1", loading, pickUpDateTime, paymentMethod, timeStamp.toString(), paymentStatus).observe(viewLifecycleOwner, Observer {
 
            if (it != null){
 
@@ -362,6 +394,74 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
         }
 
         orderDialog.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        try {
+            Log.e("UPI RESULT REQUEST CODE-->", "" + requestCode)
+            Log.e("UPI RESULT RESULT CODE-->", "" + resultCode)
+            Log.e("UPI RESULT DATA-->", "" + attr.data)
+            if (Activity.RESULT_OK == resultCode || resultCode == 11) {
+                if (data != null) {
+                    val trxt = data.getStringExtra("response")
+                    Log.d("UPI", "onActivityResult: $trxt")
+                    val dataList = ArrayList<String>()
+                    dataList.add(trxt!!)
+                    upiPaymentDataOperation(dataList)
+                }
+            } else {
+                // 400 Failed
+                Toast.makeText(context, "Payment Failed", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Log.e("Error in UPI onActivityResult->", "" + e.message)
+        }
+    }
+
+    private fun upiPaymentDataOperation(dataList: ArrayList<String>) {
+        var str = dataList[0]
+        Log.d("UPIPAY", "upiPaymentDataOperation: $str")
+        var paymentCancel = ""
+        if (str == null) {
+            str = "discard"
+        }
+        var status = ""
+        var approvalRefNo = ""
+        val response = str.split("&".toRegex()).toTypedArray()
+        Arrays.sort(response)
+        for (i in response.indices) {
+            val equlaStr = response[i].split("=".toRegex()).toTypedArray()
+            if (equlaStr.size >= 2) {
+                if (equlaStr[0].lowercase(Locale.getDefault()) == "Status".lowercase(Locale.getDefault())) {
+                    status = equlaStr[1].lowercase(Locale.getDefault())
+                } else if (equlaStr[0].lowercase(Locale.getDefault()) == "ApprovalRefNo".lowercase(
+                        Locale.getDefault()
+                    ) || equlaStr[0].lowercase(Locale.getDefault()) == "txnRef".lowercase(
+                        Locale.getDefault()
+                    )
+                ) {
+                    approvalRefNo = equlaStr[1]
+                }
+            } else {
+                paymentCancel = "Payment cancelled by user."
+            }
+        }
+        if (status == "success") {
+            Log.d("UPI", "responseStr: $approvalRefNo")
+            Toast.makeText(context, "Payment Successfull", Toast.LENGTH_LONG).show()
+
+            paymentStatus = 1
+            sendOrder(pickUpDateTimeUPI, paymentMethod)
+
+        } else if ("Payment cancelled by user." == paymentCancel) {
+            //showResponseDialog("Payment cancelled by user.")
+            Toast.makeText(context, "Payment cancelled by user.", Toast.LENGTH_SHORT).show()
+        } else {
+            //showResponseDialog("Transaction failed.Please try again")
+            Toast.makeText(context, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show()
+        }
     }
 
     public fun setUpModelRv() {
