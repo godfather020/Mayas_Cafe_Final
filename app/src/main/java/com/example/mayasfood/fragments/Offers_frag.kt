@@ -89,6 +89,7 @@ class Offers_frag : Fragment() {
                         offers_img.clear()
                         offers_txt.clear()
                         offers_code.clear()
+                        recycleView_models.clear()
 
                         for (i in it.getData()!!.ListcouponResponce!!.indices) {
 

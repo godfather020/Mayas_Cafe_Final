@@ -144,4 +144,11 @@ interface Apis {
         @Body body: Request_ProductDetails
     ):Call<Response_Common>
 
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.GET_PRODUCT_RATING_COMMENTS)
+    fun getProductRatingComment(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_ProductDetails
+    ):Call<Response_Common>
+
 }

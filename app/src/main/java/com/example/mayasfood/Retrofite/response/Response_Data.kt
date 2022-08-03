@@ -33,6 +33,12 @@ class Response_Data {
  @SerializedName("FavoriteListResponce" )
  var FavoriteListResponce : List<FavoriteListResponce>? = null
 
+    @SerializedName("RatingResponce"              )
+    var RatingResponce              : RatingResponce?              = RatingResponce()
+
+    @SerializedName("productaveraeratingresponce")
+    var productaveraeratingresponce : Productaveraeratingresponce? = Productaveraeratingresponce()
+
  @SerializedName("otp")
     var otp:String=""
 

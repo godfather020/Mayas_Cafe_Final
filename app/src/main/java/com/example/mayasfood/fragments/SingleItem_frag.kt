@@ -6,23 +6,30 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.View.OnTouchListener
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lottry.data.remote.retrofit.request.Request_ProductDetails
 import com.example.mayasfood.R
+import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
+import com.example.mayasfood.development.retrofit.RetrofitInstance
 import com.example.mayasfood.fragments.ViewModels.SingleItem_viewModel
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CC
-import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_PO
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class SingleItem_frag : Fragment() {
@@ -64,10 +71,21 @@ class SingleItem_frag : Fragment() {
     lateinit var seek1Count: TextView
     lateinit var productRating: TextView
     lateinit var totalReviews: TextView
+    lateinit var showMoreReview : TextView
     var itemAmount = ArrayList<String>()
     var offerAmount = ArrayList<String>()
     var itemOfferAmt = ArrayList<String>()
     var itemSize = ArrayList<String>()
+    var custName = ArrayList<String>()
+    var custComment = ArrayList<String>()
+    var custImg = ArrayList<String>()
+    var custRating = ArrayList<String>()
+    var rateDate = ArrayList<String>()
+    var custNameN = ArrayList<String>()
+    var custCommentN = ArrayList<String>()
+    var custImgN = ArrayList<String>()
+    var custRatingN = ArrayList<String>()
+    var rateDateN = ArrayList<String>()
     lateinit var auth: FirebaseAuth
     var productImg = ""
     lateinit var orgPrice: TextView
@@ -75,6 +93,7 @@ class SingleItem_frag : Fragment() {
     var sameFood = 0
     lateinit var layout: View
     var isLogin = false
+    var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,7 +116,7 @@ class SingleItem_frag : Fragment() {
              R.layout.custom_item_add_toast,
              view.findViewById(R.id.custom_toast) as ViewGroup?
          )*/
-
+        Constants.page = 1
 
         viewModel = ViewModelProvider(this).get(SingleItem_viewModel::class.java)
 
@@ -149,6 +168,7 @@ class SingleItem_frag : Fragment() {
         seek3Count = view.findViewById(R.id.star3Count)
         seek4Count = view.findViewById(R.id.star4Count)
         seek5Count = view.findViewById(R.id.star5Count)
+        showMoreReview = view.findViewById(R.id.showMoreReview)
 
         loading.visibility = View.VISIBLE
 
@@ -159,6 +179,8 @@ class SingleItem_frag : Fragment() {
         Log.d("productId", Constants.productID)
 
         getItemData()
+
+        getProductRatingComments(page)
 
         setHasOptionsMenu(true)
 
@@ -211,6 +233,13 @@ class SingleItem_frag : Fragment() {
 
                 singleItem_total.text = "$" + (productPrice.toInt() * itemCount.toInt()).toString()
             }
+        }
+
+        showMoreReview.setOnClickListener {
+
+            Constants.page = Constants.page+1
+
+            getProductRatingComments(Constants.page)
         }
 
         singleItem_addToCart.setOnClickListener {
@@ -274,24 +303,183 @@ class SingleItem_frag : Fragment() {
             addOrRemoveFav()
         }
 
+        seek5Bar.setOnTouchListener(OnTouchListener { v, event -> true })
+        seek4Bar.setOnTouchListener(OnTouchListener { v, event -> true })
+        seek3Bar.setOnTouchListener(OnTouchListener { v, event -> true })
+        seek2Bar.setOnTouchListener(OnTouchListener { v, event -> true })
+        seek1Bar.setOnTouchListener(OnTouchListener { v, event -> true })
+
         return view
+    }
+
+    private fun getProductRatingComments(page: Int) {
+
+        if(page == 1){
+
+            recycleView_models.clear()
+            custCommentN.clear()
+            custNameN.clear()
+            custRatingN.clear()
+            custImgN.clear()
+            rateDateN.clear()
+        }
+
+        val requestProductDetails = Request_ProductDetails()
+        requestProductDetails.productId = Constants.productID
+        requestProductDetails.limit = 10
+        requestProductDetails.page = page
+
+        val retrofitInstance = RetrofitInstance()
+
+        val retrofitData : Call<Response_Common>
+
+        if (auth.currentUser != null || Constants.isLogin != false){
+
+            retrofitData = retrofitInstance.retrofit.getProductRatingComment(Constants.USER_TOKEN, requestProductDetails)
+        }else {
+
+            retrofitData = retrofitInstance.retrofit.getProductRatingComment("x-token",requestProductDetails)
+        }
+
+        retrofitData.enqueue(object : Callback<Response_Common> {
+            override fun onResponse(
+                call: Call<Response_Common>,
+                response: Response<Response_Common>
+            ) {
+
+                if (response.isSuccessful) {
+
+                    Log.d("pagework", "work")
+
+                    custComment.clear()
+                    custName.clear()
+                    custRating.clear()
+                    custImg.clear()
+                    rateDate.clear()
+
+                    val sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
+
+                    Log.d("indice", response.body()!!.getData()!!.RatingResponce!!.rows.indices.toString())
+
+                    if (response.body()!!.getData()!!.RatingResponce!!.rows.isEmpty()){
+
+                        showMoreReview.text = "No reviews"
+                        showMoreReview.isEnabled = false
+                    }
+
+                    if (response.body()!!.getData()!!.RatingResponce!!.rows.isNotEmpty()) {
+
+                        for (i in response.body()!!.getData()!!.RatingResponce!!.rows.indices) {
+
+                            val createdDateTime =
+                                response.body()!!.getData()!!.RatingResponce!!.rows[i].createdAt!!
+                            val date1: Date = sdf.parse(createdDateTime) as Date
+                            val createdDate =
+                                SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(date1)
+
+                            Log.d("date122222", createdDate)
+
+                            Log.d("pagework11", "work")
+
+                            rateDate.add(createdDate)
+                            custRating.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].rating.toString())
+                            custName.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].Customer!!.userName.toString())
+                            custComment.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].comment.toString())
+                            custImg.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].Customer!!.profilePic.toString())
+                        }
+                    }
+
+                    productRating.text = response.body()!!.getData()!!.productaveraeratingresponce!!.customerrating.toString()
+                    seek1Count.text = response.body()!!.getData()!!.productaveraeratingresponce!!.starone.toString()
+                    seek2Count.text = response.body()!!.getData()!!.productaveraeratingresponce!!.startwo.toString()
+                    seek3Count.text = response.body()!!.getData()!!.productaveraeratingresponce!!.startthree.toString()
+                    seek4Count.text = response.body()!!.getData()!!.productaveraeratingresponce!!.startfour.toString()
+                    seek5Count.text = response.body()!!.getData()!!.productaveraeratingresponce!!.starfive.toString()
+
+                    val totalCount = Integer.parseInt(seek1Count.text.toString())+Integer.parseInt(seek2Count.text.toString())+
+                            Integer.parseInt(seek3Count.text.toString())+Integer.parseInt(seek4Count.text.toString())+
+                            Integer.parseInt(seek5Count.text.toString())
+
+                    val onePercentValue : Float = (100/totalCount.toFloat())
+
+                    Log.d("onePer", onePercentValue.toString())
+
+                    val seekBar1Per = onePercentValue * Integer.parseInt(seek1Count.text.toString())
+                    val seekBar2Per = onePercentValue * Integer.parseInt(seek2Count.text.toString())
+                    val seekBar3Per = onePercentValue * Integer.parseInt(seek3Count.text.toString())
+                    val seekBar4Per = onePercentValue * Integer.parseInt(seek4Count.text.toString())
+                    val seekBar5Per = onePercentValue * Integer.parseInt(seek5Count.text.toString())
+
+                    totalReviews.text = response.body()!!.getData()!!.RatingResponce!!.count.toString()+" reviews"
+
+                    Log.d("percent", seekBar1Per.toInt().toString() + "--" + seekBar2Per.toInt().toString()+ "--" + seekBar3Per.toInt().toString() + "--" +
+                            seekBar4Per.toInt().toString()+ "--" + seekBar5Per.toInt().toString())
+
+                    if (seekBar1Per.toInt() != 0){
+
+                        seek1Bar.secondaryProgress = seekBar1Per.toInt()
+                    }
+                    if(seekBar2Per.toInt() != 0){
+
+                        seek2Bar.secondaryProgress = seekBar2Per.toInt()
+                    }
+                    if (seekBar3Per.toInt() != 0){
+
+                        seek3Bar.secondaryProgress = seekBar3Per.toInt()
+                    }
+                    if (seekBar4Per.toInt() != 0){
+
+                        seek4Bar.secondaryProgress = seekBar4Per.toInt()
+                    }
+                    if (seekBar5Per.toInt() != 0){
+
+                        seek5Bar.secondaryProgress = seekBar5Per.toInt()
+                    }
+
+                    if (response.body()!!.getData()!!.RatingResponce!!.rows.isNotEmpty()){
+
+                        setCommentsRv()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+                Toast.makeText(context, t.toString(), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun setCommentsRv() {
 
-        recycleView_models.add(
-            RecycleView_Model(
-                "Rahul sing",
-                "3 Aug 22",
-                "fantastic, very tasty.",
-                "default.png",
-                "4"
-            )
-        )
+        recycleView_models.clear()
 
-        val recycleView_adapter_CC = RecycleView_Adapter_CC(activity, recycleView_models)
-        customerCommentsRv.adapter = recycleView_adapter_CC
-        recycleView_adapter_CC.notifyDataSetChanged()
+            for (i in custName.indices) {
+
+                custCommentN.add(custComment[i])
+                custNameN.add(custName[i])
+                custImgN.add(custImg[i])
+                custRatingN.add(custRating[i])
+                rateDateN.add(rateDate[i])
+            }
+
+        Log.d("pagesizeN", custNameN.size.toString())
+
+            for (i in custNameN.indices) {
+
+                recycleView_models.add(
+                    RecycleView_Model(
+                        custNameN[i],
+                        rateDateN[i],
+                        custCommentN[i],
+                        custImgN[i],
+                        custRatingN[i]
+                    )
+                )
+
+                val recycleView_adapter_CC = RecycleView_Adapter_CC(activity, recycleView_models)
+                customerCommentsRv.adapter = recycleView_adapter_CC
+                recycleView_adapter_CC.notifyItemInserted(i)
+            }
     }
 
     private fun addOrRemoveFav() {
@@ -302,6 +490,7 @@ class SingleItem_frag : Fragment() {
                 if (it != null) {
 
                     if (it.getSuccess()!!) {
+
 
                         Toast.makeText(activity, "Added to Faverite", Toast.LENGTH_SHORT).show()
 
@@ -414,7 +603,6 @@ class SingleItem_frag : Fragment() {
                         itemSize.clear()
                         itemOfferAmt.clear()
                         offerAmount.clear()
-                        recycleView_models.clear()
 
                         singleItem_name.text =
                             it.getData()!!.ProductResponce!!.productName.toString()
@@ -468,7 +656,6 @@ class SingleItem_frag : Fragment() {
 
                     loading.visibility = View.GONE
                     setUpView()
-                    setCommentsRv()
                 }
 
             })

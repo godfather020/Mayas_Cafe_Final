@@ -25,6 +25,7 @@ class SingleItem_viewModel : ViewModel() {
 
     val commonResponse = MutableLiveData<Response_Common>()
     val commonResponse1 = MutableLiveData<Response_Common>()
+    val commonResponse2 = MutableLiveData<Response_Common>()
 
     lateinit var loading : ProgressBar
     lateinit var auth : FirebaseAuth
@@ -57,6 +58,58 @@ class SingleItem_viewModel : ViewModel() {
         addOrRemoveFavAPI(request_addOrRemoveToFav)
 
         return commonResponse1
+    }
+
+    fun getProductRatingComments(activity : Fragment, productId : String, page : Int, limit : Int) : MutableLiveData<Response_Common>{
+
+        this.activity = activity
+
+        val requestProductDetails = Request_ProductDetails()
+        requestProductDetails.productId = productId
+        requestProductDetails.limit = limit
+        requestProductDetails.page = page
+
+        getRatingCommentsFromAPI(requestProductDetails)
+
+        return commonResponse2
+
+
+    }
+
+    private fun getRatingCommentsFromAPI(param: Request_ProductDetails) {
+
+        val retrofitInstance = RetrofitInstance()
+
+        val retrofitData : Call<Response_Common>
+
+        if (auth.currentUser != null || Constants.isLogin != false){
+
+            retrofitData = retrofitInstance.retrofit.getProductRatingComment(Constants.USER_TOKEN, param)
+        }else {
+
+            retrofitData = retrofitInstance.retrofit.getProductRatingComment("x-token",param)
+        }
+
+        retrofitData.enqueue(object : Callback<Response_Common> {
+            override fun onResponse(
+                call: Call<Response_Common>,
+                response: Response<Response_Common>
+            ) {
+
+                if (response.isSuccessful) {
+
+                    //Toast.makeText(activity.context, response.message().toString(), Toast.LENGTH_SHORT).show()
+                    commonResponse2.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+                Toast.makeText(activity.context, t.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+
+        })
+
     }
 
     private fun addOrRemoveFavAPI(param: Request_addOrRemoveToFav) {
@@ -104,11 +157,13 @@ class SingleItem_viewModel : ViewModel() {
         val retrofitInstance = RetrofitInstance()
         val retrofitData : Call<Response_Common>
 
-        if (auth.currentUser != null || Constants.isLogin != null){
+        if (auth.currentUser != null || Constants.isLogin != false){
 
+            Log.d("work12312", "working")
             retrofitData = retrofitInstance.retrofit.getProductDetail(Constants.USER_TOKEN, param)
         }else {
 
+            Log.d("work", "working")
             retrofitData = retrofitInstance.retrofit.getProductDetail("x-token",param)
         }
 

@@ -9,4 +9,9 @@ class Request_ProductDetails {
     @SerializedName("productId")
     var productId:String = ""
 
+    @SerializedName("page")
+    var page:Int? = null
+
+    @SerializedName("limit")
+    var limit:Int? = null
 }

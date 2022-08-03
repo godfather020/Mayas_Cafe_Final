@@ -29,6 +29,7 @@ object Constants {
         internal const val GET_ORDERS = "customer/Listorder"
         internal const val SET_PROFILE_IMAGE = "customer/uploadProfilePic"
         internal const val GET_PRODUCT_DETAILS = "public/Detailsproduct"
+        internal const val GET_PRODUCT_RATING_COMMENTS = "public/Listproductratingcomment"
         internal const val REMOVE_NOTIFICATION = "customer/readNotification"
         internal const val REMOVE_ALL_NOTIFICATION = "customer/readAllNotification"
         internal const val CANCEL_ORDER = "customer/Cancelorder"
@@ -98,6 +99,8 @@ object Constants {
     var tax = 0
     @JvmField
     var total = 0
+    @JvmField
+    var page = 1
     @JvmField
     var singleID = ""
     const val UserProfile_Path = "http://18.118.2.222/mayas/mayasgarden/assets/images/"

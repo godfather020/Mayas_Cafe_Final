@@ -32,6 +32,7 @@ import com.example.mayasfood.functions.Functions
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model
 import com.example.mayasfood.recycleView.rv_adapter.RecycleView_Adapter_CO
 import com.example.mayasfood.shared_prefrence.TinyDB
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -75,6 +76,7 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
     var pickUpDateTimeUPI = ""
     var timeStamp:String? = null
     var paymentStatus = 0
+    var auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,8 +143,14 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
         checkOut.setOnClickListener {
 
-            showBarCode()
+            if (auth.currentUser != null || Constants.isLogin != false){
 
+                showBarCode()
+            }
+            else {
+
+                Toast.makeText(context, "Please Login to Continue", Toast.LENGTH_SHORT).show()
+            }
         }
 
         cart_empty_btn.setOnClickListener {
