@@ -47,12 +47,15 @@
             android:resource="@drawable/mayas512__1_" />
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.CheckOut"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.singleItem"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".activity.OTP"
             android:exported="true" >
             <intent-filter>
@@ -87,6 +90,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true" />
 

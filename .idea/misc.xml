@@ -114,6 +114,7 @@
         <entry key="app/src/main/res/drawable/custom_edit_text.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_nav.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/custom_order_details_btn.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_seek_bar.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/custom_tab_layout.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/ellipse_54.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/ellipse_54__1_.xml" value="0.2065" />
@@ -197,6 +198,7 @@
         <entry key="app/src/main/res/layout/checkout_time_payment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/clear_all_toolbar.xml" value="0.67" />
         <entry key="app/src/main/res/layout/custom_item_add_toast.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/customer_comments_rv.xml" value="0.25" />
         <entry key="app/src/main/res/layout/food_categories_rv.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_category_details_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_category_frag.xml" value="0.2864583333333333" />
@@ -215,7 +217,7 @@
         <entry key="app/src/main/res/layout/fragment_restarant_choice_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/fragment_running_orders_frag.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/layout/fragment_search_frag.xml" value="0.28541666666666665" />
-        <entry key="app/src/main/res/layout/fragment_single_item_frag.xml" value="0.28541666666666665" />
+        <entry key="app/src/main/res/layout/fragment_single_item_frag.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_user_profile_frag.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2864583333333333" />
         <entry key="app/src/main/res/layout/nav_category_frag.xml" value="0.2864583333333333" />
