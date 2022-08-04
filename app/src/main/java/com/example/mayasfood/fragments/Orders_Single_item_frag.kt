@@ -40,6 +40,7 @@ class Orders_Single_item_frag : Fragment() {
     var singleItem_img = ArrayList<String>()
     var singleItem_qty = ArrayList<String>()
     var singleItem_total = ArrayList<String>()
+    var singleItem_id = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,6 +131,8 @@ class Orders_Single_item_frag : Fragment() {
                             for (j in it.getData()!!.ListOrderResponce!![i].Orderlists!!.indices) {
 
                                 //singleItem_name.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j])
+
+                                singleItem_id.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].productId.toString())
                                 singleItem_name.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].Product!!.productName.toString())
                                   singleItem_total.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].totalAmount.toString())
                                 singleItem_qty.add(it.getData()!!.ListOrderResponce!![i].Orderlists!![j].noItems.toString())
@@ -153,13 +156,14 @@ class Orders_Single_item_frag : Fragment() {
         singleItem_img.clear()
         singleItem_qty.clear()
         singleItem_total.clear()
+        singleItem_id.clear()
     }
 
     private fun setUpRvModel() {
 
         for (i in singleItem_qty.indices){
 
-            recycleView_models.add(RecycleView_Model(singleItem_name[i], singleItem_img[i], singleItem_total[i], singleItem_qty[i]))
+            recycleView_models.add(RecycleView_Model(singleItem_name[i], singleItem_img[i], singleItem_id[i], singleItem_total[i], singleItem_qty[i]))
         }
 
         //recycleView_models.add(RecycleView_Model("Samosa", "27cc7c762c9f5b70acf082961f43edcf", "20", "3"))

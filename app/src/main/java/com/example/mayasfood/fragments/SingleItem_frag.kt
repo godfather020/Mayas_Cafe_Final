@@ -1,13 +1,16 @@
 package com.example.mayasfood.fragments
 
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.view.View.OnTouchListener
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lottry.data.remote.retrofit.request.Request_ProductDetails
 import com.example.mayasfood.R
+import com.example.mayasfood.Retrofite.request.RequestProductRating
 import com.example.mayasfood.Retrofite.response.Response_Common
 import com.example.mayasfood.activity.DashBoard
 import com.example.mayasfood.constants.Constants
@@ -41,6 +45,7 @@ class SingleItem_frag : Fragment() {
     lateinit var singleItem_name: TextView
     lateinit var singleItem_price: TextView
     lateinit var singleItem_total: TextView
+    lateinit var dialog : Dialog
     lateinit var singleItem_addToCart: Button
     lateinit var singleItem_rating: TextView
     lateinit var singleItem_comment: TextView
@@ -56,6 +61,7 @@ class SingleItem_frag : Fragment() {
     lateinit var singleItem_plus: ImageView
     lateinit var singleItem_minus: ImageView
     lateinit var singleItem_num: TextView
+    lateinit var singleOComments : TextView
     lateinit var singleItem_addToFav: ImageView
     lateinit var loading: ProgressBar
     lateinit var viewModel: SingleItem_viewModel
@@ -97,6 +103,7 @@ class SingleItem_frag : Fragment() {
     lateinit var layout: View
     var isLogin = false
     var page = 1
+    var itemPic = "default.png"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,6 +163,7 @@ class SingleItem_frag : Fragment() {
         singleItem_rating = view.findViewById(R.id.singleO_rating)
         singleItem_total = view.findViewById(R.id.singleO_totalPrice)
         singleItem_addToFav = view.findViewById(R.id.singleO_addToFav)
+        singleOComments = view.findViewById(R.id.singleO_comments)
         orgPrice = view.findViewById(R.id.orgPrice)
         loading = view.findViewById(R.id.loading_singleItem)
         customerCommentsRv = view.findViewById(R.id.custCommentsRv)
@@ -326,7 +334,237 @@ class SingleItem_frag : Fragment() {
         seek2Bar.setOnTouchListener(OnTouchListener { v, event -> true })
         seek1Bar.setOnTouchListener(OnTouchListener { v, event -> true })
 
+        singleOComments.setOnClickListener {
+
+            if (auth.currentUser != null || Constants.isLogin != false){
+
+                showRatingCommentDialog()
+            }
+            else {
+
+                Toast.makeText(context, "Please Login to give rating", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
+
         return view
+    }
+
+    private fun showRatingCommentDialog() {
+
+        dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+
+        val activity = context as AppCompatActivity
+
+        val view = activity.layoutInflater.inflate(R.layout.rating_comment_dialog, null)
+
+        dialog.setContentView(view)
+        /*if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }*/
+
+        /*if (dialog.getWindow() != null) {
+            dialog.getWindow().setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }*/dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val ratingStar1 = view.findViewById<ImageView>(R.id.rating_star1)
+        val ratingStar2 = view.findViewById<ImageView>(R.id.rating_star2)
+        val ratingStar3 = view.findViewById<ImageView>(R.id.rating_star3)
+        val ratingStar4 = view.findViewById<ImageView>(R.id.rating_star4)
+        val ratingStar5 = view.findViewById<ImageView>(R.id.rating_star5)
+        //TextView notNow = view.findViewById(R.id.rating_notNow);
+        //TextView notNow = view.findViewById(R.id.rating_notNow);
+        val update = view.findViewById<Button>(R.id.rating_submit)
+        val orderComment = view.findViewById<EditText>(R.id.orderComment)
+        val ratingImg = view.findViewById<CircleImageView>(R.id.rating_img)
+        //EditText userNameE = view.findViewById(R.id.userEdit_name);
+
+        //EditText userNameE = view.findViewById(R.id.userEdit_name);
+        Picasso.get()
+            .load(Constants.UserProduct_Path + itemPic)
+            .into(ratingImg)
+
+        ratingStar1.tag = ""
+        ratingStar2.tag = ""
+        ratingStar3.tag = ""
+        ratingStar4.tag = ""
+        ratingStar5.tag = ""
+        var rating = "0"
+
+        ratingStar1.setOnClickListener {
+            if (ratingStar1.tag == "rated") {
+                ratingStar1.setImageResource(R.drawable.vector__6_)
+                ratingStar2.setImageResource(R.drawable.vector__6_)
+                ratingStar3.setImageResource(R.drawable.vector__6_)
+                ratingStar4.setImageResource(R.drawable.vector__6_)
+                ratingStar5.setImageResource(R.drawable.vector__6_)
+                rating = "0"
+                ratingStar1.tag = "unrated"
+                ratingStar2.tag = "unrated"
+                ratingStar3.tag = "unrated"
+                ratingStar4.tag = "unrated"
+                ratingStar5.tag = "unrated"
+            } else {
+                ratingStar1.setImageResource(R.drawable.clarity_favorite_solid)
+                rating = "1"
+                ratingStar1.tag = "rated"
+            }
+        }
+
+        ratingStar2.setOnClickListener {
+            if (ratingStar2.tag == "rated") {
+                ratingStar2.setImageResource(R.drawable.vector__6_)
+                ratingStar3.setImageResource(R.drawable.vector__6_)
+                ratingStar4.setImageResource(R.drawable.vector__6_)
+                ratingStar5.setImageResource(R.drawable.vector__6_)
+                rating = "1"
+                ratingStar2.tag = "unrated"
+                ratingStar3.tag = "unrated"
+                ratingStar4.tag = "unrated"
+                ratingStar5.tag = "unrated"
+            } else {
+                ratingStar1.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar2.setImageResource(R.drawable.clarity_favorite_solid)
+                rating = "2"
+                ratingStar1.tag = "rated"
+                ratingStar2.tag = "rated"
+            }
+        }
+
+        ratingStar3.setOnClickListener {
+            if (ratingStar3.tag == "rated") {
+                ratingStar3.setImageResource(R.drawable.vector__6_)
+                ratingStar4.setImageResource(R.drawable.vector__6_)
+                ratingStar5.setImageResource(R.drawable.vector__6_)
+                rating = "2"
+                ratingStar3.tag = "unrated"
+                ratingStar4.tag = "unrated"
+                ratingStar5.tag = "unrated"
+            } else {
+                ratingStar1.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar2.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar3.setImageResource(R.drawable.clarity_favorite_solid)
+                rating = "3"
+                ratingStar1.tag = "rated"
+                ratingStar2.tag = "rated"
+                ratingStar3.tag = "rated"
+            }
+        }
+
+        ratingStar4.setOnClickListener {
+            if (ratingStar4.tag == "rated") {
+                ratingStar4.setImageResource(R.drawable.vector__6_)
+                ratingStar5.setImageResource(R.drawable.vector__6_)
+                rating = "3"
+                ratingStar4.tag = "unrated"
+                ratingStar5.tag = "unrated"
+            } else {
+                ratingStar1.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar2.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar3.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar4.setImageResource(R.drawable.clarity_favorite_solid)
+                rating = "4"
+                ratingStar1.tag = "rated"
+                ratingStar2.tag = "rated"
+                ratingStar3.tag = "rated"
+                ratingStar4.tag = "rated"
+            }
+        }
+
+        ratingStar5.setOnClickListener {
+            if (ratingStar5.tag == "rated") {
+                ratingStar5.setImageResource(R.drawable.vector__6_)
+                rating = "4"
+                ratingStar5.tag = "unrated"
+            } else {
+                ratingStar1.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar2.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar3.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar4.setImageResource(R.drawable.clarity_favorite_solid)
+                ratingStar5.setImageResource(R.drawable.clarity_favorite_solid)
+                rating = "5"
+                ratingStar1.tag = "rated"
+                ratingStar2.tag = "rated"
+                ratingStar3.tag = "rated"
+                ratingStar4.tag = "rated"
+                ratingStar5.tag = "rated"
+            }
+        }
+
+        Log.d("rating", rating)
+
+        update.setOnClickListener {
+
+            if (orderComment.text.toString().isNotEmpty() && rating != "0"){
+
+                rateAndCommentAPI(
+                    rating,
+                    orderComment.text.toString(),
+                    Constants.productID
+                )
+            }
+            else {
+
+                Toast.makeText(context, "Please rate and comment", Toast.LENGTH_SHORT).show()
+            }
+
+            //dialog.cancel();
+            Log.d("rating", rating)
+        }
+
+        dialog.show()
+    }
+
+    private fun rateAndCommentAPI(rating: String, comment: String, productId: String) {
+
+
+        val requestSetProductRating = RequestProductRating()
+
+        requestSetProductRating.branchId = "1"
+        requestSetProductRating.productId = productId
+        requestSetProductRating.ratingScore = rating
+        requestSetProductRating.ratingcomment = comment
+
+        val retrofitInstance = RetrofitInstance()
+
+        val retrofitData : Call<Response_Common>
+
+        retrofitData = retrofitInstance.retrofit.setProductRatingComment(Constants.USER_TOKEN, requestSetProductRating)
+
+        retrofitData.enqueue(object : Callback<Response_Common>{
+            override fun onResponse(
+                call: Call<Response_Common>,
+                response: Response<Response_Common>
+            ) {
+
+                if (response.isSuccessful){
+
+                    Toast.makeText(context, "Thanks for rating this item", Toast.LENGTH_SHORT).show()
+
+                    dialog.cancel()
+                }
+                else {
+
+                    Toast.makeText(context,"You already rated this item", Toast.LENGTH_SHORT).show()
+                    dialog.cancel()
+                }
+            }
+
+            override fun onFailure(call: Call<Response_Common>, t: Throwable) {
+
+                Log.d("error", t.toString())
+
+            }
+        })
+
     }
 
     private fun getProductRatingComments(page: Int) {
@@ -632,6 +870,8 @@ class SingleItem_frag : Fragment() {
                         singleItem_des.text =
                             it.getData()!!.ProductResponce!!.productDesc.toString()
                         productImg = it.getData()!!.ProductResponce!!.productPic.toString()
+
+                        itemPic = it.getData()!!.ProductResponce!!.productPic.toString()
 
                         Picasso.get()
                             .load(Constants.UserProduct_Path + it.getData()!!.ProductResponce!!.productPic.toString())

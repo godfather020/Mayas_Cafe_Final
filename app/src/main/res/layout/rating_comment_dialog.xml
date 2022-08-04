@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/rating_img"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -46,7 +46,6 @@
         android:text="Please rate your food"
         android:textAlignment="center"
         android:textColor="@color/black"
-
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,41 +119,46 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/custom_edit_text"
-        android:drawableStart="@drawable/group__1_"
-        android:drawablePadding="16dp"
-        android:elevation="8dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="Leave feedback"
-        android:inputType="textMultiLine"
-        android:maxLines="5"
-        android:paddingStart="16dp"
-        android:textSize="17dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_stars" />
+        <EditText
+            android:id="@+id/orderComment"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/custom_edit_text"
+            android:drawableLeft="@drawable/group__1_"
+            android:drawablePadding="8dp"
+            android:elevation="8dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="start"
+            android:hint="Leave feedback"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
+            android:textSize="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_stars" />
 
-    <Button
-        android:id="@+id/rating_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Submit"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        <Button
+            android:id="@+id/rating_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderComment" />
 
     <TextView
         android:id="@+id/rating_notNow"
@@ -165,6 +169,7 @@
         android:text="Not Now"
         android:textColor="@color/Register_Title"
         android:textSize="18dp"
+        android:visibility="gone"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

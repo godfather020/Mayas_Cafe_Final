@@ -210,6 +210,6 @@
     <string name="favorites">Favorites</string>
     <string name="orders">Orders</string>
     <string name="offers_nav">Offers</string>
-    <string name="view_comments"><u>View Comments</u></string>
+    <string name="view_comments"><u>Give Rating &amp; Comments</u></string>
     <string name="OPrice"><strike>$200</strike></string>
 </resources>

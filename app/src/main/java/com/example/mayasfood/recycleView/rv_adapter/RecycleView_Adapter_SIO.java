@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mayasfood.R;
 import com.example.mayasfood.constants.Constants;
 import com.example.mayasfood.fragments.Dashboard_Category_frag;
+import com.example.mayasfood.fragments.SingleItem_frag;
 import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.squareup.picasso.Picasso;
@@ -56,6 +57,19 @@ public class RecycleView_Adapter_SIO extends RecyclerView.Adapter<RecycleView_Ad
         Picasso.get().load(Constants.UserProduct_Path+foodModels.get(position).getFoodPrice())
                 .into(holder.item_img);
 
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Constants.productID = foodModels.get(position).getProductId();
+                Constants.singleFoodName = foodModels.get(position).getFoodName();
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
+                Functions.loadFragment(activity.getSupportFragmentManager(), new SingleItem_frag(), R.id.frag_cont, false, "Single Item", null);
+            }
+        });
+
     }
 
     @Override
@@ -78,6 +92,7 @@ public class RecycleView_Adapter_SIO extends RecyclerView.Adapter<RecycleView_Ad
             itemQty = itemView.findViewById(R.id.singleOrder_qty);
             itemTotal = itemView.findViewById(R.id.singleOrder_total);
             item_img = itemView.findViewById(R.id.singleOrder_img);
+            cardView = itemView.findViewById(R.id.singleOrderCard);
 
         }
     }

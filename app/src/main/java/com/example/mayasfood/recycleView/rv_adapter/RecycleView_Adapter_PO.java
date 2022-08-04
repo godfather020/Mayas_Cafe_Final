@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,24 +22,32 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mayasfood.R;
+import com.example.mayasfood.Retrofite.request.Request_Order_Rating;
+import com.example.mayasfood.Retrofite.response.Response_Common;
 import com.example.mayasfood.constants.Constants;
+import com.example.mayasfood.development.retrofit.RetrofitInstance;
 import com.example.mayasfood.fragments.Orders_Single_item_frag;
 import com.example.mayasfood.functions.Functions;
 import com.example.mayasfood.recycleView.recycleViewModel.RecycleView_Model;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Adapter_PO.MyViewHolder>{
+public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Adapter_PO.MyViewHolder> {
 
     Context context;
     ArrayList<RecycleView_Model> foodModels4;
     String rating = "";
+    Dialog dialog;
 
-    public RecycleView_Adapter_PO(Context context, ArrayList<RecycleView_Model> foodModels4){
+    public RecycleView_Adapter_PO(Context context, ArrayList<RecycleView_Model> foodModels4) {
         this.context = context;
         this.foodModels4 = foodModels4;
     }
@@ -58,18 +67,18 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
         final RecycleView_Model temp = foodModels4.get(position);
 
-        holder.runOrder_num.setText("Order Id - #"+foodModels4.get(position).getRunOrder_num());
-        holder.runOrder_total.setText("$"+foodModels4.get(position).getRunOrder_total());
-        holder.runOrder_Quantity.setText("Number of Items "+foodModels4.get(position).getRunOrder_Quantity());
+        holder.runOrder_num.setText("Order Id - #" + foodModels4.get(position).getRunOrder_num());
+        holder.runOrder_total.setText("$" + foodModels4.get(position).getRunOrder_total());
+        holder.runOrder_Quantity.setText("Number of Items " + foodModels4.get(position).getRunOrder_Quantity());
         //holder.runOrder_status.setText(foodModels4.get(position).getRunOrder_status());
 //        holder.runOrder_pickup.setText(foodModels4.get(position).getRunOrder_pickup());
         holder.runOrder_date.setText(foodModels4.get(position).getRunOrder_date());
         holder.runOrder_create.setText(foodModels4.get(position).getRunOrder_create());
 
-        Picasso.get().load(Constants.UserProduct_Path+foodModels4.get(position).getRunOrder_img())
+        Picasso.get().load(Constants.UserProduct_Path + foodModels4.get(position).getRunOrder_img())
                 .into(holder.runOrder_img);
 
-        if (foodModels4.get(position).getRunOrder_status().equals("5")){
+        if (foodModels4.get(position).getRunOrder_status().equals("5")) {
 
             holder.runOrder_status.setText("Delivered");
             holder.runOrder_status.setTextColor(context.getColorStateList(R.color.accepted));
@@ -80,8 +89,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             holder.star5.setVisibility(View.VISIBLE);
             holder.runOrder_btn.setVisibility(View.VISIBLE);
             holder.orderReview.setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
 
             holder.runOrder_status.setText("Canceled");
             holder.runOrder_status.setTextColor(context.getColorStateList(R.color.Login_signUp));
@@ -94,12 +102,11 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             holder.orderReview.setVisibility(View.GONE);
         }
 
-        if (foodModels4.get(position).getOrderComment().equals("null") && foodModels4.get(position).getRunOrder_status().equals("5")){
+        if (foodModels4.get(position).getOrderComment().equals("null") && foodModels4.get(position).getRunOrder_status().equals("5")) {
 
             holder.runOrder_btn.setVisibility(View.VISIBLE);
             holder.orderReview.setText("You Haven't Review Yet");
-        }
-        else {
+        } else {
 
             holder.orderReview.setText(foodModels4.get(position).getOrderComment());
             holder.runOrder_btn.setVisibility(View.GONE);
@@ -107,7 +114,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
         if (!foodModels4.get(position).getOrderRating().equals("null")) {
 
-            if (foodModels4.get(position).getOrderRating().matches("^[0]") || foodModels4.get(position).getOrderRating().matches("^[0][.]") || foodModels4.get(position).getOrderRating().matches("^[1][.][12345]")) {
+            if (foodModels4.get(position).getOrderRating().matches("^[1]") || foodModels4.get(position).getOrderRating().matches("^[0]") || foodModels4.get(position).getOrderRating().matches("^[0][.]") || foodModels4.get(position).getOrderRating().matches("^[1][.][12345]")) {
 
                 holder.star1.setImageResource(R.drawable.clarity_favorite_solid);
                 holder.star2.setImageResource(R.drawable.vector__6_);
@@ -119,7 +126,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             holder.star4.setVisibility(View.GONE);
             holder.star5.setVisibility(View.GONE);*/
 
-            } else if (foodModels4.get(position).getOrderRating().matches("^[1][.][6789]") || foodModels4.get(position).getOrderRating().matches("^[2][.][1234]")) {
+            } else if (foodModels4.get(position).getOrderRating().matches("^[2]") || foodModels4.get(position).getOrderRating().matches("^[1][.][6789]") || foodModels4.get(position).getOrderRating().matches("^[2][.][1234]")) {
 
                 //holder.star1.setVisibility(View.VISIBLE);
                 //holder.star2.setVisibility(View.VISIBLE);
@@ -131,7 +138,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
                 holder.star3.setImageResource(R.drawable.vector__6_);
                 holder.star4.setImageResource(R.drawable.vector__6_);
                 holder.star5.setImageResource(R.drawable.vector__6_);
-            } else if (foodModels4.get(position).getOrderRating().matches("^[2][.][6789]") || foodModels4.get(position).getOrderRating().matches("^[3][.][1234]")) {
+            } else if (foodModels4.get(position).getOrderRating().matches("^[3]") || foodModels4.get(position).getOrderRating().matches("^[2][.][6789]") || foodModels4.get(position).getOrderRating().matches("^[3][.][1234]")) {
 
                 //holder.star1.setVisibility(View.VISIBLE);
                 // holder.star2.setVisibility(View.VISIBLE);
@@ -143,7 +150,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
                 holder.star3.setImageResource(R.drawable.clarity_favorite_solid);
                 holder.star4.setImageResource(R.drawable.vector__6_);
                 holder.star5.setImageResource(R.drawable.vector__6_);
-            } else if (foodModels4.get(position).getOrderRating().matches("^[3][.][6789]") || foodModels4.get(position).getOrderRating().matches("^[4][.][12345]")) {
+            } else if (foodModels4.get(position).getOrderRating().matches("^[4]") || foodModels4.get(position).getOrderRating().matches("^[3][.][6789]") || foodModels4.get(position).getOrderRating().matches("^[4][.][12345]")) {
 
                 //holder.star1.setVisibility(View.VISIBLE);
                 // holder.star2.setVisibility(View.VISIBLE);
@@ -167,8 +174,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
                 // holder.star4.setVisibility(View.VISIBLE);
                 // holder.star5.setVisibility(View.VISIBLE);
             }
-        }
-        else {
+        } else {
 
             holder.star1.setImageResource(R.drawable.vector__6_);
             holder.star2.setImageResource(R.drawable.vector__6_);
@@ -181,7 +187,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                showRatingDialog();
+                showRatingDialog(holder.getAbsoluteAdapterPosition());
 
             }
         });
@@ -202,14 +208,14 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
 
     }
 
-    private void showRatingDialog() {
+    private void showRatingDialog(int position) {
 
-        Dialog dialog = new Dialog(context);
-        dialog.setCancelable(false);
+        dialog = new Dialog(context);
+        dialog.setCancelable(true);
 
         AppCompatActivity activity = (AppCompatActivity) context;
 
-        View view =activity.getLayoutInflater().inflate(R.layout.rating_comment_dialog, null);
+        View view = activity.getLayoutInflater().inflate(R.layout.rating_comment_dialog, null);
 
         dialog.setContentView(view);
         /*if (dialog.getWindow() != null) {
@@ -226,9 +232,15 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
         ImageView ratingStar3 = view.findViewById(R.id.rating_star3);
         ImageView ratingStar4 = view.findViewById(R.id.rating_star4);
         ImageView ratingStar5 = view.findViewById(R.id.rating_star5);
-        TextView notNow = view.findViewById(R.id.rating_notNow);
+        //TextView notNow = view.findViewById(R.id.rating_notNow);
         Button update = view.findViewById(R.id.rating_submit);
+        EditText orderComment = view.findViewById(R.id.orderComment);
+        CircleImageView ratingImg = view.findViewById(R.id.rating_img);
         //EditText userNameE = view.findViewById(R.id.userEdit_name);
+
+        Picasso.get()
+                .load(Constants.UserProduct_Path + foodModels4.get(position).getRunOrder_img())
+                .into(ratingImg);
 
         ratingStar1.setTag("");
         ratingStar2.setTag("");
@@ -242,7 +254,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             public void onClick(View view) {
 
 
-                if (ratingStar1.getTag().equals("rated")){
+                if (ratingStar1.getTag().equals("rated")) {
 
                     ratingStar1.setImageResource(R.drawable.vector__6_);
                     ratingStar2.setImageResource(R.drawable.vector__6_);
@@ -255,8 +267,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
                     ratingStar3.setTag("unrated");
                     ratingStar4.setTag("unrated");
                     ratingStar5.setTag("unrated");
-                }
-                else {
+                } else {
                     ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
                     rating = "1";
                     ratingStar1.setTag("rated");
@@ -269,7 +280,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                if (ratingStar2.getTag().equals("rated")){
+                if (ratingStar2.getTag().equals("rated")) {
 
                     ratingStar2.setImageResource(R.drawable.vector__6_);
                     ratingStar3.setImageResource(R.drawable.vector__6_);
@@ -280,8 +291,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
                     ratingStar3.setTag("unrated");
                     ratingStar4.setTag("unrated");
                     ratingStar5.setTag("unrated");
-                }
-                else {
+                } else {
 
                     ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
                     ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
@@ -296,7 +306,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                if (ratingStar3.getTag().equals("rated")){
+                if (ratingStar3.getTag().equals("rated")) {
 
                     ratingStar3.setImageResource(R.drawable.vector__6_);
                     ratingStar4.setImageResource(R.drawable.vector__6_);
@@ -305,8 +315,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
                     ratingStar3.setTag("unrated");
                     ratingStar4.setTag("unrated");
                     ratingStar5.setTag("unrated");
-                }
-                else {
+                } else {
 
                     ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
                     ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
@@ -323,15 +332,14 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                if (ratingStar4.getTag().equals("rated")){
+                if (ratingStar4.getTag().equals("rated")) {
 
                     ratingStar4.setImageResource(R.drawable.vector__6_);
                     ratingStar5.setImageResource(R.drawable.vector__6_);
                     rating = "3";
                     ratingStar4.setTag("unrated");
                     ratingStar5.setTag("unrated");
-                }
-                else {
+                } else {
 
                     ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
                     ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
@@ -350,14 +358,13 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
             @Override
             public void onClick(View view) {
 
-                if (ratingStar5.getTag().equals("rated")){
+                if (ratingStar5.getTag().equals("rated")) {
 
                     ratingStar5.setImageResource(R.drawable.vector__6_);
                     rating = "4";
 
                     ratingStar5.setTag("unrated");
-                }
-                else {
+                } else {
 
                     ratingStar1.setImageResource(R.drawable.clarity_favorite_solid);
                     ratingStar2.setImageResource(R.drawable.clarity_favorite_solid);
@@ -379,20 +386,69 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.cancel();
+
+                if (!rating.equals("0") && !orderComment.getText().toString().isEmpty()){
+
+                    rateAndCommentAPI(rating, orderComment.getText().toString(), foodModels4.get(position).getRunOrder_num());
+                }
+                else {
+                    Toast.makeText(context, "Please give rating and comment", Toast.LENGTH_SHORT).show();
+                }
+                //dialog.cancel();
                 Log.d("rating", rating);
             }
         });
 
-        notNow.setOnClickListener(new View.OnClickListener() {
+       /* notNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 dialog.cancel();
             }
-        });
+        });*/
 
         dialog.show();
+    }
+
+    private void rateAndCommentAPI(String rating, String  orderComment, String orderId) {
+
+        Log.d("orderId", orderId);
+        Log.d("orderId", rating);
+        Log.d("orderId", orderComment);
+
+        Request_Order_Rating request_order_rating = new Request_Order_Rating();
+        request_order_rating.setBranchId("1");
+        request_order_rating.setOrderId(orderId);
+        request_order_rating.setOrderRating(rating);
+        request_order_rating.setOrderComment(orderComment);
+
+        RetrofitInstance retrofitInstance = new RetrofitInstance();
+
+        Call<Response_Common> retrofitData = retrofitInstance.getRetrofit().setOrderRatingComment(Constants.USER_TOKEN, request_order_rating);
+
+        retrofitData.enqueue(new Callback<Response_Common>() {
+            @Override
+            public void onResponse(Call<Response_Common> call, Response<Response_Common> response) {
+
+                if (response.isSuccessful()){
+
+                    Log.d("success", response.message());
+
+                    dialog.cancel();
+
+                    Toast.makeText(context, "Thank you for reviewing this order.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    Log.d("success", response.message() + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_Common> call, Throwable t) {
+                Log.d("failed", t.toString());
+            }
+        });
     }
 
     @Override
@@ -404,7 +460,7 @@ public class RecycleView_Adapter_PO extends RecyclerView.Adapter<RecycleView_Ada
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         //grabbing the views from rv_column.xml
 
-        TextView runOrder_num , runOrder_total, runOrder_pickup, runOrder_create, runOrder_Quantity, runOrder_status,
+        TextView runOrder_num, runOrder_total, runOrder_pickup, runOrder_create, runOrder_Quantity, runOrder_status,
                 runOrder_date, orderReview;
         CircleImageView runOrder_img;
         AppCompatButton runOrder_btn;

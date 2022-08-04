@@ -202,7 +202,6 @@
                 android:clickable="true"
                 android:elevation="8dp"
                 android:focusable="true"
-
                 android:fontFamily="@font/montserrat_light"
                 android:text="@string/view_comments"
                 android:textColor="@color/black"

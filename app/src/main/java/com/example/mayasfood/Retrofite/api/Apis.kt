@@ -151,4 +151,19 @@ interface Apis {
         @Body body: Request_ProductDetails
     ):Call<Response_Common>
 
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.SET_ORDER_RATING_COMMENTS)
+    fun setOrderRatingComment(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: Request_Order_Rating
+    ):Call<Response_Common>
+
+    @Headers("Content-Type:application/json", "Accept:application/json")
+    @POST(Constants.ApiConstant.SET_PRODUCT_RATING_COMMENTS)
+    fun setProductRatingComment(
+        @Header (Constants.sharedPrefrencesConstant.X_TOKEN)x_tocken:String,
+        @Body body: RequestProductRating
+    ):Call<Response_Common>
+
+
 }
