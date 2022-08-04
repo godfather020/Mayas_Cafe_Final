@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.*
 import android.view.View.OnTouchListener
 import android.widget.*
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -71,7 +72,9 @@ class SingleItem_frag : Fragment() {
     lateinit var seek1Count: TextView
     lateinit var productRating: TextView
     lateinit var totalReviews: TextView
-    lateinit var showMoreReview : TextView
+ //   lateinit var showMoreReview : TextView
+    lateinit var nestedScroll : NestedScrollView
+    lateinit var loadingRv : ProgressBar
     var itemAmount = ArrayList<String>()
     var offerAmount = ArrayList<String>()
     var itemOfferAmt = ArrayList<String>()
@@ -168,19 +171,33 @@ class SingleItem_frag : Fragment() {
         seek3Count = view.findViewById(R.id.star3Count)
         seek4Count = view.findViewById(R.id.star4Count)
         seek5Count = view.findViewById(R.id.star5Count)
-        showMoreReview = view.findViewById(R.id.showMoreReview)
+        //showMoreReview = view.findViewById(R.id.showMoreReview)
+        loadingRv = view.findViewById(R.id.loadingRv)
+        nestedScroll = view.findViewById(R.id.nestedScroll)
 
         loading.visibility = View.VISIBLE
 
-        val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        /*val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        customerCommentsRv.layoutManager = layoutManager
+        customerCommentsRv.layoutManager = layoutManager*/
 
         Log.d("productId", Constants.productID)
 
         getItemData()
 
         getProductRatingComments(page)
+
+        nestedScroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            // on scroll change we are checking when users scroll as bottom.
+            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+                // in this method we are incrementing page number,
+                // making progress bar visible and calling get data method.
+                Log.d("scroll", "scroll")
+                page++
+                loadingRv.setVisibility(View.VISIBLE)
+                getProductRatingComments(page)
+            }
+        })
 
         setHasOptionsMenu(true)
 
@@ -235,12 +252,12 @@ class SingleItem_frag : Fragment() {
             }
         }
 
-        showMoreReview.setOnClickListener {
+        /*showMoreReview.setOnClickListener {
 
             Constants.page = Constants.page+1
 
             getProductRatingComments(Constants.page)
-        }
+        }*/
 
         singleItem_addToCart.setOnClickListener {
 
@@ -363,8 +380,8 @@ class SingleItem_frag : Fragment() {
 
                     if (response.body()!!.getData()!!.RatingResponce!!.rows.isEmpty()){
 
-                        showMoreReview.text = "No reviews"
-                        showMoreReview.isEnabled = false
+                        loadingRv.visibility = View.GONE
+
                     }
 
                     if (response.body()!!.getData()!!.RatingResponce!!.rows.isNotEmpty()) {
@@ -381,11 +398,22 @@ class SingleItem_frag : Fragment() {
 
                             Log.d("pagework11", "work")
 
-                            rateDate.add(createdDate)
-                            custRating.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].rating.toString())
-                            custName.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].Customer!!.userName.toString())
-                            custComment.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].comment.toString())
-                            custImg.add(response.body()!!.getData()!!.RatingResponce!!.rows[i].Customer!!.profilePic.toString())
+                            recycleView_models.add(
+                                RecycleView_Model(
+                                    response.body()!!.getData()!!.RatingResponce!!.rows[i].Customer!!.userName.toString(),
+                                    createdDate,
+                                    response.body()!!.getData()!!.RatingResponce!!.rows[i].comment.toString(),
+                                    response.body()!!.getData()!!.RatingResponce!!.rows[i].Customer!!.profilePic.toString(),
+                                    response.body()!!.getData()!!.RatingResponce!!.rows[i].rating.toString()
+                                )
+                            )
+
+                            val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+                            customerCommentsRv.layoutManager = layoutManager
+                            val recycleView_adapter_CC = RecycleView_Adapter_CC(activity, recycleView_models)
+                            customerCommentsRv.adapter = recycleView_adapter_CC
+
                         }
                     }
 
@@ -434,11 +462,6 @@ class SingleItem_frag : Fragment() {
                     if (seekBar5Per.toInt() != 0){
 
                         seek5Bar.secondaryProgress = seekBar5Per.toInt()
-                    }
-
-                    if (response.body()!!.getData()!!.RatingResponce!!.rows.isNotEmpty()){
-
-                        setCommentsRv()
                     }
                 }
             }
