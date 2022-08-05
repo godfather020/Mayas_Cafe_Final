@@ -1,6 +1,7 @@
 package com.example.mayasfood.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ProgressBar
@@ -127,28 +128,11 @@ class CategoryDetails_frag : Fragment() {
 
                             foodOfferAmt.add(i , "0")
                         }
-                        if (it.getData()!!.ListproductResponce!![i].Productprices!!.size == 1){
 
-                            foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
-                        }
-                        else{
+                        Log.d("size", it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
 
-                            for (j in it.getData()!!.ListproductResponce!![i].Productprices!!.indices) {
+                        foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
 
-                                if (it.getData()!!.ListproductResponce!![i].Productprices!![j].productsize.equals(
-                                        "M"
-                                    )
-                                ) {
-                                    foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![j].productsize.toString())
-                                }
-                            }
-
-                            if (foodSize.isEmpty()){
-
-                                foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
-                            }
-
-                        }
                     }
 
                     loading.visibility = View.GONE

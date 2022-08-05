@@ -117,28 +117,9 @@ class Favorite_frag : Fragment() {
                         else{
                             foodOfferAmt.add("0")
                         }
-                        if (it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices.size == 1){
 
-                            foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].productsize.toString())
-                        }
-                        else{
+                        foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].productsize.toString())
 
-                            for (j in it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices.indices) {
-
-                                if (it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[j].productsize.equals(
-                                        "M"
-                                    )
-                                ) {
-                                    foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[j].productsize.toString())
-                                }
-                            }
-
-                            if (foodSize.isEmpty()){
-
-                                foodSize.add(it.getData()!!.FavoriteListResponce!![i].Product!!.Productprices[0].productsize.toString())
-                            }
-
-                        }
                     }
 
                 }

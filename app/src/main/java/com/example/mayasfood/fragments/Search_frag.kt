@@ -32,6 +32,7 @@ class Search_frag : Fragment() {
     var foodRating = ArrayList<String>()
     var foodIsFav = ArrayList<Int>()
     var foodId = ArrayList<String>()
+    var foodSize = ArrayList<String>()
     var foodOfferAmt = ArrayList<String>()
     var recycleView_models = ArrayList<RecycleView_Model>()
     lateinit var auth : FirebaseAuth
@@ -95,29 +96,31 @@ class Search_frag : Fragment() {
                     foodId.clear()
                     recycleView_models.clear()
                     foodOfferAmt.clear()
+                    foodSize.clear()
 
                     for(i in it.getData()!!.ListproductResponce!!.indices){
 
-                        foodName.add(i, it.getData()!!.ListproductResponce!![i].productName.toString())
-                        foodImg.add(i, it.getData()!!.ListproductResponce!![i].productPic.toString())
-                        foodPrice.add(i, it.getData()!!.ListproductResponce!![i].Productprices!![0].amount.toString())
-                        foodRating.add(i, it.getData()!!.ListproductResponce!![i].customerrating.toString())
+                        foodName.add( it.getData()!!.ListproductResponce!![i].productName.toString())
+                        foodImg.add( it.getData()!!.ListproductResponce!![i].productPic.toString())
+                        foodPrice.add( it.getData()!!.ListproductResponce!![i].Productprices!![0].amount.toString())
+                        foodRating.add( it.getData()!!.ListproductResponce!![i].customerrating.toString())
+                        foodSize.add(it.getData()!!.ListproductResponce!![i].Productprices!![0].productsize.toString())
                         if (auth.currentUser != null) {
-                            foodIsFav.add(i,
+                            foodIsFav.add(
                                 it.getData()!!.ListproductResponce!![i].favorite!!
                             )
                         }
                         else{
-                            foodIsFav.add(i, 0)
+                            foodIsFav.add( 0)
                         }
-                        foodId.add(i , it.getData()!!.ListproductResponce!![i].id.toString())
+                        foodId.add( it.getData()!!.ListproductResponce!![i].id.toString())
                         if (it.getData()!!.ListproductResponce!![i].Productprices!![0].offerAmount != null){
 
-                            foodOfferAmt.add(i , it.getData()!!.ListproductResponce!![i].Productprices!![0].offerAmount.toString())
+                            foodOfferAmt.add( it.getData()!!.ListproductResponce!![i].Productprices!![0].offerAmount.toString())
                         }
                         else {
 
-                            foodOfferAmt.add(i ,"0")
+                            foodOfferAmt.add("0")
                         }
                     }
 
@@ -137,6 +140,7 @@ class Search_frag : Fragment() {
 
             recycleView_models.add(
                 RecycleView_Model(
+                    foodSize[i],
                     foodOfferAmt[i],
                     foodName[i],
                     foodPrice[i],

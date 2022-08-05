@@ -207,6 +207,10 @@ class SingleItem_frag : Fragment() {
             }
         })
 
+        singleItem_radio_s.visibility = View.GONE
+        singleItem_radio_r.visibility = View.GONE
+        singleItem_radio_l.visibility = View.GONE
+
         setHasOptionsMenu(true)
 
         singleItem_radio_s.setOnClickListener {
@@ -272,15 +276,41 @@ class SingleItem_frag : Fragment() {
             //Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
             val size = Constants.foodName.size
 
+            Log.d("size", foodSize)
+
+            var dub = 0
+
+            Log.d("name", singleItem_name.text.toString())
+
+
+            for (i in Constants.foodName){
+
+                for (j in Constants.foodSize){
+
+                    for (k in  Constants.foodId)
+
+                if (i.equals(singleItem_name.text.toString()) && j.equals(foodSize) && k.toString().equals(Constants.productID)) {
+
+                    Log.d("mtches", "matchse")
+                }
+
+                }
+            }
+
             if (Constants.foodName.contains(
                     singleItem_name.text
                 ) && Constants.foodSize.contains(foodSize)
             ) {
+
+                Log.d("size", foodSize)
+
                 for (j in Constants.foodName.indices) {
                     if (Constants.foodName[j].matches(
                             Regex(singleItem_name.text.toString())
                         ) && Constants.foodSize[j].matches(Regex(foodSize))
                     ) {
+
+                        Log.d("size1", foodSize)
                         val q = Constants.foodQuantity[j]
                         Log.d("foodQ", (q + 1).toString())
                         //Constants.foodQuantity.add(j, 1 + Constants.q);
@@ -307,6 +337,7 @@ class SingleItem_frag : Fragment() {
                 Constants.foodId.add(
                     Integer.valueOf(Constants.productID)
                 )
+                Log.d("id", Constants.productID)
                 val itemCount = singleItem_num.text.toString()
                 Constants.foodSize.add(foodSize)
                 Constants.foodQuantity.add(itemCount.toInt())
@@ -912,6 +943,24 @@ class SingleItem_frag : Fragment() {
                             itemOfferAmt.add(it.getData()!!.ProductResponce!!.Productprices!![i].offerAmount.toString())
                             itemSize.add(it.getData()!!.ProductResponce!!.Productprices!![i].productsize.toString())
 
+                        }
+
+                        for (i in itemSize.indices){
+
+                            Log.d("item", itemSize[i])
+
+                            if (itemSize[i] == "S"){
+
+                                singleItem_radio_s.visibility = View.VISIBLE
+                            }
+                            else if (itemSize[i] == "M"){
+
+                                singleItem_radio_r.visibility = View.VISIBLE
+                            }
+                            else if (itemSize[i] == "L"){
+
+                                singleItem_radio_l.visibility = View.VISIBLE
+                            }
                         }
 
                         //Toast.makeText(activity, "Success", Toast.LENGTH_SHORT).show()

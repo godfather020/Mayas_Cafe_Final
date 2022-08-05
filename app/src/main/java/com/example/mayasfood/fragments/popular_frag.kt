@@ -152,28 +152,10 @@ class popular_frag : Fragment() {
 
                             popularOfferAmt.add(i , "0")
                         }
-                        if (it.getData()!!.ListpopularproductResponce!![i].Productprices!!.size == 1){
 
-                            popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
-                        }
-                        else{
+                        Log.d("size", it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
+                        popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
 
-                            for (j in it.getData()!!.ListpopularproductResponce!![i].Productprices!!.indices) {
-
-                                if (it.getData()!!.ListpopularproductResponce!![i].Productprices!![j].productsize.equals(
-                                        "M"
-                                    )
-                                ) {
-                                    popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![j].productsize.toString())
-                                }
-                            }
-
-                            if (popularFoodSize.isEmpty()){
-
-                                popularFoodSize.add(it.getData()!!.ListpopularproductResponce!![i].Productprices!![0].productsize.toString())
-                            }
-
-                        }
                     }
 
                     loading.visibility = View.GONE

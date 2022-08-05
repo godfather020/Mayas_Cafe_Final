@@ -92,6 +92,11 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
 
                 Constants.subTotal = 0;
 
+                Log.d("foodSizeN", String.valueOf(Constants.foodName.size()));
+                Log.d("foodSizeQ", String.valueOf(Constants.foodQuantity.size()));
+                Log.d("foodSizeS", String.valueOf(Constants.foodSize.size()));
+                Log.d("foodSizeI", String.valueOf(Constants.foodId.size()));
+
                 Log.d("subtotal", String.valueOf(Constants.subTotal));
                 Constants.foodId.remove(holder.getAdapterPosition());
                 Constants.foodName.remove(holder.getAdapterPosition());
@@ -113,6 +118,11 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
                 foodModels.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
                 notifyItemRangeChanged(holder.getAdapterPosition(), foodModels.size());
+
+                Log.d("foodSizeNA", String.valueOf(Constants.foodName.size()));
+                Log.d("foodSizeQA", String.valueOf(Constants.foodQuantity.size()));
+                Log.d("foodSizeSA", String.valueOf(Constants.foodSize.size()));
+                Log.d("foodSizeIA", String.valueOf(Constants.foodId.size()));
 
                 fragment.setUpModelRv();
             }

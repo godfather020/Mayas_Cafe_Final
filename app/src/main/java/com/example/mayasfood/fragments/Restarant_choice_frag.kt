@@ -159,27 +159,7 @@ class Restarant_choice_frag : Fragment() {
 
                             restaurantOfferAmt.add(i, "0")
                         }
-                        if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.size == 1) {
-
-                            restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
-                        } else {
-
-                            for (j in it.getData()!!.ListrestaurantproductResponce!![i].Productprices!!.indices) {
-
-                                if (it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![j].productsize.equals(
-                                        "M"
-                                    )
-                                ) {
-                                    restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![j].productsize.toString())
-                                }
-                            }
-
-                            if (restaurantFoodSize.isEmpty()) {
-
-                                restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
-                            }
-
-                        }
+                        restaurantFoodSize.add(it.getData()!!.ListrestaurantproductResponce!![i].Productprices!![0].productsize.toString())
 
                     }
                     loading.visibility = View.GONE
