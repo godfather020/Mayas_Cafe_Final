@@ -9,11 +9,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8155412c9d992b11ff04b1d46f29bfd1/transformed/jetified-transport-backend-cct-3.1.4/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8155412c9d992b11ff04b1d46f29bfd1/transformed/jetified-transport-backend-cct-3.1.4/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2832924dfb6d5b105206f1eba350873c/transformed/jetified-transport-backend-cct-3.1.4/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2832924dfb6d5b105206f1eba350873c/transformed/jetified-transport-backend-cct-3.1.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2832924dfb6d5b105206f1eba350873c/transformed/jetified-transport-backend-cct-3.1.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2832924dfb6d5b105206f1eba350873c/transformed/jetified-transport-backend-cct-3.1.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2832924dfb6d5b105206f1eba350873c/transformed/jetified-transport-backend-cct-3.1.4/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/2832924dfb6d5b105206f1eba350873c/transformed/jetified-transport-backend-cct-3.1.4/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.datatransport/transport-backend-cct/3.1.4/9d091912e70225ab34094ec1a9cb93ce9a32b41c/transport-backend-cct-3.1.4-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.datatransport/transport-backend-cct/3.1.4/9d091912e70225ab34094ec1a9cb93ce9a32b41c/transport-backend-cct-3.1.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

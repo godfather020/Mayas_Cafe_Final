@@ -14,12 +14,13 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/66a345e7dd6eb7274ed1b5c032762c4d/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/66a345e7dd6eb7274ed1b5c032762c4d/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/edd62533f6aa944a6c560d5f44a91abe/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/edd62533f6aa944a6c560d5f44a91abe/transformed/jetified-lifecycle-runtime-testing-2.3.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/edd62533f6aa944a6c560d5f44a91abe/transformed/jetified-lifecycle-runtime-testing-2.3.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/edd62533f6aa944a6c560d5f44a91abe/transformed/jetified-lifecycle-runtime-testing-2.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/edd62533f6aa944a6c560d5f44a91abe/transformed/jetified-lifecycle-runtime-testing-2.3.1/res" />
+      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/edd62533f6aa944a6c560d5f44a91abe/transformed/jetified-lifecycle-runtime-testing-2.3.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime-testing/2.3.1/95f9d77a6ffb70df17d728b6ed513302c8056275/lifecycle-runtime-testing-2.3.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-runtime-testing/2.3.1/95f9d77a6ffb70df17d728b6ed513302c8056275/lifecycle-runtime-testing-2.3.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

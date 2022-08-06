@@ -35,6 +35,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class SingleItem_frag : Fragment() {
@@ -282,24 +284,32 @@ class SingleItem_frag : Fragment() {
 
             Log.d("name", singleItem_name.text.toString())
 
+            var isSame = false
 
-            for (i in Constants.foodName){
+            Log.d("sizesN", Constants.foodName.size.toString())
+            Log.d("sizesS", Constants.foodSize.size.toString())
+            Log.d("sizesQ", Constants.foodQuantity.size.toString())
+            Log.d("sizesI", Constants.foodId.size.toString())
+            Log.d("sizesIM", Constants.foodImg.size.toString())
+            Log.d("sizesP", Constants.foodPrice.size.toString())
 
-                for (j in Constants.foodSize){
+            for (i in Constants.foodName.indices){
 
-                    for (k in  Constants.foodId)
+                Log.d("foodName"+i, Constants.foodName[i])
+                Log.d("foodSize"+i, Constants.foodSize[i])
+                Log.d("foodId"+i, Constants.foodId[i].toString())
 
-                if (i.equals(singleItem_name.text.toString()) && j.equals(foodSize) && k.toString().equals(Constants.productID)) {
+                if (Constants.foodName[i].equals(singleItem_name.text.toString()) && Constants.foodSize[i].equals(foodSize) && Constants.foodId[i].toString().equals(Constants.productID)){
 
-                    Log.d("mtches", "matchse")
-                }
-
+                    Log.d("foodSame", "foodSame")
+                    isSame = true
                 }
             }
 
+
             if (Constants.foodName.contains(
                     singleItem_name.text
-                ) && Constants.foodSize.contains(foodSize)
+                ) && Constants.foodSize.contains(foodSize) && isSame
             ) {
 
                 Log.d("size", foodSize)
