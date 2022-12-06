@@ -222,12 +222,12 @@ public class RecycleView_Adapter_F extends RecyclerView.Adapter<RecycleView_Adap
         //holder.imageView.setImageResource(foodModels2.get(position).getFoodImg());
         if (foodModels2.get(position).getOfferAmt() != "0") {
             holder.orgPrice.setVisibility(View.VISIBLE);
-            holder.orgPrice.setText("$" + foodModels2.get(position).getFoodPrice());
+            holder.orgPrice.setText(context.getResources().getString(R.string.Rupee) + foodModels2.get(position).getFoodPrice());
             holder.orgPrice.setPaintFlags(holder.orgPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            holder.price.setText("$" + foodModels2.get(position).getOfferAmt());
+            holder.price.setText(context.getResources().getString(R.string.Rupee) + foodModels2.get(position).getOfferAmt());
         } else {
             holder.orgPrice.setVisibility(View.GONE);
-            holder.price.setText("$" + foodModels2.get(position).getFoodPrice());
+            holder.price.setText(context.getResources().getString(R.string.Rupee) + foodModels2.get(position).getFoodPrice());
         }
 
 

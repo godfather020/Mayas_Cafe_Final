@@ -73,7 +73,7 @@ public class RecycleView_Adapter_RO extends RecyclerView.Adapter<RecycleView_Ada
         final RecycleView_Model temp = foodModels4.get(position);
 
         holder.runOrder_num.setText("Order Id - #"+foodModels4.get(position).getRunOrder_num());
-        holder.runOrder_total.setText("$"+foodModels4.get(position).getRunOrder_total());
+        holder.runOrder_total.setText(context.getResources().getString(R.string.Rupee)+foodModels4.get(position).getRunOrder_total());
         holder.runOrder_Quantity.setText("Number of Items "+foodModels4.get(position).getRunOrder_Quantity());
         //holder.runOrder_status.setText(foodModels4.get(position).getRunOrder_status());
         holder.runOrder_pickup.setText(foodModels4.get(position).getRunOrder_pickup());

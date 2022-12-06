@@ -13,12 +13,18 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4bf451f04171da9f25c30badcb18b43d/transformed/jetified-library-3.4.0/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4bf451f04171da9f25c30badcb18b43d/transformed/jetified-library-3.4.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4bf451f04171da9f25c30badcb18b43d/transformed/jetified-library-3.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/961ca80e00d7484bf9fb7bfe485c9c27/transformed/jetified-library-3.4.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/961ca80e00d7484bf9fb7bfe485c9c27/transformed/jetified-library-3.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/961ca80e00d7484bf9fb7bfe485c9c27/transformed/jetified-library-3.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/e0559f8b8a821e803cfc4e3db0afe940/transformed/jetified-library-3.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e0559f8b8a821e803cfc4e3db0afe940/transformed/jetified-library-3.4.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e0559f8b8a821e803cfc4e3db0afe940/transformed/jetified-library-3.4.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.sothree.slidinguppanel/library/3.4.0/4a781f463464e22af9342867e576c9381117d3bf/library-3.4.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sothree.slidinguppanel/library/3.4.0/4a781f463464e22af9342867e576c9381117d3bf/library-3.4.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.sothree.slidinguppanel/library/3.4.0/28720c57763dbf7fd8abf4a2c63f7ed4cd04c460/library-3.4.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sothree.slidinguppanel/library/3.4.0/28720c57763dbf7fd8abf4a2c63f7ed4cd04c460/library-3.4.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

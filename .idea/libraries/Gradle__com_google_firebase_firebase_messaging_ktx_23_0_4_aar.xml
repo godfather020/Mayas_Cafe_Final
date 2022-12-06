@@ -9,15 +9,15 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d96cc0992fe4347dfc990b7c5030c037/transformed/jetified-firebase-messaging-ktx-23.0.4/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/d96cc0992fe4347dfc990b7c5030c037/transformed/jetified-firebase-messaging-ktx-23.0.4/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8b9909a4faa528ad0b0243ab090c6de3/transformed/jetified-firebase-messaging-ktx-23.0.4/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8b9909a4faa528ad0b0243ab090c6de3/transformed/jetified-firebase-messaging-ktx-23.0.4/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8b9909a4faa528ad0b0243ab090c6de3/transformed/jetified-firebase-messaging-ktx-23.0.4/res" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/8b9909a4faa528ad0b0243ab090c6de3/transformed/jetified-firebase-messaging-ktx-23.0.4/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8b9909a4faa528ad0b0243ab090c6de3/transformed/jetified-firebase-messaging-ktx-23.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8b9909a4faa528ad0b0243ab090c6de3/transformed/jetified-firebase-messaging-ktx-23.0.4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging-ktx/23.0.4/5c6576dc7225623ee86d009a20c9bede22557a63/firebase-messaging-ktx-23.0.4-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging-ktx/23.0.4/5c6576dc7225623ee86d009a20c9bede22557a63/firebase-messaging-ktx-23.0.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging-ktx/23.0.4/5500276e4cc363fbf8bcf7bc5acc51e69d97a100/firebase-messaging-ktx-23.0.4-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-messaging-ktx/23.0.4/5500276e4cc363fbf8bcf7bc5acc51e69d97a100/firebase-messaging-ktx-23.0.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

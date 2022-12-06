@@ -98,7 +98,7 @@ class Login : AppCompatActivity() {
             phoneCheck = Functions.checkData(phoneNumber, phoneNum)
             if (phoneCheck) {
 
-                if (phoneNumber.equals("+917000107876")) {
+                if (phoneNumber.equals("+917000107878")) {
 
                     getSharedPreferences(
                         Constants.sharedPrefrencesConstant.USER_P,

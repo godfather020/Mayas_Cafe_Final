@@ -536,11 +536,11 @@ class CheckOut_frag : Fragment(), TimePickerDialog.OnTimeSetListener,
 
         Constants.total = Constants.subTotal + Constants.tax
 
-        checkOut_subTotal.setText("$"+Constants.subTotal.toString()+".00")
+        checkOut_subTotal.setText(resources.getString(R.string.Rupee)+Constants.subTotal.toString()+".00")
 
-        checkout_tax.setText("$"+Constants.tax.toString()+".00")
+        checkout_tax.setText(resources.getString(R.string.Rupee)+Constants.tax.toString()+".00")
 
-        checkout_Total.setText("$"+Constants.total.toString()+".00")
+        checkout_Total.setText(resources.getString(R.string.Rupee)+Constants.total.toString()+".00")
 
         Constants.subTotal = 0
 

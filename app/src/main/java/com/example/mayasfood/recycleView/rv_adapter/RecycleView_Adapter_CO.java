@@ -82,7 +82,7 @@ public class RecycleView_Adapter_CO extends RecyclerView.Adapter<RecycleView_Ada
         holder.foodItems.setText("Size "+String.valueOf(foodModels.get(position).getFoodSize()));
         holder.foodCount.setText(String.valueOf(foodModels.get(position).getFoodImg1()));
 
-        holder.foodPrice.setText("$"+Integer.valueOf(foodModels.get(position).getFoodPrice())*foodModels.get(position).getFoodImg1());
+        holder.foodPrice.setText(context.getResources().getString(R.string.Rupee)+Integer.valueOf(foodModels.get(position).getFoodPrice())*foodModels.get(position).getFoodImg1());
 
         holder.food_clear.setOnClickListener(null);
 

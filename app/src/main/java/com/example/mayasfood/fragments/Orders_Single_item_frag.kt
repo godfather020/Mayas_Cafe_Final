@@ -123,7 +123,7 @@ class Orders_Single_item_frag : Fragment() {
                             singleOrder_date.setText(createdDate)
                             singleOrder_num.setText("Order Id - #"+Constants.singleID)
                             singleOrder_quantity.setText("Number of items "+it.getData()!!.ListOrderResponce!![i].toalQuantity.toString())
-                            singleOrder_total.setText("$"+it.getData()!!.ListOrderResponce!![i].amount.toString())
+                            singleOrder_total.setText(resources.getString(R.string.Rupee)+it.getData()!!.ListOrderResponce!![i].amount.toString())
 
                             Picasso.get().load(Constants.UserProduct_Path+ it.getData()!!.ListOrderResponce!![i].Orderlists!![0].Product!!.productPic.toString())
                                 .into(singleOrder_img)

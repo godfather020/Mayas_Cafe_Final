@@ -10,12 +10,18 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/37a740dad9ecff7729397f994bb9d4a2/transformed/jetified-library-2.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/37a740dad9ecff7729397f994bb9d4a2/transformed/jetified-library-2.0/res" />
       <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/37a740dad9ecff7729397f994bb9d4a2/transformed/jetified-library-2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f0232637de7feb9222dca65852970730/transformed/jetified-library-2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f0232637de7feb9222dca65852970730/transformed/jetified-library-2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f0232637de7feb9222dca65852970730/transformed/jetified-library-2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9af4f9457004d78f5da8da8afb97ed23/transformed/jetified-library-2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9af4f9457004d78f5da8da8afb97ed23/transformed/jetified-library-2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9af4f9457004d78f5da8da8afb97ed23/transformed/jetified-library-2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.borax12.materialdaterangepicker/library/2.0/bff7140c4f7762676431ffe909ffe5de2aa6ec04/library-2.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.borax12.materialdaterangepicker/library/2.0/bff7140c4f7762676431ffe909ffe5de2aa6ec04/library-2.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.borax12.materialdaterangepicker/library/2.0/f7ebe1ff2e8fc4ef22495f16f82aca5d57b27129/library-2.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.borax12.materialdaterangepicker/library/2.0/f7ebe1ff2e8fc4ef22495f16f82aca5d57b27129/library-2.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

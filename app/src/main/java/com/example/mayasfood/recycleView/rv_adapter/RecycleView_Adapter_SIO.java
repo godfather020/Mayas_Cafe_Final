@@ -51,7 +51,7 @@ public class RecycleView_Adapter_SIO extends RecyclerView.Adapter<RecycleView_Ad
 
         holder.itemName.setText(foodModels.get(position).getFoodName());
         holder.itemQty.setText("Qty : "+foodModels.get(position).getStars());
-        holder.itemTotal.setText("$"+foodModels.get(position).getFoodImg());
+        holder.itemTotal.setText(context.getResources().getString(R.string.Rupee)+foodModels.get(position).getFoodImg());
         //String categoryId = foodModels.get(position).getFoodImg();
 
         Picasso.get().load(Constants.UserProduct_Path+foodModels.get(position).getFoodPrice())

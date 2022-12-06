@@ -15,12 +15,12 @@
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/7ed9098d99ee4f515c742b0feb9043a3/transformed/versionedparcelable-1.1.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4a8fa96b9d622d0e31e260435ff60ea0/transformed/versionedparcelable-1.1.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4a8fa96b9d622d0e31e260435ff60ea0/transformed/versionedparcelable-1.1.1/res" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4a8fa96b9d622d0e31e260435ff60ea0/transformed/versionedparcelable-1.1.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/4a8fa96b9d622d0e31e260435ff60ea0/transformed/versionedparcelable-1.1.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4a8fa96b9d622d0e31e260435ff60ea0/transformed/versionedparcelable-1.1.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4a8fa96b9d622d0e31e260435ff60ea0/transformed/versionedparcelable-1.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/androidx.versionedparcelable/versionedparcelable/1.1.1/d9085927216387af679d18b6f472bc0fc5c7cc81/versionedparcelable-1.1.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.versionedparcelable/versionedparcelable/1.1.1/d9085927216387af679d18b6f472bc0fc5c7cc81/versionedparcelable-1.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

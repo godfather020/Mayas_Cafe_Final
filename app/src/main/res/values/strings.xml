@@ -32,6 +32,8 @@
     <string name="Dashboard_offers">Best Offers</string>
     <string name="Dashboard_restchoice">Restaurant Choices</string>
     <string name="Dashboard_seeAll">See all</string>
+    <string name="Dollar">$</string>
+    <string name="Rupee">₹</string>
 
 
     <string-array name="Food_txt">

@@ -256,13 +256,13 @@ public class RecycleView_Adapter_RC extends RecyclerView.Adapter<RecycleView_Ada
         //holder.imageView.setImageResource(foodModels3.get(position).getFoodImg());
         if (foodModels3.get(position).getOfferAmt() != "0") {
             holder.orgPrice.setVisibility(View.VISIBLE);
-            holder.orgPrice.setText("$" + foodModels3.get(position).getFoodPrice());
+            holder.orgPrice.setText(context.getResources().getString(R.string.Rupee) + foodModels3.get(position).getFoodPrice());
             holder.orgPrice.setPaintFlags(holder.orgPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            holder.price.setText("$"+foodModels3.get(position).getOfferAmt());
+            holder.price.setText(context.getResources().getString(R.string.Rupee)+foodModels3.get(position).getOfferAmt());
         }
         else {
             holder.orgPrice.setVisibility(View.GONE);
-            holder.price.setText("$"+foodModels3.get(position).getFoodPrice());
+            holder.price.setText(context.getResources().getString(R.string.Rupee)+foodModels3.get(position).getFoodPrice());
         }
 
         if (foodModels3.get(position).getStars().matches("^[0]") || foodModels3.get(position).getStars().matches("^[0][.]") || foodModels3.get(position).getStars().matches("^[1][.][12345]")){

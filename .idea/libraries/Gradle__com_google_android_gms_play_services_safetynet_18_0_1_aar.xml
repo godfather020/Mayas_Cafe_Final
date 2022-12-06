@@ -9,12 +9,12 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1ea7e0d9786089532191bbbb41e99ad4/transformed/jetified-play-services-safetynet-18.0.1/res" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/1ea7e0d9786089532191bbbb41e99ad4/transformed/jetified-play-services-safetynet-18.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/51d9ecdec0f0169908155f83bd95c9d6/transformed/jetified-play-services-safetynet-18.0.1/res" />
-      <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/51d9ecdec0f0169908155f83bd95c9d6/transformed/jetified-play-services-safetynet-18.0.1/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/51d9ecdec0f0169908155f83bd95c9d6/transformed/jetified-play-services-safetynet-18.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/transforms-3/51d9ecdec0f0169908155f83bd95c9d6/transformed/jetified-play-services-safetynet-18.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/51d9ecdec0f0169908155f83bd95c9d6/transformed/jetified-play-services-safetynet-18.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/51d9ecdec0f0169908155f83bd95c9d6/transformed/jetified-play-services-safetynet-18.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/Downloads/lottry/lottry/.gradle/7.0.2/caches/modules-2/files-2.1/com.google.android.gms/play-services-safetynet/18.0.1/f95c1a7a505e9d4679a4de82b3825e53656c6ecf/play-services-safetynet-18.0.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-safetynet/18.0.1/f95c1a7a505e9d4679a4de82b3825e53656c6ecf/play-services-safetynet-18.0.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>
